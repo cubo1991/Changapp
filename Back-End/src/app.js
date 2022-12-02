@@ -2,6 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const suppliers = require("./routes/suppliers")
+const services = require("./routes/services")
 
 require('./db.js');
 
@@ -22,7 +24,8 @@ server.use((req, res, next) =>{
 });
 
 server.use('/', routes);
-
+server.use("/suppliers", suppliers)
+server.use("/services", services)
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;

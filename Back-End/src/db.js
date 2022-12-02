@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -60,5 +60,6 @@ User.belongsTo(Detail)
 
 module.exports = {
   ...sequelize.models,    // importacion de los modelos
-  conn: sequelize         // importacion de la conexion
+  conn: sequelize,        // importacion de la conexion
+  Op,
 }
