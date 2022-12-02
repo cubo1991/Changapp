@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/prueba`, {    //cambiar la databse
+const sequelize = new Sequelize(`postgres://postgres:1234@localhost:5432/prueba`, {    //cambiar la databse
   logging: false,
   native: false,
 });
@@ -26,10 +26,37 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { } = sequelize.models; //destructurin de los modelos.
+const { Service, Supplier, Category, User, UserRol, Review, Detail} = sequelize.models; //destructurin de los modelos.
 
-//relaciones aca
+//NaN Servicios a Proveedores
+Service.belongsToMany(Supplier, { through: "Service_Supplier"})
+Supplier.belongsToMany(Service, { through: "Service_Supplier"}) 
 
+//1aN Categorias de servicios
+Category.hasMany(Service)
+Service.belongsTo(Category)
+
+//NaN Usuarios y servicios
+Service.belongsToMany(User, { through: "Service_User"})
+User.belongsToMany(Service, { through: "Service_User"}) 
+
+//1aN Usuarios y Roles
+UserRol.hasMany(User)
+User.belongsTo(UserRol)
+
+//1aN Review y Servicios
+Service.hasMany(Review)
+Review.belongsTo(Service)
+//1aN Review y Users
+User.hasMany(Review)
+Review.belongsTo(User)
+
+//1a1 Details y Supplier
+Detail.hasOne(Supplier)
+Supplier.belongsTo(Detail)
+//1a1 Details y User
+Detail.hasOne(User)
+User.belongsTo(Detail) 
 
 module.exports = {
   ...sequelize.models,    // importacion de los modelos
