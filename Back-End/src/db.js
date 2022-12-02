@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://postgres:1234@localhost:5432/prueba`, {    //cambiar la databse
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/PF_ECOMMERCE`, {    //cambiar la databse
   logging: false,
   native: false,
 });

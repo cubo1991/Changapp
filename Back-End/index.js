@@ -1,25 +1,11 @@
 const server = require("./src/app.js");
-const { conn, UserRol, User } = require("./src/db.js");
-
-const Users = [
-  {
-    UserName: "Nicolas",
-    PassWord: "1234",
-    Age: 4,
-  },
-];
-
-const rols = [
-  {
-    name: "User",
-  },
-  {
-    name: "Admin",
-  },
-  {
-    name: "SuperAdmin",
-  },
-];
+const { conn, UserRol, User, Supplier, Service, Review, Category } = require("./src/db.js");
+const rols = require("./Datos/UserRols.json")
+const users = require("./Datos/Users.json")
+const suppliers = require("./Datos/Suppliers.json")
+const services = require("./Datos/Services.json")
+const reviews = require("./Datos/reviews.json")
+const categories = require("./Datos/Categories.json")
 
 conn
   .sync({ force: true })
@@ -29,22 +15,30 @@ conn
     });
   })
   .then(async () => {
-    rols.forEach((rol) => UserRol.create(rol));
-    
-    const rolPrueba = await UserRol.create({
+    //Rols
+    rols.forEach(async (rol) => await UserRol.create(rol));
+    //Users
+    users.forEach(async (user) =>await User.create(user)); 
+    //Proveedores
+    suppliers.forEach(async (supplier) =>await Supplier.create(supplier))
+    //Services
+    services.forEach(async (service) =>await Service.create(service))
+    //Reviews
+    reviews.forEach(async (review) =>await Review.create(review))
+    //Category
+    categories.forEach(async (category) =>await Category.create(category))
+
+
+    //Relaciones Rotas
+/*     const rolPrueba = await UserRol.create({
       name: "prueba"
-    });
-    //console.log(rolPrueba);
-    const user = await User.create({
+    }); 
+     const user = await User.create({
       userName: "Nicolas",
       passWord: "1234",
       age: 4,
     });
-
-    await user.setUserRol(rolPrueba)
+ 
+    await user.setUserRol(rolPrueba) */
     
   })
-  .then(async () => {
-    //console.log(roles);
-    //await user.setRol_id(result)
-  }); 

@@ -13,9 +13,6 @@ module.exports = (sequelize) => {
     serviceType: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlpha: true
-      }, 
     },
     pricePerHour: {
       type: DataTypes.STRING,
