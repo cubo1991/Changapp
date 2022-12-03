@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const { Supplier, Detail,  Op } = require("../db.js");
+const { Supplier, Detail, Op } = require("../db.js");
 
 router.get("/", async (req, res) => {
   try {
@@ -14,16 +14,16 @@ router.get("/", async (req, res) => {
           },
         },
         include: {
-          model : Detail,
-          attributes: ["location"]
-        }
+          model: Detail
+        },
       });
-      if (result.length === 0) res.status(404).send("No hubo resultados para la busqueda");
+      if (result.length === 0)
+        res.status(404).send("No hubo resultados para la busqueda");
       else res.status(200).json(result);
     } else {
       //http://localhost:3001/suppliers
       const result = await Supplier.findAll({
-        include: Detail
+        include: Detail,
       });
       res.status(200).json(result);
     }
@@ -34,8 +34,10 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, cuit, description,location, adress, phoneNumber, eMail } = req.body;
-    if(!name, !cuit, !description, !location, !adress, !phoneNumber, !eMail) res.status(404).send("Faltan datos obligatorios por cargar")
+    const { name, cuit, description, location, adress, phoneNumber, eMail } =
+      req.body;
+    if ((!name, !cuit, !description, !location, !adress, !phoneNumber, !eMail))
+      res.status(404).send("Faltan datos obligatorios por cargar");
     let suppDB = await Supplier.create({
       name,
       cuit,
@@ -45,12 +47,30 @@ router.post("/", async (req, res) => {
       location: location,
       adress: adress,
       phoneNumber: phoneNumber,
-      eMail: eMail
-    })
-    await suppDB.setDetail(detailsSupDB)
-      res.status(200).send("Proveedor creado exitosamente");
+      eMail: eMail,
+    });
+    await suppDB.setDetail(detailsSupDB);
+    res.status(200).send("Proveedor creado exitosamente");
   } catch (error) {
-    res.status(500).send("Hubo un error en el servidor")
+    res.status(500).send("Hubo un error en el servidor");
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  //http://localhost:3001/suppliers/id
+  try {
+    let suppDB = await Supplier.findAll({
+      where: {
+        id: id
+      },  
+      include: {
+        model: Detail
+      },
+    })
+    res.status(200).json(suppDB);
+  } catch (error) {
+    res.status(500).send("Hubo un error en el servidor");
   }
 });
 
