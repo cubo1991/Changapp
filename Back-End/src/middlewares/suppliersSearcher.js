@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+
 router.post("/", async (req, res) => {
   const { name, cuit, description } = req.body;
   if(name,cuit,description){
@@ -39,5 +40,6 @@ router.post("/", async (req, res) => {
   res.status(404).json("Missing data")
 }
 });
+
 
 module.exports = router;
