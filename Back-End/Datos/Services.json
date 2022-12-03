@@ -2,12 +2,12 @@
     {
         "serviceType": "Reparacion de Techos",
         "pricePerHour": "30000",
-        "description": "Realiza Limpieza del hogar"
+        "description": "Realiza Reparacion de Techos"
     },
     {
         "serviceType": "Reparacion de Paredes",
         "pricePerHour": "25000",
-        "description": "Realiza Limpieza del hogar"
+        "description": "Realiza Reparacion de Paredes"
     },
     {
         "serviceType": "Limpieza de Hogares",
@@ -17,16 +17,16 @@
     {
         "serviceType": "Limpieza de Hospitales",
         "pricePerHour": "15000",
-        "description": "Realiza Limpieza del hogar"
+        "description": "Realiza Limpieza de Hospitales"
     },
     {
         "serviceType": "Limpieza de Cloacas",
         "pricePerHour": "8000",
-        "description": "Realiza Limpieza del hogar"
+        "description": "Realiza Limpieza de Cloacas"
     },
     {
         "serviceType": "Reparacion de Cloacas",
         "pricePerHour": "12000",
-        "description": "Realiza Limpieza del hogar"
+        "description": "Realiza Reaparacion de Cloacas"
     }
 ]

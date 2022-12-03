@@ -4,10 +4,9 @@ module.exports = (sequelize) => {
   sequelize.define("Detail",
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
+        autoIncrement: true,
       },
       location: {
         type: DataTypes.STRING,
@@ -18,10 +17,10 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       phoneNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
       },
       eMail: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       }
     },

@@ -29,8 +29,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Service, Supplier, Category, User, UserRol, Review, Detail} = sequelize.models; //destructurin de los modelos.
 
 //NaN Servicios a Proveedores
-Service.belongsToMany(Supplier, { through: "Service_Supplier"})
-Supplier.belongsToMany(Service, { through: "Service_Supplier"}) 
+Service.belongsToMany(Supplier, { through: "Service_Supplier"},  {timestamps: false})
+Supplier.belongsToMany(Service, { through: "Service_Supplier"},  {timestamps: false}) 
 
 //1aN Categorias de servicios
 Category.hasMany(Service)
