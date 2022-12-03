@@ -2,31 +2,33 @@ const { Router } = require("express");
 const router = Router();
 const { Supplier, Op } = require("../db.js");
 
-try {
-  const { name } = req.query;
-  if (name) {
-    //http://localhost:3001/suppliers?name=Techos
-    const result = await Supplier.findAll({
-      where: {
-        name: {
-          [Op.substring]: name,
+router.get("/", async (req, res) => {
+  try {
+    const { name } = req.query;
+    if (name) {
+      //http://localhost:3001/suppliers?name=Techos
+      const result = await Supplier.findAll({
+        where: {
+          name: {
+            [Op.substring]: name,
+          },
         },
-      },
-    });
-    if (result.length === 0) res.send("No hubo resultados para la busqueda");
-    else res.send(result);
-  } else {
-    //http://localhost:3001/suppliers
-    const result = await Supplier.findAll();
-    res.send(result);
+      });
+      if (result.length === 0) res.send("No hubo resultados para la busqueda");
+      else res.send(result);
+    } else {
+      //http://localhost:3001/suppliers
+      const result = await Supplier.findAll();
+      res.send(result);
+    }
+  } catch (e) {
+    next(error);
   }
-} catch (error) {
-  next(error);
-}
+});
 
 router.post("/", async (req, res) => {
   const { name, cuit, description } = req.body;
-  if ((name, cuit, description)) {
+  if (name, cuit, description) {
     try {
       await Supplier.create({
         name,
