@@ -1,13 +1,13 @@
-[
+export const servicios = [
     {
         "serviceType": "Reparacion de Techos",
         "pricePerHour": "30000",
-        "description": "Realiza Reparacion de Techos"
+        "description": "Realiza Limpieza del hogar"
     },
     {
         "serviceType": "Reparacion de Paredes",
         "pricePerHour": "25000",
-        "description": "Realiza Reparacion de Paredes"
+        "description": "Realiza Limpieza del hogar"
     },
     {
         "serviceType": "Limpieza de Hogares",
@@ -17,16 +17,16 @@
     {
         "serviceType": "Limpieza de Hospitales",
         "pricePerHour": "15000",
-        "description": "Realiza Limpieza de Hospitales"
+        "description": "Realiza Limpieza del hogar"
     },
     {
         "serviceType": "Limpieza de Cloacas",
         "pricePerHour": "8000",
-        "description": "Realiza Limpieza de Cloacas"
+        "description": "Realiza Limpieza del hogar"
     },
     {
         "serviceType": "Reparacion de Cloacas",
         "pricePerHour": "12000",
-        "description": "Realiza Reaparacion de Cloacas"
+        "description": "Realiza Limpieza del hogar"
     }
 ]
