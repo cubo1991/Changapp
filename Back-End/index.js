@@ -1,11 +1,11 @@
 const server = require("./src/app.js");
-const { conn, UserRol, User, Supplier, Service, Review, Category } = require("./src/db.js");
+const { conn, UserRol, User, Supplier, Service, Category, Detail, Review } = require("./src/db.js");
 const rols = require("./Datos/UserRols.json")
 const users = require("./Datos/Users.json")
 const suppliers = require("./Datos/Suppliers.json")
 const services = require("./Datos/Services.json")
-const reviews = require("./Datos/reviews.json")
 const categories = require("./Datos/Categories.json")
+const details = require("./Datos/Details.json")
 
 conn
   .sync({ force: true })
@@ -15,30 +15,43 @@ conn
     });
   })
   .then(async () => {
+    let supplietUUID = []
+    //Details
+    details.forEach(async (detail) =>await Detail.create(detail))
+    //Category
+    categories.forEach(async (category) =>await Category.create(category))
     //Rols
     rols.forEach(async (rol) => await UserRol.create(rol));
     //Users
-    users.forEach(async (user) =>await User.create(user)); 
-    //Proveedores
-    suppliers.forEach(async (supplier) =>await Supplier.create(supplier))
-    //Services
-    services.forEach(async (service) =>await Service.create(service))
-    //Reviews
-    reviews.forEach(async (review) =>await Review.create(review))
-    //Category
-    categories.forEach(async (category) =>await Category.create(category))
-
-
-    //Relaciones Rotas
-/*     const rolPrueba = await UserRol.create({
-      name: "prueba"
+    users.forEach(async (user) =>{
+      let userBD = await User.create(user)
+      await userBD.setUserRol(2)
+      await userBD.setDetail(1)
     }); 
-     const user = await User.create({
-      userName: "Nicolas",
-      passWord: "1234",
-      age: 4,
-    });
- 
-    await user.setUserRol(rolPrueba) */
-    
+    //ProveedoresLimpieza S.A.
+    suppliers.forEach(async (supplier) =>{
+      let suppliersBD = await Supplier.create(supplier)
+      await suppliersBD.setDetail(2)
+      supplietUUID.push(suppliersBD.dataValues.id)
+    })
+    //Services
+    services.forEach(async (service) =>{
+      let serviceBD = await Service.create(service)
+      let fistWord = service.serviceType.split(" ")
+      if(fistWord[0] === "Reparacion") {
+        await serviceBD.setCategory(1)
+      } else {
+        await serviceBD.setCategory(2)
+      }
+      if(fistWord[2] === "Techos") {
+        await serviceBD.addSupplier(supplietUUID[3])
+      } else if(fistWord[2] === "Paredes"){
+        await serviceBD.addSupplier(supplietUUID[1])
+      } else if(fistWord[2] === "Hogares" || fistWord[2] === "Hospitales") {
+        await serviceBD.addSupplier(supplietUUID[0])
+      } else {
+        await serviceBD.addSupplier(supplietUUID[2])
+      }
+      
+    })
   })
