@@ -1,4 +1,4 @@
-export const servicios = [
+export const Servicios = [
     {
         "serviceType": "Reparacion de Techos",
         "pricePerHour": "30000",
