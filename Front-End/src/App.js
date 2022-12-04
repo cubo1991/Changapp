@@ -19,10 +19,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
+
+
 function App() {
   return (
     <div className="App">
-    <Home/>
+      <Routes>
+      <Route path="/" element={<NavBar />}>
+        <Route index element={<Home />} />
+        <Route path="suppliers" element={<Suppliers />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="*" element={<Navigate replace to="/" />} />
+     </Route>
+           </Routes>
     </div>
   );
 }
