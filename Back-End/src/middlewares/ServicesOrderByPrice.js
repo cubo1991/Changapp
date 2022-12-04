@@ -1,5 +1,6 @@
 const { Service, Op } = require('../db.js');
 const { Supplier } = require('../db.js');
+const { conn } = require('../db.js')
 
 const { Router } = require('express');
 const router = Router();
@@ -17,8 +18,6 @@ module.exports = router.get('/', async (req, res, next) => {
     if(filter && filter !== "undefined"){
 
       filter = filter.split(",");
-
-      console.log(filter)
       
       const OrderBy = await Service.findAll({
         where: {
@@ -32,7 +31,7 @@ module.exports = router.get('/', async (req, res, next) => {
           }
         ],
         order: [
-          ['pricePerHour', order]
+          [conn.cast(conn.col('pricePerHour'), 'INTEGER'), order]
         ]
       });
 
@@ -48,7 +47,7 @@ module.exports = router.get('/', async (req, res, next) => {
           }
       ],
         order: [
-          ['pricePerHour', order]
+          [conn.cast(conn.col('pricePerHour'), 'INTEGER'), order]
         ]
       });
 
