@@ -1,21 +1,29 @@
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+//styles
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "./App.css";
+//components
+import  Home  from './Components/Home/Home.jsx'
+import NavBar from "./Components/NavBar/NavBar.jsx";
+import { Suppliers } from "./Components/Suppliers/Suppliers.jsx";
+import { Contact } from "./Components/Contact/Contact.jsx";
+import { Cart } from "./Components/Cart/Cart.jsx";
 
 import './App.css';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import Home from './Components/Home/Home';
 
 function App() {
-
-  
   return (
-   
     <div className="App">
-      <Home/>
+    <Home/>
     </div>
-
   );
 }
 
