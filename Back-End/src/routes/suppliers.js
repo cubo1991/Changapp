@@ -7,6 +7,4 @@ const router = Router();
 router.use(require("../middlewares/suppliersSearcher"))
 
 
-
-
 module.exports = router;

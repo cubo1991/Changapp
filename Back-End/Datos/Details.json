@@ -1,0 +1,14 @@
+[
+    {
+        "location": "UserLocation",
+        "adress" : "UserAdress 999",
+        "phoneNumber" : 9999999999,
+        "eMail": "usermail@test.com"
+    },
+    {
+        "location": "SupplierLocation",
+        "adress" : "SupplierAdress 999",
+        "phoneNumber" : 9999999999,
+        "eMail": "suppliermail@test.com"
+    }
+]
