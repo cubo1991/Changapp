@@ -1,4 +1,4 @@
-const {Service, Supplier, Category, Op} = require('../db.js');
+const {Service, Category} = require('../db.js');
 const { Router } = require('express');
 const router = Router();
 
