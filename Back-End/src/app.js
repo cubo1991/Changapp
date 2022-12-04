@@ -5,20 +5,20 @@ const suppliers = require("./routes/suppliers")
 const services = require("./routes/services")
 const review = require("./routes/review")
 const service = require('./routes/service')
-
+const category = require('./routes/category')
 require('./db.js');
 
 const server = express();
 
 server.name = 'API';
 
-server.use(express.urlencoded({extended: true, limit: '50mb'}));
-server.use(express.json({limit: '50mb'}));
+server.use(express.urlencoded({ extended: true, limit: '50mb' }));
+server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
-server.use((req, res, next) =>{
+server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http//localhost3000');
-  res.header('Access-Control-Allow-Credentials','true');
+  res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
@@ -28,6 +28,7 @@ server.use("/suppliers", suppliers)
 server.use("/services", services)
 server.use("/review", review)
 server.use('/service', service)
+server.use('/category', category)
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;
