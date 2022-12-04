@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const suppliers = require("./routes/suppliers")
 const services = require("./routes/services")
 const review = require("./routes/review")
+const service = require('./routes/service')
 
 require('./db.js');
 
@@ -26,6 +27,7 @@ server.use((req, res, next) =>{
 server.use("/suppliers", suppliers)
 server.use("/services", services)
 server.use("/review", review)
+server.use('/service', service)
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;
