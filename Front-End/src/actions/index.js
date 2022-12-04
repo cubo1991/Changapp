@@ -8,7 +8,9 @@ export function test(){
 } */
 
 
-import {Servicios} from '../Mockup/Servicios.js';
+import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS } from '../Constantes/Constantes.js';
+import { Proveedores } from '../Mocks/Proveedores.js';
+import {Servicios} from '../Mocks/Servicios.js';
 
 
 
@@ -17,8 +19,32 @@ export function getServices() {
         var json =  Servicios
         
         return dispatch({
-            type: 'GET_SERVICES',
+            type: GET_SERVICES,
             payload: json
         })
     }
+}
+
+
+export const getSuppliers= () => {
+
+    return function(dispatch){
+        let json = Proveedores
+
+        return dispatch({
+            type: GET_SUPPLIERS,
+            payload:json
+        })
+    }
+}
+
+export const getDetails = (id) => {
+return function (dispatch){
+const found = Proveedores.find(e => e.id === Number(id))
+
+return dispatch({
+    type: GET_DETAILS,
+    payload: found
+})
+}
 }
