@@ -38,7 +38,7 @@ export function searchService(data){
         fetch(`http://localhost:3001/services?type=${data}`)
         .then(res => res.json())
         .then(res => dispatch(addServices(res)))
-        dispatch(searchingTrue())
+        dispatch(searchingTrue());
     }
 }
 
@@ -48,7 +48,7 @@ export function searchingTrue(){
     }
 }
 
-export function searchinFalse(){
+export function searchingFalse(){
     return {
         type: 'SEARCHING_FALSE'
     }
@@ -66,5 +66,26 @@ export function getSuppliers(){
         fetch('http://localhost:3001/suppliers')
         .then(res => res.json())
         .then(res => dispatch(fillSuppliers(res)))
+    }
+}
+
+export function searchSuppliers(data){
+    return function(dispatch){
+        fetch(`http://localhost:3001/suppliers?name=${data}`)
+        .then(res => res.json())
+        .then(res => dispatch(fillSuppliers(res)))
+        dispatch(searchingTrue());
+    }
+}
+
+export function searchingServices(){
+    return {
+        type: 'SEARCHING_SERVICES'
+    }
+}
+
+export function searchingSuppliers(){
+    return {
+        type: 'SEARCHING_SUPPLIERS'
     }
 }

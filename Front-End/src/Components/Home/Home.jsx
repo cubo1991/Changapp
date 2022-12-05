@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
-import { getServices, searchinFalse } from '../../actions/index.js';
+import { getServices, searchingFalse, searchingServices } from '../../actions/index.js';
 
 // import { Servicios } from '../../Mockup/Servicios.js';
 import Index from '../Index/Index.jsx';
@@ -35,7 +35,8 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getServices());
-  }, [dispatch])
+    dispatch(searchingServices()); //settea un estado global para que la barra de busqueda busque servicios
+  }, [])
 
   // console.log(currentServices)
 
@@ -49,9 +50,9 @@ export default function Home() {
       />
 
       { searching ? 
-      <button onClick={ () =>{
+      <button onClick={ () =>{    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
         dispatch(getServices())
-        dispatch(searchinFalse())}}>
+        dispatch(searchingFalse())}}>
         Volver a mostrar todos los servicios</button> : null}
 
       

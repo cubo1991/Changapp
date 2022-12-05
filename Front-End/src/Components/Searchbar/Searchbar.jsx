@@ -1,26 +1,27 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { searchService } from "../../actions";
+import { searchSuppliers, searchService } from "../../actions";
 import styles from "../Searchbar/Searchbar.module.css";
 
 function Searchbar() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(input);
+  //console.log(input);
+  const searchingType = useSelector( state => state.searchingType);
 
   const handleClick = () => {
-     dispatch(searchService(input));
+    searchingType === 'services' ? dispatch(searchService(input)) : dispatch(searchSuppliers(input));
     setInput("");
-    navigate("/");
+   // navigate("/");
   };
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
-      dispatch(searchService(input));
+      searchingType === 'services' ? dispatch(searchService(input)) : dispatch(searchSuppliers(input));
       setInput("");
-      navigate("/");
+   //   navigate("/");
     }
   };
 
