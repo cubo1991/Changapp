@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
-import { getServices } from '../../actions/index.js';
+import { getServices, searchinFalse } from '../../actions/index.js';
 
 // import { Servicios } from '../../Mockup/Servicios.js';
 import Index from '../Index/Index.jsx';
@@ -15,6 +15,7 @@ import { ServicesCard } from '../ServicesCard/ServicesCard.jsx';
 export default function Home() {
   const dispatch = useDispatch();
   const allServices = useSelector((state) => state.services)
+  const searching = useSelector( state => state.searching);
   const [currentPage, setCurrentPage] = useState(1)
   const [servicesPerPage, setServicesPerPage] = useState(3)
   const indexOfLastService = currentPage * servicesPerPage//3
@@ -46,6 +47,12 @@ export default function Home() {
         allServices={allServices.length}
         index={index}
       />
+
+      { searching ? 
+      <button onClick={ () =>{
+        dispatch(getServices())
+        dispatch(searchinFalse())}}>
+        Volver a mostrar todos los servicios</button> : null}
 
       
       {/* <div>servicios</div> */}

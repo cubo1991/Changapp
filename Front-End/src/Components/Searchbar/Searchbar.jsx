@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { searchService } from "../../actions";
 import styles from "../Searchbar/Searchbar.module.css";
 
 function Searchbar() {
@@ -10,14 +11,14 @@ function Searchbar() {
   console.log(input);
 
   const handleClick = () => {
-    // dispatch(getsuppliers(input));
+     dispatch(searchService(input));
     setInput("");
     navigate("/");
   };
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
-      // dispatch(getsuppliers(input));
+      dispatch(searchService(input));
       setInput("");
       navigate("/");
     }
