@@ -1,5 +1,5 @@
 const server = require("./src/app.js");
-const { conn, UserRol, User, Supplier, Service, Category, Detail, Review } = require("./src/db.js");
+const { conn, UserRol, User, Supplier, Service, Category, Detail, Review, Op } = require("./src/db.js");
 const rols = require("./Datos/UserRols.json")
 const users = require("./Datos/Users.json")
 const suppliers = require("./Datos/Suppliers.json")
@@ -8,13 +8,13 @@ const categories = require("./Datos/Categories.json")
 const details = require("./Datos/Details.json")
 
 conn
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     server.listen(3001, () => {
       console.log("%s listening at 3001");
     });
   })
-  .then(async () => {
+/*   .then(async () => {
     let supplietUUID = []
     //Details
     details.forEach(async (detail) =>await Detail.create(detail))
@@ -54,4 +54,20 @@ conn
       }
       
     })
-  })
+  }) */
+/* 
+  .then(async () => {
+    const result = await Review.findAll({
+      order:[
+        [conn.cast(conn.col('rating'), 'INTEGER'), "DESC"]
+      ],
+      include: {
+        model: Service,
+        where: {
+          name: "Limpieza de Cloacas"
+        }
+      }
+    })
+
+    console.log(result);
+  }) */
