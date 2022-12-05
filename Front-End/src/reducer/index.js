@@ -2,7 +2,8 @@
 
 const initialState = {
   services: [],
-  searching: false
+  searching: false,
+  suppliers: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +26,13 @@ const reducer = (state = initialState, action) => {
           ...state,
           searching: false
         }  
+
+      case 'FILL_SUPPLIERS':
+        return {
+          ...state,
+          suppliers: action.payload
+        } 
+
     default:
       return state;
   }

@@ -22,7 +22,6 @@ export function getServices() {
         //FALTA UN LOADER
         fetch('http://localhost:3001/services')
         .then( res => res.json())
-  //      .then( res => console.log(res))
         .then( res => dispatch(addServices(res)))
     }
 }
@@ -52,5 +51,20 @@ export function searchingTrue(){
 export function searchinFalse(){
     return {
         type: 'SEARCHING_FALSE'
+    }
+}
+
+export function fillSuppliers(payload){
+    return {
+        type: 'FILL_SUPPLIERS',
+        payload
+    }
+}
+
+export function getSuppliers(){
+    return function(dispatch){
+        fetch('http://localhost:3001/suppliers')
+        .then(res => res.json())
+        .then(res => dispatch(fillSuppliers(res)))
     }
 }
