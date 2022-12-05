@@ -8,7 +8,7 @@ export function test(){
 } */
 
 import { json } from "react-router-dom"
-import { GET_DETAILS } from "../Constantes/Constantes"
+import { ADD_CART, GET_DETAILS } from "../Constantes/Constantes"
 
 
 //import {Servicios} from '../Mockup/Servicios.js';
@@ -106,6 +106,26 @@ return function (dispatch){
         console.log(res)
         dispatch({
             type: GET_DETAILS,
+            payload: found
+        })
+
+    })
+
+
+ 
+}
+}
+
+export const addCart = (id) => {
+    let found;
+return function (dispatch){
+    fetch('http://localhost:3001/services')
+    .then(res => res.json())
+    .then(res => found = res.find(e => e.id === (id)))
+    .then(res=> {
+        console.log(found)
+        dispatch({
+            type: ADD_CART,
             payload: found
         })
 

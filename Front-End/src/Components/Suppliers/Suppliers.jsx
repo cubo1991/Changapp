@@ -22,7 +22,7 @@ let suppliers = useSelector((state) => state.suppliers)
   const suppliersMap  = suppliers.map((supplier) => { 
 
     return <SuppliersCard
-    name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} />})
+    name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} details={supplier.Detail} />})
 
  
   return (

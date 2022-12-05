@@ -60,7 +60,7 @@ export default function Home() {
       <div>
         {currentServices?.map(service => {
           return (
-              <ServicesCard  name={service.serviceType} price={service.pricePerHour} description={service.description}
+              <ServicesCard id={service.id}  name={service.serviceType} price={service.pricePerHour} description={service.description} 
               />
                     )
         })}

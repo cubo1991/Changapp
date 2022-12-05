@@ -10,7 +10,7 @@ import { ServicesCard } from '../ServicesCard/ServicesCard'
 export const Services = () => {
   let dispatch = useDispatch()
   let services = useSelector((state) =>state.services )
-  
+ 
   React.useEffect(
     ()=>{
    
@@ -21,9 +21,9 @@ export const Services = () => {
       }, [dispatch])
 
   const servicesMap = services.map((service) => { 
-
+   
     return <ServicesCard
-    name={service.serviceType} price={service.pricePerHour} description={service.description} />})
+    name={service.serviceType} price={service.pricePerHour} description={service.description} id={service.CategoryId} />})
 
   return (
     <div>
