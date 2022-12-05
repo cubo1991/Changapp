@@ -6,7 +6,7 @@ import { SuppliersDetailCard } from './SuppliersDetailCard'
 
 
 
-export const SuppliersDetail = (props) => {
+export const SuppliersDetail = () => {
   let dispatch = useDispatch()
   let supplierDetail = useSelector((state)=> state.supplierDetails)
  let params = useParams()

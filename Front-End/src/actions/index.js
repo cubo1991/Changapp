@@ -7,29 +7,19 @@ export function test(){
     }
 } */
 
+import { json } from "react-router-dom"
+import { GET_DETAILS } from "../Constantes/Constantes"
 
-<<<<<<< HEAD
-import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS } from '../Constantes/Constantes.js';
-import { Proveedores } from '../Mocks/Proveedores.js';
-import {Servicios} from '../Mocks/Servicios.js';
-=======
+
 //import {Servicios} from '../Mockup/Servicios.js';
->>>>>>> 837b15487b00e44fa1abfd11991e4690315e640c
 
 
 
 export function getServices() {
     return  function (dispatch) {
-<<<<<<< HEAD
-        var json =  Servicios
-        
-        return dispatch({
-            type: GET_SERVICES,
-=======
         /* var json =  Servicios
          return dispatch({
             type: 'GET_SERVICES',
->>>>>>> 837b15487b00e44fa1abfd11991e4690315e640c
             payload: json
         }) */
         //FALTA UN LOADER
@@ -104,25 +94,24 @@ export function searchingSuppliers(){
 }
 
 
-export const getSuppliers= () => {
 
-    return function(dispatch){
-        let json = Proveedores
-
-        return dispatch({
-            type: GET_SUPPLIERS,
-            payload:json
-        })
-    }
-}
 
 export const getDetails = (id) => {
+    let found;
 return function (dispatch){
-const found = Proveedores.find(e => e.id === Number(id))
+    fetch('http://localhost:3001/suppliers')
+    .then(res => res.json())
+    .then(res => found = res.find(e => e.id === (id)))
+    .then(res=> {
+        console.log(res)
+        dispatch({
+            type: GET_DETAILS,
+            payload: found
+        })
 
-return dispatch({
-    type: GET_DETAILS,
-    payload: found
-})
+    })
+
+
+ 
 }
 }
