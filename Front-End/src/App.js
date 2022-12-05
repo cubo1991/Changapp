@@ -18,6 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import { SuppliersDetail } from "./Components/SuppliersDetail/SuppliersDetail";
 
 
 
@@ -30,8 +31,10 @@ function App() {
         <Route path="suppliers" element={<Suppliers />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
+        <Route path= "/suppliers/:id" element={<SuppliersDetail/>} />
         <Route path="*" element={<Navigate replace to="/" />} />
      </Route>
+     
            </Routes>
     </div>
   );

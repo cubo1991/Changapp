@@ -1,20 +1,33 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSuppliers } from '../../actions'
 
 
-import { Proveedores } from '../../Mockup/Proveedores'
+
 import { SuppliersCard } from '../SuppliersCard/SuppliersCard'
 
 export const Suppliers = () => {
+let dispatch = useDispatch()
+let suppliers = useSelector((state) => state.suppliers)
+  React.useEffect(
+    ()=>{
+   
+        dispatch(getSuppliers())        
+          
 
-  const suppliers  = Proveedores.map((proveedor) => { 
+
+      }, [dispatch])
+
+
+  const suppliersMap  = suppliers.map((supplier) => { 
 
     return <SuppliersCard
-    name={proveedor.name} cuit={proveedor.cuit} description={proveedor.description} />})
+    name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} />})
 
  
   return (
     <div>
-{suppliers}
+{suppliersMap}
     </div>
     
   )
