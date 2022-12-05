@@ -1,45 +1,33 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSuppliers, searchingSuppliers, searchingFalse } from '../../actions'
+import { getSuppliers } from '../../actions'
 
 
-//import { Proveedores } from '../../Mockup/Proveedores'
+
 import { SuppliersCard } from '../SuppliersCard/SuppliersCard'
 
 export const Suppliers = () => {
+let dispatch = useDispatch()
+let suppliers = useSelector((state) => state.suppliers)
+  React.useEffect(
+    ()=>{
+   
+        dispatch(getSuppliers())        
+          
 
-  const dispatch = useDispatch();
-  
-  //ComponentDidMount
-  useEffect( () => {
-    dispatch(getSuppliers());
-    dispatch(searchingSuppliers());   // settea un state global para que la barra de busqueda busque proveedor
-  },[])
-  
-  
-  const supp = useSelector(state => state.suppliers);
-  const searching = useSelector(state => state.searching);
 
-  const suppliers  = supp.map((proveedor) => { 
+      }, [dispatch])
+
+
+  const suppliersMap  = suppliers.map((supplier) => { 
 
     return <SuppliersCard
-    name={proveedor.name} cuit={proveedor.cuit} 
-    description={proveedor.description} 
-    details={proveedor.Detail}/> 
-    
-  });
+    name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} />})
 
  
   return (
     <div>
-
-      { searching ? <button onClick={ () => {
-        dispatch(getSuppliers());
-        dispatch(searchingFalse());
-      }}>Ver todos los proveedores</button> : null}  {/* Renderiza un boton para volver a mostar todos los proveedores */}
-      
-      {suppliers}
+{suppliersMap}
     </div>
     
   )

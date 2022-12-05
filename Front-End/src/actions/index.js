@@ -7,6 +7,9 @@ export function test(){
     }
 } */
 
+import { json } from "react-router-dom"
+import { GET_DETAILS } from "../Constantes/Constantes"
+
 
 //import {Servicios} from '../Mockup/Servicios.js';
 
@@ -88,4 +91,27 @@ export function searchingSuppliers(){
     return {
         type: 'SEARCHING_SUPPLIERS'
     }
+}
+
+
+
+
+export const getDetails = (id) => {
+    let found;
+return function (dispatch){
+    fetch('http://localhost:3001/suppliers')
+    .then(res => res.json())
+    .then(res => found = res.find(e => e.id === (id)))
+    .then(res=> {
+        console.log(res)
+        dispatch({
+            type: GET_DETAILS,
+            payload: found
+        })
+
+    })
+
+
+ 
+}
 }
