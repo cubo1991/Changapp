@@ -1,0 +1,26 @@
+.search_hover {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  width: 0px;
+  height: 30px;
+  padding: 0px;
+  transition: all 0.5s;
+}
+
+.btn svg{
+  margin-bottom: 6px;
+  margin-left:2px
+}
+
+.btn:hover .search_hover {
+  width: 200px;
+  padding-left: 10px;
+  border: 1px solid black
+}
+
+.btn{
+  background-color: transparent;
+  border:none
+}
+
