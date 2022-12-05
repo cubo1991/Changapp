@@ -6,8 +6,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_SERVICES':
-      console.log(action.payload);
+      case 'ADD_SERVICES':
       return {
         ...state,
         services: action.payload,
