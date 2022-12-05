@@ -1,0 +1,38 @@
+.container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.inactive .link {
+  color: black;
+}
+
+.link {
+  border: 1px solid black;
+  margin: 0 20px;
+}
+
+.active .link{
+    background-color: black;
+    color:white
+}
+
+.inactive .cart{
+    color:black
+}
+
+.nav_right{
+    margin-right: 40px;
+}
+
+.person{
+    margin:0 15px
+}
+
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+}
