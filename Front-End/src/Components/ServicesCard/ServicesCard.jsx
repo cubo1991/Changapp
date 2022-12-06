@@ -11,14 +11,23 @@ export const ServicesCard = ({name, price, description, id}) => {
   dispatch(addCart(id))
  } 
   return (
-    <div>
+    <div >
         
-        <div className={s.card}>
-        <h2>Name:</h2> <p>{name}</p>
-        <h3>Price per Hour:</h3> <p>{price}</p>
-        <h3>Description:</h3><p>{description}</p>
-        <button onClick={onClickBtn}>Agregar al Carrito</button>
-        <h4>{id}</h4>
+        <div className="card" style={{maxWidth:"25rem", margin:"1rem"}}>
+        <div className="card-body">
+          <div className={s.contenedor}>
+         <h5 className="card-title">{name}</h5>
+        </div>
+        <div className={s.contenedor}>
+        <h6>Price per Hour:</h6> <p className="card-text">{price}</p>
+        </div>
+        <div className={s.contenedor}>
+        <h6>Description:</h6><p className="card-text">{description}</p>
+        </div>
+        </div>
+        
+        <button className='btn btn-primary' onClick={onClickBtn}>Agregar al Carrito</button>
+        
         </div>
         
         

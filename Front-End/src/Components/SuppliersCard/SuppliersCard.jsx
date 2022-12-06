@@ -14,7 +14,7 @@ export const SuppliersCard = ({name, cuit, description, details, id}) => {
     <h2>Name:</h2> <p>{name}</p>
     </Link>
     <h3>Cuit:</h3> <p>{cuit}</p>
-    <h3>Description:</h3><p>{description}</p>
+    <h3 className='display-1'>Description:</h3><p>{description}</p>
     <h3>Location:</h3><p>{details.location}</p>
     <h3>Adress:</h3><p>{details.adress}</p>
     </div>

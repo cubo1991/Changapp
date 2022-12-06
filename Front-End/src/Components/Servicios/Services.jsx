@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getServices } from '../../actions'
+import s from './Services.module.css'
 
 
 
@@ -26,7 +27,7 @@ export const Services = () => {
     name={service.serviceType} price={service.pricePerHour} description={service.description} id={service.CategoryId} />})
 
   return (
-    <div>
+    <div className={s.contenedor}>
 {servicesMap}
 
     </div>
