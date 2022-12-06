@@ -4,6 +4,8 @@ import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS, ADD_CART } from "../Constante
 
 const initialState = {
   services: [],
+  serviceDetails: [],
+  allServices: [],
   suppliers: [],
   supplierDetails: [],
   searchingType: "",
@@ -16,6 +18,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case 'SET_SERVICES':
+    return {
+      ...state,
+      allServices: action.payload
+    }
 
     case 'ADD_SERVICES':
       return {
@@ -92,6 +100,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [...state.cart, action.payload]
+      }
+
+    case "SERVICE_DETAIL":
+      return {
+        ...state,
+        serviceDetails: action.payload
       }
 
     default:

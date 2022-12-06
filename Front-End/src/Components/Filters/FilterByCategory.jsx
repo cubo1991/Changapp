@@ -7,7 +7,7 @@ import { filterByCategory, getCategories } from "../../actions";
 //import Cards from "./Cards";
 
 
-export function FilterByCategory() {
+export function FilterByCategory({index}) {
 
     const dispatch = useDispatch();
 
@@ -17,24 +17,31 @@ export function FilterByCategory() {
 
     const categories = useSelector(state => state.categories);
 
+    console.log(index)
+
     function handleChange(e) {
         
         e.preventDefault();
-        if(e.target.value === "default") return dispatch(filterByCategory(0)) 
+        if(e.target.value === "default") {
+            return dispatch(filterByCategory(0))} 
         else dispatch(filterByCategory(e.target.value))
 
     }
-    //const orderedGames = useSelector(state => state.orderedByRating)
+    
     if (categories && categories.length > 1) {
         return (
             <div>
                 <label>Filtrar por categoría: </label>
                 <select onChange={(e) => handleChange(e)}>
-                    <option value="default">
+                    <option value="default" onClick={(e) =>{
+                            index(1);
+                        }}  >
                         -- Selecciona una categora --
                     </option>
                     {categories.map(category => {
-                        return <option key={category.id} value={category.id}>{category.name}</option>
+                        return <option key={category.id} value={category.id} onClick={(e) =>{
+                            index(1);
+                        }}>{category.name}</option>
                     })}
                 </select>
             </div>

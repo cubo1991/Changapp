@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+
+}
+
+.img{
+    width: 975px;
+    height: 301px;
+    border-radius:5px;
+    position: absolute;
+    object-fit: cover;
+    border:solid 1px black
+}
+
+.detail_container{
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+    align-items: center;
+}

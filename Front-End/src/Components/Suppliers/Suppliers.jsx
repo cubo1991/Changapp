@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSuppliers } from '../../actions'
+import { getSuppliers, searchSuppliers } from '../../actions'
 
 
 
@@ -9,14 +9,12 @@ import { SuppliersCard } from '../SuppliersCard/SuppliersCard'
 export const Suppliers = () => {
 let dispatch = useDispatch()
 let suppliers = useSelector((state) => state.suppliers)
-  React.useEffect(
+  
+React.useEffect(
     ()=>{
-   
-        dispatch(getSuppliers())        
-          
-
-
-      }, [dispatch])
+        dispatch(searchSuppliers())
+        dispatch(getSuppliers())      
+      }, [])
 
 
   const suppliersMap  = suppliers.map((supplier) => { 

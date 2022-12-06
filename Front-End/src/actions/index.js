@@ -13,6 +13,24 @@ import { ADD_CART, GET_DETAILS } from "../Constantes/Constantes"
 
 //import {Servicios} from '../Mockup/Servicios.js';
 
+export function setServices(payload){
+    return {
+        type: "SET_SERVICES",
+        payload
+    }
+}
+
+export function init () {
+    return function(dispatch){
+        fetch('http://localhost:3001/services')
+            .then(res => res.json())
+            .then(res => {
+                dispatch(setServices(res))
+                dispatch(addServices(res))
+            })
+    }
+}
+
 export function getCategories() {
     return function (dispatch) {
 
@@ -27,12 +45,14 @@ export function getLocations(){
         fetch('http://localhost:3001/location')
         .then( res => res.json())
         .then( res => {
-            console.log(res)
+           // console.log(res)
             let locations = new Set();
             if(res){
                 res.forEach( element => {
-                    locations.add(element.location)
+                    console.log(element.Users)
+                    if(element.passWord = 1234) locations.add(element.location)
                 });
+                console.log(locations, "locations")
             dispatch({type: "GET_LOCATIONS", payload: [...locations]})
             }
         })
@@ -51,6 +71,7 @@ export function filterByLocation(location) {
 
         fetch(`http://localhost:3001/services?by=location&location=${location}`)
             .then(res => res.json())
+      //      .then(res => console.log(res, "REPUESTA"))
             .then(res => dispatch({ type: "FILTER_BY_LOCATION", payload: res }))
     }
 }
@@ -134,8 +155,6 @@ export function searchingSuppliers() {
 }
 
 
-
-
 export const getDetails = (id) => {
     let found;
     return function (dispatch) {
@@ -173,7 +192,22 @@ export const addCart = (id) => {
 
             })
 
+    }
+}
 
+// http://localhost:3000/services?filter=Limpieza%20de%20Hoteles,Limpieza%20de%20Hogares&order=ASC
+export function orderByPrices(data, filter){
+    return function(dispatch){
+        fetch(`http://localhost:3001/services?order=${data}&filter=${filter}`)
+        .then( res => res.json())
+        .then( res => dispatch(addServices(res)))
+    }
+}
 
+export function getServiceDetails(data){
+    return function(dispatch){
+        fetch(`http://localhost:3001/services/${data}`)
+        .then( res => res.json())
+        .then( res => dispatch({type: "SERVICE_DETAIL", payload: res}))
     }
 }

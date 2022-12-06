@@ -39,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getServices());
     dispatch(searchingServices()); //settea un estado global para que la barra de busqueda busque servicios
-  }, [])
+  }, [dispatch])
 
   // console.log(currentServices)
 
@@ -50,9 +50,10 @@ export default function Home() {
         servicesPerPage={servicesPerPage}
         allServices={allServices.length}
         index={index}
+        currentPage={currentPage}
       />
 
-      <NavFilters></NavFilters>
+      <NavFilters index ={index}></NavFilters>
 
       { searching ? 
       <button onClick={ () =>{    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */

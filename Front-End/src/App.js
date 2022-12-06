@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,10 +19,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { SuppliersDetail } from "./Components/SuppliersDetail/SuppliersDetail";
-
+import { useDispatch, useSelector } from "react-redux";
+import {init} from '../src/actions/index.js'
+import { ServicesDetail } from "./Components/ServicesDetail/ServicesDetail";
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+    dispatch(init())
+  })
+
   return (
     <div className="App">
       <Routes>
@@ -32,6 +41,7 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
         <Route path= "/suppliers/:id" element={<SuppliersDetail/>} />
+        <Route path= "/services/:d" element={<ServicesDetail/>} />
         <Route path="*" element={<Navigate replace to="/" />} />
      </Route>
      
