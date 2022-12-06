@@ -12,6 +12,7 @@ import { getServices, searchingFalse, searchingServices } from '../../actions/in
 import Index from '../Index/Index.jsx';
 import { ServicesCard } from '../ServicesCard/ServicesCard.jsx';
 import { Footer } from '../Footer/Footer.jsx';
+import NavFilters from '../Filters/NavFilters';
 
 
 export default function Home() {
@@ -50,6 +51,8 @@ export default function Home() {
         allServices={allServices.length}
         index={index}
       />
+
+      <NavFilters></NavFilters>
 
       { searching ? 
       <button onClick={ () =>{    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
