@@ -1,5 +1,5 @@
 import React from "react";
-// import s from '../Stylos/Paginado.module.css'
+import s from './index.module.css';
 
 
 
@@ -19,17 +19,16 @@ export default function Paginado({ servicesPerPage, allServices, index, currentP
     }
 
     return (    
-        <nav >
-            <button value="prev" onClick={(e) => nextPrevButton(e)}>prev</button>
-            <ul >
+        <nav className={s.pagination}>
+            <button className={s.button} value="prev" onClick={(e) => nextPrevButton(e)}>prev</button>
+            <div className={s.itemContainer}>
                 {pageNumber &&
                     pageNumber.map(number => (
-                        <li key={number} value={number}>
-                        <p onClick={() => index(number)}>{number}</p>
-                        </li>
+                        <p className={s.item} key={number} value={number} 
+                        onClick={() => index(number)}>{number}</p>                  
             ))}
-            </ul>
-            <button value="next" onClick={(e) => nextPrevButton(e)}>next</button>
+            </div>
+            <button className={s.button} value="next" onClick={(e) => nextPrevButton(e)}>next</button>
         </nav >
         
     )
