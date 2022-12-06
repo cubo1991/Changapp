@@ -2,8 +2,11 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar.jsx";
 import Style from "../NavBar/Navbar.module.css";
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
+let cart = useSelector((state) => state.cart)
+
   return (
     <main>
       <nav className={`${Style.container} container-fluid`}>
@@ -71,6 +74,14 @@ export default function NavBar() {
                 </svg>
               </div>
             </NavLink>
+            {
+            cart.length > 0 
+            ?
+            <p className="btn btn-danger" style={{borderRadius:"90%", width:"fit-content", height:"fit-content", fontSize:"small"}}>{cart.length}</p>
+            :
+            ""
+
+            }
           </div>
         </div>
       </nav>

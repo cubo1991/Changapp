@@ -18,6 +18,9 @@ export function FilterByCategory({index}) {
     const categories = useSelector(state => state.categories);
 
     console.log(index)
+    const [categoryValue, setCategoryValue] = useState();
+   
+
 
     function handleChange(e) {
         
@@ -32,11 +35,11 @@ export function FilterByCategory({index}) {
         return (
             <div>
                 <label>Filtrar por categoría: </label>
-                <select onChange={(e) => handleChange(e)}>
+                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)}>
                     <option value="default" onClick={(e) =>{
                             index(1);
-                        }}  >
-                        -- Selecciona una categora --
+                        }}>
+                        -- Selecciona una categoría --
                     </option>
                     {categories.map(category => {
                         return <option key={category.id} value={category.id} onClick={(e) =>{

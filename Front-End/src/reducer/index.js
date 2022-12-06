@@ -1,6 +1,6 @@
 //import {} from "../actions/index"
 
-import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS, ADD_CART } from "../Constantes/Constantes";
+import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM } from "../Constantes/Constantes";
 
 const initialState = {
   services: [],
@@ -100,6 +100,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [...state.cart, action.payload]
+      }
+    case REMOVE_ITEM:
+      let filterCart = state.cart.filter(item => item.id !== action.payload)
+      return {
+        ...state,
+        cart: filterCart
+
       }
 
     case "SERVICE_DETAIL":

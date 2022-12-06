@@ -1,0 +1,26 @@
+
+.pagination{
+  display: flex;
+  margin: auto;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.item{
+  cursor: pointer;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.itemContainer{
+  padding-top: 1%;
+  display: flex;
+  align-content: center;
+}
+
+.button{ 
+  height: 20%;
+  margin-left: 3%;
+  margin-right: 3%;
+}

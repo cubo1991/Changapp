@@ -7,13 +7,20 @@ import { OrderByServiceName } from "./OrderServicesByName"
 
 export default function NavFilters({index}) {
 
-    return (<nav>
-        <FilterByCategory index={index} />
-       {/*  <FilterByLocation /> */}
+    return (
+    
+    <nav>
+        {/* OrderByLocatiion y OrderByNAme incompletos */}
+        {/* <FilterByCategory index={index} />
+        <FilterByLocation />
        <div>
         <OrderByPrice index={index}></OrderByPrice>
-       {/*  <OrderByServiceName></OrderByServiceName> */}
-        </div>
+        <OrderByServiceName></OrderByServiceName> 
+        </div> */}
+        <ul class="nav justify-content-center">
+        <FilterByCategory index={index} />
+        <OrderByPrice index={index}></OrderByPrice>
+        </ul>
     </nav>
     )
 

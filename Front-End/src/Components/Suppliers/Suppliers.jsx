@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSuppliers, searchSuppliers } from '../../actions'
+import style from "../Suppliers/Suppliers.module.css"
 
 
 
@@ -24,7 +25,7 @@ React.useEffect(
 
  
   return (
-    <div>
+    <div className={style.container}>
 {suppliersMap}
     </div>
     

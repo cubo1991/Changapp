@@ -8,7 +8,7 @@ export function test(){
 } */
 
 import { json } from "react-router-dom"
-import { ADD_CART, GET_DETAILS } from "../Constantes/Constantes"
+import { ADD_CART, GET_DETAILS, REMOVE_ITEM } from "../Constantes/Constantes"
 
 
 //import {Servicios} from '../Mockup/Servicios.js';
@@ -210,4 +210,14 @@ export function getServiceDetails(data){
         .then( res => res.json())
         .then( res => dispatch({type: "SERVICE_DETAIL", payload: res}))
     }
+}
+
+export const removeItem = (id) => {
+    return{
+        type: REMOVE_ITEM,
+        payload: id
+    }
+   
+
+
 }
