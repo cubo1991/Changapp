@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSuppliers } from '../../actions'
+import style from "../Suppliers/Suppliers.module.css"
 
 
 
@@ -26,7 +27,7 @@ let suppliers = useSelector((state) => state.suppliers)
 
  
   return (
-    <div>
+    <div className={style.container}>
 {suppliersMap}
     </div>
     

@@ -8,7 +8,7 @@ export const SuppliersCard = ({ name, cuit, description, details, id }) => {
   console.log(details)
   return (
     <div>
-      <div className="card" style={{ maxWidth: "25rem", margin: "1rem" }}>
+      <div className="card" style={{width: "25rem", margin: "1rem" }}>
         <div className="card-body">
           <Link to={'/suppliers/' + id}>
             <h2 className="card-title">{name}</h2>
