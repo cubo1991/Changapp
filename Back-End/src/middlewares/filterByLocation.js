@@ -5,7 +5,7 @@ const router = Router();
 router.get('/', async (req, res, next) => {
 //http://localhost:3000/services?by=location&location=location
 try{
-    const { by, location } = req.query;
+    const { by, location, ordered, order } = req.query;
     
     if(by === 'location'){
         if(location) {
@@ -41,13 +41,14 @@ try{
                             attributes: ["name"]
                           }]
                     });
+                    
                     result = [...result, ...filtered];
               
                 }
               
             }
-           
-            return res.status(200).json(result);
+       return res.status(200).json(result);
+
         } next()
     } next()
     
