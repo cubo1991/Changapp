@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addCart } from '../../actions'
 import s from './ServicesCard.module.css'
 
@@ -7,7 +7,10 @@ import s from './ServicesCard.module.css'
 
 export const ServicesCard = ({name, price, description, id}) => {
  let dispatch = useDispatch()
+ let cart = useSelector((state) => state.cart)
  const onClickBtn =() => {
+  let verifier =(e) => e.id === id
+  if(cart.some(verifier)) return;
   dispatch(addCart(id))
  } 
   return (
