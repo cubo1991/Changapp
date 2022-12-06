@@ -43,7 +43,7 @@ router.get('/', async (req, res, next) => {
                 if(!result.length) return res.status(404).send("no se encontró la categoría");
                 else return res.status(200).json(result)
             
-            } else  next();
+            } else next();
 
     } catch(e) {
         next(e);

@@ -2,38 +2,40 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { filterByLocation } from "../../actions";
+import { filterByLocation, getLocations } from "../../actions";
 //import Cards from "./Cards";
 
 
 export function FilterByLocation() {
-    const dispatch = useDispatch()
-    const services = useSelector(state => state.services)
-    const locations = services.map(service => service.location)
+
+    useEffect( () => {
+        dispatch(getLocations())
+    }, [])
+
+    const dispatch = useDispatch();
+
+    const locations = useSelector(state => state.location);
 
     function handleChange(e) {
-        //
+
         e.preventDefault()
-        // if (e.target.value === 'default') return 'algo'
-
-
-        dispatch(filterByLocation(e.target.value))
-
-
+        if(e.target.value = "default") return dispatch(filterByLocation("undefined"))
+        else dispatch(filterByLocation(e.target.value))
+    
     }
-    //const orderedGames = useSelector(state => state.orderedByRating)
+
     if (locations && locations.length > 1) {
         return (
             <div>
-
+                <label>Filtrar por ubicación</label>
                 <select onChange={(e) => handleChange(e)}>
                     <option value="default">
-                        Filter by Locations:
+                        -- Selecciona una ubicación --
 
                     </option>
-                    {locations.map(location => {
-                        (<option value={location}>{location}</option>)
-                    })}
+                    { locations.map(location => {
+                        return <option key={Math.random()*10} value={location}>{location}</option>
+                    }) }
                 </select>
             </div>
         )

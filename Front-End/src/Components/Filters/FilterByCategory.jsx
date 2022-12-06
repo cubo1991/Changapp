@@ -17,10 +17,6 @@ export function FilterByCategory() {
 
     const categories = useSelector(state => state.categories);
 
-    const [categoryValue, setCategoryValue] = useState();
-    console.log(categories)
-
-
     function handleChange(e) {
         
         e.preventDefault();
@@ -33,7 +29,7 @@ export function FilterByCategory() {
         return (
             <div>
                 <label>Filtrar por categoría: </label>
-                <select onChange={(e) => handleChange(e)} value={categoryValue}>
+                <select onChange={(e) => handleChange(e)}>
                     <option value="default">
                         -- Selecciona una categora --
                     </option>

@@ -9,8 +9,8 @@ const initialState = {
   searchingType: "",
   searching: false,
   categories: [],
-
   cart: [],
+  location: []
 
 };
 
@@ -63,16 +63,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         searchingType: "suppliers"
       }
+
     case "GET_CATEGORIES":
       return {
         ...state,
         categories: action.payload
       }
+     
+    case "GET_LOCATIONS":
+      return {
+        ...state,
+        location: action.payload
+      }
+
     case "FILTER_BY_CATEGORY":
       return {
         ...state,
         services: action.payload
       }
+
     case "FILTER_BY_LOCATION":
       return {
         ...state,
