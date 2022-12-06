@@ -10,6 +10,7 @@ import { getServices, searchingFalse, searchingServices } from '../../actions/in
 // import { Servicios } from '../../Mockup/Servicios.js';
 import Index from '../Index/Index.jsx';
 import { ServicesCard } from '../ServicesCard/ServicesCard.jsx';
+import { Footer } from '../Footer/Footer.jsx';
 
 
 export default function Home() {
@@ -65,6 +66,8 @@ export default function Home() {
                     )
         })}
       </div>
+
+      <Footer />
     </div>
 
 
