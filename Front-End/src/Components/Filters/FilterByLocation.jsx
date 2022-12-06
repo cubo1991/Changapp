@@ -28,7 +28,7 @@ export function FilterByLocation() {
         return (
             <div>
                 <label>Filtrar por ubicación</label>
-                <select onChange={(e) => handleChange(e)}>
+                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)}>
                     <option value="default">
                         -- Selecciona una ubicación --
 

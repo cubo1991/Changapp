@@ -29,9 +29,9 @@ export function FilterByCategory() {
         return (
             <div>
                 <label>Filtrar por categoría: </label>
-                <select onChange={(e) => handleChange(e)}>
+                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)}>
                     <option value="default">
-                        -- Selecciona una categora --
+                        -- Selecciona una categoría --
                     </option>
                     {categories.map(category => {
                         return <option key={category.id} value={category.id}>{category.name}</option>
