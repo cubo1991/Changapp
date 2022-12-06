@@ -1,6 +1,6 @@
 //import {} from "../actions/index"
 
-import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS } from "../Constantes/Constantes";
+import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS, ADD_CART } from "../Constantes/Constantes";
 
 const initialState = {
   services: [],
@@ -8,7 +8,9 @@ const initialState = {
   supplierDetails: [],
   searchingType: "",
   searching: false,
-  categories: []
+  categories: [],
+
+  cart: [],
 
 };
 
@@ -75,6 +77,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         services: action.payload
+      }
+
+    case ADD_CART:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload]
       }
 
     default:
