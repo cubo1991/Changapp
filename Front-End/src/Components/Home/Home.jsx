@@ -48,7 +48,6 @@ export default function Home() {
         index={index}
       />
 
-      
       {/* <div>servicios</div> */}
       <div>
         {currentServices?.map(service => {
