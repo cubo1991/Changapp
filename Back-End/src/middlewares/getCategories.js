@@ -5,10 +5,14 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
         const response = await Category.findAll()
-        return response
+        res
+            .status(200)
+            .send(response)
     } catch (e) {
         console.log(e.message || e)
-        return e.message || e
+        res
+            .status(404)
+            .json(e.message || e)
     }
 
 });
