@@ -21,6 +21,23 @@ export function getCategories() {
             .then(res => dispatch({ type: "GET_CATEGORIES", payload: res }))
     }
 }
+
+export function getLocations(){
+    return function(dispatch){
+        fetch('http://localhost:3001/location')
+        .then( res => res.json())
+        .then( res => {
+            console.log(res)
+            let locations = new Set();
+            if(res){
+                res.forEach( element => {
+                    locations.add(element.location)
+                });
+            dispatch({type: "GET_LOCATIONS", payload: [...locations]})
+            }
+        })
+    }
+}
 export function filterByCategory(categoryId) {
     return function (dispatch) {
 
@@ -32,7 +49,7 @@ export function filterByCategory(categoryId) {
 export function filterByLocation(location) {
     return function (dispatch) {
 
-        fetch(`http://localhost:3000/services?by=location&location=${location}`)
+        fetch(`http://localhost:3001/services?by=location&location=${location}`)
             .then(res => res.json())
             .then(res => dispatch({ type: "FILTER_BY_LOCATION", payload: res }))
     }
