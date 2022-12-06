@@ -3,22 +3,31 @@ import { Link } from 'react-router-dom'
 
 import s from './SuppliersCard.module.css'
 
-export const SuppliersCard = ({name, cuit, description, details, id}) => {
+export const SuppliersCard = ({ name, cuit, description, details, id }) => {
 
   console.log(details)
   return (
     <div>
-      <div className={s.card}>
- 
-    <Link to={'/suppliers/' + id}>    
-    <h2>Name:</h2> <p>{name}</p>
-    </Link>
-    <h3>Cuit:</h3> <p>{cuit}</p>
-    <h3 className='display-1'>Description:</h3><p>{description}</p>
-    <h3>Location:</h3><p>{details.location}</p>
-    <h3>Adress:</h3><p>{details.adress}</p>
-    </div>
-      
+      <div className="card" style={{ maxWidth: "25rem", margin: "1rem" }}>
+        <div className="card-body">
+          <Link to={'/suppliers/' + id}>
+            <h2 className="card-title">{name}</h2>
+          </Link>
+          <div className={s.contenedor}>
+            <h6>Cuit:</h6> <p>{cuit}</p>
+          </div>
+          <div className={s.contenedor}>
+            <h6 >Description:</h6><p>{description}</p>
+          </div>
+          <div className={s.contenedor}>
+            <h6>Location:</h6><p>{details.location}</p>
+          </div>
+          <div className={s.contenedor}>
+            <h6>Adress:</h6><p>{details.adress}</p>
+          </div>
+        </div>
       </div>
+
+    </div>
   )
 }
