@@ -1,0 +1,20 @@
+.card {
+    border: 3px black solid;
+   
+}
+
+.background {
+    background-color: red;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+   padding: 1rem;
+}
+.contenedor p{
+    padding-left: 0.50rem;
+}
+h5 {
+    text-align: center;
+}

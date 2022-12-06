@@ -8,7 +8,7 @@ export function test(){
 } */
 
 import { json } from "react-router-dom"
-import { ADD_CART, GET_DETAILS } from "../Constantes/Constantes"
+import { ADD_CART, GET_DETAILS, REMOVE_ITEM } from "../Constantes/Constantes"
 
 
 //import {Servicios} from '../Mockup/Servicios.js';
@@ -159,4 +159,14 @@ export const addCart = (id) => {
 
 
     }
+}
+
+export const removeItem = (id) => {
+    return{
+        type: REMOVE_ITEM,
+        payload: id
+    }
+   
+
+
 }

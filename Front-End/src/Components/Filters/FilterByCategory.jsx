@@ -18,7 +18,7 @@ export function FilterByCategory() {
     const categories = useSelector(state => state.categories);
 
     const [categoryValue, setCategoryValue] = useState();
-    console.log(categories)
+   
 
 
     function handleChange(e) {
