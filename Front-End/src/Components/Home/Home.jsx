@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import style from "../Home/Home.module.css"
 
 
 import { getServices, searchingFalse, searchingServices } from '../../actions/index.js';
@@ -58,7 +59,7 @@ export default function Home() {
 
       
       {/* <div>servicios</div> */}
-      <div>
+      <div className={style.cards}>
         {currentServices?.map(service => {
           return (
               <ServicesCard id={service.id}  name={service.serviceType} price={service.pricePerHour} description={service.description} 
