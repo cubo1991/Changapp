@@ -3,6 +3,9 @@
         "name": "User"
     },
     {
+        "name": "Supplier"
+    },
+    {
         "name": "Admin"
     },
     {

@@ -8,13 +8,13 @@ const categories = require("./Datos/Categories.json")
 const details = require("./Datos/Details.json")
 
 conn
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     server.listen(3001, () => {
       console.log("%s listening at 3001");
     });
   })
-/*   .then(async () => {
+.then(async () => {
     let supplietUUID = []
     //Details
     details.forEach(async (detail) =>await Detail.create(detail))
@@ -25,7 +25,12 @@ conn
     //Users
     users.forEach(async (user) =>{
       let userBD = await User.create(user)
-      await userBD.setUserRol(2)
+      let userName = userBD.dataValues.userName
+      if(userName === "Nicolas" || userName === "Kevin" || userName === "Nadia"){
+        await userBD.setUserRol(3)
+      } else {
+        await userBD.setUserRol(2)
+      }
       await userBD.setDetail(1)
     }); 
     //ProveedoresLimpieza S.A.
@@ -54,20 +59,4 @@ conn
       }
       
     })
-  }) */
-/* 
-  .then(async () => {
-    const result = await Review.findAll({
-      order:[
-        [conn.cast(conn.col('rating'), 'INTEGER'), "DESC"]
-      ],
-      include: {
-        model: Service,
-        where: {
-          name: "Limpieza de Cloacas"
-        }
-      }
-    })
-
-    console.log(result);
-  }) */
+  })

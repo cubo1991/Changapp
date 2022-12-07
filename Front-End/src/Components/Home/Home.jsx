@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import style from "../Home/Home.module.css"
 
 
 import { getServices, searchingFalse, searchingServices } from '../../actions/index.js';
@@ -10,6 +11,8 @@ import { getServices, searchingFalse, searchingServices } from '../../actions/in
 // import { Servicios } from '../../Mockup/Servicios.js';
 import Index from '../Index/Index.jsx';
 import { ServicesCard } from '../ServicesCard/ServicesCard.jsx';
+import { Footer } from '../Footer/Footer.jsx';
+import NavFilters from '../Filters/NavFilters';
 
 
 export default function Home() {
@@ -36,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getServices());
     dispatch(searchingServices()); //settea un estado global para que la barra de busqueda busque servicios
-  }, [])
+  }, [dispatch])
 
   // console.log(currentServices)
 
@@ -47,7 +50,10 @@ export default function Home() {
         servicesPerPage={servicesPerPage}
         allServices={allServices.length}
         index={index}
+        currentPage={currentPage}
       />
+
+      <NavFilters index ={index}></NavFilters>
 
       { searching ? 
       <button onClick={ () =>{    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
@@ -57,14 +63,16 @@ export default function Home() {
 
       
       {/* <div>servicios</div> */}
-      <div>
+      <div className={style.cards}>
         {currentServices?.map(service => {
           return (
-              <ServicesCard  name={service.serviceType} price={service.pricePerHour} description={service.description}
+              <ServicesCard id={service.id}  name={service.serviceType} price={service.pricePerHour} description={service.description} 
               />
                     )
         })}
       </div>
+
+      <Footer />
     </div>
 
 

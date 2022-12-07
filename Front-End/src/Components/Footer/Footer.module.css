@@ -1,0 +1,26 @@
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;  
+    display: table;
+    width: 100%;
+    height: 85vh;
+    /* background-image: url('C:\Users\Nadia\Desktop\Mis Proyectos\E-commerce Services\Proyecto-Final---Henry\Front-End\src\Images\Footer.png'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #000;
+    color:#fff;
+    text-align: center;
+  }
+
+.img{
+  position: absolute;
+  right:0;
+  bottom:0;
+
+
+  width: 30vh;
+  height: 30vh;
+
+}
+  
