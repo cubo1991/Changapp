@@ -12,6 +12,7 @@ import NavBar from "./Components/NavBar/NavBar.jsx";
 import { Suppliers } from "./Components/Suppliers/Suppliers.jsx";
 import { Contact } from "./Components/Contact/Contact.jsx";
 import { Cart } from "./Components/Cart/Cart.jsx";
+import Profile from "./Components/Profile/Profile"
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -40,6 +41,7 @@ function App() {
         <Route path="suppliers" element={<Suppliers />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="Profile" element={<Profile />} />
         <Route path= "/suppliers/:id" element={<SuppliersDetail/>} />
         <Route path= "/services/:d" element={<ServicesDetail/>} />
         <Route path="*" element={<Navigate replace to="/" />} />

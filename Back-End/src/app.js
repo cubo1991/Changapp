@@ -7,6 +7,7 @@ const review = require("./routes/review")
 const service = require('./routes/service')
 const category = require('./routes/category')
 const location = require('./routes/location.js');
+const login = require("./routes/login")
 require('./db.js');
 
 const server = express();
@@ -31,6 +32,7 @@ server.use("/review", review)
 server.use('/service', service)
 server.use('/category', category)
 server.use('/location', location)
+server.use("/login", login)
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;
