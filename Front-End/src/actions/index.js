@@ -9,6 +9,7 @@ export function test(){
 
 import { json } from "react-router-dom"
 import { ADD_CART, GET_DETAILS, REMOVE_ITEM } from "../Constantes/Constantes"
+import axios from 'axios';
 
 
 //import {Servicios} from '../Mockup/Servicios.js';
@@ -215,3 +216,26 @@ export const removeItem = (id) => {
 
 
 }
+
+export const postSupplier = (payload) => {
+
+    return function() {
+       axios.post('http://localhost:3001/suppliers', {
+        adress: payload.adress,
+        cuit: payload.cuit,
+        description: payload.description,
+        eMail: payload.eMail,
+        location: payload.location,
+        name: payload.name,
+        phoneNumber: payload.phoneNumber
+      }
+     
+      )            
+      .catch((error) => {
+       console.log(error)
+        alert("Something went wrong...")
+      })
+     
+    }
+    
+  }

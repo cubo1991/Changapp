@@ -40,6 +40,16 @@ const {loginWithRedirect, logout} = useAuth0()
               <span>Contacto</span>
             </div>
           </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? Style.active : Style.inactive
+            }
+            to="/suppliersContact"
+          >
+            <div className={`${Style.link} nav-link`}>
+              <span>Publicá tu servicio</span>
+            </div>
+          </NavLink>
           <div className={`${Style.nav_right} d-flex justify-content-end col`}>
             <Searchbar />
             <Login></Login>  
