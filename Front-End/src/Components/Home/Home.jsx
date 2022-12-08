@@ -20,7 +20,7 @@ export default function Home() {
   const allServices = useSelector((state) => state.services)
   const searching = useSelector( state => state.searching);
   const [currentPage, setCurrentPage] = useState(1)
-  const [servicesPerPage, setServicesPerPage] = useState(3)
+  const [servicesPerPage, setServicesPerPage] = useState(9)
   const indexOfLastService = currentPage * servicesPerPage//3
   const indexOfFirstService = indexOfLastService - servicesPerPage//0
   const currentServices = allServices.slice(indexOfFirstService, indexOfLastService)
