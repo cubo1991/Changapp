@@ -44,18 +44,12 @@ export function getLocations(){
     return function(dispatch){
         fetch('http://localhost:3001/location')
         .then( res => res.json())
-        .then( res => {
-           // console.log(res)
-            let locations = new Set();
-            if(res){
-                res.forEach( element => {
-                    console.log(element.Users)
-                    if(element.passWord = 1234) locations.add(element.location)
-                });
-                console.log(locations, "locations")
-            dispatch({type: "GET_LOCATIONS", payload: [...locations]})
-            }
-        })
+        .then( res => dispatch({type: "GET_LOCATIONS", payload: res}))
+        /* .then( res => {
+            console.log(res, "LOCATION")
+           // dispatch({type: "GET_LOCATIONS", payload:})
+            
+        }) */
     }
 }
 export function filterByCategory(categoryId) {

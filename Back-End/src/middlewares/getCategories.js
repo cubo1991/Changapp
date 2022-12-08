@@ -1,13 +1,20 @@
-const { Category } = require('../db.js');
+const { Category, Service } = require('../db.js');
 const { Router } = require('express');
 const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        const response = await Category.findAll()
+        const response = await Category.findAll({
+            include: {
+                model: Service
+            }
+        })
+
+        let result = response.filter(element => element.Services.length > 0)
+    
         res
             .status(200)
-            .send(response)
+            .send(result)
     } catch (e) {
         console.log(e.message || e)
         res
