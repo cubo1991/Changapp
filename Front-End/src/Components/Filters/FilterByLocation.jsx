@@ -25,7 +25,7 @@ export function FilterByLocation() {
     
     }
 
-    if (locations && locations.length > 1) {
+    if (locations && locations.length >= 1) {
         return (
             <div>
                 <label>Filtrar por ubicación</label>
@@ -33,8 +33,8 @@ export function FilterByLocation() {
                     <option value="default">
                         -- Selecciona una ubicación --
                     </option>
-                    { locations.map(location => {
-                        return <option key={Math.random()*10} value={location}>{location}</option>
+                    { locations.map(item => {
+                        return <option key={Math.random()*10} value={item.location}>{item.location}</option>
                     }) }
                 </select>
             </div>

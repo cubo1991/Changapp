@@ -1,5 +1,4 @@
 
-import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,11 +15,6 @@ export function FilterByCategory({index}) {
     }, []);
 
     const categories = useSelector(state => state.categories);
-
-    console.log(index)
-    const [categoryValue, setCategoryValue] = useState();
-   
-
 
     function handleChange(e) {
         

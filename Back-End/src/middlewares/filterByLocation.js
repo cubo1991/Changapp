@@ -24,45 +24,10 @@ try{
                     }
                 }
             });
-
-            let services = [];
-
-                search.forEach( element => {
-                if(element['Suppliers'].length > 0) services.push(element.id)})
+            
+            let services = search.filter( element => element['Suppliers'].length > 0);
 
             if(!services.length) return res.status(404).send('No se encontaron resultados');
-
-            let result = []
-
-            for(let i = 0; i < services.length; i++){
-                const iter = await Service.findByPk(services[i],{
-                     include: {
-                        model: Supplier,
-                        include: {
-                            model: Detail
-                                }
-                            }
-                });
-                result.push(iter);
-            }
-            
-             //   const iter = await Service.findByPk(services[0]);
-
-            
-            //TODO MIA
-            /* const result = await Service.findAll({
-                where: {
-                    id: {
-                   //     [conn.cast(conn.col('pricePerHour'), 'INTEGER'), order]
-                        [Op.any] : [conn.cast(services, 'UUID')]
-                    }
-                },
-                include: {
-                    model: Supplier
-                }
-            }) */
-
-           // console.log(search[0].Suppliers)
 
             /*     let ids = search.map(e => e.id)
             //    console.log(ids)
@@ -89,7 +54,7 @@ try{
                 }
                */
 
-            return res.status(200).json(result);
+            return res.status(200).json(services);
             
         
         }
