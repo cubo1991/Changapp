@@ -4,5 +4,41 @@
     },
     {
         "name": "Limpieza"
+    },
+    {
+        "name": "Lavado"
+    },
+    {
+        "name": "Planchado"
+    },
+    {
+        "name": "Jardineria"
+    },
+    {
+        "name": "Desinfeccion"
+    },
+    {
+        "name": "Fumigacion"
+    },
+    {
+        "name": "Plomeria"
+    },
+    {
+        "name": "Electricidad"
+    },
+    {
+        "name": "Pintura"
+    },
+    {
+        "name": "Construccion"
+    },
+    {
+        "name": "Herreria"
+    },
+    {
+        "name": "Carpinteria"
+    },
+    {
+        "name": "Otra"
     }
 ]

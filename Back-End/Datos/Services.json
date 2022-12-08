@@ -1,32 +1,190 @@
 [
     {
-        "serviceType": "Reparacion de Techos",
+        "serviceType": "Reparación de Techos",
         "pricePerHour": 30000,
-        "description": "Realiza Reparacion de Techos"
+        "description": "Realiza Reparacion de Techos",
+        "representative_image":"https://st3.depositphotos.com/8883226/12945/i/600/depositphotos_129458072-stock-photo-worker-dismantling-roof-shingles.jpg"
     },
     {
-        "serviceType": "Reparacion de Paredes",
+        "serviceType": "Reparación de Paredes",
         "pricePerHour": 25000,
-        "description": "Realiza Reparacion de Paredes"
+        "description": "Realiza Reparacion de Paredes",
+        "representative_image":"https://st4.depositphotos.com/7680430/38784/i/450/depositphotos_387842602-stock-photo-master-white-protective-clothing-hard.jpg"
     },
     {
         "serviceType": "Limpieza de Hogares",
-        "pricePerHour": 10000,
-        "description": "Realiza Limpieza del hogar"
+        "pricePerHour": 600,
+        "description": "Realiza Limpieza del hogar",
+        "representative_image":"https://grupodava.es/wp-content/uploads/2020/07/limpieza-hogar5.jpg"
     },
     {
         "serviceType": "Limpieza de Hospitales",
-        "pricePerHour": 15000,
-        "description": "Realiza Limpieza de Hospitales"
+        "pricePerHour": 4800,
+        "description": "Realiza Limpieza de Hospitales",
+        "representative_image":"https://empresaylimpieza.com/upload/img/periodico/img_4483.jpg"
+
+    },
+    
+    {
+        "serviceType": "Limpieza de Oficinas",
+        "pricePerHour": 3000,
+        "description": "Realiza Limpieza de Oficinas",
+        "representative_image":"https://tylb.es/wp-content/uploads/2021/11/limpieza-de-oficinas-tylkb.jpg"
+    },
+    {
+        "serviceType": "Limpieza de Edificios",
+        "pricePerHour": 6000,
+        "description": "Realiza Limpieza de Edificios",
+        "representative_image":"https://tylb.es/wp-content/uploads/2021/11/limpieza-de-oficinas-tylkb.jpg"
+    },
+    {
+        "serviceType": "Limpieza de Tapizados",
+        "pricePerHour": 4900,
+        "description": "Realiza Limpieza de todo tipo de Tapizados",
+        "representative_image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjh1iB7jGbC6xMJ0unuKwjbsy1Uk1UMeNyZg&usqp=CAU"
+    },
+    {
+        "serviceType": "Limpieza de Vidrios",
+        "pricePerHour": 8600,
+        "description": "Realiza Limpieza de Vidrios en altura",
+        "representative_image":"https://www.limpiezaslm2.com/wp-content/uploads/2017/01/limpieza-de-cristales-en-altura-3.jpg"
+    },
+    {
+        "serviceType": "Lavado de Ropa",
+        "pricePerHour": 900,
+        "description": "Realiza Lavado de Todo tipo de ropa en general",
+        "representative_image":"https://media.sanjuan8.com/p/3c94cbb53e2c70f9ce3a0a6b2398a293/adjuntos/303/imagenes/006/110/0006110040/1200x675/smart/preparando-un-lavado.png"
+    },
+    {
+        "serviceType": "Lavado de Acolchados",
+        "pricePerHour": 1500,
+        "description": "Realiza Lavado de acolchados ",
+        "representative_image":"https://st3.depositphotos.com/5840274/15477/i/600/depositphotos_154772558-stock-photo-patchwork-quilting-and-fashion-concept.jpg"
+    },
+    {
+        "serviceType": "Planchado",
+        "pricePerHour": 1900,
+        "description": "Planchado de todo tipo de ropa",
+        "representative_image":"https://cdn2.melodijolola.com/media/files/field/image/plancha2.jpg"
     },
     {
         "serviceType": "Limpieza de Cloacas",
         "pricePerHour": 8000,
-        "description": "Realiza Limpieza de Cloacas"
+        "description": "Realiza Limpieza de Cloacas",
+        "representative_image":"https://www.aguasbonaerenses.com.ar/recursos/articulos_imagenes/1447_3117.jpg"
     },
     {
-        "serviceType": "Reparacion de Cloacas",
+        "serviceType": "Reparación de Cloacas",
         "pricePerHour": 12000,
-        "description": "Realiza Reaparacion de Cloacas"
+        "description": "Realiza Reaparacion de Cloacas",
+        "representative_image":"https://www.huincacoop.com.ar/images/cehr/cloacas/cloacas02.jpg"
+    },
+    {
+        "serviceType": "Desinfección",
+        "pricePerHour": 6500,
+        "description": "Realiza desinfección de establecimientos de todo tipo",
+        "representative_image":"https://thumbs.dreamstime.com/b/personas-con-trajes-de-protecci%C3%B3n-contra-virus-y-edificios-desinfecci%C3%B3n-mascarillas-protectores-desinfectando-coronavirus-el-176430006.jpg"
+    },
+    {
+        "serviceType": "Fumigación",
+        "pricePerHour": 5500,
+        "description": "Realiza Fumigación de establecimientos de todo tipo",
+        "representative_image":"https://st3.depositphotos.com/16635384/35602/i/600/depositphotos_356020572-stock-photo-spray-pesticides-pesticide-on-fruit.jpg"
+    },
+    {
+        "serviceType": "Desmalezamiento",
+        "pricePerHour": 2500,
+        "description": "Desmalezamiento de espacios verdes",
+        "representative_image":"https://www.demaquinasyherramientas.com/wp-content/uploads/2018/09/Kushiro-Desmalezadora-uso.jpg"
+    },
+    {
+        "serviceType": "Poda",
+        "pricePerHour": 3100,
+        "description": "Poda de plantas, árboles y arbustos",
+        "representative_image":"https://st2.depositphotos.com/3994509/48370/i/600/depositphotos_483702556-stock-photo-vertical-shot-young-hands-with.jpg"
+    },
+    {
+        "serviceType": "Extracción de árboles",
+        "pricePerHour": 11000,
+        "description": "Extracción de árboles",
+        "representative_image":"https://i.ytimg.com/vi/6rMQZoVXvfk/maxresdefault.jpg"
+    },
+    {
+        "serviceType": "Colocación de árboles y plantas",
+        "pricePerHour": 5200,
+        "description": "Colocación de árboles y plantas ",
+        "representative_image":"https://static6.depositphotos.com/1005730/547/i/600/depositphotos_5473338-stock-photo-planting-trees-in-the-garden.jpg"
+    },
+    {
+        "serviceType": "Paisajismo de jardines",
+        "pricePerHour": 7300,
+        "description": "Diseño, organización y mantenimiento de jardines",
+        "representative_image":"https://casa-web.com.ar/wp-content/uploads/2019/11/jardin-con-flores-contrastantes-y-alegres.jpg"
+    },
+    {
+        "serviceType": "Plomería",
+        "pricePerHour": 5000,
+        "description": "Services, soluciones y reparaciones de Plomería en general",
+        "representative_image":"https://fixaqua.com/wp-content/uploads/2021/01/plomeros-en-barranquilla-11.png"
+    },
+    {
+        "serviceType": "Termotanques y calefones",
+        "pricePerHour": 10500,
+        "description": "Reparación e instalación de calefones y termotanques",
+        "representative_image":"https://i.ytimg.com/vi/HHSC6ys8-kg/maxresdefault.jpg"
+    },
+    {
+        "serviceType": "Electricidad",
+        "pricePerHour": 4700,
+        "description": "Service, instalaciones y reparaciones de electricidad en general",
+        "representative_image":"https://st3.depositphotos.com/3261317/18001/i/600/depositphotos_180013472-stock-photo-young-electrician-technician-at-work.jpg"
+    },
+    {
+        "serviceType": "Aires Acondicionados",
+        "pricePerHour": 22000,
+        "description": "Instalación, reparación y mantenimiento de aires acondicionados",
+        "representative_image":"https://aireacondicionadototal.com/wp-content/uploads/2020/03/Instalaci%C3%B3n-de-un-Aire-Acondicionado.jpg"
+    },
+    {
+        "serviceType": "Pintura",
+        "pricePerHour": 4600,
+        "description": "Pintura de interior y de exterior",
+        "representative_image":"https://static8.depositphotos.com/1192060/866/i/600/depositphotos_8664280-stock-photo-man-painting-a-ceiling-white.jpg"
+    },
+    {
+        "serviceType": "Construcción en general",
+        "pricePerHour": 15000,
+        "description": "Mampostería. Reboque fino y grueso. Techos. Ampliaciones. Divisiones. Albañilería en general",
+        "representative_image":"https://thumbs.dreamstime.com/b/alba%C3%B1il-del-trabajo-43387065.jpg"
+    },
+    {  
+        "serviceType": "Aberturas",
+        "pricePerHour": 11900,
+        "description": "Colocación, reparación y mantenimiento de todo tipo de aberturas",
+        "representative_image":"https://static9.depositphotos.com/1192060/1085/i/450/depositphotos_10855223-stock-photo-workers-installing-new-windows.jpg"
+    },
+    {
+        "serviceType": "Durlock",
+        "pricePerHour": 13800,
+        "description": "Construcción de interior y exterior. Placas antihumedad. Cielos razos. Terminaciones ",
+        "representative_image":"https://www.durlock.com/uploads/documents/909799e92413e8c300f77f4fb2bf0520a5a535fd.jpeg"
+    },
+    {
+        "serviceType": "Herrería",
+        "pricePerHour": 16200,
+        "description": "Soladadura, reparación y construcción. Herrería en general",
+        "representative_image":"https://cdn.thefabricator.com/a/el-sistema-gtaw-alimentado-por-bater-a-ofrece-soldadura-m-vil-0.jpg"
+    },
+    {
+        "serviceType": "Carpintería",
+        "pricePerHour": 12800,
+        "description": "Servicio Integral de la madera",
+        "representative_image":"https://st.depositphotos.com/2692701/3175/i/450/depositphotos_31758183-stock-photo-carpenters-building-a-frame.jpg"
+    },
+    {
+        "serviceType": "Consultorías sobre estructuras",
+        "pricePerHour": 22000,
+        "description": "Servicio de consultoría sobre defectos estructurales",
+        "representative_image":"https://st.depositphotos.com/1499736/2530/i/600/depositphotos_25303439-stock-photo-civil-engineer-reviewing-blueprint.jpg"
     }
 ]

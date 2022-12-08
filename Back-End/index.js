@@ -43,11 +43,38 @@ conn
     services.forEach(async (service) =>{
       let serviceBD = await Service.create(service)
       let fistWord = service.serviceType.split(" ")
-      if(fistWord[0] === "Reparacion") {
+      let description = service.description
+      if(fistWord[0] === "Reparación") {
         await serviceBD.setCategory(1)
-      } else {
+      } else if(fistWord[0] === "Limpieza"){
         await serviceBD.setCategory(2)
+      } else if(fistWord[0] === "Lavado"){
+        await serviceBD.setCategory(3)
+      }else if(fistWord[0] === "Planchado"){
+        await serviceBD.setCategory(4)
+      }else if(description.includes('espacios verdes') || description.includes('árboles') || description.includes('jardines')){
+        await serviceBD.setCategory(5)
+      }else if(fistWord[0] === "Desinfección"){
+        await serviceBD.setCategory(6)
       }
+      else if(fistWord[0] === "Fumigación"){
+        await serviceBD.setCategory(7)
+      }
+      else if(fistWord[0] === "Plomería" || fistWord[0] === "Termotanques"){
+        await serviceBD.setCategory(8)
+      }  else if(fistWord[0] === "Electricidad" || fistWord[0] === "Aires"){
+        await serviceBD.setCategory(9)
+      }else if(fistWord[0] === "Pintura"){
+        await serviceBD.setCategory(10)
+      }else if(fistWord[0] === "Construcción" || fistWord[0] === "Aberturas" || fistWord[0] === "Durlock"){
+        await serviceBD.setCategory(11)
+      }
+      else if(fistWord[0] === "Herrería"){
+        await serviceBD.setCategory(12)
+      }else if(fistWord[0] === "Carpintería"){
+        await serviceBD.setCategory(13)
+      }
+      else await serviceBD.setCategory(14)
       if(fistWord[2] === "Techos") {
         await serviceBD.addSupplier(supplietUUID[3])
       } else if(fistWord[2] === "Paredes"){
