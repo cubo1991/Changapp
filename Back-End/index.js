@@ -74,7 +74,9 @@ conn
       }else if(fistWord[0] === "Carpintería"){
         await serviceBD.setCategory(13)
       }
-      else await serviceBD.setCategory(14)
+      else {
+        await serviceBD.setCategory(14)
+      }
       if(fistWord[2] === "Techos") {
         await serviceBD.addSupplier(supplietUUID[3])
       } else if(fistWord[2] === "Paredes"){

@@ -18,5 +18,263 @@
         "name": "Techos S.A.",
         "cuit": 3012412340,
         "description": "Repara Techos"
-    }
+    },
+    {
+        "name": "Power Clean Sud SRL",
+        "cuit": 30200000100,
+        "description": "Prestación de servicios integrales de limpieza para el hogar, oficinas, hospitales"
+    },
+    {
+        "name": "Budan SRL",
+        "cuit": 30200001000,
+        "description": "Prestación de servicios de limpiezas para oficinas"
+    },
+    {
+        "name": "Limpiarte",
+        "cuit": 30200000110,
+        "description": "Prestación de servicios de limpieza para el hogar, lavado de todo tipo de ropa y planchado"
+    },
+    {
+        "name": "CORSACOR",
+        "cuit": 30200001110,
+        "description": "Prestación de servicios de limpieza para establecimientos de gran embergadura: hospitales, escuelas, edificios."
+    },
+    {
+        "name": "MJ Servicios S.A.",
+        "cuit": 30120000120,
+        "description": "Prestación de servicios de limpieza para el hogar"
+    },
+    {
+        "name": "TOP CLEANING Limpieza",
+        "cuit": 30120000210,
+        "description": "Prestación de servicios de limpieza para establecimientos de gran embergadura: hospitales, escuelas, edificios."
+    },
+    {
+        "name": "Aseclim SRL",
+        "cuit": 30121221220,
+        "description": "Servicio de limpieza para oficinas."
+    },
+    {
+        "name": "Ecolavado SRL",
+        "cuit": 301212212110,
+        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado"
+    },
+    {
+        "name": "Interlim",
+        "cuit": 30231231230,
+        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado"
+
+    },
+    {
+        "name": "LP",
+        "cuit": 30241241240,
+        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado"
+    },
+    {
+        "name": "Odorox",
+        "cuit": 30341341340,
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+    },
+    {
+        "name": "Proinda",
+        "cuit": 30231231230,
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+    },
+    {
+        "name": "Chaer S.R.L.",
+        "cuit": 30141141140,
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+    },
+    {
+        "name": "Clorox",
+        "cuit": 30201201200,
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+    },
+    {
+        "name": "fumysam",
+        "cuit": 30154698520,
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+    },
+    {
+        "name": "Agron S.A.",
+        "cuit": 30112561230,
+        "description": "Desmalezamiento, poda, extracción y colocación de árboles y plantas"
+    },
+{
+        "name": "Parquizaciones S.R.L.",
+        "cuit": 30456236470,
+        "description": "Paisajismo de jardines"
+    },
+{
+        "name": "Best Garden S.A.",
+        "cuit": 30124874870,
+        "description": "Paisajismo de jardines"
+    },
+{
+        "name": "Todo Jardín.",
+        "cuit": 30242402400,
+        "description": "Jardinería en general"
+    },
+{
+        "name": "Natural green",
+        "cuit": 30363653210,
+        "description": "Jardinería en general"
+    },
+{
+        "name": "BuresPRO",
+        "cuit": 30213216540,
+        "description": "Jardinería en general"
+    },
+{
+        "name": "mcc-servicios",
+        "cuit": 30257897890,
+        "description": "Mantenimiento edilicio integral: albañilería, electricidad, plomería, construcción, reparaciones en general."
+    },
+{
+        "name": "Plomería Huba",
+        "cuit": 30259877890,
+        "description": "Proveemos plomeros matriculados para solucionar cualquier problema"
+    },
+
+    {
+        "name": "Servicios Hogar",
+        "cuit": 30236544560,
+        "description": "Plomeros,  gasistas y electricistas matriculados"
+    },
+{
+        "name": "Gasfiter",
+        "cuit": 30227418520,
+        "description": "Plomeros matriculados"
+    },
+{
+        "name": "Servicio Eléctrico S.A.",
+        "cuit": 30221473690,
+        "description": "Electricistas matriculados"
+    },
+{
+        "name": "GWC S.R.L.",
+        "cuit": 30174569870,
+        "description": "Plomeros,  gasistas y electricistas matriculados"
+    },
+{
+        "name": "Home Solution S.A.",
+        "cuit": 30196325410,
+        "description": "Plomeros,  gasistas y electricistas matriculados"
+    },
+{
+        "name": "Servicios Solisr",
+        "cuit": 30142583690,
+        "description": "Plomeros y  gasistas matriculados"
+    },
+{
+        "name": "Will Fix It",
+        "cuit": 30148529630,
+        "description": "Servicio de Plomería"
+    },
+    {
+        "name": "Varela S.A.",
+        "cuit": 30224563210,
+        "description": "Servicio de Plomería"
+    },
+{
+        "name": "Visymo S.R.L",
+        "cuit": 30217531590,
+        "description": "Plomeros,  gasistas y electricistas matriculados"
+    },
+{
+        "name": "La cuarta",
+        "cuit": 30117897890,
+        "description": "Servicios de construcción en general"
+    },
+{
+        "name": "Multiservicios Precisur",
+        "cuit": 30208522580,
+        "description": "Albañilería, mampostería, durlock, instalaciones eléctricas, pintura, construcción en general"
+    },
+{
+        "name": "Hacemos servicio",
+        "cuit": 30201546320,
+        "description": "Construcciones, refacciones y pintura."
+    },
+{
+        "name": "Multiservicios Cano",
+        "cuit": 30114521240,
+        "description": "Albañilería, mampostería, durlock, instalaciones eléctricas, pintura, construcción en general"
+    },
+{
+        "name": "Prima Group",
+        "cuit": 30142113330,
+        "description": "Consultora de construcción"
+    },
+{
+        "name": "Proytek",
+        "cuit": 30128889990,
+        "description": "Albañilería, mampostería, durlock, instalaciones eléctricas, pintura, construcción en general"
+    },
+{
+        "name": "Placo",
+        "cuit": 30126665550,
+        "description": "Soluciones con Durlock"
+    },
+
+    {
+        "name": "Hiperplaca",
+        "cuit": 30122223330,
+        "description": "Solución a la humedad con placas de Durlock"
+    },
+{
+        "name": "Durbeck",
+        "cuit": 30124568880,
+        "description": "Construcción con Durlock"
+    },
+{
+        "name": "DyD servicios",
+        "cuit": 30124568880,
+        "description": "Servicios de electricidad de la mano de los mejores profesionales"
+    },
+{
+        "name": "tserpro",
+        "cuit": 30122318520,
+        "description": "Instalación y mantenimiento de la electricidad el hogar"
+    },
+{
+        "name": "Santa Madera S.A.",
+        "cuit": 30124445550,
+        "description": "Reparaciones de aberturas y muebles de cualquier tipo de madera"
+    },
+{
+        "name": "ARDICCO",
+        "cuit": 30126667450,
+        "description": "Servicio integral de la madera. Construcción de techos, muebles y aberturas. Mantenimiento"
+    },
+{
+        "name": "Alianza Constructiva",
+        "cuit": 30122223560,
+        "description": "Trabajos profesionales de madera. Carpintería en general"
+    },
+{
+        "name": "Telplast S.R.L.",
+        "cuit": 30122223360,
+        "description": "Trabajos con madera y metal. Carpintería y Herrería"
+    },
+{
+        "name": "Herrería MF",
+        "cuit": 30120030010,
+        "description": "Portones y puertas. Soldaduras en general. Instalación de aberturas. Restauración"
+    },
+{
+        "name": "Herrería Mayito S.A.",
+        "cuit": 30123337560,
+        "description": "Mantenimiento, instalación y diseño de puertas y portones"
+    },
+{
+        "name": "Los Andes",
+        "cuit": 30122223310,
+        "description": "Reparación. Soldaduras de todo tipo. Herrería en general."
+    },
+{
+        "name": "Torrefe S.A.",
+        "cuit": 30122201520,
+        "description": "Herrería profesional. Instalaciones, mantenimientos, reparaciones, construcción"
+    }  
 ]
