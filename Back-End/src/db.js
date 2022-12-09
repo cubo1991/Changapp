@@ -3,10 +3,13 @@ const { Sequelize, Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/PF_ECOMMERCE`, {    //cambiar la databse
+const DB_PORT = process.env.DB_PORT || 5432;
+const DB_NAME = process.env.DB_NAME || 'PF_ECOMMERCE';
+
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {    //cambiar la databse
   logging: false,
   native: false,
 });
@@ -15,10 +18,10 @@ const basename = path.basename(__filename);
 const modelDefiners = [];
 
 fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
-  .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
-  });
+  .filter((file) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
+  .forEach((file) => 
+    modelDefiners.push(require(path.join(__dirname, '/models', file)))
+  );
 
 modelDefiners.forEach( model => model(sequelize));
 
