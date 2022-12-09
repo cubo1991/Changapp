@@ -198,4 +198,42 @@ router.delete("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+/*     {
+        "userName" : "asdasd",
+        "passWord" : "32",
+        "age": 33,
+        "location": "test",
+        "adress": "teste",
+        "phoneNumber": 9999999,
+        "eMail": "teste@test.com",
+        "UserRol": "Admin"
+    } */
+  const { userName, passWord, age, location, adress, phoneNumber, eMail, UserRolBody} = req.body;
+  try {
+    if(!userName || !passWord || !age || !location || !adress || !phoneNumber || !eMail || !UserRolBody) return res.status(200).send("Faltan datos obligatorios")
+    let user = await User.create({
+        userName: userName,
+        passWord: passWord,
+        age: age,
+    })
+    let deatils = await Detail.create({
+        location: location,
+        adress: adress,
+        phoneNumber: phoneNumber,
+        eMail: eMail,
+    })
+    let rol = await UserRol.findAll({
+        where : {
+            name: UserRolBody
+        }
+    }) 
+    await user.setDetail(deatils.dataValues.id)
+    await user.setUserRol(rol[0].dataValues.id)
+    res.status(200).send("asd")
+  } catch (error) {
+    res.status(500).send("Hubo un error en el servidor");
+  }
+});
+
 module.exports = router;
