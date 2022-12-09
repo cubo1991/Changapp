@@ -8,7 +8,7 @@ const categories = require("./Datos/Categories.json")
 const details = require("./Datos/Details.json")
 
 conn
-  .sync({ force: false, alter: true })
+  .sync({ force: true })
   .then(() => {
     server.listen(3001, () => {
       console.log("%s listening at 3001");
@@ -81,6 +81,19 @@ conn
       } else {
         await serviceBD.addSupplier(supplietUUID[2])
       }
+
+      const userReviewer = await User.findOne();
+
+      for (let i = 0; i < 5; i++) {
+        let newReview = await Review.create({
+          comment: "something",
+          rating: parseFloat((Math.random() * 5).toFixed(1)),
+        });
+        await newReview.setUser(userReviewer);
+        await serviceBD.addReview(newReview);
+      }
       
     })
+
+
   })
