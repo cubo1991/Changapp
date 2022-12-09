@@ -8,7 +8,7 @@ const categories = require("./Datos/Categories.json")
 const details = require("./Datos/Details.json")
 
 conn
-  .sync({ force: true })
+  .sync({ force: false, alter: true })
   .then(() => {
     server.listen(3001, () => {
       console.log("%s listening at 3001");
@@ -40,48 +40,43 @@ conn
       supplietUUID.push(suppliersBD.dataValues.id)
     })
     //Services
+    servCat = {
+      Reparación: 1,
+      Limpieza: 2,
+      Lavado: 3,
+      Planchado: 4,
+      Desinfección: 6,
+      Fumigación: 7,
+      Plomería: 8,
+      Termotanques: 8,
+      Electricidad: 9,
+      Aires: 9,
+      Pintura: 10,
+      Construcción: 11,
+      Aberturas: 11,
+      Durlock: 11,
+      Herrería: 12,
+      Carpintería: 13,
+    };
+
     services.forEach(async (service) =>{
       let serviceBD = await Service.create(service)
-      let fistWord = service.serviceType.split(" ")
+      let servTypeWords = service.serviceType.split(" ")
       let description = service.description
-      if(fistWord[0] === "Reparación") {
-        await serviceBD.setCategory(1)
-      } else if(fistWord[0] === "Limpieza"){
-        await serviceBD.setCategory(2)
-      } else if(fistWord[0] === "Lavado"){
-        await serviceBD.setCategory(3)
-      }else if(fistWord[0] === "Planchado"){
-        await serviceBD.setCategory(4)
-      }else if(description.includes('espacios verdes') || description.includes('árboles') || description.includes('jardines')){
-        await serviceBD.setCategory(5)
-      }else if(fistWord[0] === "Desinfección"){
-        await serviceBD.setCategory(6)
+
+      if (servCat.hasOwnProperty(servTypeWords[0])) {
+        await serviceBD.setCategory(servCat[servTypeWords[0]]);
+      } else if (["espacios verdes", "árboles", "jardines"].some((palabra) => description.includes(palabra))) {
+        await serviceBD.setCategory(5);
+      } else {
+        await serviceBD.setCategory(14);
       }
-      else if(fistWord[0] === "Fumigación"){
-        await serviceBD.setCategory(7)
-      }
-      else if(fistWord[0] === "Plomería" || fistWord[0] === "Termotanques"){
-        await serviceBD.setCategory(8)
-      }  else if(fistWord[0] === "Electricidad" || fistWord[0] === "Aires"){
-        await serviceBD.setCategory(9)
-      }else if(fistWord[0] === "Pintura"){
-        await serviceBD.setCategory(10)
-      }else if(fistWord[0] === "Construcción" || fistWord[0] === "Aberturas" || fistWord[0] === "Durlock"){
-        await serviceBD.setCategory(11)
-      }
-      else if(fistWord[0] === "Herrería"){
-        await serviceBD.setCategory(12)
-      }else if(fistWord[0] === "Carpintería"){
-        await serviceBD.setCategory(13)
-      }
-      else {
-        await serviceBD.setCategory(14)
-      }
-      if(fistWord[2] === "Techos") {
+
+      if(servTypeWords[2] === "Techos") {
         await serviceBD.addSupplier(supplietUUID[3])
-      } else if(fistWord[2] === "Paredes"){
+      } else if(servTypeWords[2] === "Paredes"){
         await serviceBD.addSupplier(supplietUUID[1])
-      } else if(fistWord[2] === "Hogares" || fistWord[2] === "Hospitales") {
+      } else if(servTypeWords[2] === "Hogares" || servTypeWords[2] === "Hospitales") {
         await serviceBD.addSupplier(supplietUUID[0])
       } else {
         await serviceBD.addSupplier(supplietUUID[2])
