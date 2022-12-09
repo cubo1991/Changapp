@@ -27,6 +27,7 @@ export const ServicesDetail = () => {
         id={serviceDetail[0].id}
         category={serviceDetail.Category}
         suppliers={serviceDetail[0].Suppliers}
+        img={serviceDetail[0].representative_image}
       />
     </div> : null
   );
