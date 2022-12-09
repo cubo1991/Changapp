@@ -12,12 +12,13 @@ let cart = useSelector((state) => state.cart)
 const {loginWithRedirect, logout} = useAuth0()
 
   return (
+
     <main>
-      <nav className={`${Style.container} container-fluid`}>
+      <nav  className={`${Style.container}`}>
         <div className="nav">
           <div className={`${Style.logo}`}>
             <NavLink to="/">
-              <button className="btn btn-dark">Logo</button>
+              <button className={`${Style.logo}`}></button>
             </NavLink>
           </div>
           <NavLink

@@ -1,5 +1,15 @@
+.container {
+  /* border: .0625rem solid blue; */
+  position: center;
+  /* background-color: black; */
+}
 
-.container{
-  display: flex;
-  flex-direction: row;
+.closeButton {
+  /* border: .0625rem solid blue; */
+  /* background-color: black; */
+  margin-left: 21em;
+  margin-top: 1rem;
+  width: 5em;
+  background-color: transparent;
+  border: transparent;
 }

@@ -53,7 +53,7 @@ export default function Home() {
         currentPage={currentPage}
       />
 
-      <NavFilters index ={index}></NavFilters>
+      <NavFilters index ={index}></NavFilters> <br />
 
       { searching ? 
       <button onClick={ () =>{    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */

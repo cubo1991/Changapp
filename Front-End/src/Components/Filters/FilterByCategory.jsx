@@ -1,9 +1,11 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { filterByCategory, getCategories } from "../../actions";
+
 //import Cards from "./Cards";
+
+import s from "./FilterByCategory.module.css"
 
 
 export function FilterByCategory({index}) {
@@ -27,7 +29,7 @@ export function FilterByCategory({index}) {
     
     if (categories && categories.length > 1) {
         return (
-            <div>
+            <div className={s.general}>
                 <label>Filtrar por categoría: </label>
                 <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)}>
                     <option value="default" onClick={(e) =>{

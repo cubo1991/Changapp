@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useState } from 'react'
 import { addServices, searchingTrue } from "../../actions";
 
+
+import s from "./FilterByPriceRange.module.css"
+
+
 export function FilterByPriceRange (props){
 
   const services = useSelector(state => state.services)
@@ -37,13 +41,12 @@ export function FilterByPriceRange (props){
 
   return (
 
-    <form>
-      <label>Rango de precios: &nbsp;</label>
-      <input type="text" name="minRange" value={search.minRange} onChange={(e) => inputHandler(e)}/>&nbsp;
-      -
-      &nbsp;
-      <input type="text" name="maxRange" value={search.maxRange} onChange={(e) => inputHandler(e)}/>
-      &nbsp;
+    <form className={s.general}>
+      <label>Rango de precios:</label> <br />
+      <input type="text" name="minRange" value={search.minRange} onChange={(e) => inputHandler(e)} placeholder="Min Price"/>
+
+      <input type="text" name="maxRange" value={search.maxRange} onChange={(e) => inputHandler(e)} placeholder="Max Price"/>
+   <br />
       <button onClick={(e) => orderHandler(e)}>Buscar</button>
 
     </form>
