@@ -1,17 +1,17 @@
 import React from 'react'
 
 
-import { servicios } from '../../Mockup/Servicios'
+import { currentServices } from '../Home/Home.jsx'
 import { ServicesCard } from '../ServicesCard/ServicesCard'
 
 
 export const Services = () => {
 
 
-  const services = servicios.map((service) => { 
+  const services = currentServices?.map((service) => { 
 
     return <ServicesCard
-    name={service.serviceType} price={service.pricePerHour} description={service.description} />})
+    name={service.serviceType} price={service.pricePerHour} description={service.description} image={service.representative_image}/>})
 
   return (
     <div>
