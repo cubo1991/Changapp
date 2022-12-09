@@ -8,11 +8,15 @@
 
 .detail_container{
     -webkit-text-stroke: 0.6px  black;
-    font-size: 1.41em;
+    font-size: 1.35em;
 }
 
 .detail_container h4 {
     font-size: 1.6em;
+}
+
+.detail_container p {
+    font-size: 1.3em;
 }
 
 .name{

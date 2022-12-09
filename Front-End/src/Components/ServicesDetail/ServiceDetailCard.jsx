@@ -9,7 +9,7 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
     <div className={style.container}>
       <div className={style.detail_container}>
         <h2 className={style.name}>{name}</h2>
-        <h4>Costo por hora</h4> <p>{pph}$</p>
+        <h4>Costo por hora</h4> <p>${pph}</p>
         <h4>Descripción</h4>
         <p>{description}</p>
         <h4>Proveedor</h4>
