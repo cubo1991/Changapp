@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
 
-    <div>
+    <div className={style.general}>
       
 <br />
       <NavFilters index ={index}></NavFilters> <br />

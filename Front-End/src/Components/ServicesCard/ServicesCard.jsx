@@ -17,7 +17,7 @@ export const ServicesCard = ({name, price, description, id, image}) => {
   return (
     <div >
         
-        <div className="card" style={{maxWidth:"25rem", margin:"1rem"}}>
+        <div className={`card, ${s.general}`} style={{maxWidth:"25rem", margin:"1rem"}}>
         <div className="card-body">
           <img src={image} alt="" />
           <div className={s.contenedor}>
@@ -26,7 +26,7 @@ export const ServicesCard = ({name, price, description, id, image}) => {
           </Link>
         </div>
         <div className={s.contenedor}>
-        <h6>Price per Hour:</h6> <p className="card-text">{price}</p>
+        <h6>Price per Hour:</h6> <p className="card-text">${price}</p>
         </div>
         <div className={s.contenedor}>
         <h6>Description:</h6><p className="card-text">{description}</p>
