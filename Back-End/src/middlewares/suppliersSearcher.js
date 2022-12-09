@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
           },
         ],
       });
-      if (suppliersDB.length === 0) {
+      /* if (suppliersDB.length === 0) {
         res.status(404).send("No hubo resultados para la busqueda");
       } else {
         let result = [];
@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
           result.push(objSupp);
         } 
         res.status(200).json(result);
-      }
+      } */
     } else {
       //http://localhost:3001/suppliers
       const suppliersDB = await Supplier.findAll({
@@ -66,7 +66,7 @@ router.get("/", async (req, res) => {
         ],
       });
       //Traer reviews de cada servicio
-      let result = [];
+      /* let result = [];
       for (let i = 0; i < suppliersDB.length; i++) {
         const reviews = await Review.findAll({
           include: {
@@ -91,8 +91,8 @@ router.get("/", async (req, res) => {
           Rating: revireProm,
         };
         result.push(objSupp);
-      }
-      res.status(200).json(result);
+      } */
+      return res.status(200).json(suppliersDB);
     }
   } catch (e) {
     return res.status(500).send("Hubo un error en el servidor");
