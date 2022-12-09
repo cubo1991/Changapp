@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 
-export const ServicesCard = ({name, price, description, id}) => {
+export const ServicesCard = ({name, price, description, id, image}) => {
  let dispatch = useDispatch()
  let cart = useSelector((state) => state.cart)
  const onClickBtn =() => {
@@ -17,15 +17,16 @@ export const ServicesCard = ({name, price, description, id}) => {
   return (
     <div >
         
-        <div className="card" style={{maxWidth:"25rem", margin:"1rem"}}>
+        <div className={`card, ${s.general}`} style={{maxWidth:"25rem", margin:"1rem"}}>
         <div className="card-body">
+          <img src={image} alt="" />
           <div className={s.contenedor}>
           <Link to={'/services/' + id}>
          <h2 className="card-title">{name}</h2>
           </Link>
         </div>
         <div className={s.contenedor}>
-        <h6>Price per Hour:</h6> <p className="card-text">{price}</p>
+        <h6>Price per Hour:</h6> <p className="card-text">${price}</p>
         </div>
         <div className={s.contenedor}>
         <h6>Description:</h6><p className="card-text">{description}</p>

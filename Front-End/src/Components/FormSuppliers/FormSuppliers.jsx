@@ -10,11 +10,12 @@ let dispatch = useDispatch()
     const {register, handleSubmit, formState: {errors}} = useForm()
 
     const  onSubmit = (data) => {
+      console.log(data)
       dispatch(postSupplier(data))
     }
   
   return (
-    <div><h1>Form Suppliers</h1>
+    <div><h1>Inscribí a tu empresa</h1>
     
       <div className='card' style={{width:"40rem", left:"22rem", top:"2rem"}}>
      
@@ -26,10 +27,12 @@ let dispatch = useDispatch()
     {errors.name && <span className={s.error}>Este campo es obligatorio</span>}
   </div>
   <div className="col-md-6">
-    <label for="inputPhone" className="form-label">CUIT</label>
-    <input type="number" className="form-control" id="inputPhone" placeholder="" {...register("cuit", {required:true, pattern: /^[0-9]\d*(\.\d+)?$/})}></input>
+    <label for="inputCuit" className="form-label">CUIT</label>
+    <input type="text" className="form-control" id="inputCuit" placeholder="xx-xxxxxxxx-x" {...register("cuit", {required:true, minLength: 12, maxLength: 13, pattern: /([0-9]+(-[0-9]+)+)/i})}></input>
     {errors.cuit?.type === 'required' && <span className={s.error}>Este campo es obligatorio</span>}
     {errors.cuit?.type === 'pattern' && <span className={s.error}>Solo se permiten números</span>}
+    {errors.cuit?.type === 'minLength' && <span className={s.error}>El mínimo es de 10 caracteres</span>}
+    {errors.cuit?.type === 'maxLength' && <span className={s.error}>El máximo es de 11 caracteres</span>}
   </div>
   <div className="col-md-6">
     <label for="inputEmail4" className="form-label">Email</label>

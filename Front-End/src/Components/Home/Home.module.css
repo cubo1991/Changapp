@@ -1,10 +1,13 @@
+.general{
+    background-color: rgb(227, 225, 225);
+}
+
 .cards{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 200px;
-    background-color: #bbb;
     border-radius: 15px;
     margin-top: 1%;
     margin-bottom: 1%;

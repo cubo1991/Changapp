@@ -28,50 +28,23 @@ console.log(useForm())
   </div>
   <div className="col-12">
     <label for="inputPhone" className="form-label">Teléfono</label>
-    <input type="tel" className="form-control" id="inputPhone" placeholder="" {...register("tel")}></input>
+    <input type="number" className="form-control" id="inputPhone" placeholder="" {...register("tel", { required: true, pattern: /^[0-9]\d*(\.\d+)?$/} )}></input>
+    {errors.tel?.type === 'required' && <span className={s.error}>Este campo es obligatorio</span>}
+    {errors.tel?.type === 'pattern' && <span className={s.error}>Este campo solo acepta números</span>}
   </div>
   <div className="col-12">
     <label for="inputAddress2" className="form-label">Dirección</label>
     <input type="text" className="form-control" id="inputAddress2" placeholder="" {...register("adress")}></input>
   </div>
-  <div className="col-md-6">
+  <div className="col-12">
     <label for="inputCity" className="form-label">Ciudad</label>
     <input type="text" className="form-control" id="inputCity" {...register("city")}></input>
   </div>
-  <div className="col-md-4">
-    <label for="inputState" className="form-label">Provincia</label>
-    <select id="inputState" className="form-select" {...register("province")}>
-      <option selected>Tu provincia</option>
-      <option value="Buenos Aires">Buenos Aires</option>
-<option value="Buenos Aires Capital">Buenos Aires Capital</option>
-<option value="Catamarca">Catamarca</option>
-<option value="Chaco">Chaco</option>
-<option value="Chubut">Chubut</option>
-<option value="Cordoba">Cordoba</option>
-<option value="Corrientes">Corrientes</option>
-<option value="Entre Rios">Entre Rios</option>
-<option value="Formosa">Formosa</option>
-<option value="Jujuy">Jujuy</option>
-<option value="La Pampa">La Pampa</option>
-<option value="La Rioja">La Rioja</option>
-<option value="Mendoza">Mendoza</option>
-<option value="Misiones">Misiones</option>
-<option value="Neuquen">Neuquen</option>
-<option value="Rio Negro">Rio Negro</option>
-<option value="Salta">Salta</option>
-<option value="San Juan">San Juan</option>
-<option value="San Luis">San Luis</option>
-<option value="Santa Cruz">Santa Cruz</option>
-<option value="Santa Fe">Santa Fe</option>
-<option value="Santiago del Estero">Santiago del Estero</option>
-<option value="Tierra del Fuego">Tierra del Fuego</option>
-<option value="Tucuman">Tucuman</option>
-    </select>
+  <div className="col-12">
+    <label for="inputComment" className="form-label">Tu consulta*</label>
+    <textarea type="textarea" className="form-control" id="inputComment" {...register("comment", { required: true})}></textarea>
   </div>
-  <div className="col-md-2">
-    <label for="inputZip" className="form-label">Cod. Postal</label>
-    <input type="text" className="form-control" id="inputZip"></input>
-  </div>    
+   
   <span>Los campos con  * son obligatorios</span>
    <div className="col-12">
     <button type="submit" className="btn btn-primary">Enviar</button>
