@@ -17,7 +17,7 @@ export default function NavFilters({ index }) {
                 Filtros
             </a>
 
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" >
+            <div className={`offcanvas offcanvas-start, ${s.slideNav}`} tabindex="-1" id="offcanvasExample" >
                 <button type="button" className={s.closeButton} data-bs-dismiss="offcanvas" >X</button>
 
                 <ul>

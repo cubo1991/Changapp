@@ -13,8 +13,8 @@ export function FilterByPriceRange (props){
   const dispatch = useDispatch();
 
   let [search, setSearch] = useState({
-    minRange: 0,
-    maxRange: 0
+    minRange: null,
+    maxRange: null
   })
 
   const inputHandler = (e) => {
@@ -35,7 +35,7 @@ export function FilterByPriceRange (props){
     if(search.minRange < search.maxRange || search.maxRange > 0){
       dispatch(addServices(result));
       dispatch(searchingTrue());
-      setSearch({ minRange: 0, maxRange: 0});
+      setSearch({ minRange: "", maxRange: ""});
     }
   }
 

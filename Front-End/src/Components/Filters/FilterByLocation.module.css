@@ -4,3 +4,11 @@
     width: 21em;
     /* border: black solid; */
 }
+
+.general label {
+    color: white;
+}
+
+.select{
+    border: .1rem solid black;
+}

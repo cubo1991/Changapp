@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { orderByPrices } from "../../actions";
 
+import s from "./OrderByPrice.module.css"
 
 export function OrderByPrice ({index}){
 
@@ -18,16 +19,16 @@ export function OrderByPrice ({index}){
 
   return(
 
-    <div>
-      <label>Ordenar:</label>
-      
+    <div className={s.general}>
+      <label>Ordenar: </label>
+      <br />
       <select onChange={(e) => {
           e.preventDefault();
           dispatch(orderByPrices(e.target.value, filter))
-      }}>
-        <option value="ASC" onClick={(e) =>{
+      }} >
+        <option value="" onClick={(e) =>{
                             index(1);
-                        }}>-- Por precios --</option>
+                        }} >-- Por precios --</option>
 
         <option value="ASC" onClick={(e) =>{
                             index(1);

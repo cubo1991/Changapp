@@ -31,7 +31,7 @@ export function FilterByCategory({index}) {
         return (
             <div className={s.general}>
                 <label>Filtrar por categoría: </label>
-                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)}>
+                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)} className={s.select}>
                     <option value="default" onClick={(e) =>{
                             index(1);
                         }}>

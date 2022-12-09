@@ -4,3 +4,20 @@
     width: 21em;
     /* border: black solid; */
 }
+
+.general label {
+    color: white;
+}
+
+.select{
+    border: .1rem solid black;}
+
+    .general select{
+        border: .0625rem solid black;
+        text-align-last: center;
+    }
+    
+    .general option{
+        border: .0625rem solid black;
+        text-align: center;
+    }

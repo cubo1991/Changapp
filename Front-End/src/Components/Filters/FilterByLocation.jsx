@@ -28,8 +28,8 @@ export function FilterByLocation() {
     if (locations && locations.length >= 1) {
         return (
             <div className={s.general}>
-                <label>Filtrar por ubicación</label>
-                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)}>
+                <label>Filtrar por ubicación:</label>
+                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)} className={s.select}>
                     <option value="default">
                         -- Selecciona una ubicación --
                     </option>
