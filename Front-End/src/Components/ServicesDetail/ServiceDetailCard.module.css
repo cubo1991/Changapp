@@ -6,13 +6,29 @@
 
 }
 
+.detail_container{
+    -webkit-text-stroke: 0.6px  black;
+    font-size: 1.41em;
+}
+
+.detail_container h4 {
+    font-size: 1.6em;
+}
+
+.name{
+    color:  rgb(33, 120, 249);
+    font: strong;
+    font-size: 2.84em;
+    /* border: .0625rem solid black;  */
+  }
+
 .img{
     width: 975px;
     height: 301px;
     border-radius:5px;
     position: absolute;
     object-fit: cover;
-    border:solid 1px black
+    border:solid 1px black;
 }
 
 .detail_container{
