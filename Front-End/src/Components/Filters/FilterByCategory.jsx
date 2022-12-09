@@ -1,10 +1,11 @@
 
-import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { filterByCategory, getCategories } from "../../actions";
+
 //import Cards from "./Cards";
+
+import s from "./FilterByCategory.module.css"
 
 
 export function FilterByCategory({index}) {
@@ -17,11 +18,6 @@ export function FilterByCategory({index}) {
 
     const categories = useSelector(state => state.categories);
 
-    console.log(index)
-    const [categoryValue, setCategoryValue] = useState();
-   
-
-
     function handleChange(e) {
         
         e.preventDefault();
@@ -33,9 +29,9 @@ export function FilterByCategory({index}) {
     
     if (categories && categories.length > 1) {
         return (
-            <div>
+            <div className={s.general}>
                 <label>Filtrar por categoría: </label>
-                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)}>
+                <select class="form-select" aria-label="Default select example" onChange={(e) => handleChange(e)} className={s.select}>
                     <option value="default" onClick={(e) =>{
                             index(1);
                         }}>

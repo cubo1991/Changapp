@@ -1,0 +1,31 @@
+.general {
+    display: block;
+    padding: 2em 0em;
+    width: 21em;
+    /* border: black solid; */
+}
+
+.general label {
+    color: white;
+}
+
+.general input {
+    position: center;
+    width: 10em;
+    margin: 0.0625em;
+    border: .1rem solid black;
+}
+
+.general input::placeholder{
+    padding-left: 2.5em;
+    /* border: .0625rem solid  black; */
+}
+
+.general button {
+    margin-top: 1em;
+    color: rgb(33, 120, 249);
+    background-color: white;
+    border: transparent;
+    font-weight:bolder;
+}
+

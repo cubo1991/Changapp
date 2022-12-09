@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
     description: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    representative_image: {
+      type: DataTypes.TEXT,
+      defaultValue: 'https://www.shutterstock.com/image-photo/work-tools-on-wooden-background-260nw-1513549190.jpg'
     }
   },
   {

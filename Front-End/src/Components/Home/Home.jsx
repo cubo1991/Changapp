@@ -20,7 +20,7 @@ export default function Home() {
   const allServices = useSelector((state) => state.services)
   const searching = useSelector( state => state.searching);
   const [currentPage, setCurrentPage] = useState(1)
-  const [servicesPerPage, setServicesPerPage] = useState(3)
+  const [servicesPerPage, setServicesPerPage] = useState(9)
   const indexOfLastService = currentPage * servicesPerPage//3
   const indexOfFirstService = indexOfLastService - servicesPerPage//0
   const currentServices = allServices.slice(indexOfFirstService, indexOfLastService)
@@ -46,14 +46,15 @@ export default function Home() {
   return (
 
     <div>
+      
+<br />
+      <NavFilters index ={index}></NavFilters> <br />
       <Index
         servicesPerPage={servicesPerPage}
         allServices={allServices.length}
         index={index}
         currentPage={currentPage}
       />
-
-      <NavFilters index ={index}></NavFilters>
 
       { searching ? 
       <button onClick={ () =>{    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */

@@ -1,0 +1,23 @@
+.container {
+  /* border: .0625rem solid blue; */
+  position: center;
+  /* background-color: black; */
+}
+
+.slideNav{
+  background-color:  rgb(33, 120, 249);
+  height: 100%;
+}
+
+.closeButton {
+  /* border: .0625rem solid blue; */
+  /* background-color: black; */
+  color: white;
+  font-size: 1.5em;
+  margin-left: 14em;
+  margin-top: 1rem;
+  margin-right: -1em;
+  width: 5em;
+  background-color: transparent;
+  border: transparent;
+}

@@ -9,6 +9,7 @@ export function test(){
 
 import { json } from "react-router-dom"
 import { ADD_CART, GET_DETAILS, REMOVE_ITEM } from "../Constantes/Constantes"
+import axios from 'axios';
 
 
 //import {Servicios} from '../Mockup/Servicios.js';
@@ -44,18 +45,12 @@ export function getLocations(){
     return function(dispatch){
         fetch('http://localhost:3001/location')
         .then( res => res.json())
-        .then( res => {
-           // console.log(res)
-            let locations = new Set();
-            if(res){
-                res.forEach( element => {
-                    console.log(element.Users)
-                    if(element.passWord = 1234) locations.add(element.location)
-                });
-                console.log(locations, "locations")
-            dispatch({type: "GET_LOCATIONS", payload: [...locations]})
-            }
-        })
+        .then( res => dispatch({type: "GET_LOCATIONS", payload: res}))
+        /* .then( res => {
+            console.log(res, "LOCATION")
+           // dispatch({type: "GET_LOCATIONS", payload:})
+            
+        }) */
     }
 }
 export function filterByCategory(categoryId) {
@@ -221,3 +216,26 @@ export const removeItem = (id) => {
 
 
 }
+
+export const postSupplier = (payload) => {
+
+    return function() {
+       axios.post('http://localhost:3001/suppliers', {
+        adress: payload.adress,
+        cuit: payload.cuit,
+        description: payload.description,
+        eMail: payload.eMail,
+        location: payload.location,
+        name: payload.name,
+        phoneNumber: payload.phoneNumber
+      }
+     
+      )            
+      .catch((error) => {
+       console.log(error)
+        alert("Something went wrong...")
+      })
+     
+    }
+    
+  }

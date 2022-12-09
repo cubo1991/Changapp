@@ -1,0 +1,14 @@
+.general{
+    display: block;
+    padding: 2em 0em;
+    width: 21em;
+    /* border: black solid; */
+}
+
+.general label {
+    color: white;
+}
+
+.select{
+    border: .1rem solid black;
+}

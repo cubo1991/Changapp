@@ -13,15 +13,13 @@ let suppliers = useSelector((state) => state.suppliers)
   
 React.useEffect(
     ()=>{
-        dispatch(searchSuppliers())
         dispatch(getSuppliers())      
       }, [])
-
 
   const suppliersMap  = suppliers.map((supplier) => { 
 
     return <SuppliersCard
-    name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} details={supplier.detail} />})
+    name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} details={supplier.Detail} />})
 
  
   return (

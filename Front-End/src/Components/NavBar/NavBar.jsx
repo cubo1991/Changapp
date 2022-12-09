@@ -1,19 +1,24 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar.jsx";
+import Login from "../Login/Login"
 import Style from "../NavBar/Navbar.module.css";
 import { useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react"
+
 
 export default function NavBar() {
 let cart = useSelector((state) => state.cart)
+const {loginWithRedirect, logout} = useAuth0()
 
   return (
+
     <main>
-      <nav className={`${Style.container} container-fluid`}>
+      <nav  className={`${Style.container}`}>
         <div className="nav">
           <div className={`${Style.logo}`}>
             <NavLink to="/">
-              <button className="btn btn-dark">Logo</button>
+              <button className={`${Style.logo}`}></button>
             </NavLink>
           </div>
           <NavLink
@@ -36,25 +41,20 @@ let cart = useSelector((state) => state.cart)
               <span>Contacto</span>
             </div>
           </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? Style.active : Style.inactive
+            }
+            to="/suppliersContact"
+          >
+            <div className={`${Style.link} nav-link`}>
+              <span>Publicá tu servicio</span>
+            </div>
+          </NavLink>
           <div className={`${Style.nav_right} d-flex justify-content-end col`}>
             <Searchbar />
+            <Login></Login>  
 
-            <div className={Style.person}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-person-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                />
-              </svg>
-            </div>
             <NavLink
               to="/cart"
               className={({ isActive }) =>
