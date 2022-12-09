@@ -1,0 +1,10 @@
+.general{
+    display: block;
+    padding: 2em 0em;
+    width: 21em;
+    /* border: black solid; */
+}
+
+.input{
+    position: center;
+}
