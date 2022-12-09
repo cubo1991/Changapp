@@ -32,21 +32,29 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-  const { id, userName, passWord, age, location, adress, phoneNumber, eMail, rol } = req.body;
+  const { idModified, idPetitioner, userName, passWord, age, location, adress, phoneNumber, eMail, UserRolBody } = req.body;
   try {
-    const userBD = await User.findAll({
+    const userBDModified = await User.findAll({
         where: {
-            id: id
+            id: idModified
         },
+        include:{model: UserRol}
     })
-
+    const userBDPetitioner = await User.findAll({
+        where: {
+            id: idPetitioner
+        },
+        include:{model: UserRol}
+    })
+    let rolPetitioner = userBDPetitioner[0].dataValues.UserRol.dataValues.name
+    let rolModified = userBDModified[0].dataValues.UserRol.dataValues.name
     //Update User
     if (userName) {
         await User.update({
             userName: userName,
         }, {
             where: {
-                id : id
+                id : idModified
             }
         })
     }
@@ -55,7 +63,7 @@ router.put("/", async (req, res) => {
             passWord: passWord,
         }, {
             where: {
-                id : id
+                id : idModified
             }
         })
     }
@@ -64,7 +72,7 @@ router.put("/", async (req, res) => {
             age: age,
         }, {
             where: {
-                id : id
+                id : idModified
             }
         })
     }
@@ -74,7 +82,7 @@ router.put("/", async (req, res) => {
             location: location,
         }, {
             where: {
-                id : userBD[0].dataValues.DetailId
+                id : userBDModified[0].dataValues.DetailId
             }
         })
     }
@@ -83,7 +91,7 @@ router.put("/", async (req, res) => {
             adress: adress,
         }, {
             where: {
-                id : userBD[0].dataValues.DetailId
+                id : userBDModified[0].dataValues.DetailId
             }
         })
     }
@@ -92,7 +100,7 @@ router.put("/", async (req, res) => {
             phoneNumber: phoneNumber,
         }, {
             where: {
-                id : userBD[0].dataValues.DetailId
+                id : userBDModified[0].dataValues.DetailId
             }
         })
     }
@@ -101,32 +109,90 @@ router.put("/", async (req, res) => {
             eMail: eMail,
         }, {
             where: {
-                id : userBD[0].dataValues.DetailId
+                id : userBDModified[0].dataValues.DetailId
             }
         })
     }
     //Update rol
-    if (rol) {
-        if(userBD[0].dataValues.UserRolId === 4){
+    if (UserRolBody) {
+        if(rolPetitioner === "Admin" && rolModified === "Supplier" || rolModified === "User"){
             let rolDB = await UserRol.findAll({
                 where: {
-                    name : rol
+                    name : UserRolBody
                 }
             })
             await User.update({
                 UserRolId: rolDB[0].dataValues.id,
             }, {
                 where: {
-                    id : id
+                    id : idModified
                 }
             })
-        } else {
-            return res.status(200).json("No tiene permisos para cambiar los roles")
+        } else if (rolPetitioner === "SuperAdmin") {
+            let rolDB = await UserRol.findAll({
+                where: {
+                    name : UserRolBody
+                }
+            })
+            await User.update({
+                UserRolId: rolDB[0].dataValues.id,
+            }, {
+                where: {
+                    id : idModified
+                }
+            })
         }
+        else {
+            return res.status(200).json("No tiene permisos para cambiar los roles")
+        } 
     }
 
    
     res.status(200).json("Cambios cargados exitosamente!")
+  } catch (error) {
+    res.status(500).send("Hubo un error en el servidor");
+  }
+});
+
+router.delete("/", async (req, res) => {
+    const { idDelete, idPetitioner } = req.body;
+  try {
+    let userDBDelete = await User.findAll({
+        where: {
+            id: idDelete
+        },
+        include: {model:UserRol}
+    })
+    let userDBPetitioner = await User.findAll({
+        where: {
+            id: idPetitioner
+        },
+        include: {model:UserRol}
+    })
+    let UserDeletedRol = userDBDelete[0].dataValues.UserRol.dataValues.name
+    let UserPetitionerRol = userDBPetitioner[0].dataValues.UserRol.dataValues.name
+    if((UserDeletedRol === "Supplier" || UserDeletedRol === "User") && UserPetitionerRol === "Admin") {
+        await User.destroy({
+            where: {
+                id: idDelete
+            }
+        })
+        return res.send("Elimiando Exitosamente")
+    } else if (UserPetitionerRol === "SuperAdmin") {
+        await User.destroy({
+            where: {
+                id: idDelete
+            }
+        })
+        return res.send("Elimiando Exitosamente")
+    } else {
+        res.send("No tiene permisos para modificar este usuario")
+    }
+
+
+    console.log(userDBDelete[0].dataValues.UserRol.dataValues.name);
+
+   
   } catch (error) {
     res.status(500).send("Hubo un error en el servidor");
   }
