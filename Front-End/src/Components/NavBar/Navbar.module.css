@@ -1,34 +1,48 @@
-.container {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.container{
+  background-color: rgb(33, 120, 249);
 }
 
-.inactive .link {
-  color: black;
+.logo {
+  background-image: url(../../Images/logo.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  /* background-color: black; */
+  background-size: 4em;
+  width: 4em;
+  height: 4em;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .link {
-  border: 1px solid black;
-  margin: 0 20px;
+  /* border: 1px solid black; */
+  padding-top: 1.25rem;
+  margin: 0 1.25rem;
+}
+
+.inactive .link {
+  color:white;
 }
 
 .active .link{
-    background-color: black;
-    color:white
-}
-
-.inactive .cart{
-    color:black
+  /* background-color: black; */
+  color:black
 }
 
 .nav_right{
-    margin-right: 40px;
+  margin-right: 40px;
+  padding-top: 1rem;
 }
+
 
 .person{
     margin:0 15px
 }
 
+.inactive .cart{
+  color:black
+}
 
 a:link,
 a:visited,
