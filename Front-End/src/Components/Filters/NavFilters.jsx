@@ -13,7 +13,7 @@ export default function NavFilters({ index }) {
         <nav className={s.container}>
 
 
-            <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            <a className={`btn btn-primary, ${s.botonfiltros}`} data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" >
                 Filtros
             </a>
 
