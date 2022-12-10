@@ -15,7 +15,6 @@
 .activePage{
   background-color: rgb(33, 120, 249);
   color: #FFF;
-  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -26,7 +25,6 @@
 .focusPage:hover{
   background-color: rgb(182, 175, 255);
   color: black;
-  border-radius: 10px;
 }
 
 .buttons{
