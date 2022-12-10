@@ -1,5 +1,9 @@
+.main section{
+  padding-top: 2em;
+}
+
 .container{
-  background-color: rgb(33, 120, 249);
+  background-color: rgb(55, 54, 54);
   position: fixed;
   z-index: 1000;
   background-size: 100%;
@@ -31,7 +35,7 @@
 
 .active .link{
   /* background-color: black; */
-  color:black
+  color:rgb(33, 120, 249)
 }
 
 .nav_right{
@@ -45,7 +49,7 @@
 }
 
 .inactive .cart{
-  color:black
+  color:white
 }
 
 a:link,

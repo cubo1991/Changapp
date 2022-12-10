@@ -37,9 +37,8 @@ export const Suppliers = () => {
 
 
   return (
-    <div className={style.container}>
-
-      <Index
+    <div className={style.general}>
+    <Index
         servicesPerPage={suppliersPerPage}
         allServices={suppliers.length}
         index={index}
@@ -48,6 +47,7 @@ export const Suppliers = () => {
       
 
       {suppliersMap}
+    </div>
     </div>
 
   )
