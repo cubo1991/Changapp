@@ -1,5 +1,8 @@
 .container{
   background-color: rgb(33, 120, 249);
+  overflow:hidden;
+  position: fixed;
+  width: 100%;
 }
 
 .logo {
