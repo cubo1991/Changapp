@@ -1,21 +1,25 @@
 import React from "react";
 import style from "./ServiceDetailCard.module.css";
 
-export const ServiceDetailCard = ({ name, pph, description, category, suppliers }) => {
+export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img }) => {
 
-  console.log(suppliers)
+
 
   return (
     <div className={style.container}>
-      <div class={style.detail_container}>
-        <h2>{name}</h2>
-        <h4>Costo por hora</h4> <p>{pph}$</p>
+      <div className={style.detail_container}>
+        <h2 className={style.name}>{name}</h2>
+        <h4>Costo por hora</h4> <p>${pph}</p>
         <h4>Descripción</h4>
         <p>{description}</p>
         <h4>Proveedor</h4>
         <p>{suppliers[0].name}</p>
-        <button class="btn btn-dark"> Click me</button>
+
+        <img className="img-fluid w-50" style={{height: "50%", padding:"2rem"}} src={img} alt="Imagen"/>
       </div>
+      <button className="btn btn-dark"> Click me</button>
+
+
     </div>
   );
 };

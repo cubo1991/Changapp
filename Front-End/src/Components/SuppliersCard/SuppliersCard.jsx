@@ -7,26 +7,20 @@ export const SuppliersCard = ({ name, cuit, description, details, id }) => {
 
   return (
     <div>
-      <div className="card" style={{width: "25rem", margin: "1rem" }}>
-        <div className="card-body">
+      <div className={s.container}>
+          <div className={s.container1}>
+            <p className={s.rating}>Raiting</p>
+            <p>{details.location}</p>
+          </div> 
+          <div className={s.container2}>
           <Link to={'/suppliers/' + id}>
-            <h2 className="card-title">{name}</h2>
+            <h2>{name}</h2>
           </Link>
-          <div className={s.contenedor}>
-            <h6>Cuit:</h6> <p>{cuit}</p>
+           <p>{description}</p>
           </div>
-          <div className={s.contenedor}>
-            <h6 >Description:</h6><p>{description}</p>
-          </div>
-          {/* <div className={s.contenedor}>
-            <h6>Location:</h6><p>{details.location}</p>
-          </div>
-          <div className={s.contenedor}>
-            <h6>Adress:</h6><p>{details.adress}</p>
-          </div> */}
+
         </div>
       </div>
 
-    </div>
   )
 }

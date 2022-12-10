@@ -1,7 +1,8 @@
 .container{
-    display: flex;
+    display:flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 200px;
+    background-image: url('https://img.freepik.com/vector-gratis/fondo-blanco-engranajes-espacio-texto_1017-19420.jpg?w=740&t=st=1670607801~exp=1670608401~hmac=c8ac96e2619b7c88221aceae15908974244e5fb5a60b5eaaaf8c7e79ce3256bf');
+    background-size: 100%;
 }

@@ -1,11 +1,18 @@
-.card {
-    border: 3px black solid;
-   
+.general{
+    height: 40em;
+    width: 30em;
+    /* border: .0625rem solid black; */
+    background-color: white;
+    border-radius: 3%;
 }
 
-.background {
-    background-color: red;
+.general img{
+    width: 80%;
+    height: 20em;
+    padding-top: 1em;
 }
+
+
 
 .contenedor{
     display: flex;
