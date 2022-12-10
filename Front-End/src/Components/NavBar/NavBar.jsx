@@ -13,7 +13,7 @@ const {loginWithRedirect, logout} = useAuth0()
 
   return (
 
-    <main>
+    <main className={Style.main}>
       <nav  className={`${Style.container}`}>
         <div className="nav">
           <div className={`${Style.logo}`}>
@@ -84,8 +84,11 @@ const {loginWithRedirect, logout} = useAuth0()
             }
           </div>
         </div>
-      </nav>
-      <section>
+      </nav>    
+      <br />
+      <br />
+      <br />
+      <section >
         <Outlet />
       </section>
     </main>
