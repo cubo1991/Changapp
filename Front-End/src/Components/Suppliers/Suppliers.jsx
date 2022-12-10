@@ -35,16 +35,19 @@ export const Suppliers = () => {
 
 
   return (
-    <div className={style.container}>
-
-      <Index
+    <div className={style.general}>
+    <Index
         servicesPerPage={suppliersPerPage}
         allServices={suppliers.length}
         index={index}
         currentPage={currentPage}
       />
+    <div className={style.container}>
+
+      
 
       {suppliersMap}
+    </div>
     </div>
 
   )

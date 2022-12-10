@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { removeItem } from '../../actions'
 import { CartItem } from '../../CartItem/CartItemCard'
 
+
 export const Cart = () => {
 let cart = useSelector((state) => state.cart)
 
