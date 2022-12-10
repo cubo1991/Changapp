@@ -1,6 +1,6 @@
 //import {} from "../actions/index"
 
-import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM } from "../Constantes/Constantes";
+import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes";
 
 const initialState = {
   services: [],
@@ -97,15 +97,27 @@ const reducer = (state = initialState, action) => {
       }
 
     case ADD_CART:
+      let item = action.payload
+      let id = item.id
+      localStorage.setItem(id, JSON.stringify(item))
+      let services = JSON.parse(localStorage.getItem(id))
+     
+    
+ 
       return {
         ...state,
-        cart: [...state.cart, action.payload]
+        cart: [...state.cart, services]
+        
       }
     case REMOVE_ITEM:
-      let filterCart = state.cart.filter(item => item.id !== action.payload)
+      // let filterCart = state.cart.filter(item => item.id !== action.payload)
+      localStorage.removeItem(action.payload)
+      const allKeys = Object.keys(localStorage);
+const localStorageMap = allKeys.map(key => JSON.parse(localStorage.getItem(key)))
+      let newCart = localStorageMap
       return {
         ...state,
-        cart: filterCart
+        cart: newCart
 
       }
 
@@ -114,6 +126,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         serviceDetails: action.payload
       }
+    case SHOW_CART:
+      return{
+        ...state,
+        cart: action.payload
+      } 
 
     default:
       return state;
