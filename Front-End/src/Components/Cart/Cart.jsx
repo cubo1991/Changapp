@@ -21,6 +21,7 @@ const removeItems = (id) =>{
  
 
  return (
+ 
   <div>
     {cartMap}
   </div>

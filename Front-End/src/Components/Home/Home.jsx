@@ -48,6 +48,8 @@ export default function Home() {
     <div className={style.general}>
       
 <br />
+<br />
+<br />
       <NavFilters index ={index}></NavFilters> <br />
       <Index
         servicesPerPage={servicesPerPage}
