@@ -12,6 +12,25 @@
   margin-bottom: -100px;
 }
 
+.activePage{
+  background-color: rgb(55, 54, 54);
+  color: #FFF;
+  cursor: pointer;
+}
+
+.focusPage{
+  cursor: pointer;
+}
+
+.focusPage:hover{
+  background-color: rgb(182, 175, 255);
+  color: black;
+}
+
+.buttons{
+  margin: 0 5%;
+}
+
 /* .item{
   cursor: pointer;
   margin-left: 5%;

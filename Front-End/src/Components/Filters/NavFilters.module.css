@@ -2,10 +2,21 @@
   /* border: .0625rem solid blue; */
   position: center;
   /* background-color: black; */
+  
+}
+
+.botonfiltros{
+background-color: rgb(55, 54, 54);
+color: white;
+}
+
+.botonfiltros:hover{
+  background-color: rgb(3, 3, 3);
+  color: white;
 }
 
 .slideNav{
-  background-color:  rgb(33, 120, 249);
+  background-color: rgb(55, 54, 54);
   height: 100%;
 }
 
