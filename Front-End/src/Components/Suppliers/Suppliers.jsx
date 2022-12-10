@@ -48,7 +48,5 @@ export const Suppliers = () => {
 
       {suppliersMap}
     </div>
-    </div>
-
   )
 }
