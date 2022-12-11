@@ -25,12 +25,12 @@ export default function Login() {
               <NavLink
                 to="/Profile"
               >
-                <span>Perfil</span>
+                <span><img src={user.picture} alt="" /></span>
               </NavLink>
             </div>
             <div className={Style.person}>
               <button
-                className={Style.buttonLogin}
+                className={Style.buttonLogOut}
                 onClick={() => logout({ returnTo: window.location.origin })}
               ></button>
             </div>
