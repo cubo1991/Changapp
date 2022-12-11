@@ -1,9 +1,16 @@
 .person{
-    margin:0 15px
+    margin:0 15px;
 }
 
 .buttonLogin{
-    background-color: transparent;
-    border: none;
-    color: white;
+    background-image: url(../../Images/Log\ out.png);
+    background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  /* background-color: black; */
+  background-size: 1.6em;
+  width: 2em;
+  height: 2em;
+  background-color: transparent;
+  border-color: transparent;
   }
