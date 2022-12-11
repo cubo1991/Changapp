@@ -1,4 +1,4 @@
-const {Service, Supplier, Category, Op} = require('../db.js');
+const {Service, Supplier, Category, Op, conn} = require('../db.js');
 const { Router } = require('express');
 const router = Router();
 
@@ -10,11 +10,31 @@ router.get('/', async (req, res, next) => {
     if(type){
 
       const result = await Service.findAll({
-        where: {
+        where: { 
+        //ESTA ES LA SOLUCION DEL BUG DE LOS ACENTOS EN LA SEARCHBAR, PERO FALTA INSTALAR LA EXTENSION DE POSTGRES
+            /* 
+          [Op.or] : [
+            {
+              where: conn.where(
+                conn.fn('unaccent', conn.col('serviceType')),{
+                [Op.iLike]: `%${type}%`
+                })
+            },
+            {
+              serviceType : {
+                [Op.iLike]: `%${type}%` 
+                //case insensitive, busca aunque no sea un matcheo exacto en cualquier lugar del texto.
+                 //EJEM: si se busca "lim" trae todos los services que lleven lim (Limpieza de techos, Limpieza de cloacas, etc)
+              }
+            }
+          ]} */
+        
             serviceType : {
-                [Op.iLike]: `%${type}%` //case insensitive, busca aunque no sea un matcheo exacto en cualquier lugar del texto.
-            }                           //EJEM: si se busca "lim" trae todos los services que lleven lim (Limpieza de techos, Limpieza de cloacas, etc)
-        },
+                [Op.iLike]: `%${type}%` 
+                //case insensitive, busca aunque no sea un matcheo exacto en cualquier lugar del texto.
+                 //EJEM: si se busca "lim" trae todos los services que lleven lim (Limpieza de techos, Limpieza de cloacas, etc)
+              } }
+        ,
         include: [{
           model: Supplier,
           attributes: ["name"]
@@ -27,7 +47,7 @@ router.get('/', async (req, res, next) => {
         nest: true
       })
 
-      console.log(result)
+      console.log(result.length)
 
       result.length > 0 ? res.status(200).json(result) : res.send("No se encontro ningún servicio con ese nombre");
 
