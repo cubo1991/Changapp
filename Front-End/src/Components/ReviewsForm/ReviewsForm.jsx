@@ -23,7 +23,7 @@ console.log(inputValues)
   return (
 
     <form className={s.container}>
-      <h3 className={s.title}>Puntuación</h3>
+      <h5 className={s.title}>Puntuación</h5>
       
       <div className={s.rating}>
         
@@ -37,9 +37,9 @@ console.log(inputValues)
         </div>
 
       </div>
-
-      <h4>Comentario</h4>
-      <textarea rows="2" className={s.textArea} placeholder='Deja tu comentario aqui...' name="comment" value={inputValues.comment} onChange={(e) => {
+<div className={s.column}>
+      <h6>Comentario</h6>
+      <textarea rows="3" cols='80' className={s.textArea} placeholder='Deja tu comentario aqui...' name="comment" value={inputValues.comment} onChange={(e) => {
         inputHandlers(e);
       }} maxLength="256"/>
 
@@ -53,7 +53,7 @@ console.log(inputValues)
             comment: ""
           }
         })
-       }}/>
+       }}/></div>
     </form>
   )
 
