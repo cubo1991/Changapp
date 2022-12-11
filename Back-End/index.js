@@ -85,7 +85,22 @@ conn
         await serviceBD.setCategory(14);
       }
 
-      if (servTypeWords[2] === "Techos") {
+
+/*
+const ids = await Supplier.findAll({
+  where: {
+      description : {
+          [Op.iLike]: `%${service.serviceType}%` //case insensitive, busca aunque no sea un matcheo exacto en cualquier lugar del texto.
+      }                           //EJEM: si se busca "lim" trae todos los services que lleven lim (Limpieza de techos, Limpieza de cloacas, etc)
+  }});
+  console.log(ids)
+  console.log(service.serviceType)
+  for(let i=0;i<ids.length;i++){
+    await serviceBD.addSupplier(ids[i]);
+  }
+*/
+
+      if (servTypeWords === "Techos") {
         await serviceBD.addSupplier(supplietUUID[3]);
       } else if (servTypeWords[2] === "Paredes") {
         await serviceBD.addSupplier(supplietUUID[1]);

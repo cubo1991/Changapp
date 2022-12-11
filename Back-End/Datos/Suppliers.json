@@ -32,7 +32,7 @@
     {
         "name": "Limpiarte",
         "cuit": 30200000110,
-        "description": "Prestación de servicios de limpieza para el hogar, lavado de todo tipo de ropa y planchado"
+        "description": "Prestación de servicios de limpieza para el hogar, limpieza de tapizados, lavado de todo tipo de ropa y planchado"
     },
     {
         "name": "CORSACOR",
@@ -149,7 +149,7 @@
 {
         "name": "Servicio Eléctrico S.A.",
         "cuit": 30221473690,
-        "description": "Electricistas matriculados"
+        "description": "Electricistas matriculados. Aire Acondicionado."
     },
 {
         "name": "GWC S.R.L.",

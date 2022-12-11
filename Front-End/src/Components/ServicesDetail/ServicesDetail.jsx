@@ -20,7 +20,9 @@ export const ServicesDetail = () => {
       <h2 className=""> Rating: </h2>
       <span>{params.id}</span>
       </div> */}
+      
       <ServiceDetailCard
+      
          name={serviceDetail[0].serviceType}
          pph={serviceDetail[0].pricePerHour}
         description={serviceDetail[0].description}
