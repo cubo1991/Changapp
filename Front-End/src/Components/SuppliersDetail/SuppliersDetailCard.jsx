@@ -1,5 +1,6 @@
 import React from "react";
 import style from "../SuppliersDetail/SuppliersDetailCard.module.css";
+import ReviewsForm from '../ReviewsForm/ReviewsForm.jsx'
 
 export const SuppliersDetailCard = ({ name, id, cuit, description }) => {
   const setImg = (name) => {
@@ -19,15 +20,18 @@ export const SuppliersDetailCard = ({ name, id, cuit, description }) => {
   };
 
   return (
-    <div className={style.container}>
-      <img src={setImg(name)} class={`${style.img}`} alt={name} />
-      <div class={style.detail_container}>
-        <h2>{name}</h2>
-        <h4>Cuit</h4> <p>{cuit}</p>
-        <h4>Description</h4>
-        <p>{description}</p>
-        <button class="btn btn-dark"> Click me</button>
+    <div>
+      <div className={style.container}>
+        <img src={setImg(name)} class={`${style.img}`} alt={name} />
+        <div class={style.detail_container}>
+          <h2>{name}</h2>
+          <h4>Cuit</h4> <p>{cuit}</p>
+          <h4>Description</h4>
+          <p>{description}</p>
+          <button class="btn btn-dark"> Click me</button>
+        </div>
       </div>
+      <ReviewsForm/>
     </div>
   );
 };

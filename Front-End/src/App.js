@@ -20,14 +20,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { SuppliersDetail } from "./Components/SuppliersDetail/SuppliersDetail";
-import { useDispatch, useSelector } from "react-redux";
-import {init} from '../src/actions/index.js'
+import { useDispatch,  } from "react-redux";
+import {init, showCart} from '../src/actions/index.js'
 import { ServicesDetail } from "./Components/ServicesDetail/ServicesDetail";
 import { FormSuppliers } from "./Components/FormSuppliers/FormSuppliers";
 
 
 function App() {
 
+  const allKeys = Object.keys(localStorage);
+const localStorageMap = allKeys.map(key => JSON.parse(localStorage.getItem(key)))
+useEffect( () => {
+dispatch(showCart(localStorageMap))
+},[])
   const dispatch = useDispatch();
 
   useEffect( () => {

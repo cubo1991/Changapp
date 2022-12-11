@@ -8,7 +8,7 @@ export function test(){
 } */
 
 import { json } from "react-router-dom"
-import { ADD_CART, GET_DETAILS, REMOVE_ITEM } from "../Constantes/Constantes"
+import { ADD_CART, GET_DETAILS, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes"
 import axios from 'axios';
 
 
@@ -179,7 +179,7 @@ export const addCart = (id) => {
             .then(res => res.json())
             .then(res => found = res.find(e => e.id === (id)))
             .then(res => {
-                console.log(found)
+               
                 dispatch({
                     type: ADD_CART,
                     payload: found
@@ -215,6 +215,13 @@ export const removeItem = (id) => {
    
 
 
+}
+
+export const showCart = (payload) => {
+    return{
+        type: SHOW_CART,
+        payload
+    }
 }
 
 export const postSupplier = (payload) => {

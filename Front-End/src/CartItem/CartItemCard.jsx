@@ -2,6 +2,7 @@ import React from 'react'
 import s from './CartItemCard.module.css'
 
 export const CartItem = ({name, price, description, removeItem, id }) => {
+   
     return (
         <div >
             
@@ -11,7 +12,7 @@ export const CartItem = ({name, price, description, removeItem, id }) => {
              <h2 className="card-title">{name}</h2>
             </div>
             <div className={s.contenedor}>
-            <h6>Price per Hour:</h6> <p className="card-text">{price}</p>
+            <h6>Precio por hora:</h6> <p className="card-text">${price}</p>
             </div>
                     
             

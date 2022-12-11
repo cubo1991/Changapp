@@ -1,0 +1,33 @@
+
+.container{
+  margin: 1% auto;
+  padding: 0 1% 1% 1%;
+  border-radius: 15px;
+  width: 40%;
+  display: flex;
+  background-color: rgb(128, 128, 128);
+  flex-direction: column;
+  z-index: 5;
+}
+
+.textArea{
+  resize: none;
+}
+
+.title{
+  margin: auto;
+}
+
+.rating{
+  margin: auto;
+}
+
+.numeric{
+  display: flex;
+  justify-content: space-around;
+}
+
+.submit{
+  margin: 5% auto 0;
+  width: min-content;
+}

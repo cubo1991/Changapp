@@ -21,10 +21,34 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      age: {
+      age: { // breaks only userHandler
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      // AUTH0 normalized
+      name: {
+        type: DataTypes.STRING
+      },
+      nickname: {
+        type: DataTypes.STRING
+      },
+      given_name: {
+        type: DataTypes.STRING
+      },
+      family_name: {
+        type: DataTypes.STRING
+      },
+      picture: {
+        type: DataTypes.STRING
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      email_verified: {
+        type: DataTypes.BOOLEAN
+      },
+
     },
     {
       timestamps: false,

@@ -13,7 +13,8 @@
     border-radius:5px;
     position: absolute;
     object-fit: cover;
-    border:solid 1px black
+    border:solid 1px black;
+    z-index: -1;
 }
 
 .detail_container{

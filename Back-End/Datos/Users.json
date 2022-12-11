@@ -2,26 +2,31 @@
     {
         "userName": "Nicolas",
         "passWord": "1234",
-        "age": 65
+        "age": 65,
+        "email": "nicolas.boland@maxisistemas.com.ar"
     },
     {
         "userName": "Kevin",
         "passWord": "1234",
-        "age": 78
+        "age": 78,
+        "email": "aradnotikevin@gmail.com"
     },
     {
         "userName": "Nadia",
         "passWord": "1234",
-        "age": 25
+        "age": 25,
+        "email": "nadiaolivera@gmail.com"
     },
     {
         "userName": "Facundo",
         "passWord": "1234",
-        "age": 15
+        "age": 15,
+        "email": "isolerfacundo@gmail.com"
     },
     {
         "userName": "Sandra",
         "passWord": "1234",
-        "age": 43
+        "age": 43,
+        "email": "sandra@gmail.com"
     }
 ]

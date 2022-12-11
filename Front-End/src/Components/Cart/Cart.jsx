@@ -1,17 +1,19 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { removeItem } from '../../actions'
+import { removeItem, showCart } from '../../actions'
 import { CartItem } from '../../CartItem/CartItemCard'
 
 
 export const Cart = () => {
+  
 let cart = useSelector((state) => state.cart)
 
 
 let dispatch = useDispatch()
 const removeItems = (id) =>{ 
   dispatch(removeItem(id))
+
  
 
 
