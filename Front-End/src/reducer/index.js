@@ -12,7 +12,8 @@ const initialState = {
   searching: false,
   categories: [],
   cart: [],
-  location: []
+  location: [],
+  loading: true,
 
 };
 
@@ -22,7 +23,8 @@ const reducer = (state = initialState, action) => {
     case 'SET_SERVICES':
     return {
       ...state,
-      allServices: action.payload
+      allServices: action.payload,
+      loading: false,
     }
 
     case 'ADD_SERVICES':

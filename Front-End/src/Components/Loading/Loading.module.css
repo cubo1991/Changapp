@@ -1,6 +1,16 @@
 .fatherLoading {
-    height: 600px;
+    height: 95.5vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    background-image: url(../../Images/Loading.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.texto{
+    position: top center;
+    margin-top: 5em;
+    /* background-color: red; */
+    font-size: 2em;
 }

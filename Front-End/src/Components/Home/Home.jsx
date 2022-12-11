@@ -13,12 +13,14 @@ import Index from '../Index/Index.jsx';
 import { ServicesCard } from '../ServicesCard/ServicesCard.jsx';
 import { Footer } from '../Footer/Footer.jsx';
 import NavFilters from '../Filters/NavFilters';
+import Loading from '../Loading/Loading';
 
 
 export default function Home() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading)
   const allServices = useSelector((state) => state.services)
-  const searching = useSelector( state => state.searching);
+  const searching = useSelector(state => state.searching);
   const [currentPage, setCurrentPage] = useState(1)
   const [servicesPerPage, setServicesPerPage] = useState(9)
   const indexOfLastService = currentPage * servicesPerPage//3
@@ -44,38 +46,46 @@ export default function Home() {
   // console.log(currentServices)
 
   return (
-
     <div className={style.general}>
-      
-<br />
-<br />
-<br />
-      <NavFilters index ={index}></NavFilters> <br />
-      <Index
-        servicesPerPage={servicesPerPage}
-        allServices={allServices.length}
-        index={index}
-        currentPage={currentPage}
-      />
+      {
+        !loading ?
 
-      { searching ? 
-      <button onClick={ () =>{    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
-        dispatch(getServices())
-        dispatch(searchingFalse())}}>
-        Volver a mostrar todos los servicios</button> : null}
+          <div >
 
-      
-      {/* <div>servicios</div> */}
-      <div className={style.cards}>
-        {currentServices?.map(service => {
-          return (
-              <ServicesCard id={service.id}  name={service.serviceType} price={service.pricePerHour} description={service.description} image={service.representative_image}
-              />
-                    )
-        })}
-      </div>
+            <br />
+            <br />
+            <br />
+            <NavFilters index={index}></NavFilters> <br />
+            <Index
+              servicesPerPage={servicesPerPage}
+              allServices={allServices.length}
+              index={index}
+              currentPage={currentPage}
+            />
 
-      <Footer />
+            {searching ?
+              <button onClick={() => {    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
+                dispatch(getServices())
+                dispatch(searchingFalse())
+              }}>
+                Volver a mostrar todos los servicios</button> : null}
+
+
+            {/* <div>servicios</div> */}
+            <div className={style.cards}>
+              {currentServices?.map(service => {
+                return (
+                  <ServicesCard id={service.id} name={service.serviceType} price={service.pricePerHour} description={service.description} image={service.representative_image}
+                  />
+                )
+              })}
+            </div>
+
+            <Footer />
+          </div>
+          :
+          <Loading />
+      }
     </div>
 
 
