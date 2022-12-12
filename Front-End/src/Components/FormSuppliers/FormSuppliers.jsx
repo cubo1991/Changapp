@@ -15,7 +15,7 @@ let dispatch = useDispatch()
     }
   
   return (
-    <div><h1>Inscribí a tu empresa</h1>
+    <div className={s.container}><h1>Inscribí a tu empresa</h1>
     
       <div className='card' style={{width:"40rem", left:"22rem", top:"2rem"}}>
      

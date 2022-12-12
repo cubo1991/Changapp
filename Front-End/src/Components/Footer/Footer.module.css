@@ -13,14 +13,23 @@
     text-align: center;
   }
 
-.img{
+ .carrusel {
   position: absolute;
-  right:0;
-  bottom:0;
-
-
-  width: 30vh;
-  height: 30vh;
+  width: 20em;
+  height: 14.3em;
+  margin-left: 3em;
+/* border: white solid .0625rem; */
 
 }
-  
+
+.carrusel img{
+  height: 14.3em;
+}
+
+.carrusel h5{
+  color: black;
+}
+
+.carrusel p{
+  color: black;
+}

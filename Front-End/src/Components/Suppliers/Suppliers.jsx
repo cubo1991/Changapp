@@ -45,8 +45,10 @@ export const Suppliers = () => {
         currentPage={currentPage}
       />
       
-
-      {suppliersMap}
+      <div className={style.container}>
+        {suppliersMap}
+      </div>
+      
     </div>
   )
 }

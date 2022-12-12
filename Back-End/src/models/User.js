@@ -5,10 +5,9 @@ module.exports = (sequelize) => {
     "User",
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
+        autoIncrement: true,
       },
       userName: {
         type: DataTypes.STRING,
@@ -23,7 +22,7 @@ module.exports = (sequelize) => {
       },
       age: { // breaks only userHandler
         type: DataTypes.INTEGER,
-        allowNull: false,
+        //allowNull: false,
       },
       // AUTH0 normalized
       name: {
@@ -46,7 +45,8 @@ module.exports = (sequelize) => {
         unique: true,
       },
       email_verified: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
 
     },

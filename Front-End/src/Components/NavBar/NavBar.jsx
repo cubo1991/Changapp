@@ -85,7 +85,6 @@ const {loginWithRedirect, logout} = useAuth0()
           </div>
         </div>
       </nav>  
-      br  
       <section >
       <Outlet />
       </section>

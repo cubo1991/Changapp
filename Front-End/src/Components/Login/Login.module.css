@@ -1,9 +1,44 @@
-.person{
-    margin:0 15px
+.isLoading{
+  color: white;
+  margin: 0em 1.7em;
 }
 
+
+.person{
+    margin:0 15px;
+    padding-bottom: em;
+}
+
+.person img{
+    width: 2.5em;
+    height: 2.5em;
+    margin-top: -10%;
+    margin-left: 0.5em;
+}
+
+
 .buttonLogin{
-    background-color: transparent;
-    border: none;
-    color: white;
+    background-image: url(../../Images/Log\ in.png);
+    background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: top;
+  /* background-color: black; */
+  background-size: 2.2em;
+  width: 2.6em;
+  height: 2.6em;
+  background-color: transparent;
+  border: transparent;
+}
+
+.buttonLogOut{
+    background-image: url(../../Images/Log\ out.png);
+    background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  /* background-color: black; */
+  background-size: 1.6em;
+  width: 2em;
+  height: 2em;
+  background-color: transparent;
+  border-color: transparent;
   }

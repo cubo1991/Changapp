@@ -1,15 +1,28 @@
 
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import s from '../ReviewsForm/ReviewsForm.module.css';
+import { sendReview } from '../../actions';
+import { useParams } from 'react-router-dom';
 
 export default function ReviewsPost () {
-
+  
+  
+  const dispatch = useDispatch()
+  
+  const supplierId = useParams()
+  console.log(supplierId.id, "PARAMS")
+  
   const [inputValues, setInputValues] = useState({
     rating: 1,
-    comment: ""
+    comment: "",
+    supplierId: supplierId.id,
+    //MOdificar antes de desplegar
+    userId: "40ce5b6b-7812-401c-9b98-132f89660714"
   })
-
-console.log(inputValues)
+  
+  console.log(inputValues)
+  console.log(supplierId)
 
   const inputHandlers = (e) => {
     setInputValues( prev => {
@@ -23,7 +36,7 @@ console.log(inputValues)
   return (
 
     <form className={s.container}>
-      <h3 className={s.title}>Puntuación</h3>
+      <h5 className={s.title}>Puntuación</h5>
       
       <div className={s.rating}>
         
@@ -37,15 +50,16 @@ console.log(inputValues)
         </div>
 
       </div>
-
-      <h4>Comentario</h4>
-      <textarea rows="2" className={s.textArea} placeholder='Deja tu comentario aqui...' name="comment" value={inputValues.comment} onChange={(e) => {
+<div className={s.column}>
+      <h6>Comentario</h6>
+      <textarea rows="3" cols='80' className={s.textArea} placeholder='Deja tu comentario aqui...' name="comment" value={inputValues.comment} onChange={(e) => {
         inputHandlers(e);
       }} maxLength="256"/>
 
       <input className={s.submit}
         type="submit" value="Enviar" onClick={(e) => {
         e.preventDefault();
+        dispatch(sendReview(inputValues))
         setInputValues(prev => {
           return {
             ...prev,
@@ -53,7 +67,7 @@ console.log(inputValues)
             comment: ""
           }
         })
-       }}/>
+       }}/></div>
     </form>
   )
 
