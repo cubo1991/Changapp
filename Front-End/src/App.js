@@ -24,6 +24,7 @@ import { useDispatch,  } from "react-redux";
 import {init, showCart} from '../src/actions/index.js'
 import { ServicesDetail } from "./Components/ServicesDetail/ServicesDetail";
 import { FormSuppliers } from "./Components/FormSuppliers/FormSuppliers";
+import { Footer } from "./Components/Footer/Footer";
 
 
 function App() {
@@ -43,6 +44,7 @@ dispatch(showCart(localStorageMap))
     <div className="App">
       <Routes>
       <Route path="/" element={<NavBar />}>
+       
         <Route index element={<Home />} />
         <Route path="suppliers" element={<Suppliers />} />
         <Route path="contact" element={<Contact />} />
@@ -52,6 +54,7 @@ dispatch(showCart(localStorageMap))
         <Route path= "suppliersContact" element={<FormSuppliers/>}/> 
         <Route path= "/services/:d" element={<ServicesDetail/>} />
         <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="/" element={<Footer />}/>
         
      </Route>
      
