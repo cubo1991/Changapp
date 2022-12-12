@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../Footer/Footer.css';
-import s from './Footer.module.css'
+// import s from './Footer.module.css'
 
 export const Footer = () => {
 let services = useSelector((state) => state.services)
@@ -80,6 +80,7 @@ let services = useSelector((state) => state.services)
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div className="carousel-inner">
+    {services && services[0] && (
     <div className="carousel-item active">
       <img src={services[0].representative_image} className="d-block w-100" style={{width: "50rem"}} alt="..."/>
       <div className="carousel-caption d-none d-md-block">
@@ -87,6 +88,8 @@ let services = useSelector((state) => state.services)
         <p>{services[0].description}</p>
       </div>
     </div>
+    )}
+      {services && services[5] && (
     <div className="carousel-item">
       <img src={services[5].representative_image} className="d-block w-100" style={{width: "50rem"}} alt="..."/>
       <div className="carousel-caption d-none d-md-block">
@@ -94,6 +97,8 @@ let services = useSelector((state) => state.services)
         <p>{services[5].description}</p>
       </div>
     </div>
+    )}
+    { services && services[2] && (
     <div className="carousel-item">
       <img src={services[2].representative_image} className="d-block w-100" style={{width: "50rem"}} alt="..."/>
       <div className="carousel-caption d-none d-md-block">
@@ -101,6 +106,7 @@ let services = useSelector((state) => state.services)
         <p>{services[2].description}</p>
       </div>
     </div>
+    )}
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

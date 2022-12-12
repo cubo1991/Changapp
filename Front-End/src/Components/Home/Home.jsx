@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import style from "../Home/Home.module.css"
 
 
@@ -11,7 +11,7 @@ import { getServices, searchingFalse, searchingServices } from '../../actions/in
 // import { Servicios } from '../../Mockup/Servicios.js';
 import Index from '../Index/Index.jsx';
 import { ServicesCard } from '../ServicesCard/ServicesCard.jsx';
-import { Footer } from '../Footer/Footer.jsx';
+// import { Footer } from '../Footer/Footer.jsx';
 import NavFilters from '../Filters/NavFilters';
 import Loading from '../Loading/Loading';
 
@@ -22,14 +22,15 @@ export default function Home() {
   const allServices = useSelector((state) => state.services)
   const searching = useSelector(state => state.searching);
   const [currentPage, setCurrentPage] = useState(1)
-  const [servicesPerPage, setServicesPerPage] = useState(9)
+  // const [servicesPerPage, setServicesPerPage] = useState(9)
+  const servicesPerPage = 9; // Volvemos a usarlo como estado cuando le demos funcionalidad
   const indexOfLastService = currentPage * servicesPerPage//3
   const indexOfFirstService = indexOfLastService - servicesPerPage//0
   const currentServices = allServices.slice(indexOfFirstService, indexOfLastService)
 
 
 
-  const estadoLocalVacío = () => { setServicesPerPage() };
+  // const estadoLocalVacío = () => { setServicesPerPage() };
 
   // console.log(estadoLocalVacío);
 
@@ -81,7 +82,7 @@ export default function Home() {
               })}
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
           </div>
           :
           <Loading />
