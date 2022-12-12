@@ -1,15 +1,30 @@
 
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import s from '../ReviewsForm/ReviewsForm.module.css';
+import { sendReview } from '../../actions';
+import { useParams } from 'react-router-dom';
 
 export default function ReviewsPost () {
+  
+  
+  const dispatch = useDispatch()
 
+  console.log("**** INIT *****")
+  
+  const supplierId = useParams()
+  console.log(supplierId.id, "PARAMS")
+  
   const [inputValues, setInputValues] = useState({
     rating: 1,
-    comment: ""
+    comment: "",
+    supplierId: supplierId.id,
+    //MOdificar antes de desplegar
+    userId: "40ce5b6b-7812-401c-9b98-132f89660714"
   })
-
-console.log(inputValues)
+  
+  console.log(inputValues)
+  console.log(supplierId)
 
   const inputHandlers = (e) => {
     setInputValues( prev => {
@@ -39,13 +54,15 @@ console.log(inputValues)
       </div>
 
       <h4>Comentario</h4>
-      <textarea rows="2" className={s.textArea} placeholder='Deja tu comentario aqui...' name="comment" value={inputValues.comment} onChange={(e) => {
+      <textarea rows="2" className={s.textArea} placeholder='Deja tu comentario aqui...' 
+      name="comment" value={inputValues.comment} onChange={(e) => {
         inputHandlers(e);
       }} maxLength="256"/>
 
       <input className={s.submit}
         type="submit" value="Enviar" onClick={(e) => {
         e.preventDefault();
+        dispatch(sendReview(inputValues))
         setInputValues(prev => {
           return {
             ...prev,

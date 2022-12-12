@@ -15,7 +15,7 @@ export const SuppliersDetail = () => {
   }, [dispatch, params.id]);
 
   return (
-    <div>
+    <div className={style.container}>
       <div className={style.rating}>
       <h2 className=""> Rating: </h2>
       <span>{params.id}</span>

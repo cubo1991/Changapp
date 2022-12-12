@@ -10,7 +10,7 @@ export const Contact = () => {
   }
 console.log(useForm())
   return (
-    <div>
+    <div className={s.container}>
       <h2 className="h2">Contactenos</h2>   
     
     <div className='card' style={{width:"40rem", left:"22rem", top:"2rem"}}>

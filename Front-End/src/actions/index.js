@@ -246,3 +246,18 @@ export const postSupplier = (payload) => {
     }
     
   }
+
+export function sendReview (data){
+    return function(dispatch){
+        fetch('http://localhost:3001/review', {
+            mode: 'cors',
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then( res => alert(res))
+        //mensaje de exito
+    }
+}

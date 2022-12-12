@@ -3,7 +3,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-
+    padding: 5% 0;
 }
 
 .detail_container{
