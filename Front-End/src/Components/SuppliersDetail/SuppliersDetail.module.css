@@ -1,10 +1,125 @@
 .rating{
     color: #fff7f7;
-    background-color: #000000d1;
+    background-color: #b8b5b5d1;
     margin: 0px 482px;
     border-radius: 5px 5px 0 0;
 }
 
-.container{
-    padding: 5% 0;
+.background {
+    display:flex;
+   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #e2e2e2;
+
+    background-attachment: fixed;
 }
+
+.card_container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top:20px;
+
+}
+
+
+.img{
+    width: 975px;
+    height: 301px;
+    border-radius:5px;
+    position: absolute;
+    object-fit: cover;
+    border:solid 1px black
+}
+
+.detail_container{
+    
+    position:absolute;
+        width: 50%;
+        height: auto;  
+    
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+  
+    
+        background-color: rgb(12, 105, 212);
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        padding: 20px;
+        color:white;
+        text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+
+    
+}
+.container {
+    /* border: .0625rem solid blue; */
+    position: center;
+    /* background-color: black; */
+    
+  }
+  
+  .botonfiltros{
+    background-color: rgb(12, 105, 212);
+  color: white;
+  }
+  
+  .botonfiltros:hover{
+    background-color: rgb(3, 3, 3);
+    color: white;
+  }
+  
+  .slideNav{
+    background-color: rgb(12, 105, 212);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color:white;
+    text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+    width: 640px;
+    height: 85%;
+    margin-bottom: 40px;
+  }
+  
+  .closeButton {
+     border: .0625rem solid blue;
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    margin-left: 37em;
+    margin-top: 1rem;
+    margin-right: -1em;
+    width: 2em;
+    /*background-color: transparent;
+    border: transparent;*/
+  }
+
+  .reviews{ 
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 2px;
+    margin-right: 30px;
+ 
+    padding-left: 10px;
+    padding-top: 4px;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .post{
+    display:flex;
+
+    display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    
+        background-color: rgb(12, 105, 212);
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        padding: 20px;
+        color:white;
+        text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+  }

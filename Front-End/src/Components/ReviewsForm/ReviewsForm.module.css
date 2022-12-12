@@ -1,13 +1,25 @@
 
 .container{
-  margin: 1% auto;
-  padding: 0 1% 1% 1%;
-  border-radius: 15px;
-  width: 40%;
+  position:relative;
+  margin-top: 350px;
+  margin-left: -335px;
+
+  width: 50%;
+  height: 300px;  
+
   display: flex;
-  background-color: rgb(128, 128, 128);
   flex-direction: column;
-  z-index: 5;
+  align-items: flex-start;
+
+
+  background-color: rgb(12, 105, 212);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  color:white;
+  text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+
+
 }
 
 .textArea{
@@ -30,4 +42,11 @@
 .submit{
   margin: 5% auto 0;
   width: min-content;
+}
+
+.column{
+  display:flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 15px;
 }
