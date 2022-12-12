@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../Footer/Footer.css';
-// import s from './Footer.module.css'
+import s from './Footer.module.css'
 
 export const Footer = () => {
 let services = useSelector((state) => state.services)
@@ -43,37 +43,7 @@ let services = useSelector((state) => state.services)
 
             <div className="col-lg-4 col-md-6">
               <h3>Los más populares</h3>
-              {/* <div className="media">
-                <a href="#" className="pull-left">
-                  <img src="http://placehold.it/64x64" alt="" className="media-object" />
-                </a>
-                <div className="media-body">
-                  <h4 className="media-heading">Limpieza de Hogares</h4>
-                  <p></p>
-                </div>
-              </div>
-
-              <div className="media">
-                <a href="#" className="pull-left">
-                  <img src="http://placehold.it/64x64" alt="" className="media-object" />
-                </a>
-                <div className="media-body">
-                  <h4 className="media-heading">Reparaciones</h4>
-                  <p>Reparación de Techos</p>
-                  <p>Reparación de Paredes</p>
-                </div>
-              </div>
-
-              <div className="media">
-                <a href="#" className="pull-left">
-                  <img src="http://placehold.it/64x64" alt="" className="media-object" />
-                </a>
-                <div className="media-body">
-                  <h4 className="media-heading">Jardinería</h4>
-                  <p></p>
-                </div>
-              </div> */}
-              <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="false">
+              <div id="carouselExampleCaptions" className={`carousel slide, ${s.carrusel}`} data-bs-ride="false">
   <div className="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -110,11 +80,11 @@ let services = useSelector((state) => state.services)
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
+    <span className="visually-hidden" >Previous</span>
   </button>
   <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
     <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
+    <span className="visually-hidden" >Next</span>
   </button>
 </div>
 
