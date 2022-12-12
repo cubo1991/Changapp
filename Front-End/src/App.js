@@ -19,6 +19,7 @@ import { init, showCart } from "../src/actions/index.js";
 import { ServicesDetail } from "./Components/ServicesDetail/ServicesDetail";
 import { FormSuppliers } from "./Components/FormSuppliers/FormSuppliers";
 import { Footer } from "./Components/Footer/Footer";
+import { ProtectedRoute } from "./Components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +42,14 @@ function App() {
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/Profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/suppliers/:id" element={<SuppliersDetail />} />
         <Route path="/suppliersContact" element={<FormSuppliers />} />
         <Route path="/services/:d" element={<ServicesDetail />} />
