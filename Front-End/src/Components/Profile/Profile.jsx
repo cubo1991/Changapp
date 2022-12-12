@@ -9,7 +9,7 @@ export default function Profile() {
 
   return (
     <div className={s.container}>
-      {console.log(user)}
+      {/* {console.log(user)} */}
 
       <h1>Bienvenido {user.name}</h1>
       <br />
