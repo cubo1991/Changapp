@@ -13,7 +13,7 @@ export default function Login() {
     },[test]) */
 
   if (isLoading) {
-    return <Loading></Loading>;
+    return <div className={Style.isLoading}>Conectando</div>;
   }
 
   return (

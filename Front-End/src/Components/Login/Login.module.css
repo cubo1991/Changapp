@@ -1,3 +1,9 @@
+.isLoading{
+  color: white;
+  margin: 0em 1.7em;
+}
+
+
 .person{
     margin:0 15px;
     padding-bottom: em;
