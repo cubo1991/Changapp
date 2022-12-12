@@ -1,6 +1,6 @@
 //import {} from "../actions/index"
 
-import { GET_DETAILS, GET_SERVICES, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes";
+import { GET_DETAILS, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes";
 
 const initialState = {
   services: [],
