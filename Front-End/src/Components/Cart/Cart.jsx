@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { removeItem, showCart } from '../../actions'
+import { removeItem } from '../../actions'
 import { CartItem } from '../../CartItem/CartItemCard'
 import s from './Cart.module.css'
 

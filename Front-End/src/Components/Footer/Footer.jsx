@@ -33,10 +33,11 @@ let services = useSelector((state) => state.services)
                 </NavLink></li>
               </ul>
               <ul className="list-unstyled socila-list">
-                <li><a href='#'><img src="https://cdn-icons-png.flaticon.com/128/1384/1384005.png" alt="facebook" width='48px' height='48px' /></a></li>
-                <li><a href='#'><img src="https://cdn-icons-png.flaticon.com/128/1384/1384015.png" alt="instagram" width='48px' height='48px' /></a></li>
-                <li><a href='#'><img src="https://cdn-icons-png.flaticon.com/128/1384/1384007.png" alt="wsp" width='48px' height='48px' /></a></li>
-                <li><a href='#'><img src="https://cdn-icons-png.flaticon.com/128/1384/1384014.png" alt="Lin" width='48px' height='48px' /></a></li>
+                
+              <NavLink> <li><img src="https://cdn-icons-png.flaticon.com/128/1384/1384005.png" alt="facebook" width='48px' height='48px' /></li></NavLink>
+              <NavLink> <li><img src="https://cdn-icons-png.flaticon.com/128/1384/1384015.png" alt="instagram" width='48px' height='48px' /></li></NavLink>
+              <NavLink> <li><img src="https://cdn-icons-png.flaticon.com/128/1384/1384007.png" alt="wsp" width='48px' height='48px' /></li></NavLink>
+              <NavLink> <li><img src="https://cdn-icons-png.flaticon.com/128/1384/1384014.png" alt="Lin" width='48px' height='48px' /></li></NavLink>
 
               </ul>
             </div>
