@@ -128,6 +128,10 @@ export function getSuppliers() {
 
 export function searchSuppliers(data) {
   return function (dispatch) {
+    data = data.toLowerCase().split("");
+    const letter = data.shift()
+    data = [letter.toUpperCase(), ...data].join("");
+    
     fetch(`${BACKEND_SERVER}/suppliers?name=${data}`)
       .then((res) => res.json())
       .then((res) => dispatch(fillSuppliers(res)));
@@ -236,7 +240,9 @@ export function sendReview(data) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((res) => alert(res));
+    })
+    .then((res) => res.json())
+    .then((res) => alert(res))
     //mensaje de exito
   };
 }

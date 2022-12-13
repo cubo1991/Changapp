@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getSuppliers, searchingSuppliers } from '../../actions'
 import style from "../Suppliers/Suppliers.module.css"
 import Index from '../Index/Index.jsx';
+import { searchingFalse } from '../../actions'
 
 
 
@@ -17,6 +18,7 @@ export const Suppliers = () => {
   let indexOfLastSupplier = currentPage * suppliersPerPage;
   let indexofFirstSupplier = indexOfLastSupplier - suppliersPerPage;
   const currentSuppliers = suppliers.slice(indexofFirstSupplier, indexOfLastSupplier);
+  const searching = useSelector(state => state.searching)
   
 
   React.useEffect(
@@ -24,6 +26,11 @@ export const Suppliers = () => {
       dispatch(getSuppliers())
       dispatch(searchingSuppliers())
     }, [dispatch])
+
+    React.useEffect(
+      () => {
+        setCurrentPage(1)
+      }, [suppliers])
 
   const index = (pageNumber) => {
     setCurrentPage(pageNumber)
@@ -44,6 +51,13 @@ export const Suppliers = () => {
         index={index}
         currentPage={currentPage}
       />
+
+        {searching ?
+              <button onClick={() => {    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
+                dispatch(getSuppliers())
+                dispatch(searchingFalse())
+                }}>
+                  Volver a mostrar todos los servicios</button> : null}
       
       <div className={style.container}>
         {suppliersMap}

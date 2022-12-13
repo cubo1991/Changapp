@@ -1,11 +1,13 @@
 
 .container{
-  position:relative;
-  margin-top: 350px;
-  margin-left: -335px;
+/*   position:relative; */
+ /*  margin-top: 350px;
+  margin-left: -335px; */
+  margin: auto;
 
   width: 50%;
-  height: 300px;  
+  /* height: 300px;  */
+  margin-bottom: 1%; 
 
   display: flex;
   flex-direction: column;
@@ -20,6 +22,10 @@
   text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
 
 
+}
+
+.services{
+  margin: auto;
 }
 
 .textArea{
@@ -47,6 +53,6 @@
 .column{
   display:flex;
   flex-direction: column;
-  position: relative;
+/*   position: relative; */
   margin-left: 15px;
 }
