@@ -1,7 +1,13 @@
 
 
 .card {
-    border: 3px black solid;
+       width: 20rem;
+       height: 20rem;
+       padding-top: 2rem;
+       
+       
+      
+       
 }
 
 .background {
@@ -11,7 +17,8 @@
 .contenedor{
     display: flex;
     flex-direction: column;
-   padding: 1rem;
+      padding: 1rem;
+      
 }
 .contenedor p{
     padding-left: 0.50rem;
@@ -19,3 +26,4 @@
 h5 {
     text-align: center;
 }
+
