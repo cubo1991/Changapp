@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addCart } from '../../actions'
 import s from './ServicesCard.module.css'
 import { Link } from 'react-router-dom'
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { BsFillCartFill, BsFillCartCheckFill } from 'react-icons/bs';
 
 
 
@@ -15,6 +15,10 @@ export const ServicesCard = ({name, price, description, id, image}) => {
   if(cart.some(verifier)) return;
   dispatch(addCart(id))
  } 
+
+ const idCart =  (element) => element.id === id
+ console.log(cart.some(idCart))
+
   return (
     <div >
         
@@ -34,7 +38,10 @@ export const ServicesCard = ({name, price, description, id, image}) => {
         </div>
         
         
-        <p className='btn btn-primary fs-2 align-self-end' onClick={onClickBtn}><AiOutlineShoppingCart/></p>
+       { cart.some(idCart) === false ?  <p className='btn btn-primary fs-2 align-self-end' onClick={onClickBtn}><BsFillCartFill/></p> : <p className='btn btn-primary fs-2 align-self-end' style={{background: "green", cursor: "default"}}><BsFillCartCheckFill/></p>
+
+
+       }
         </div>
         </div>
         
