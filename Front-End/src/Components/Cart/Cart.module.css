@@ -12,3 +12,8 @@ height: 25rem;
     position: relative;
     top: 6rem;
 }
+.contenedorItems {
+    height:fit-content;
+    min-height: 20rem;
+    
+}

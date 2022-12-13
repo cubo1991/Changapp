@@ -6,8 +6,8 @@
 }
 
 .background {
-    display:flex;
-   
+/*     display:flex; */
+   background-image: url("https://img.freepik.com/vector-gratis/fondo-blanco-engranajes-espacio-texto_1017-19420.jpg?w=740&t=st=1670717357~exp=1670717957~hmac=f21d56057b8eb5931d14fd0d376c7116e6c0ee7255c798c2ccc4b61e86ade88c");
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #e2e2e2;
@@ -36,7 +36,7 @@
 
 .detail_container{
     
-    position:absolute;
+    /* position:absolute; */
         width: 50%;
         height: auto;  
     
