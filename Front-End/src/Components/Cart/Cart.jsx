@@ -37,7 +37,7 @@ let totalCart = 0
     </div>
     <div className='container-fluid' style={{paddingTop: "2rem"}}>
       <h2>Total: ${totalCart} </h2>
-      <button className='btn btn-success'>Pagar</button>
+      <NavLink to='/buy'><button type="button" class="btn btn-success">Pagar</button></NavLink>
       </div>
       </div>
      : ""} 
@@ -56,7 +56,7 @@ let totalCart = 0
           </NavLink>
     </div>
     </div>
-    : <NavLink to='/buy'><button type="button" class="btn btn-primary">Comprar</button></NavLink>
+    : ""
     }
   </div>
  )
