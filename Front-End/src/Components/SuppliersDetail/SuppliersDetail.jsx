@@ -2,15 +2,19 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetails} from "../../actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import style from "../SuppliersDetail/SuppliersDetail.module.css"
 import ReviewsForm from '../ReviewsForm/ReviewsForm.jsx'
+
 
 export const SuppliersDetail = () => {
   let dispatch = useDispatch();
   let supplierDetail = useSelector((state) => state.supplierDetails);
   let params = useParams();
-
+  
+  const { isAuthenticated } = useAuth0();
+  
   React.useEffect(() => {
     dispatch(getDetails(params.id));
   }, [dispatch, params.id]);
@@ -61,7 +65,7 @@ servs?.map(s=>{
         
       </div>
 
-      <ReviewsForm/>
+      { isAuthenticated ? <ReviewsForm/> : null}
      
       
       
