@@ -1,5 +1,4 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
 import s from './FormSuppliers.module.css'
 import { useDispatch } from 'react-redux'
 import { postSupplier } from '../../actions'
