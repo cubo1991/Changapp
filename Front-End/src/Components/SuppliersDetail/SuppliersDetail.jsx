@@ -24,7 +24,7 @@ console.log(servs)
 
   return (
     <div className={style.background}>
-      <img src="https://img.freepik.com/vector-gratis/fondo-blanco-engranajes-espacio-texto_1017-19420.jpg?w=740&t=st=1670717357~exp=1670717957~hmac=f21d56057b8eb5931d14fd0d376c7116e6c0ee7255c798c2ccc4b61e86ade88c" alt='background'/>
+      {/* <img src="https://img.freepik.com/vector-gratis/fondo-blanco-engranajes-espacio-texto_1017-19420.jpg?w=740&t=st=1670717357~exp=1670717957~hmac=f21d56057b8eb5931d14fd0d376c7116e6c0ee7255c798c2ccc4b61e86ade88c" alt='background'/> */}
       
       <div className={style.card_container}>
       <div class={style.detail_container}>

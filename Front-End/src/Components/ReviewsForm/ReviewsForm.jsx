@@ -60,20 +60,23 @@ export default function ReviewsPost () {
 
     <form className={s.container}>
 
-      <div>
-        <h5>Servicio</h5>
-        <select onChange={(e) => selectHandler(e)}>
+   
+        <div className={s.services}>
 
-          <option value='default'>-- Seleccione el servicio... --</option>
+            <h5>Servicio</h5>
+            <select onChange={(e) => selectHandler(e)}>
 
-          {servs ? servs.map( element => {
-            
-            return <option value={element.serviceType}>{element.serviceType}</option>
+            <option value='default'>-- Seleccione el servicio... --</option>
 
-          }) : null}
+            {servs ? servs.map( element => {
+              
+              return <option value={element.serviceType}>{element.serviceType}</option>
 
-        </select>
-      </div>
+            }) : null}
+
+            </select>
+        </div>
+    
 
       <h5 className={s.title}>Puntuación</h5>
       
