@@ -15,13 +15,13 @@ export function OrderByServiceName (){
     result = array.sort( (a,b) => {
             if(a.serviceType > b.serviceType) return 1;
             if(b.serviceType < a.serviceType) return -1;
-            if(a.serviceType = b.serviceType) return 0;
+            return 0;
       })
     }else if(e.target.value === "ASC"){
    result = array.sort( (a,b) => {
             if(a.serviceType > b.serviceType) return -1;
             if(a.serviceType < b.serviceType) return 1;
-            if(a.serviceType > b.serviceType) return 0;
+            return 0;
       })
     }
     

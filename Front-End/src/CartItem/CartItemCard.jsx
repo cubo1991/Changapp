@@ -1,5 +1,4 @@
 import React from 'react'
-import { Footer } from '../Components/Footer/Footer'
 import s from './CartItemCard.module.css'
 
 export const CartItem = ({name, price, description, removeItem, id }) => {

@@ -1,9 +1,9 @@
 import React from "react"
 import { useAuth0 } from "@auth0/auth0-react"
-import Loading from "../Loading/Loading"
+
 import Style from "../Login/Login.module.css"
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+
 
 export default function Login() {
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();

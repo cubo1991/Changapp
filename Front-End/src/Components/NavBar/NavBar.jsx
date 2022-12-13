@@ -4,12 +4,12 @@ import Searchbar from "../Searchbar/Searchbar.jsx";
 import Login from "../Login/Login"
 import Style from "../NavBar/Navbar.module.css";
 import { useSelector } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react"
+
 
 
 export default function NavBar() {
 let cart = useSelector((state) => state.cart)
-const {loginWithRedirect, logout} = useAuth0()
+
 
   return (
 
