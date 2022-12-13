@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
 import {useState} from 'react';
 import MercadoPago from '../MercadoPago/MercadoPago';
 import s from '../ShopForm.jsx/ShopForm.module.css'
