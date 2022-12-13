@@ -47,7 +47,8 @@ const removeItems = (id) =>{
           </NavLink>
     </div>
     </div>
-    : ""}
+    : <NavLink to='/buy'><button type="button" class="btn btn-primary">Comprar</button></NavLink>
+    }
   </div>
  )
   
