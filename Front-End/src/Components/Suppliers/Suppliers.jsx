@@ -25,6 +25,11 @@ export const Suppliers = () => {
       dispatch(searchingSuppliers())
     }, [])
 
+    React.useEffect(
+      () => {
+        setCurrentPage(1)
+      }, [suppliers])
+
   const index = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
