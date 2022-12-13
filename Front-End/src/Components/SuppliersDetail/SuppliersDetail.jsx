@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetails} from "../../actions";
-import { SuppliersDetailCard } from "./SuppliersDetailCard";
+
 import style from "../SuppliersDetail/SuppliersDetail.module.css"
 import ReviewsForm from '../ReviewsForm/ReviewsForm.jsx'
 

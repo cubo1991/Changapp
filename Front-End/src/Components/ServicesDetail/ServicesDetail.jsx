@@ -12,7 +12,7 @@ export const ServicesDetail = () => {
 
   React.useEffect(() => {
     dispatch(getServiceDetails(params.d));
-  }, []);
+  }, [dispatch, params]);
 
    return (
     serviceDetail && serviceDetail.length > 0 ? <div className={s.container}>
