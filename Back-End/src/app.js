@@ -24,7 +24,7 @@ server.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "https://changapp.up.railway.app",
-      "http://changapp.up.railway.app/",
+      "http://changapp.up.railway.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
