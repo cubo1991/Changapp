@@ -12,6 +12,7 @@ import { Suppliers } from "./Components/Suppliers/Suppliers.jsx";
 import { Contact } from "./Components/Contact/Contact.jsx";
 import { Cart } from "./Components/Cart/Cart.jsx";
 import Profile from "./Components/Profile/Profile";
+import { ShopForm } from "./Components/ShopForm.jsx/ShopForm";
 
 import { SuppliersDetail } from "./Components/SuppliersDetail/SuppliersDetail";
 import { useDispatch } from "react-redux";
@@ -53,6 +54,7 @@ function App() {
         <Route path="/suppliers/:id" element={<SuppliersDetail />} />
         <Route path="/suppliersContact" element={<FormSuppliers />} />
         <Route path="/services/:d" element={<ServicesDetail />} />
+        <Route path="/buy" element={<ShopForm />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
       <Footer />

@@ -14,15 +14,12 @@ let cart = useSelector((state) => state.cart)
 let dispatch = useDispatch()
 const removeItems = (id) =>{ 
   dispatch(removeItem(id))
-
- 
-
-
 }
 
-
+let totalCart = 0
  
     const cartMap = cart.map((service) => { 
+      totalCart +=  Number(service.pricePerHour)
 
       return <CartItem
       name={service.serviceType} price={service.pricePerHour} description={service.description} removeItem={removeItems} id={service.id} />})
@@ -30,8 +27,20 @@ const removeItems = (id) =>{
      
  return (
  
-  <div>
+  <div style={{height: "50rem"}}> 
+   {cart.length > 0 ? 
+   <div>
+   <div className={`container-fluid d-flex flex-wrap ${s.contenedorItems}`}>
     {cartMap}
+
+  
+    </div>
+    <div className='container-fluid' style={{paddingTop: "2rem"}}>
+      <h2>Total: ${totalCart} </h2>
+      <NavLink to='/buy'><button type="button" class="btn btn-success">Pagar</button></NavLink>
+      </div>
+      </div>
+     : ""} 
     {cart.length < 1 ?
     <div className={`container-fluid ${s.contenedor}`}>
     <div className={`container-fluid ${s.emptyCart}`}>
@@ -47,7 +56,8 @@ const removeItems = (id) =>{
           </NavLink>
     </div>
     </div>
-    : ""}
+    : ""
+    }
   </div>
  )
   

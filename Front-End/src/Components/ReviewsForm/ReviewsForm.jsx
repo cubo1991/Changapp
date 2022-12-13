@@ -1,12 +1,16 @@
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import s from '../ReviewsForm/ReviewsForm.module.css';
 import { sendReview } from '../../actions';
 import { useParams } from 'react-router-dom';
 
 export default function ReviewsPost () {
+
+  const supplierDetails = useSelector(state => state.supplierDetails)
+  const servs = supplierDetails.Services
   
+  console.log(servs);
   
   const dispatch = useDispatch()
   
@@ -16,9 +20,10 @@ export default function ReviewsPost () {
   const [inputValues, setInputValues] = useState({
     rating: 1,
     comment: "",
-    supplierId: supplierId.id,
-    //MOdificar antes de desplegar
-    userId: "40ce5b6b-7812-401c-9b98-132f89660714"
+    serviceId: supplierId.id,
+    //Aun hardcodeado
+    userId: 2,
+    serviceType: ""
   })
   
   console.log(inputValues)
@@ -33,9 +38,46 @@ export default function ReviewsPost () {
     })
   }
 
+  const selectHandler = (e) => {
+    if(e.target.value === "default"){
+      setInputValues( prev => {
+        return {
+          ...prev,
+          serviceType: ""
+        }
+      })
+    }else {
+      setInputValues( prev => {
+        return {
+          ...prev,
+          serviceType: e.target.value
+        }
+      })
+    }
+  }
+
   return (
 
     <form className={s.container}>
+
+   
+        <div className={s.services}>
+
+            <h5>Servicio</h5>
+            <select onChange={(e) => selectHandler(e)}>
+
+            <option value='default'>-- Seleccione el servicio... --</option>
+
+            {servs ? servs.map( element => {
+              
+              return <option value={element.serviceType}>{element.serviceType}</option>
+
+            }) : null}
+
+            </select>
+        </div>
+    
+
       <h5 className={s.title}>Puntuación</h5>
       
       <div className={s.rating}>
@@ -56,7 +98,7 @@ export default function ReviewsPost () {
         inputHandlers(e);
       }} maxLength="256"/>
 
-      <input className={s.submit}
+      <input className={s.submit} disabled={inputValues.serviceType === "" ? true : false}
         type="submit" value="Enviar" onClick={(e) => {
         e.preventDefault();
         dispatch(sendReview(inputValues))

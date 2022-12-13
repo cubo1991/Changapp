@@ -44,6 +44,10 @@ export default function Home() {
     dispatch(searchingServices()); //settea un estado global para que la barra de busqueda busque servicios
   }, [dispatch])
 
+  useEffect(() => {
+    setCurrentPage(1); //Cada vez que el estado cambie setea la pagina 1
+  }, [allServices])
+
   // console.log(currentServices)
 
   return (
