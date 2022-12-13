@@ -14,7 +14,7 @@ export function FilterByCategory({index}) {
 
     useEffect(() => {
         dispatch(getCategories())
-    }, []);
+    }, [dispatch]);
 
     const categories = useSelector(state => state.categories);
 

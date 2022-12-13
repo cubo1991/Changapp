@@ -2,7 +2,7 @@
 import { FilterByCategory } from "./FilterByCategory"
 import { FilterByLocation } from "./FilterByLocation"
 import { OrderByPrice } from "./OrderByPrice"
-import { OrderByServiceName } from "./OrderServicesByName"
+
 import s from './NavFilters.module.css';
 import { FilterByPriceRange } from "./FilterByPriceRange";
 
