@@ -8,6 +8,7 @@ const category = require("./category");
 const location = require("./location");
 const login = require("./login");
 const userHandler = require("./userHandler");
+const createPreference = require('./preference')
 
 const router = Router();
 
@@ -23,6 +24,7 @@ router.use("/service", service);
 router.use("/category", category);
 router.use("/location", location);
 router.use("/userHandler", userHandler);
+router.use('/create_preference', createPreference)
 
 router.use("/login", login); // No tiene funcionalidad por ahora
 
