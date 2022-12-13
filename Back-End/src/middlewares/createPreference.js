@@ -32,9 +32,9 @@ router.post("/", (req, res) => {
             };
         }),
         back_urls: {
-            "success": "http://localhost:3001/feedback",
-            "failure": "http://localhost:3001/feedback",
-            "pending": "http://localhost:3001/feedback"
+            "success": "http://localhost:3000?success=true",
+            "failure": "http://localhost:3000?success=false",
+            "pending": "http://localhost:3000?success=pending"
         },
         auto_return: "approved",
     };
@@ -50,12 +50,5 @@ router.post("/", (req, res) => {
         });
 });
 
-router.get('/feedback', function (req, res) {
-    res.json({
-        Payment: req.query.payment_id,
-        Status: req.query.status,
-        MerchantOrder: req.query.merchant_order_id
-    });
-});
 
 module.exports = router;

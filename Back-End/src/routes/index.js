@@ -10,6 +10,7 @@ const login = require("./login");
 const userHandler = require("./userHandler");
 const createPreference = require('./preference')
 
+
 const router = Router();
 
 // TODO: lo correcto seria utilizar el plural para cada endpoint
