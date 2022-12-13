@@ -13,7 +13,7 @@ export const Suppliers = () => {
   let dispatch = useDispatch()
   let suppliers = useSelector((state) => state.suppliers)
   let [currentPage, setCurrentPage] = useState(1);
-  let [suppliersPerPage, setSuppliersPerPage] = useState(9);
+  const suppliersPerPage = 9
   let indexOfLastSupplier = currentPage * suppliersPerPage;
   let indexofFirstSupplier = indexOfLastSupplier - suppliersPerPage;
   const currentSuppliers = suppliers.slice(indexofFirstSupplier, indexOfLastSupplier);
@@ -23,7 +23,7 @@ export const Suppliers = () => {
     () => {
       dispatch(getSuppliers())
       dispatch(searchingSuppliers())
-    }, [])
+    }, [dispatch])
 
     React.useEffect(
       () => {

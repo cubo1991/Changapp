@@ -12,7 +12,7 @@ export function FilterByLocation() {
 
     useEffect(() => {
         dispatch(getLocations())
-    }, [])
+    }, [dispatch])
 
 
     const locations = useSelector(state => state.location);

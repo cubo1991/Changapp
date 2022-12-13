@@ -17,6 +17,8 @@ const services = require("./Datos/Services.json");
 const categories = require("./Datos/Categories.json");
 const details = require("./Datos/Details.json");
 
+const PORT = process.env.PORT || 3001;
+
 conn
   .sync({ force: true })
   .then(async () => {
@@ -126,7 +128,7 @@ const ids = await Supplier.findAll({
     });
   })
   .then(() => {
-    server.listen(3001, () => {
-      console.log("Server listening at 3001");
+    server.listen(PORT, () => {
+      console.log("Server listening at " + PORT);
     });
   });

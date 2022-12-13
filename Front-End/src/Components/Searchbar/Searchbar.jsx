@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import { searchSuppliers, searchService } from "../../actions";
 import styles from "../Searchbar/Searchbar.module.css";
 
 function Searchbar() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+ 
   //console.log(input);
   const searchingType = useSelector( state => state.searchingType);
 

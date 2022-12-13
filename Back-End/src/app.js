@@ -20,7 +20,12 @@ server.use(bodyParser.urlencoded({ extended: true }));
 // CONFIGURES CORS
 server.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://changapp.up.railway.app",
+      "http://changapp.up.railway.app",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
     credentials: true,

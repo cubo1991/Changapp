@@ -1,5 +1,5 @@
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import s from '../ReviewsForm/ReviewsForm.module.css';
 import { sendReview } from '../../actions';
