@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       },
       passWord: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       age: { // breaks only userHandler
         type: DataTypes.INTEGER,
