@@ -9,13 +9,14 @@ export default function Profile() {
 
   return (
     <div className={s.container}>
-      {/* {console.log(user)} */}
+      {console.log(user)}
 
       <h1>Bienvenido {user.name}</h1>
       <br />
       <img src={user.picture} alt="" />
       <div>
         <h1>Te logueaste con exito </h1>
+        <strong>En este sitio sos {user.user_role}</strong>
         <div>Mi carrito</div>
         <button>
           <NavLink
