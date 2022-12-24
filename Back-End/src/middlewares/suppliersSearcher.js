@@ -56,7 +56,8 @@ router.get("/:id?", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, cuit, description, location, adress, phoneNumber, eMail } =
+    console.log(req.body)
+    const { name, cuit, description, location, adress, phoneNumber, eMail, formData } =
       req.body;
     if (
       !name ||
@@ -69,11 +70,13 @@ router.post("/", async (req, res) => {
     )
       return res.status(404).send("Faltan datos obligatorios por cargar");
 
+      if(formData) console.log(formData);
+
     let suppDB = await Supplier.create({
       name,
       cuit,
       description,
-      logo
+      
     });
     let detailsSupDB = await Detail.create({
       location: location,

@@ -14,11 +14,15 @@ let dispatch = useDispatch()
       e.preventDefault();
       const imageForm = document.getElementById('images');
       const formData = new FormData(imageForm)
-      setInputValues(prev => {     
-        return {
-          ...prev,
-          logo: formData
-        }});
+console.log(formData)
+      setInputValues(
+        prev => {     
+          return {
+            ...prev,
+          formData: formData
+          }    
+        }
+      );
       console.log(inputValues)
        dispatch(postSupplier(inputValues)) 
     }
@@ -121,7 +125,7 @@ let dispatch = useDispatch()
       location: "",
       address: "",
       description: "",
-      logo: {}
+      formData: {}
     })
 
     const changeHandler = (e) => {
