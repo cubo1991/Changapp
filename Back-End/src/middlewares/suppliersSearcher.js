@@ -73,6 +73,7 @@ router.post("/", async (req, res) => {
       name,
       cuit,
       description,
+      logo
     });
     let detailsSupDB = await Detail.create({
       location: location,

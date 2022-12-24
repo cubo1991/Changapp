@@ -39,7 +39,7 @@ export const Suppliers = () => {
   const suppliersMap = currentSuppliers.map((supplier) => {
 
     return <SuppliersCard
-      name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} details={supplier.Detail} />
+      name={supplier.name} cuit={supplier.cuit} description={supplier.description} id={supplier.id} details={supplier.Detail} logo={supplier.logo}/>
   })
 
 
