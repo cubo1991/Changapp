@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
     description: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    logo: {
+      type: DataTypes.TEXT,
+      defaultValue: 'https://res.cloudinary.com/dx2ea2zze/image/upload/v1671883621/bg5qffuqhddslxp7hkdg.png'
     }
   },
   {

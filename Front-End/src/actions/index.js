@@ -216,13 +216,14 @@ export const postSupplier = (payload) => {
   return function () {
     axios
       .post(BACKEND_SERVER + "/suppliers", {
-        adress: payload.adress,
+        adress: payload.address,
         cuit: payload.cuit,
         description: payload.description,
-        eMail: payload.eMail,
+        eMail: payload.email,
         location: payload.location,
         name: payload.name,
-        phoneNumber: payload.phoneNumber,
+        phoneNumber: payload.phone,
+        formData: payload.formData
       })
       .catch((error) => {
         console.log(error);

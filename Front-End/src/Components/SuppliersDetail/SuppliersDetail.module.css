@@ -56,9 +56,16 @@
 }
 .container {
     /* border: .0625rem solid blue; */
-    position: center;
+    /*position: center;*/
     /* background-color: black; */
-    
+    display: flex;
+    align-items: center;
+    padding-bottom: 1.25rem;
+
+  }
+
+  .title{
+    margin-left: 1.25rem;
   }
   
   .botonfiltros{

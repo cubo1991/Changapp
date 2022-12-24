@@ -66,8 +66,8 @@ User.hasMany(UserLogin);
 UserLogin.belongsTo(User);
 
 // //1aN Review y Servicios
-// Service.hasMany(Review)
-// Review.belongsTo(Service)
+ Service.hasMany(Review)
+ Review.belongsTo(Service)
 
 // //1aN Review y Users
 // User.hasMany(Review)
