@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+//import { useForm } from 'react-hook-form'
 import s from './FormSuppliers.module.css'
 import { useDispatch } from 'react-redux'
 import { postSupplier } from '../../actions'
@@ -10,9 +10,17 @@ let dispatch = useDispatch()
     
     //const {register, handleSubmit, formState: {errors}} = useForm()
 
-    const  onSubmit = (data) => {
-      console.log(data)
-       dispatch(postSupplier(data)) 
+    const  onSubmit = (e) => {
+      e.preventDefault();
+      const imageForm = document.getElementById('images');
+      const formData = new FormData(imageForm)
+      setInputValues(prev => {     
+        return {
+          ...prev,
+          logo: formData
+        }});
+      console.log(inputValues)
+       dispatch(postSupplier(inputValues)) 
     }
 
     function nameValidator (name, set) {
@@ -112,7 +120,8 @@ let dispatch = useDispatch()
       phone: "",
       location: "",
       address: "",
-      description: ""
+      description: "",
+      logo: {}
     })
 
     const changeHandler = (e) => {
@@ -142,10 +151,7 @@ let dispatch = useDispatch()
     
       <div className='card' style={{width:"40rem", left:"22rem", top:"2rem"}}>
      
-     <form onSubmit={(e) => {
-      e.preventDefault();
-      onSubmit(inputValues)
-     }} className="row g-3">
+     <form onSubmit={(e) => onSubmit(e)} className="row g-3" enctype="multipart/form-data" id='images' >
 
       <div className="col-md-6">
         <label for="inputName" className="form-label">Nombre de la empresa</label>
@@ -210,7 +216,12 @@ let dispatch = useDispatch()
     
    
   </div>
-  
+
+              <div class="mb-3">
+                <label>Logo</label>
+                <input class="form-control form-control-sm" id="formFileSm" type="file" name='image'/>
+             </div>
+ 
    <div className="col-md-12">
     <button type="submit" className="btn btn-primary" disabled= {
       error.name || inputValues.name === "" || error.cuitError || error.emailError || error.locationError ||

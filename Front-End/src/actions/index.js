@@ -223,6 +223,7 @@ export const postSupplier = (payload) => {
         location: payload.location,
         name: payload.name,
         phoneNumber: payload.phoneNumber,
+        
       })
       .catch((error) => {
         console.log(error);
