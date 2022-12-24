@@ -8,7 +8,7 @@ const router = Router();
 router.post("/login", async (req, res, next) => {
   const { event } = req.body;
 
-  console.log(event);
+  // console.log(event);
 
   // Chequeamos que la request sea fidedigna con TENANT y CLIENT
   // Y contenga user

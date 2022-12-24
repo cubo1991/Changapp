@@ -1,4 +1,4 @@
-const { User, UserRol } = require("../db");
+const { User } = require("../db");
 
 const add = async (user_data, user_role = "User") => {
   try {

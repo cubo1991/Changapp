@@ -37,16 +37,16 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 const {
+  Category,
+  Contract,
+  Detail,
+  Review,
   Service,
   Supplier,
-  Category,
-  User,
-  UserRol,
-  Review,
-  Detail,
-  Contract,
-  UserLogin,
   SupplierService,
+  User,
+  UserLogin,
+  UserRol,
 } = sequelize.models; //destructurin de los modelos.
 
 //1aN Categorias de servicios
@@ -91,8 +91,14 @@ SupplierService.belongsTo(Supplier)
 // Service.hasMany(SupplierService)
 SupplierService.belongsTo(Service)
 
-User.belongsToMany(SupplierService, { through: Contract });
-SupplierService.belongsToMany(User, { through: Contract });
+// User.belongsToMany(SupplierService, { through: Contract });
+// SupplierService.belongsToMany(User, { through: Contract });
+
+// User.belongsToMany(SupplierService)
+// User
+
+SupplierService.hasMany(Contract);
+Contract.belongsTo(SupplierService) 
 
 Supplier.hasMany(Contract);
 Contract.belongsTo(Supplier);
@@ -103,7 +109,7 @@ Review.belongsTo(Supplier);
 // Contract hasOne Review
 //TODO y hasOne Payment
 Contract.hasOne(Review);
-Review.hasOne(Contract);
+Review.belongsTo(Contract);
 
 // User tienen multiples contratos
 User.hasMany(Contract);
