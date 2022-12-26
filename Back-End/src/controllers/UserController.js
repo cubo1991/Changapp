@@ -30,6 +30,15 @@ const findByEmail = async (email) => {
   }
 };
 
+const findById = async (id) => {
+  try {
+    return await User.findByPk(id);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 const getUserRole = async (id) => {
   try {
     const user = await User.findByPk(id);
@@ -103,6 +112,7 @@ const remove = async (id) => {
 module.exports = {
   add,
   findByEmail,
+  findById,
   getUserRole,
   setUserRole,
   update,
