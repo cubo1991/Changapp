@@ -10,19 +10,61 @@ router.get("/:id?", async (req, res, next) => {
   const { name } = req.query;
   const { id } = req.params;
 
-  console.log("id", id);
-  console.log("name", name);
-
   try {
     const dbSuppliers = id
       ? await SupplierController.findById(id)
       : await SupplierController.findByName(name);
-    
+
     if (!dbSuppliers)
-      return res.status(404).send({ error: "No hubo resultados" });
+      return res.status(404).json({ error: "No hubo resultados" });
 
     return res.status(200).json(dbSuppliers);
   } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/", async (req, res, next) => {
+  const {
+    name,
+    cuit,
+    description,
+    location,
+    adress,
+    phoneNumber,
+    eMail,
+    formData,
+  } = req.body;
+
+  if (
+    !name ||
+    !cuit ||
+    !description ||
+    !location ||
+    !adress ||
+    !phoneNumber ||
+    !eMail
+  )
+    return res
+      .status(404)
+      .json({ error: "Faltan datos obligatorios por cargar" });
+
+  console.log(formData);
+
+  try {
+    const dbSupplier = await SupplierController.add(req.body);
+
+    return res.status(201).json(dbSupplier);
+  } catch (error) {
+    if (
+      [
+        "DuplicatedNameOrSlugInApiError",
+        "ReleasedInvalidDateError",
+        "PlatformsEmptyError",
+      ].includes(error.name)
+    )
+      return res.status(400).json({ error: error.message });
+
     next(error);
   }
 });

@@ -71,7 +71,38 @@ const findById = async (id) => {
   }
 };
 
+const add = async ({
+  name,
+  cuit,
+  description,
+  logo,
+  location,
+  adress,
+  phoneNumber,
+  eMail,
+}) => {
+  try {
+    const newSupplier = await Supplier.create(
+      {
+        name,
+        cuit,
+        description,
+        logo,
+        Detail: { location, adress, phoneNumber, eMail },
+      },
+      { include: [Detail] }
+    );
+
+    // retornamos asi para mantener el formato consistente
+    return await findById(newSupplier.id);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 module.exports = {
   findByName,
   findById,
+  add,
 };
