@@ -33,6 +33,7 @@ router.post("/login", async (req, res, next) => {
     try {
       loginId = await UserLoginController.find(user_id);
     } catch (error) {
+      console.error("POST /users/login UserLoginController.find error");
       return next(error);
     }
   }
@@ -55,8 +56,19 @@ router.post("/login", async (req, res, next) => {
         oauth_id: user_id,
       });
     } catch (error) {
+      console.error(
+        "POST /users/login UserController.findByEmail/add or UserLoginController.add error"
+      );
       return next(error);
     }
+  }
+
+  // Actualizamos datos personales segun perfil
+  try {
+    const user = await UserController.update(loginId, event.user);
+  } catch (error) {
+    console.error("POST /users/login UserController.update error");
+    return next(error);
   }
 
   // Devolvemos el rol
@@ -65,6 +77,27 @@ router.post("/login", async (req, res, next) => {
 
     return res.status(201).json({ user_role });
   } catch (error) {
+    console.error("POST /users/login UserController.getUserRole error");
+    next(error);
+  }
+});
+
+router.put("/:id/role", async (req, res, next) => {
+  const { user_role } = req.body;
+  const { id } = req.params;
+
+  if (!user_role) return res.status(400).send();
+
+  try {
+    await UserController.setUserRole(id, user_role);
+    return res.status(200).json({ status: "Rol modificado" });
+  } catch (error) {
+    // atrapamos el error personalizado del controlador
+    // mandamos un Bad Request con el mensaje de error
+    if (error.name === "UserRoleNotFound")
+      return res.status(400).json({ error: error.message });
+
+    console.error("PUT /users/set-role/:id UserController.setUserRole error");
     next(error);
   }
 });
