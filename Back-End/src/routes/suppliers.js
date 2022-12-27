@@ -4,21 +4,28 @@ const SupplierController = require("../controllers/SupplierController");
 const router = Router();
 
 router.use(require("../middlewares/SupplierReviewOrderByRating"));
-// router.use(require("../middlewares/suppliersSearcher"))
 
 router.get("/:id?", async (req, res, next) => {
   const { name, sort_by } = req.query;
   const { id } = req.params;
 
   try {
-    const dbSuppliers = id
-      ? await SupplierController.findById(id)
-      : await SupplierController.findByName(name, sort_by);
 
-    if (!dbSuppliers)
-      return res.status(404).json({ error: "No hubo resultados" });
+    if(id || name || sort_by){
 
-    return res.status(200).json(dbSuppliers);
+      const dbSuppliers = id
+        ? await SupplierController.findById(id)
+        : await SupplierController.findByName(name, sort_by);
+  
+      if (!dbSuppliers)
+        return res.status(404).json({ error: "No hubo resultados" });
+  
+      return res.status(200).json(dbSuppliers);
+
+    }else{
+      next()    //Si no hay sort, ni name, ni param, pasa al siguiente middleware (get de todos los suppliers)
+    }
+
   } catch (error) {
     next(error);
   }
@@ -157,4 +164,5 @@ router.post("/", upload.single('image'), async (req, res, next) => {
   }
 });
 
+router.use(require('../middlewares/suppliersSearcher.js')) //ruta get para todos los suppliers disponibles en la db
 module.exports = router;

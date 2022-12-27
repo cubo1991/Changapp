@@ -1,7 +1,50 @@
-// const { Router } = require("express");
-// const router = Router();
-// const { Supplier, Detail, Service, Review, Op } = require("../db.js");
-// const sequelize = require("sequelize");
+ const { Router } = require("express");
+ const router = Router();
+ const { Supplier, Review, Detail, Contract, Service, fn, conn} = require("../db.js");
+
+ router.get("/", async (req, res, next) => {
+  try{
+
+    const result = await Supplier.findAll(
+      {
+          include: [
+            { model: Review, attributes: [] },
+            { model: Detail },
+            { model: Contract, attributes: [] },
+            {
+              model: Service,
+              attributes: [
+                "serviceType",
+                "pricePerHour",
+                "description",
+                "representative_image",
+              ],
+            },
+          ],
+          attributes: {
+            include: [
+              [fn("COALESCE", fn("AVG", conn.col("Reviews.rating")), 0), "avgRating"],
+              [fn("COUNT", conn.col("Reviews.rating")), "countRatings"],
+              [fn("COUNT", conn.col("Contracts.id")), "countContracts"],
+            ],
+          },
+          group: [
+            "Supplier.id",
+            "Detail.id",
+            "Contracts.id",
+            "Services.id",
+            "Services->SupplierService.id",
+          ],
+      }
+    )
+    return res.json(result)
+
+  }catch(err){
+    next(err)
+  }
+})
+
+module.exports = router;
 
 // router.post("/", async (req, res) => {
 //   try {
