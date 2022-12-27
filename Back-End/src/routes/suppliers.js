@@ -118,7 +118,7 @@ router.post("/", upload.single('image'), async (req, res, next) => {
        use_filename: true,
        unique_filename: false,
        overwrite: true,
-       folder:"Logos Suppliers"
+       folder:"/Logos Suppliers"
      });
      
      fs.unlink(req.file.path);
