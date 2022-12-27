@@ -53,7 +53,7 @@ export const Suppliers = () => {
       />
 
         {searching ?
-              <button onClick={() => {    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
+              <button class="btn btn-secondary" onClick={() => {    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
                 dispatch(getSuppliers())
                 dispatch(searchingFalse())
                 }}>

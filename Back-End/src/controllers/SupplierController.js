@@ -79,19 +79,32 @@ const add = async ({
   location,
   adress,
   phoneNumber,
-  eMail,
+  eMail
 }) => {
   try {
-    const newSupplier = await Supplier.create(
-      {
-        name,
-        cuit,
-        description,
-        logo,
-        Detail: { location, adress, phoneNumber, eMail },
-      },
-      { include: [Detail] }
-    );
+    if(logo){
+      var newSupplier = await Supplier.create(
+        {
+          name,
+          cuit,
+          description,
+          logo,
+          Detail: { location, adress, phoneNumber, eMail },
+        },
+        { include: [Detail] }
+      ); 
+    } else {
+      var newSupplier = await Supplier.create(
+        {
+          name,
+          cuit,
+          description,
+          Detail: { location, adress, phoneNumber, eMail },
+        },
+        { include: [Detail] }
+      );
+    }
+  
 
     // retornamos asi para mantener el formato consistente
     return await findById(newSupplier.id);

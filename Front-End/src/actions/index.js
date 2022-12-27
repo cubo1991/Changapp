@@ -215,7 +215,7 @@ export const showCart = (payload) => {
 export const postSupplier = (payload) => {
   return function () {
     axios
-      .post(BACKEND_SERVER + "/suppliers", {
+      .post(BACKEND_SERVER + "/suppliers", payload /*{
         adress: payload.address,
         cuit: payload.cuit,
         description: payload.description,
@@ -224,7 +224,7 @@ export const postSupplier = (payload) => {
         name: payload.name,
         phoneNumber: payload.phone,
         formData: payload.formData
-      })
+      }*/)
       .catch((error) => {
         console.log(error);
         alert("Something went wrong...");
