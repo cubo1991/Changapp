@@ -28,6 +28,4 @@ router.use("/location", location);
 router.use("/userHandler", userHandler);
 router.use("/create_preference", createPreference);
 
-router.use("/login", login); // No tiene funcionalidad por ahora
-
 module.exports = router;

@@ -29,7 +29,7 @@ const findQuery = {
 const aggregationQuery = {
   attributes: {
     include: [
-      [fn("AVG", conn.col("Reviews.rating")), "avgRating"],
+      [fn("COALESCE", fn("AVG", conn.col("Reviews.rating")), 0), "avgRating"],
       [fn("COUNT", conn.col("Reviews.rating")), "countRatings"],
       [fn("COUNT", conn.col("Contracts.id")), "countContracts"],
     ],
@@ -43,15 +43,36 @@ const aggregationQuery = {
   ],
 };
 
-const findByName = async (name) => {
+const findByName = async (name, sort_by) => {
   try {
     if (name) findQuery.where = { name: { [Op.iLike]: `%${name}%` } };
+    if (sort_by) {
+      findQuery.order = [];
+      for (const sort_param of sort_by.split(",")) {
+        let field = sort_param;
+        let sort_order = "+";
+
+        if (["+", "-"].includes(sort_param.charAt(0)))
+          [sort_order, field] = [sort_param.slice(0, 1), sort_param.slice(1)];
+
+        // CHEQUEA QUE SEA UN PARAMETRO ORDENABLE
+        if (
+          !["name", "avgRating", "countRatings", "countContracts"].includes(
+            field
+          )
+        )
+          continue;
+
+        findQuery.order.push([field, sort_order === "-" ? "DESC" : "ASC"]);
+      }
+    }
 
     const dbSuppliers = await Supplier.findAll({
       ...findQuery,
       ...aggregationQuery,
     });
-    return dbSuppliers;
+
+    return dbSuppliers.length ? dbSuppliers : null;
   } catch (error) {
     console.error(error);
     throw error;

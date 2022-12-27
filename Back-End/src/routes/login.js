@@ -1,7 +1,7 @@
-const { Router } = require('express');
+// const { Router } = require('express');
 
-const router = Router();
+// const router = Router();
 
-router.use(require('../middlewares/login.js'));
+// router.use(require('../middlewares/login.js'));
 
-module.exports = router;
+// module.exports = router;
