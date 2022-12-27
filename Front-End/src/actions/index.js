@@ -154,16 +154,15 @@ export function searchingSuppliers() {
 export const getDetails = (id) => {
   let found;
   return function (dispatch) {
-    fetch(BACKEND_SERVER + "/suppliers")
+    fetch(BACKEND_SERVER + `/suppliers/${id}`)
       .then((res) => res.json())
-      .then((res) => (found = res.find((e) => e.id === id)))
+    // .then((res) => (found = res.find((e) => e.id === id)))
       .then((res) => {
-        console.log(res);
         dispatch({
           type: GET_DETAILS,
-          payload: found,
+          payload: res,
         });
-      });
+      }); 
   };
 };
 
