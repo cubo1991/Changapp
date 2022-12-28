@@ -14,17 +14,8 @@ let dispatch = useDispatch()
       e.preventDefault();
       const imageForm = document.getElementById('images');
       const formData = new FormData(imageForm)
-console.log(formData)
-      setInputValues(
-        prev => {     
-          return {
-            ...prev,
-          formData: formData
-          }    
-        }
-      );
-      console.log(inputValues)
-       dispatch(postSupplier(inputValues)) 
+
+       dispatch(postSupplier(formData)) 
     }
 
     function nameValidator (name, set) {
@@ -124,8 +115,7 @@ console.log(formData)
       phone: "",
       location: "",
       address: "",
-      description: "",
-      formData: {}
+      description: ""
     })
 
     const changeHandler = (e) => {

@@ -23,7 +23,7 @@ export default function Paginado({ servicesPerPage, allServices, index, currentP
             <div className={s.pagination}>
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
-                        <button className={`page-link ${s.buttons}`} onClick={(e) => nextPrevButton(e)} value="prev">Antertior</button>
+                        <button className={`page-link ${s.buttons}`} onClick={(e) => nextPrevButton(e)} value="prev">Anterior</button>
                         {pageNumber &&
                             pageNumber.map(number => (
                                 <li className="page-item" ><p className={ currentPage === number ? `page-link ${s.activePage}` : `page-link ${s.focusPage}`} key={number} value={number}
