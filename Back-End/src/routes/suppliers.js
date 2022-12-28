@@ -48,24 +48,35 @@ router.post(
         .status(404)
         .json({ error: "Faltan datos obligatorios por cargar" });
 
-    try {
-      const result = await uploadImage(req.file.path);
-      fs.unlink(req.file.path);
+    const newSupplier = {
+      name,
+      cuit,
+      description,
+      location,
+      adress,
+      phoneNumber,
+      eMail,
+    };
 
-      const dbSupplier = await SupplierController.add({
-        name,
-        cuit,
-        description,
-        location,
-        adress,
-        phoneNumber,
-        eMail,
-        logo: result.secure_url,
-      });
+    if (req.file) {
+      try {
+        const result = await uploadImage(req.file.path);
+        fs.unlink(req.file.path);
+
+        newSupplier.logo = result.secure_url;
+      } catch (error) {
+        console.error("POST /suppliers uploadImage error");
+
+        return next(error);
+      }
+    }
+
+    try {
+      const dbSupplier = await SupplierController.add(newSupplier);
 
       return res.status(201).json(dbSupplier);
     } catch (error) {
-      console.error("POST /suppliers error");
+      console.error("POST /suppliers SupplierController.add error");
 
       next(error);
     }

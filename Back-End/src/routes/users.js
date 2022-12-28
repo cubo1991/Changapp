@@ -95,6 +95,8 @@ router.post(
   async (req, res, next) => {
     const { id } = req.params;
 
+    if (!req.file) return res.status(400).json({ error: "No picture" });
+
     try {
       const result = await uploadImage(req.file.path);
       fs.unlink(req.file.path);
