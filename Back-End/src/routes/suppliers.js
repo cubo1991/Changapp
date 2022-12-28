@@ -1,8 +1,14 @@
 const { Router } = require("express");
 const SupplierController = require("../controllers/SupplierController");
+const {
+  uploadImage,
+  uploadMulter,
+} = require("../controllers/cloudinaryController");
+const fs = require("fs-extra");
 
 const router = Router();
 
+// GET /suppliers/:id? ?name= ?sort_by=
 router.get("/:id?", async (req, res, next) => {
   const { name, sort_by } = req.query;
   const { id } = req.params;
@@ -21,76 +27,49 @@ router.get("/:id?", async (req, res, next) => {
   }
 });
 
-/***/
-let multer = require("multer");
+// POST /suppliers
+router.post(
+  "/",
+  uploadMulter("./public/Images").single("image"),
+  async (req, res, next) => {
+    const { name, cuit, description, location, adress, phoneNumber, eMail } =
+      req.body;
 
-const fs = require("fs-extra");
-
-const VALID_FILE_TYPE = ["image/jpg", "image/png", "image/jpeg"];
-
-const fileFilter = (req, file, cb) => {
-  console.log(file);
-  if (!VALID_FILE_TYPE.includes(file.mimetype)) {
-    cb(new Error("invalid type of file"));
-  } else {
-    cb(null, true);
-  }
-};
-
-let storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/Images");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-let upload = multer({ storage: storage, fileFilter: fileFilter });
-/***/
-router.post("/", upload.single("image"), async (req, res, next) => {
-  const { name, cuit, description, location, address, phone, email } = req.body;
-
-  let dbSupplier;
-
-  if (
-    !name ||
-    !cuit ||
-    !description ||
-    !location ||
-    !address ||
-    !phone ||
-    !email
-  )
-    return res
-      .status(404)
-      .json({ error: "Faltan datos obligatorios por cargar" });
-
-  try {
-      dbSupplier = await SupplierController.add({
-        name: name,
-        cuit: cuit,
-        description: description,
-        location: location,
-        adress: address,
-        phoneNumber: phone,
-        eMail: email,
-       file: req.file
-      });
-      fs.unlink(req.file.path);
-    return res.status(201).json(dbSupplier);
-  } catch (error) {
     if (
-      [
-        "DuplicatedNameOrSlugInApiError",
-        "ReleasedInvalidDateError",
-        "PlatformsEmptyError",
-      ].includes(error.name)
+      !name ||
+      !cuit ||
+      !description ||
+      !location ||
+      !adress ||
+      !phoneNumber ||
+      !eMail
     )
-      return res.status(400).json({ error: error.message });
+      return res
+        .status(404)
+        .json({ error: "Faltan datos obligatorios por cargar" });
 
-    next(error);
+    try {
+      const result = await uploadImage(req.file.path);
+      fs.unlink(req.file.path);
+
+      const dbSupplier = await SupplierController.add({
+        name,
+        cuit,
+        description,
+        location,
+        adress,
+        phoneNumber,
+        eMail,
+        logo: result.secure_url,
+      });
+
+      return res.status(201).json(dbSupplier);
+    } catch (error) {
+      console.error("POST /suppliers error");
+
+      next(error);
+    }
   }
-});
+);
 
 module.exports = router;

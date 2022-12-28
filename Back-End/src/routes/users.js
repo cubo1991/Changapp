@@ -2,9 +2,15 @@ const { Router } = require("express");
 const UserLoginController = require("../controllers/UserLoginController");
 const UserController = require("../controllers/UserController");
 const { AUTH0_TENANT_ID, AUTH0_CLIENT_ID } = process.env;
+const {
+  uploadImage,
+  uploadMulter,
+} = require("../controllers/cloudinaryController");
+const fs = require("fs-extra");
 
 const router = Router();
 
+// POST /users/login
 router.post("/login", async (req, res, next) => {
   const { event } = req.body;
 
@@ -82,6 +88,30 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+// POST /users/:id/updateImage
+router.post(
+  "/:id/updateImage",
+  uploadMulter("./public/ProfileImages").single("image"),
+  async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+      const result = await uploadImage(req.file.path);
+      fs.unlink(req.file.path);
+
+      const user = await UserController.update(id, {
+        picture: result.secure_url,
+      });
+
+      res.status(200).json(user);
+    } catch (error) {
+      console.error("POST /users/:id/updateImage error");
+      next(error);
+    }
+  }
+);
+
+// PUT /users/:id/role
 router.put("/:id/role", async (req, res, next) => {
   const { user_role } = req.body;
   const { id } = req.params;
@@ -97,7 +127,22 @@ router.put("/:id/role", async (req, res, next) => {
     if (error.name === "UserRoleNotFound")
       return res.status(400).json({ error: error.message });
 
-    console.error("PUT /users/set-role/:id UserController.setUserRole error");
+    console.error("PUT /users/:id/set-role UserController.setUserRole error");
+    next(error);
+  }
+});
+
+// GET /users/:id
+router.get("/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const user = await UserController.findById(id);
+
+    if (!user) return res.status(404).json({ error: "Not found" });
+
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error("GET /users/:id UserController.findById error");
     next(error);
   }
 });

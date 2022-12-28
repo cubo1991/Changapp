@@ -9,8 +9,6 @@ const {
   conn,
 } = require("../db");
 
-const cloudinaryController = require("../controllers/cloudinaryController");
-
 const findQuery = {
   include: [
     { model: Review, attributes: [] },
@@ -46,7 +44,7 @@ const aggregationQuery = {
 };
 
 const findByName = async (name, sort_by) => {
-  const localQuery = {...findQuery};
+  const localQuery = { ...findQuery };
   try {
     if (name) localQuery.where = { name: { [Op.iLike]: `%${name}%` } };
     if (sort_by) {
@@ -101,38 +99,23 @@ const add = async ({
   name,
   cuit,
   description,
+  logo,
   location,
   adress,
   phoneNumber,
   eMail,
-  file,
 }) => {
   try {
-    if (file) {
-      var result = await cloudinaryController.uploadImage(file.path);
-      console.log(result);
-
-      var newSupplier = await Supplier.create(
-        {
-          name,
-          cuit,
-          description,
-          logo: result.secure_url,
-          Detail: { location, adress, phoneNumber, eMail },
-        },
-        { include: [Detail] }
-      );
-    } else {
-      var newSupplier = await Supplier.create(
-        {
-          name,
-          cuit,
-          description,
-          Detail: { location, adress, phoneNumber, eMail },
-        },
-        { include: [Detail] }
-      );
-    }
+    const newSupplier = await Supplier.create(
+      {
+        name,
+        cuit,
+        description,
+        logo,
+        Detail: { location, adress, phoneNumber, eMail },
+      },
+      { include: [Detail] }
+    );
 
     // retornamos asi para mantener el formato consistente
     return await findById(newSupplier.id);
