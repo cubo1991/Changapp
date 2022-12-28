@@ -53,7 +53,7 @@ let upload = multer({ storage: storage, fileFilter: fileFilter });
 /***/
 router.post("/", upload.single("image"), async (req, res, next) => {
   const { name, cuit, description, location, address, phone, email } = req.body;
-console.log(req.body)
+
   let dbSupplier;
 
   if (

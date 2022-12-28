@@ -250,8 +250,15 @@ export function sendReview(data) {
 
 export function getUserById(id) {
   return function (dispatch) {
-    fetch(`${BACKEND_SERVER}/users/${id}`)
+    fetch(`${BACKEND_SERVER}/userHandler/${id}`)
       .then((res) => res.json())
       .then((res) => dispatch({ type: 'USER_BY_ID', payload: res }));
   };
-}
+};
+
+export function updateImageProfile(id, payload) {
+  return function (dispatch) {
+    axios.post(`${BACKEND_SERVER}/userHandler/updateImage/${id}`,payload)
+      .then((res) => dispatch({ type: "UPLOAD_IMAGE_PROFILE", payload: res }));
+  };
+};

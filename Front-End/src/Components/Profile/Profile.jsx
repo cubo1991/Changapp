@@ -1,12 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
+import { useDispatch, useSelector } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
-// import Loading from "../Loading/Loading";
 import s from "./Profile.module.css";
+import { updateImageProfile } from "../../actions";
+
 
 export default function Profile() {
   const { user } = useAuth0();
 
+  const dispatch = useDispatch();
+  const userDB = useSelector(state => state.userDB)
+
+ const userAuthId = user.id.split('|');
+ const userId = parseInt(userAuthId[1]);
+ const [flag, setFlag]  = useState(false);
+ 
+
+const onClick = (e) => {
+  setFlag(flag?false:true)
+  console.log(flag)
+};
+
+
+const onSubmit = (e) => {
+  e.preventDefault();
+  const imageForm = document.getElementById('images');
+  const formData = new FormData(imageForm)
+  dispatch(updateImageProfile(userId,formData))
+  setFlag(false);
+}
   return (
     <div className={s.container}>
       {console.log(user)}
@@ -14,6 +37,23 @@ export default function Profile() {
       <h1>Bienvenido {user.name}</h1>
       <br />
       <img src={user.picture} alt="" />
+      {userAuthId[0] === 'auth0'?
+      <div>
+      <input className={s.button} type='button' onClick={(e) => onClick(e)}/>
+      </div>
+      :
+      null
+    }
+      {userAuthId[0] === 'auth0' && flag ? 
+    <div className={s.container1}>
+      <form onSubmit={(e) => onSubmit(e)} class="row g-6" enctype="multipart/form-data" id='images' >
+      <input class="form-control form-control-sm" id="formFileSm" type="file" name='image'/>
+      <input type='submit' value='update'/>
+      </form>
+    </div>  
+    : null
+    }
+      
       <div>
         <h1>Te logueaste con exito </h1>
         <strong>En este sitio sos {user.user_role}</strong>

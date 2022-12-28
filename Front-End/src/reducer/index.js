@@ -14,7 +14,7 @@ const initialState = {
   cart: [],
   location: [],
   loading: true,
-user:{}
+userDB:{}
 };
 
 const reducer = (state = initialState, action) => {
@@ -136,8 +136,13 @@ const localStorageMap = allKeys.map(key => JSON.parse(localStorage.getItem(key))
       case 'USER_BY_ID':
         return {
           ...state,
-          user: action.payload
+          userDB: action.payload
         }
+        case 'UPLOAD_IMAGE_PROFILE':
+          return {
+            ...state,
+            userDB: action.payload
+          }
     default:
       return state;
   }
