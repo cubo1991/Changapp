@@ -38,7 +38,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING
       },
       picture: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAEbo912SNlE28OayU-KnDZqjV5-KU3XqY-A&usqp=CAU'
       },
       email: {
         type: DataTypes.STRING,
