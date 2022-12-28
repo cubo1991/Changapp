@@ -5,21 +5,73 @@ import { NavLink } from "react-router-dom";
 import s from "./Profile.module.css";
 import { getUserById, updateImageProfile } from "../../actions";
 import { useEffect } from "react";
+import axios from "axios";
 
 
 export default function Profile() {
-  const { user } = useAuth0();
+  const { user, getIdTokenClaims} = useAuth0();
+
+  //! DEBEMOS CHEQUEAR ESTA PARTE. NO LE VEO MUCHO
+  //! SENTIDO SI PODEMOS OBTENER LOS DATOS A TRAVES
+  //! DE useAuth0 SIN USAR REDUX
+  //! DA ERROR PORQUE LOS DATOS SE OBTIENEN
+  //! DE FORMA ASINCRONA, Y MANDA UN GET /users/NaN
 
   const dispatch = useDispatch();
   const userDB = useSelector(state => state.userDB)
 
+
  const userAuthId = user.id.split('|');
  const userId = parseInt(userAuthId[1]);
  const [flag, setFlag]  = useState(false);
+
+ const [apiResponse, setApiResponse] = useState("");
+
+ // como getIdTokenClaims es asincrono, debemos usar useEffect para
+ // manejarlo adecuadamente
+ useEffect(() => {
+   let isMounted = true; // esta montado el componente
+
+   // tenemos que declarar una funcion asincrona dentro de useEffect
+   const getClaims = async () => {
+    // si no esta montado, salimos y esperamos a que monte
+     if (!isMounted) return;
+
+     // obtenemos claims
+     const claims = await getIdTokenClaims();
+    // dejo aca para que vean que contiene los datos de user y la token
+    // que necesitamos para mandar al back
+    console.log(claims)
+
+    // mandamos un get al back de prueba
+    // que chequea la token. manda 401 si no existe o no es valida
+    const { data, error } = await axios.request( {
+      url: `http://localhost:3001/users/test`,
+      method: 'get',
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${claims.__raw}`,
+        },
+      }
+    );
+
+    // seteamos el state correspondiente
+    setApiResponse(JSON.stringify(data ?? error));
+   };
+
+   // llamamos a getClaims que es asincrona
+   getClaims();
+
+   // al desmontar el componente, seteamos la variable
+   return () => {
+     isMounted = false;
+   };
+ }, [getIdTokenClaims]); // la unica dependencia es esta
+ 
  
 useEffect(() => {
     dispatch(getUserById(userId));
-},[dispatch, userDB.picture])
+},[dispatch, userId])
 
 
 
@@ -36,9 +88,10 @@ const onSubmit = (e) => {
   dispatch(updateImageProfile(userId,formData))
   setFlag(false);
 }
+
   return (
     <div className={s.container}>
-      {console.log(userDB)}
+      {/* {console.log(userDB)} */}
 
       <h1>Bienvenido {user.name}</h1>
       <br />
@@ -64,6 +117,8 @@ const onSubmit = (e) => {
       <div>
         <h1>Te logueaste con exito </h1>
         <strong>En este sitio sos {user.user_role}</strong>
+        <p><code style={{'fontSize': 'large'}}>{JSON.stringify(apiResponse)}</code></p>
+        {/* <p style={{'fontSize': 'xx-large'}}>{apiResponse}</p> */}
         <div>Mi carrito</div>
         <button>
           <NavLink

@@ -7,8 +7,13 @@ const {
   uploadMulter,
 } = require("../controllers/cloudinaryController");
 const fs = require("fs-extra");
+const { jwtCheck } = require("../auth");
 
 const router = Router();
+
+router.get('/test', jwtCheck, async (req, res, next) => {
+  res.status(200).json(req.auth)
+})
 
 // POST /users/login
 router.post("/login", async (req, res, next) => {
