@@ -14,7 +14,7 @@ let cart = useSelector((state) => state.cart)
   return (
 
     <main className={Style.main}>
-      <nav  className={`${Style.container}`}>
+      <nav className={`${Style.container}`}>
         <div className="nav">
           <div className={`${Style.logo}`}>
             <NavLink to="/">
