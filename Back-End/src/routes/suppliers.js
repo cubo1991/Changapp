@@ -3,7 +3,7 @@ const SupplierController = require("../controllers/SupplierController");
 
 const router = Router();
 
-router.use(require("../middlewares/SupplierReviewOrderByRating"));
+// router.use(require("../middlewares/SupplierReviewOrderByRating"));
 // router.use(require("../middlewares/suppliersSearcher"))
 
 router.get("/:id?", async (req, res, next) => {

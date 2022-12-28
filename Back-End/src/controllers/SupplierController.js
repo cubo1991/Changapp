@@ -44,10 +44,11 @@ const aggregationQuery = {
 };
 
 const findByName = async (name, sort_by) => {
+  const localQuery = findQuery;
   try {
-    if (name) findQuery.where = { name: { [Op.iLike]: `%${name}%` } };
+    if (name) localQuery.where = { name: { [Op.iLike]: `%${name}%` } };
     if (sort_by) {
-      findQuery.order = [];
+      localQuery.order = [];
       for (const sort_param of sort_by.split(",")) {
         let field = sort_param;
         let sort_order = "+";
@@ -63,12 +64,14 @@ const findByName = async (name, sort_by) => {
         )
           continue;
 
-        findQuery.order.push([field, sort_order === "-" ? "DESC" : "ASC"]);
+        localQuery.order.push([field, sort_order === "-" ? "DESC" : "ASC"]);
       }
+    } else {
+      localQuery.order = ["name"];
     }
 
     const dbSuppliers = await Supplier.findAll({
-      ...findQuery,
+      ...localQuery,
       ...aggregationQuery,
     });
 
@@ -122,8 +125,45 @@ const add = async ({
   }
 };
 
+const update = async (
+  id,
+  { name, cuit, description, logo, location, adress, phoneNumber, eMail }
+) => {
+  try {
+    const updateSupplier = await Supplier.update(
+      {
+        name,
+        cuit,
+        description,
+        logo,
+        Detail: { location, adress, phoneNumber, eMail },
+      },
+      { where: { id }, include: [Detail] }
+    );
+
+    // retornamos asi para mantener el formato consistente
+    return await findById(id);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const remove = async (id) => {
+  try {
+    const deletedRows = await Supplier.destroy({ where: { id } });
+
+    return deletedRows;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 module.exports = {
   findByName,
   findById,
   add,
+  update,
+  remove,
 };

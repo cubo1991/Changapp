@@ -7,7 +7,7 @@ router.use(require('../middlewares/ServicesReviewOrderByRating.js'));
 
 router.use(require('../middlewares/reviewLoad'));
 
-router.use(require("../middlewares/SupplierReviewOrderByRating"))
+// router.use(require("../middlewares/SupplierReviewOrderByRating"))
 
 
 module.exports = router;

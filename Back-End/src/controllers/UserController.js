@@ -37,7 +37,7 @@ const findById = async (id) => {
     console.error(error);
     throw error;
   }
-}
+};
 
 const getUserRole = async (id) => {
   try {
@@ -66,7 +66,7 @@ const setUserRole = async (id, user_role) => {
       err.message = `No se encontró el rol "${user_role}"`;
       err.name = "UserRoleNotFound";
 
-      throw err
+      throw err;
     }
 
     // error no definido, mandamos al route handler tal como vino
@@ -92,6 +92,8 @@ const update = async (
       },
       { where: { id } }
     );
+
+    return await findById(id);
   } catch (error) {
     console.error(error);
     throw error;
