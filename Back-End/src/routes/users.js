@@ -91,23 +91,36 @@ router.post("/login", async (req, res, next) => {
 // POST /users/:id/updateImage
 router.post(
   "/:id/updateImage",
-  uploadMulter("./public/ProfileImages").single("image"),
+  uploadMulter("./public/ProfileImages").single("image"), // middleware para procesar la carga de archivos
   async (req, res, next) => {
     const { id } = req.params;
 
+    // no hay archivo cargado, mandamos un bad request
     if (!req.file) return res.status(400).json({ error: "No picture" });
 
+    const editUser = {};
+
     try {
+      // cargamos archivo a cloudinary
       const result = await uploadImage(req.file.path);
+      // borramos archivo local
       fs.unlink(req.file.path);
 
-      const user = await UserController.update(id, {
-        picture: result.secure_url,
-      });
+      // cargamos el objeto
+      editUser.picture = result.secure_url;
+    } catch (error) {
+      // error al cargar imagen a cloudinary
+      console.error("POST /users/:id/updateImage uploadImage error");
+      return next(error);
+    }
+    try {
+      // mandamos actualizar el usuario con id=id con los campos de editUser
+      const user = await UserController.update(id, editUser);
 
       res.status(200).json(user);
     } catch (error) {
-      console.error("POST /users/:id/updateImage error");
+      // error al editar el usuario
+      console.error("POST /users/:id/updateImage UserController.update error");
       next(error);
     }
   }
