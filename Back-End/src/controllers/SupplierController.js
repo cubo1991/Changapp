@@ -46,7 +46,7 @@ const aggregationQuery = {
 };
 
 const findByName = async (name, sort_by) => {
-  const localQuery = findQuery;
+  const localQuery = {...findQuery};
   try {
     if (name) localQuery.where = { name: { [Op.iLike]: `%${name}%` } };
     if (sort_by) {
@@ -105,12 +105,12 @@ const add = async ({
   adress,
   phoneNumber,
   eMail,
-  file
+  file,
 }) => {
   try {
-    if(file){
-      var result = await cloudinaryController.uploadImage(file.path)
-      console.log(result)
+    if (file) {
+      var result = await cloudinaryController.uploadImage(file.path);
+      console.log(result);
 
       var newSupplier = await Supplier.create(
         {
@@ -121,7 +121,7 @@ const add = async ({
           Detail: { location, adress, phoneNumber, eMail },
         },
         { include: [Detail] }
-      ); 
+      );
     } else {
       var newSupplier = await Supplier.create(
         {
@@ -133,7 +133,7 @@ const add = async ({
         { include: [Detail] }
       );
     }
-  
+
     // retornamos asi para mantener el formato consistente
     return await findById(newSupplier.id);
   } catch (error) {
