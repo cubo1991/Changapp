@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import s from "./Profile.module.css";
-import { updateImageProfile } from "../../actions";
+import { getUserById, updateImageProfile } from "../../actions";
+import { useEffect } from "react";
 
 
 export default function Profile() {
@@ -16,6 +17,11 @@ export default function Profile() {
  const userId = parseInt(userAuthId[1]);
  const [flag, setFlag]  = useState(false);
  
+useEffect(() => {
+    dispatch(getUserById(userId));
+},[dispatch, userDB.picture])
+
+
 
 const onClick = (e) => {
   setFlag(flag?false:true)
@@ -32,17 +38,18 @@ const onSubmit = (e) => {
 }
   return (
     <div className={s.container}>
-      {console.log(user)}
+      {console.log(userDB)}
 
       <h1>Bienvenido {user.name}</h1>
       <br />
-      <img src={user.picture} alt="" />
+     
       {userAuthId[0] === 'auth0'?
       <div>
+        <img src={userDB.picture} alt="profile image" />
       <input className={s.button} type='button' onClick={(e) => onClick(e)}/>
       </div>
       :
-      null
+      <img src={user.picture} alt="" />
     }
       {userAuthId[0] === 'auth0' && flag ? 
     <div className={s.container1}>

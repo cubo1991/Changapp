@@ -54,4 +54,15 @@ router.post("/updateImage/:id", upload.single('image'), async (req, res, next) =
    }
 });
 
+router.get('/:id', async (req,res,next) => {
+    const {id} = req.params;
+
+    try{
+        const result = await User.findByPk(id);
+
+        res.status(200).send(result);
+    } catch(e) {
+        next(e);
+    }
+});
 module.exports = router;
