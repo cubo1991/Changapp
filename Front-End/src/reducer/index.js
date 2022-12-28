@@ -14,7 +14,7 @@ const initialState = {
   cart: [],
   location: [],
   loading: true,
-
+user:{}
 };
 
 const reducer = (state = initialState, action) => {
@@ -103,7 +103,7 @@ const reducer = (state = initialState, action) => {
       let id = item.id
       localStorage.setItem(id, JSON.stringify(item))
       let services = JSON.parse(localStorage.getItem(id))
-     
+
     
  
       return {
@@ -133,7 +133,11 @@ const localStorageMap = allKeys.map(key => JSON.parse(localStorage.getItem(key))
         ...state,
         cart: action.payload
       } 
-
+      case 'USER_BY_ID':
+        return {
+          ...state,
+          user: action.payload
+        }
     default:
       return state;
   }

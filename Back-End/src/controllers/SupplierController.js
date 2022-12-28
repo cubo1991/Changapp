@@ -9,6 +9,8 @@ const {
   conn,
 } = require("../db");
 
+const cloudinaryController = require("../controllers/cloudinaryController");
+
 const findQuery = {
   include: [
     { model: Review, attributes: [] },
@@ -99,20 +101,23 @@ const add = async ({
   name,
   cuit,
   description,
-  logo,
   location,
   adress,
   phoneNumber,
-  eMail
+  eMail,
+  file
 }) => {
   try {
-    if(logo){
+    if(file){
+      var result = await cloudinaryController.uploadImage(file.path)
+      console.log(result)
+
       var newSupplier = await Supplier.create(
         {
           name,
           cuit,
           description,
-          logo,
+          logo: result.secure_url,
           Detail: { location, adress, phoneNumber, eMail },
         },
         { include: [Detail] }
@@ -129,7 +134,6 @@ const add = async ({
       );
     }
   
-
     // retornamos asi para mantener el formato consistente
     return await findById(newSupplier.id);
   } catch (error) {

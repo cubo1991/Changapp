@@ -14,7 +14,7 @@ export const SuppliersCard = ({ name, cuit, description, details, id, logo }) =>
           </div> 
           <div className={s.container2}>
             <div>
-              <img src={logo} alt='logo' />
+              <img src={logo} alt='logo' width='100px' heigth='100px'/>
             </div>
             <div className={s.container3}>
           <Link to={'/suppliers/' + id}>

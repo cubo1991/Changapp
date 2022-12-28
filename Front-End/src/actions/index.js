@@ -154,15 +154,16 @@ export function searchingSuppliers() {
 export const getDetails = (id) => {
   let found;
   return function (dispatch) {
-    fetch(BACKEND_SERVER + `/suppliers/${id}`)
+    fetch(BACKEND_SERVER + "/suppliers")
       .then((res) => res.json())
-    // .then((res) => (found = res.find((e) => e.id === id)))
+      .then((res) => (found = res.find((e) => e.id === id)))
       .then((res) => {
+        console.log(res);
         dispatch({
           type: GET_DETAILS,
-          payload: res,
+          payload: found,
         });
-      }); 
+      });
   };
 };
 
@@ -244,5 +245,13 @@ export function sendReview(data) {
     .then((res) => res.json())
     .then((res) => alert(res))
     //mensaje de exito
+  };
+};
+
+export function getUserById(id) {
+  return function (dispatch) {
+    fetch(`${BACKEND_SERVER}/users/${id}`)
+      .then((res) => res.json())
+      .then((res) => dispatch({ type: 'USER_BY_ID', payload: res }));
   };
 }
