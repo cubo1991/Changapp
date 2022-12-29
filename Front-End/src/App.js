@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 //styles
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,17 +27,26 @@ function App() {
 
   useEffect(() => {
     const allKeys = Object.keys(localStorage);
-    const localStorageMap = allKeys.map((key) =>
-      localStorage.getItem(key)
+    const localStorageMap = allKeys.map((key) => localStorage.getItem(key));
+    const localStorageFilter = localStorageMap.filter((e) =>
+      e.includes("serviceType")
     );
-    const localStorageFilter = localStorageMap.filter(e=> e.includes("serviceType"))
-    const localStorageMaping= localStorageFilter.map(e=> JSON.parse(e))
+    const localStorageMaping = localStorageFilter.map((e) => JSON.parse(e));
 
-    
-
-    dispatch(showCart(localStorageMaping))
+    dispatch(showCart(localStorageMaping));
     dispatch(init());
   }, [dispatch]);
+
+  let location = useLocation();
+  useEffect(() => {
+    if (
+      location.search.includes("success=true") &&
+      location.search.includes("status=approved")
+    ) {
+      localStorage.clear();
+    }
+    console.log(location.key);
+  }, [location.key]);
 
   return (
     <div className="App">
