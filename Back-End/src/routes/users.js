@@ -11,9 +11,9 @@ const { jwtCheck } = require("../auth");
 
 const router = Router();
 
-router.get('/test', jwtCheck, async (req, res, next) => {
-  res.status(200).json(req.auth)
-})
+router.get("/test", jwtCheck, async (req, res, next) => {
+  res.status(200).json(req.auth);
+});
 
 // POST /users/login
 router.post("/login", async (req, res, next) => {
@@ -82,11 +82,11 @@ router.post("/login", async (req, res, next) => {
     return next(error);
   }
 
-  // Devolvemos el rol
+  // Devolvemos la info a Auth0
   try {
     const user_role = await UserController.getUserRole(loginId);
 
-    return res.status(201).json({ user_role });
+    return res.status(201).json({ id: loginId, user_role });
   } catch (error) {
     console.error("POST /users/login UserController.getUserRole error");
     next(error);
