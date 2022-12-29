@@ -28,10 +28,14 @@ function App() {
   useEffect(() => {
     const allKeys = Object.keys(localStorage);
     const localStorageMap = allKeys.map((key) =>
-      JSON.parse(localStorage.getItem(key))
+      localStorage.getItem(key)
     );
+    const localStorageFilter = localStorageMap.filter(e=> e.includes("serviceType"))
+    const localStorageMaping= localStorageFilter.map(e=> JSON.parse(e))
 
-    dispatch(showCart(localStorageMap));
+    
+
+    dispatch(showCart(localStorageMaping))
     dispatch(init());
   }, [dispatch]);
 

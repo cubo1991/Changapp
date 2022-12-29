@@ -17,7 +17,7 @@ export const ServicesCard = ({name, price, description, id, image}) => {
  } 
 
  const idCart =  (element) => element.id === id
- console.log(cart.some(idCart))
+//  console.log(cart.some(idCart))
 
   return (
     <div >

@@ -115,8 +115,12 @@ const reducer = (state = initialState, action) => {
       // let filterCart = state.cart.filter(item => item.id !== action.payload)
       localStorage.removeItem(action.payload)
       const allKeys = Object.keys(localStorage);
-const localStorageMap = allKeys.map(key => JSON.parse(localStorage.getItem(key)))
-      let newCart = localStorageMap
+    const localStorageMap = allKeys.map((key) =>
+      localStorage.getItem(key)
+    );
+    const localStorageFilter = localStorageMap.filter(e=> e.includes("serviceType"))
+    const localStorageMaping= localStorageFilter.map(e=> JSON.parse(e))
+      let newCart = localStorageMaping
       return {
         ...state,
         cart: newCart
