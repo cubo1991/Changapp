@@ -2,3 +2,7 @@
     .container{
         margin: 4% 0;
       }
+
+    .error {
+        color: red;    
+        }
