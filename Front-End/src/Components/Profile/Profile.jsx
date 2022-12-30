@@ -1,16 +1,16 @@
 import React, {useState} from "react";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import s from "./Profile.module.css";
-import { getUserById, updateImageProfile } from "../../actions";
+import { updateImageProfile } from "../../actions";
 import { useEffect } from "react";
 import axios from "axios";
 
 
 export default function Profile() {
   const { user, getIdTokenClaims} = useAuth0();
-
+console.log(user)
   //! DEBEMOS CHEQUEAR ESTA PARTE. NO LE VEO MUCHO
   //! SENTIDO SI PODEMOS OBTENER LOS DATOS A TRAVES
   //! DE useAuth0 SIN USAR REDUX
@@ -18,12 +18,7 @@ export default function Profile() {
   //! DE FORMA ASINCRONA, Y MANDA UN GET /users/NaN
 
   const dispatch = useDispatch();
-  const userDB = useSelector(state => state.userDB)
-
-
- const userAuthId = user.id.split('|');
- const userId = parseInt(userAuthId[1]);
- const [flag, setFlag]  = useState(false);
+  //const userDB = useSelector(state => state.userDB)
 
  const [apiResponse, setApiResponse] = useState("");
 
@@ -68,24 +63,24 @@ export default function Profile() {
    };
  }, [getIdTokenClaims]); // la unica dependencia es esta
  
- 
-useEffect(() => {
+ //const userAuthId = user.id.split('|');
+ //const userId = parseInt(userAuthId[1]);
+ const [flag, setFlag]  = useState(false);
+
+/*useEffect(() => {
     dispatch(getUserById(userId));
 },[dispatch, userId])
-
-
-
-const onClick = (e) => {
+*/
+/*const onClick = (e) => {
   setFlag(flag?false:true)
   console.log(flag)
-};
-
+};*/
 
 const onSubmit = (e) => {
   e.preventDefault();
   const imageForm = document.getElementById('images');
   const formData = new FormData(imageForm)
-  dispatch(updateImageProfile(userId,formData))
+  dispatch(updateImageProfile(user.id,formData))
   setFlag(false);
 }
 
@@ -96,15 +91,15 @@ const onSubmit = (e) => {
       <h1>Bienvenido {user.name}</h1>
       <br />
      
-      {userAuthId[0] === 'auth0'?
+      {/*userAuthId[0] === 'auth0'?
       <div>
         <img src={userDB.picture} alt="profile image" />
       <input className={s.button} type='button' onClick={(e) => onClick(e)}/>
       </div>
       :
       <img src={user.picture} alt="" />
-    }
-      {userAuthId[0] === 'auth0' && flag ? 
+  */} <img src={user.picture} alt="" />
+      {/*userAuthId[0] === 'auth0' && */flag ? 
     <div className={s.container1}>
       <form onSubmit={(e) => onSubmit(e)} class="row g-6" enctype="multipart/form-data" id='images' >
       <input class="form-control form-control-sm" id="formFileSm" type="file" name='image'/>
