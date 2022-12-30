@@ -11,7 +11,16 @@ const { jwtCheck } = require("../auth");
 
 const router = Router();
 
+// ESTE ES UN TEST PARA PROBAR LA IDTOKEN ENVIADA A TRAVES DEL
+// HEADER AUTHORIZATION DESDE EL FRONT
+// SE UTILIZA EL MIDDLEWARE jwtCheck QUE DECODIFICA LA JWT TOKEN
+// Y AGREGA EL OBJETO auth A REQ
 router.get("/test", jwtCheck, async (req, res, next) => {
+  // SI NO TIENE AUTHORIZATION HEADER O LA IDTOKEN NO ES VALIDA
+  // NO LLEGA ACA, DIRECTAMENTE MANDA EL ERROR EL MIDDLEWARE
+
+  // SI ESTAMOS ACA ES PORQUE MANDO UNA TOKEN VALIDA
+  // LA MANDAMOS CON STATUS 200
   res.status(200).json(req.auth);
 });
 
@@ -102,6 +111,7 @@ router.post(
 
     // no hay archivo cargado, mandamos un bad request
     if (!req.file) return res.status(400).json({ error: "No picture" });
+    if (!id) return res.status(400).send();
 
     const editUser = {};
 
@@ -136,7 +146,7 @@ router.put("/:id/role", async (req, res, next) => {
   const { user_role } = req.body;
   const { id } = req.params;
 
-  if (!user_role) return res.status(400).send();
+  if (!user_role || !id) return res.status(400).send();
 
   try {
     await UserController.setUserRole(id, user_role);
@@ -155,6 +165,9 @@ router.put("/:id/role", async (req, res, next) => {
 // GET /users/:id
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
+
+  if (!id) return res.status(400).send();
+
   try {
     const user = await UserController.findById(id);
 

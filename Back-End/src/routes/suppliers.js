@@ -46,7 +46,7 @@ router.post(
       !eMail
     )
       return res
-        .status(404)
+        .status(400)
         .json({ error: "Faltan datos obligatorios por cargar" });
 
     // definimos el nuevo objeto a crear
