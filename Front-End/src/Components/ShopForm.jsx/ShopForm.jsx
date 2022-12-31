@@ -35,7 +35,7 @@ export const ShopForm = () => {
             setPagar(false);
             setInput(inicialState);
         }
-      },[]);
+      },[])
 
     // Funciones Validadoras
     function nameValidator (name, set) {
@@ -294,4 +294,3 @@ export const ShopForm = () => {
         </div>
     )
 }
-
