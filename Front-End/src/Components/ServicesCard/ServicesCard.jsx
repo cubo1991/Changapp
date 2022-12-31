@@ -31,10 +31,7 @@ export const ServicesCard = ({name, price, description, id, image}) => {
           </Link>
         </div>
         <div className={s.contenedor}>
-        <h6>Price per Hour:</h6> <p className="card-text">${price}</p>
-        </div>
-        <div className={s.contenedor}>
-        <h6>Description:</h6><p className="card-text">{description}</p>
+        <p className="card-text">${price}/hr</p>
         </div>
         
         

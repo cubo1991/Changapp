@@ -1,15 +1,20 @@
 .general {
-    height: 40em;
-    width: 30em;
+    height: 31em;
+    width: 22em;
     /* border: .0625rem solid black; */
-    background-color: white;
-    border-radius: 3%;
+    border-radius: 0.5%;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+.general:hover {
+    box-shadow: 0 4px 8px 0 rgba(31, 198, 240, 0.863), 0 6px 20px 0 rgba(124, 217, 245, 0.76);
 }
 
 .general img {
-    width: 80%;
+    width: 100%;
     height: 20em;
-    padding-top: 1em;
+    margin-top: 1em;
 }
 
 .general button {
@@ -26,12 +31,8 @@
 .contenedor {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    margin: 0.5rem;
    
-}
-
-.contenedor p {
-    padding-left: 0.50rem;
 }
 
 h5 {
@@ -40,4 +41,9 @@ h5 {
 
 .fs-X {
     size: 10rem;
+}
+
+h2 {
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 5px black;
 }

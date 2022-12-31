@@ -1,17 +1,18 @@
 .container {
   /* border: .0625rem solid blue; */
   position: center;
+  background-color: rgb(55, 54, 54);
   /* background-color: black; */
   
 }
 
 .botonfiltros{
-background-color: rgb(55, 54, 54);
+background-color:rgb(55, 54, 54);
 color: white;
 }
 
 .botonfiltros:hover{
-  background-color: rgb(3, 3, 3);
+  background-color: black;
   color: white;
 }
 
