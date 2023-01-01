@@ -5,6 +5,7 @@ import { getSuppliers, searchingSuppliers } from '../../actions'
 import style from "../Suppliers/Suppliers.module.css"
 import Index from '../Index/Index.jsx';
 import { searchingFalse } from '../../actions'
+import { useLocation } from 'react-router-dom'
 
 
 
@@ -19,6 +20,10 @@ export const Suppliers = () => {
   let indexofFirstSupplier = indexOfLastSupplier - suppliersPerPage;
   const currentSuppliers = suppliers.slice(indexofFirstSupplier, indexOfLastSupplier);
   const searching = useSelector(state => state.searching)
+  const { pathname } = useLocation()
+React.useEffect(() => {
+  window.scrollTo(0, 0);
+}, [pathname]);
   
 
   React.useEffect(

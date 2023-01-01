@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import style from "../Home/Home.module.css"
 
 
@@ -18,6 +18,10 @@ import Loading from '../Loading/Loading';
 
 export default function Home() {
   const dispatch = useDispatch();
+  const { pathname } = useLocation()
+React.useEffect(() => {
+  window.scrollTo(-10, 0);
+}, [pathname]);
   const loading = useSelector((state) => state.loading)
   const allServices = useSelector((state) => state.services)
   const searching = useSelector(state => state.searching);
