@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar.jsx";
 import Login from "../Login/Login"
 import Style from "../NavBar/Navbar.module.css";
 import { useSelector } from "react-redux";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
+import NavBarSupplier from "./NavBarSupplier.jsx";
 
 
 
 export default function NavBar() {
-let cart = useSelector((state) => state.cart)
+  let cart = useSelector((state) => state.cart)
+  const { user, isLoading, isAuthenticated } = useAuth0();
+  const [userRole, setUserRole] = useState("User");
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated && user.user_role) setUserRole(user.user_role);
+  }, [isLoading, isAuthenticated, user]);
 
 
   return (
 
     <main className={Style.main}>
-      <nav  className={`${Style.container}`}>
+      <nav className={`${Style.container}`}>
         <div className="nav">
           <div className={`${Style.logo}`}>
             <NavLink to="/">
@@ -41,19 +50,16 @@ let cart = useSelector((state) => state.cart)
               <span>Contacto</span>
             </div>
           </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? Style.active : Style.inactive
+
+            {
+               userRole === "Supplier"?
+              <NavBarSupplier/>
+              : ""
             }
-            to="/suppliersContact"
-          >
-            <div className={`${Style.link} nav-link`}>
-              <span>Publicá tu servicio</span>
-            </div>
-          </NavLink>
+
           <div className={`${Style.nav_right} d-flex justify-content-end col`}>
             <Searchbar />
-            <Login></Login>  
+            <Login></Login>
 
             <NavLink
               to="/cart"
@@ -75,18 +81,18 @@ let cart = useSelector((state) => state.cart)
               </div>
             </NavLink>
             {
-            cart.length > 0 
-            ?
-            <p className="btn btn-danger" style={{borderRadius:"90%", width:"fit-content", height:"fit-content", fontSize:"small"}}>{cart.length}</p>
-            :
-            ""
+              cart.length > 0
+                ?
+                <p className="btn btn-danger" style={{ borderRadius: "90%", width: "fit-content", height: "fit-content", fontSize: "small" }}>{cart.length}</p>
+                :
+                ""
 
             }
           </div>
         </div>
-      </nav>  
+      </nav>
       <section >
-      <Outlet />
+        <Outlet />
       </section>
     </main>
   );
