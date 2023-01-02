@@ -262,3 +262,11 @@ export function updateImageProfile(id, payload) {
       .then((res) => dispatch({ type: "UPLOAD_IMAGE_PROFILE", payload: res }));
   };
 };
+
+export function sendContractNotification(status, email) {
+  return function(dispatch){
+    fetch(`${BACKEND_SERVER}/notifications?success=${status}&email=${email}`)
+    .then( res => res.json())
+    .then( res => console.log(res))
+  }
+}

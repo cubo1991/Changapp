@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const  transporter  = require('../config/mailer.js');
+const message = require('../config/messanges.js');
 
 const router = Router();
 
@@ -9,17 +10,11 @@ router.get('/', async (req, res, next) => {
 
   if(success){
   try{
-  
-      let mailInfo = await transporter.sendMail({
-        from: '"ChangApp" <lmarcanox00x@gmail.com>', // sender address
-        to: "lmarcano203@gmail.com", // list of receivers
-        subject: "Se ha realizado su contratación!", // Subject line
-        //text: "Hello world?", // plain text body
-        html: `<b>Estimado usuario</b>
-              <p>El pedido de la contratación del servicio "x" con la identificación "y" se ha realizado
-              exitosamente! Recuerde puntuar su servicio una vez finalizado.</p>`, // html body
-      });
-
+    if(success === "true"){
+      await transporter.sendMail(message.successMessage(email));
+    }else if(success === "false"){
+      await transporter.sendMail(message.failureMessage(email))
+    }
       return res.json("Envio de correo exitoso")
 
     }catch(err){

@@ -10,6 +10,7 @@ const login = require("./login");
 const userHandler = require("./userHandler");
 const createPreference = require("./preference");
 const users = require("./users");
+const notifications = require("./notifications.js");
 
 const router = Router();
 
@@ -27,5 +28,6 @@ router.use("/category", category);
 router.use("/location", location);
 router.use("/userHandler", userHandler);
 router.use("/create_preference", createPreference);
+router.use("/notifications", notifications);
 
 module.exports = router;

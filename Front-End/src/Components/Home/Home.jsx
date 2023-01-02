@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import style from "../Home/Home.module.css"
 
 
-import { getServices, searchingFalse, searchingServices } from '../../actions/index.js';
+import { getServices, searchingFalse, searchingServices, sendContractNotification } from '../../actions/index.js';
 
 // import { Servicios } from '../../Mockup/Servicios.js';
 import Index from '../Index/Index.jsx';
@@ -42,6 +42,27 @@ React.useEffect(() => {
   const index = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
+
+   //Envio de mailing de notificación
+   const location = useLocation()
+   //console.log(location, "LOCATION")
+   useEffect( () => {
+   
+   if(location.search.includes("success")){
+     let status = location.search.split("&")
+     .filter( (element) => element.includes("success"))
+     .join().split("=");
+     status = status[1];   //estado de la compra
+ 
+     let email = location.search.split("&")
+     .filter( (element) => element.includes("em"))
+     .join().split("=");
+     email = email[1];     //email del comprador
+     
+     dispatch(sendContractNotification(status,email))
+   }
+     }, [dispatch])
+    //
 
   useEffect(() => {
     dispatch(getServices());
