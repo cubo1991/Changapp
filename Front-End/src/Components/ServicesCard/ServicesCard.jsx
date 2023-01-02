@@ -21,29 +21,22 @@ export const ServicesCard = ({name, price, description, id, image}) => {
 
   return (
     <div >
-        
+        <Link to={'/services/' + id}>
         <div className={`card, ${s.general}`} style={{maxWidth:"25rem", margin:"1rem"}}>
         <div className="card-body " >
           <img src={image} alt="" />
           <div className={s.contenedor}>
-          <Link to={'/services/' + id}>
          <h2 className="card-title fs-4">{name}</h2>
-          </Link>
         </div>
         <div className={s.contenedor}>
-        <p className="card-text">${price}/hr</p>
+        <p className="card-text" style={{color:"white"}}>${price}/hr</p>
         </div>
-        
-        
        { cart.some(idCart) === false ?  <p className='btn btn-primary fs-2 align-self-end' onClick={onClickBtn}><BsFillCartFill/></p> : <p className='btn btn-primary fs-2 align-self-end' style={{background: "green", cursor: "default"}}><BsFillCartCheckFill/></p>
-
 
        }
         </div>
         </div>
-        
-        
-        
+        </Link>
         </div>
   )
 }
