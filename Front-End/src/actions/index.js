@@ -270,3 +270,11 @@ export function sendContractNotification(status, email) {
     .then( res => console.log(res))
   }
 }
+
+export function getAllUsers(){
+  return function(dispatch){
+    fetch(`${BACKEND_SERVER}/users`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_ALL_USERS", payload: res}))
+  }
+}

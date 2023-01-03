@@ -14,6 +14,7 @@ const initialState = {
   cart: [],
   location: [],
   loading: true,
+  users: {},
 userDB:{}
 };
 
@@ -146,6 +147,11 @@ const reducer = (state = initialState, action) => {
           return {
             ...state,
             userDB: action.payload
+          }
+        case 'GET_ALL_USERS':
+          return {
+            ...state,
+            users: action.payload
           }
     default:
       return state;

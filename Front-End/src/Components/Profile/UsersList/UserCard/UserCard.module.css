@@ -1,0 +1,9 @@
+
+.container{
+  margin: 1% auto;
+  width: 80%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
