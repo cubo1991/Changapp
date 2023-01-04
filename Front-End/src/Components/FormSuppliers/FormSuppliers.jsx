@@ -36,7 +36,7 @@ description:"",
       data.phoneNumber= Number(data.phoneNumber)
        
 
-       dispatch(postSupplier(data)) 
+       dispatch(postSupplier(data, formData)) 
     }
 // console.log(form)
 
