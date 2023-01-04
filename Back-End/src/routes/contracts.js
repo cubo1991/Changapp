@@ -3,7 +3,7 @@ const ContractController = require("../controllers/ContractController");
 
 const router = Router();
 
-router.get("/:id?", async (res, req, next) => {
+router.get("/:id?", async (req, res, next) => {
   //code
   const { id } = req.params;
   const { supplier, user, date } = req.query;
@@ -27,7 +27,7 @@ router.get("/:id?", async (res, req, next) => {
   }
 });
 
-router.post("/", async (res, req, next) => {
+router.post("/", async (req, res, next) => {
   const { date, SupplierServiceId, SupplierId, UserId } = req.body;
 
   if (!date || !SupplierServiceId || !SupplierId || !UserId)
@@ -49,7 +49,7 @@ router.post("/", async (res, req, next) => {
   }
 });
 
-router.put("/:id", async (res, req, next) => {
+router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
   const { date, SupplierServiceId, SupplierId, UserId } = req.body;
 
@@ -72,7 +72,7 @@ router.put("/:id", async (res, req, next) => {
   }
 });
 
-router.delete("/:id", async (res, req, next) => {
+router.delete("/:id", async (req, res, next) => {
   const { id } = req.params;
 
   if (!id) return res.status(400).send();
