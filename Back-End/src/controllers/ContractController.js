@@ -11,7 +11,7 @@ const {
 
 const findQuery = {
   include: [{model: Supplier}, {model: User} , {model: ServiceSupplier} , {model: Review} ],
-  order: ["-date"],
+  order: [["date", "DESC"]],
 };
 
 const add = async ({ date, UserId, SupplierServiceId, SupplierId }) => {
