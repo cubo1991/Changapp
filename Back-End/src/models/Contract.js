@@ -11,5 +11,9 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       default: NOW,
     },
+    status: {
+      type: DataTypes.STRING,
+      default: "CREADA",
+    },
   });
 };
