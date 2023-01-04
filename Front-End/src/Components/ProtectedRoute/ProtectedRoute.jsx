@@ -17,18 +17,19 @@ export const ProtectedRoute = ({ children }) => {
     <br />
     <br />
 
-    <div  role="alert">
+    <div role="alert">
       <p>Primero debes loguearte</p>
 
       <div>
-    <button style={{"background-color":"black", "border-radius":"50%"}}>
+        <button style={{ "background-color": "black", "border-radius": "80%", "width": "3em", "height":"3em" }}>
+          <div style={{"margin-left": "-1.15rem"}}>
+            <Login />
+          </div>
 
-      <Login/>
 
-    </button>
-  </div>
+        </button>
       </div>
-      <br />
+    </div>
     <br />
     <br />
     <br />
