@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
     logo: {
       type: DataTypes.TEXT,
       defaultValue: 'https://res.cloudinary.com/dx2ea2zze/image/upload/v1671883621/bg5qffuqhddslxp7hkdg.png'
+    },
+    isAuthorized: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {
