@@ -10,8 +10,8 @@ const {
 } = require("../db");
 
 const findQuery = {
-  include: [Supplier, User, ServiceSupplier, Review],
-  order: ["-date"],
+  include: [{model: Supplier}, {model: User} , {model: ServiceSupplier} , {model: Review} ],
+  order: [["date", "DESC"]],
 };
 
 const add = async ({ date, UserId, SupplierServiceId, SupplierId }) => {
