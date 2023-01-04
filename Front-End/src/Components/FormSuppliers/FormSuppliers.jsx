@@ -23,18 +23,18 @@ phoneNumber: "",
 adress: "",
 location: "",
 description:"",
-image:""
+
 }
     )
 
     const  onSubmit = (data) => {
-      
+      console.log(data)
       const imageForm = document.getElementById('images');
-      const formData = new FormData(imageForm);
-      data.image = (formData)
+      const formData = new FormData(imageForm);      
+      
       data.cuit= Number(data.cuit)
       data.phoneNumber= Number(data.phoneNumber)
-      console.log(data.cuit)   
+       
 
        dispatch(postSupplier(data)) 
     }
@@ -105,9 +105,7 @@ image:""
 
   <div className="col-12">
  <label for="inputDescription" className="form-label">Logo de la empresa</label>
-  <input className="form-control" id="formFileSm" type="file" name='image' {...register("image.png", {required:false, onChange: e =>{setForm({
-          ...form,
-          image : e.target.value})}})}></input>
+ <input className="form-control" id="formFileSm" type="file" name='image'/>
              </div>
 
    <div className="col-md-12">
