@@ -1,10 +1,64 @@
 .container{
     margin-top: 5em;
+    border: 1px solid red;
 }
 
 .container img{
     width: 10em;
     height: 10em;
+    border-radius: 15px;
+}
+
+.content{
+    width: 90%;
+    display: flex;
+    border: 1px solid blue;
+    border-radius: 15px;
+    justify-content: flex-end;
+    margin: 1% auto;
+}
+
+.rolTitle{
+    padding: 1%;
+    font-weight: bold;
+}
+
+.rol{
+    font-weight: bolder;
+    font-size:xx-large;
+}
+
+.aside{
+    background-color: lightblue;
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+}
+
+.categories{
+    border: 1px solid green;
+    width: 80%;
+}
+
+.navBar{
+    margin: auto;
+    background-color: grey;
+    width: 90%;
+}
+
+.navBar ul{
+    display: flex;
+}
+
+.navBar ul li{
+    padding: 0 2%;
+    list-style: none;
+    cursor: pointer;
+}
+
+.navBar ul li:hover{
+    background-color: black;
+    color: white;
 }
 
 .button{
@@ -20,19 +74,19 @@
     
     margin-left: 14em;
     margin-top: -10rem;
-
+    
     transition: all 0.5s;
     cursor: pointer;
 }
 
-.button:hover{
-
-}
+/* .button:hover{
+    
+} */
 
 .container1 {
     width: 20em;
     height: 10em;
-
+    
     margin-left: 22em;
     margin-bottom: 0;
 }

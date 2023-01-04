@@ -2,7 +2,7 @@ import React from 'react'
 //import { useForm } from 'react-hook-form'
 import s from './FormServices.module.css'
 import { useDispatch } from 'react-redux'
-import { getCategories, getSuppliers } from '../../actions'
+import { getCategories, getSuppliers, postServices } from '../../actions'
 import { useState } from 'react';
 import  {useSelector} from 'react-redux';
 import { useEffect } from 'react';
@@ -35,7 +35,7 @@ const inicialState = {
       const imageForm = document.getElementById('images');
       const formData = new FormData(imageForm);
 
-       //dispatch(postServices(formData)) ;
+       dispatch(postServices(formData, inputValues)) ;
 
        setInputValues(inicialState);
     }

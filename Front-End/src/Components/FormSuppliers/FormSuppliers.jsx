@@ -26,8 +26,10 @@ description:"",      }
     )
 
     const  onSubmit = (data) => {
-      
-       dispatch(postSupplier(data)) 
+      const imageForm = document.getElementById('images');
+      const formData = new FormData(imageForm);
+
+       dispatch(postSupplier(formData)) 
     }
 console.log(form)
 
@@ -36,7 +38,7 @@ console.log(form)
     
       <div className='card' style={{width:"40rem", left:"22rem", top:"2rem"}}>
      
-     <form onSubmit={handleSubmit(onSubmit)} className="row g-3">
+     <form onSubmit={handleSubmit(onSubmit)} className="row g-3" enctype="multipart/form-data" id='images'>
 
       <div className="col-md-6">
         <label for="inputName" className="form-label">Nombre de la empresa</label>
@@ -93,6 +95,12 @@ console.log(form)
           description : e.target.value})}})}></input>
     {errors.description && <span className={s.error}>Este campo es obligatorio</span>}
   </div>
+
+  <div className="col-12">
+                <label for="inputDescription" className="form-label">Logo de la empresa</label>
+                <input className="form-control" id="formFileSm" type="file" name='image'/>
+             </div>
+
    <div className="col-md-12">
     <button type="submit" className="btn btn-primary">Enviar</button>
   </div>

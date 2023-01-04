@@ -270,3 +270,23 @@ export function sendContractNotification(status, email) {
     .then( res => console.log(res))
   }
 }
+
+export function getAllUsers(){
+  return function(dispatch){
+    fetch(`${BACKEND_SERVER}/users`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_ALL_USERS", payload: res}))
+  }
+}
+
+export const postServices = (imageForm, input) => {
+  return function () {
+    axios
+      .post(BACKEND_SERVER + "/services", {imageForm, input})
+      .catch((error) => {
+        console.log(error);
+        alert("Something went wrong...");
+      });
+  };
+};
+
