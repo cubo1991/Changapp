@@ -33,17 +33,17 @@ router.post(
   "/",
   uploadMulter("./public/Images").single("image"), // agregamos el middleware para procesamiento de archivos
   async (req, res, next) => {
-    const { data } =
+    const { name, cuit, description, location, adress, phoneNumber, eMail } =
       req.body;
-
+console.log('body',req.body)
     if (
-      !data.name ||
-      !data.cuit ||
-      !data.description ||
-      !data.location ||
-      !data.adress ||
-      !data.phoneNumber ||
-      !data.eMail
+      !name ||
+      !cuit ||
+      !description ||
+      !location ||
+      !adress ||
+      !phoneNumber ||
+      !eMail
     )
       return res
         .status(400)
@@ -51,13 +51,13 @@ router.post(
 
     // definimos el nuevo objeto a crear
     const newSupplier = {
-      name: data.name,
-      cuit: data.cuit,
-      description: data.description,
-      location: data.location,
-      adress: data.adress,
-      phoneNumber: data.phoneNumber,
-      eMail: data.eMail
+      name,
+      cuit,
+      description,
+      location,
+      adress,
+      phoneNumber,
+      eMail
     };
 
     // si se cargo un archivo, lo procesamos

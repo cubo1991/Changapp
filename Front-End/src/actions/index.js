@@ -212,11 +212,11 @@ export const showCart = (payload) => {
   };
 };
 
-export const postSupplier = (data, formData) => {
+export const postSupplier = (data) => {
 
   return function () {
     axios
-      .post(BACKEND_SERVER + "/suppliers", {data, formData})
+      .post(BACKEND_SERVER + "/suppliers", data)
       .catch((error) => {
         console.log(error);
         alert("Something went wrong...");

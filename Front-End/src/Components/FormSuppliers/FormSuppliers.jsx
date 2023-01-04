@@ -29,14 +29,14 @@ description:"",
 
     const  onSubmit = (data) => {
       console.log(data)
-      const imageForm = document.getElementById('images');
+      const imageForm = document.getElementById('supplier');
       const formData = new FormData(imageForm);      
       
       data.cuit= Number(data.cuit)
       data.phoneNumber= Number(data.phoneNumber)
        
 
-       dispatch(postSupplier(data, formData)) 
+       dispatch(postSupplier(formData)) 
     }
 // console.log(form)
 
@@ -45,7 +45,7 @@ description:"",
     
       <div className='card' style={{width:"40rem", left:"22rem", top:"2rem"}}>
      
-     <form onSubmit={handleSubmit(onSubmit)} className="row g-3" enctype="multipart/form-data" id='images'>
+     <form onSubmit={handleSubmit(onSubmit)} className="row g-3" enctype="multipart/form-data" id='supplier'>
 
       <div className="col-md-6">
         <label for="inputName" className="form-label">Nombre de la empresa</label>
@@ -105,7 +105,7 @@ description:"",
 
   <div className="col-12">
  <label for="inputDescription" className="form-label">Logo de la empresa</label>
- <input className="form-control" id="formFileSm" type="file" name='image'/>
+ <input class="form-control form-control-sm" id="formFileSm" type="file" name='image'/>
              </div>
 
    <div className="col-md-12">
