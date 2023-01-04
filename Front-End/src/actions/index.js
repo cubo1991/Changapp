@@ -213,6 +213,7 @@ export const showCart = (payload) => {
 };
 
 export const postSupplier = (payload) => {
+ console.log(payload)
   return function () {
     axios
       .post(BACKEND_SERVER + "/suppliers", payload /*{

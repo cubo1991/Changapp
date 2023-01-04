@@ -22,16 +22,23 @@ eMail: "",
 phoneNumber: "",
 adress: "",
 location: "",
-description:"",      }
+description:"",
+image:""
+}
     )
 
     const  onSubmit = (data) => {
+      
       const imageForm = document.getElementById('images');
       const formData = new FormData(imageForm);
+      data.image = (formData)
+      data.cuit= Number(data.cuit)
+      data.phoneNumber= Number(data.phoneNumber)
+      console.log(data.cuit)   
 
-       dispatch(postSupplier(formData)) 
+       dispatch(postSupplier(data)) 
     }
-console.log(form)
+// console.log(form)
 
    return (
     <div className={s.container}><h1>Inscribí a tu empresa</h1>
@@ -50,9 +57,9 @@ console.log(form)
       
       <div className="col-md-6">
         <label for="inputCuit" className="form-label">CUIT</label>
-        <input type="text" className="form-control" id="inputCuit" placeholder="xx-xxxxxxxx-x" {...register("cuit", {required:true, onChange: e =>{setForm({
+        <input type="text" className="form-control" id="inputCuit" placeholder="xxxxxxxxxxx" {...register("cuit", {required:true, onChange: e =>{setForm({
           ...form,
-          cuit : e.target.value})}, minLength: 12, maxLength: 13, pattern: /([0-9]+(-[0-9]+)+)/i})}></input>
+          cuit : e.target.value})}, minLength: 10, maxLength: 11, pattern: /^\d+$/i})}></input>
         {(errors.cuit?.type === 'required'|| form.cuit.length < 1) && <span className={s.error}>Este campo es obligatorio</span>}
         {errors.cuit?.type === 'pattern' && <span className={s.error}>Solo se permiten números</span>}
         {(errors.cuit?.type === 'minLength' || (form.cuit.length < 10 && form.cuit.length > 0)) && <span className={s.error}>El mínimo es de 10 caracteres</span>}
@@ -67,7 +74,7 @@ console.log(form)
   </div>
   <div className="col-md-6">
     <label for="inputPhone" className="form-label">Teléfono</label>
-    <input type="number" className="form-control" id="inputPhone" placeholder="+54xxxxxxxxxx" {...register("phoneNumber", {required:true, onChange: e =>{setForm({
+    <input type="number" className="form-control" id="inputPhone" placeholder="Tu teléfono" {...register("phoneNumber", {required:true, onChange: e =>{setForm({
           ...form,
           phoneNumber : e.target.value})}, pattern: /^[0-9]\d*(\.\d+)?$/})}></input>
     {(errors.phoneNumber?.type === 'required' || form.phoneNumber.length < 1 )&& <span className={s.error}>Este campo es obligatorio</span>}
@@ -97,8 +104,10 @@ console.log(form)
   </div>
 
   <div className="col-12">
-                <label for="inputDescription" className="form-label">Logo de la empresa</label>
-                <input className="form-control" id="formFileSm" type="file" name='image'/>
+ <label for="inputDescription" className="form-label">Logo de la empresa</label>
+  <input className="form-control" id="formFileSm" type="file" name='image' {...register("image.png", {required:false, onChange: e =>{setForm({
+          ...form,
+          image : e.target.value})}})}></input>
              </div>
 
    <div className="col-md-12">
