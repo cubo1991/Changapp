@@ -4,10 +4,13 @@ import { addCart } from "../../actions";
 import s from "./ServicesCard.module.css";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillCartCheckFill } from "react-icons/bs";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 export const ServicesCard = ({ name, price, description, id, image }) => {
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart);
+  const { user, isAuthenticated } = useAuth0();
   const onClickBtn = () => {
     let verifier = (e) => e.id === id;
     if (cart.some(verifier)) return;
@@ -35,7 +38,9 @@ export const ServicesCard = ({ name, price, description, id, image }) => {
               </p>
             </div>
           </Link>
-          {cart.some(idCart) === false ? (
+          {
+            isAuthenticated && user.user_role !== "Supplier"? 
+          cart.some(idCart) === false ? (
             <p
               className="btn btn-primary fs-2 align-self-end"
               onClick={onClickBtn}
@@ -49,7 +54,9 @@ export const ServicesCard = ({ name, price, description, id, image }) => {
             >
               <BsFillCartCheckFill />
             </p>
-          )}
+          )
+        : null
+        }
         </div>
       </div>
     </div>
