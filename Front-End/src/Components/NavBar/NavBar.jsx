@@ -47,11 +47,11 @@ export default function NavBar() {
                   Contacto
                 </a>
               </li>
-              <li>
+              {userRole === "Supplier"? <li>
                 <a className="dropdown-item" href="/suppliersContact">
                   Publicá tu servicio
                 </a>
-              </li>
+              </li>: ""}   
             </ul>
           </div>
           <NavLink

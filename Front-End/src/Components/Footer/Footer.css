@@ -1,7 +1,7 @@
 footer {
   background: #222;
   color: #aaa;
-  padding-top: .625rem;
+  padding-top: 0.625rem;
 }
 
 footer a {
@@ -13,29 +13,31 @@ footer a:hover {
 }
 
 footer h3 {
- color: #0894d1;
-  letter-spacing: .0625rem;
+  color: #0894d1;
+  letter-spacing: 0.0625rem;
   margin: 1.875rem 0 1.25rem;
 }
 
 footer .three-column {
- overflow: hidden;
+  overflow: hidden;
 }
 
-footer .three-column li{
- width: 33.3333%;
+footer .three-column li {
+  width: 33.3333%;
   float: left;
-  padding: .3125rem 0;
+  padding: 0.3125rem 0;
 }
 
 footer .socila-list {
   overflow: hidden;
-  margin: 1.25rem 0 .625rem;
+  margin: 1.25rem 0 0.625rem;
+  display: flex;
+  justify-content: center;
 }
 
 footer .socila-list li {
   float: left;
-  margin-right: .1875rem;
+  margin-right: 0.1875rem;
   opacity: 0.7;
   overflow: hidden;
   border-radius: 50%;
@@ -48,17 +50,19 @@ footer .socila-list li:hover {
 
 footer .img-thumbnail {
   background: rgba(0, 0, 0, 0.2);
-  border: .0625rem solid #444;
-  margin-bottom: .3125rem;
+  border: 0.0625rem solid #444;
+  margin-bottom: 0.3125rem;
 }
 
 footer .copyright {
-  padding: .9375rem 0;
+  padding: 0.9375rem 0;
   background: #333;
   margin-top: 1.25rem;
-  font-size: .9375rem;
+  font-size: 0.9375rem;
 }
 
 footer .copyright span {
   color: #0894d1;
 }
+
+

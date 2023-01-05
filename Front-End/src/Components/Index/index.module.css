@@ -1,34 +1,49 @@
-
-.pagination{
+.pagination {
   display: flex;
   margin: auto;
   padding: 2rem;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
+  position: relative;
+  right: 1.7%;
 }
-.pagination li{
+.pagination li {
   /* background-color: black; */
   margin-bottom: -100px;
 }
 
-.activePage{
+.activePage {
   background-color: rgb(55, 54, 54);
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
 }
 
-.focusPage{
+.focusPage {
   cursor: pointer;
 }
 
-.focusPage:hover{
+.focusPage:hover {
   background-color: rgb(182, 175, 255);
   color: black;
 }
 
-.buttons{
+.buttons {
   margin: 0 5%;
+}
+
+@media (max-width: 560px) {
+  .pagination {
+    position: relative;
+    right: 6.5%;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 900px) {
+  .pagination {
+    position: relative;
+    right: 4.5%;
+  }
 }
 
 /* .item{
