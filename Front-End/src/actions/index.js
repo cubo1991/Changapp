@@ -212,19 +212,11 @@ export const showCart = (payload) => {
   };
 };
 
-export const postSupplier = (payload) => {
+export const postSupplier = (data) => {
+
   return function () {
     axios
-      .post(BACKEND_SERVER + "/suppliers", payload /*{
-        adress: payload.address,
-        cuit: payload.cuit,
-        description: payload.description,
-        eMail: payload.email,
-        location: payload.location,
-        name: payload.name,
-        phoneNumber: payload.phone,
-        formData: payload.formData
-      }*/)
+      .post(BACKEND_SERVER + "/suppliers", data)
       .catch((error) => {
         console.log(error);
         alert("Something went wrong...");
@@ -278,3 +270,15 @@ export function getAllUsers(){
     .then( res => dispatch({type: "GET_ALL_USERS", payload: res}))
   }
 }
+
+export const postServices = (imageForm, input) => {
+  return function () {
+    axios
+      .post(BACKEND_SERVER + "/services", {imageForm, input})
+      .catch((error) => {
+        console.log(error);
+        alert("Something went wrong...");
+      });
+  };
+};
+

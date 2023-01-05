@@ -9,6 +9,7 @@ let transporter = nodemailer.createTransport({
     user: SMTP_USER, // generated ethereal user
     pass: SMTP_PASS, // generated ethereal password
   },
+  tls : { rejectUnauthorized: false }
 });
 
 transporter.verify().then( () => {              //Solo se esta utilizando el método verify para notificar que todo esta funcionando correctamente

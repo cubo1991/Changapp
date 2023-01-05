@@ -67,7 +67,11 @@ function App() {
         <Route path="/suppliers/:id" element={<SuppliersDetail />} />
         <Route path="/suppliersContact" element={<FormSuppliers />} />
         <Route path="/services/:d" element={<ServicesDetail />} />
-        <Route path="/buy" element={<ShopForm />} />
+        <Route path="/buy" element={
+          <ProtectedRoute>
+            <ShopForm />
+          </ProtectedRoute>
+        } />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
       <Footer />

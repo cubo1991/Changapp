@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar.jsx";
 import Login from "../Login/Login";
 import Style from "../NavBar/Navbar.module.css";
 import { useSelector } from "react-redux";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
+import NavBarSupplier from "./NavBarSupplier.jsx";
+
+
 
 export default function NavBar() {
-  let cart = useSelector((state) => state.cart);
+  let cart = useSelector((state) => state.cart)
+  const { user, isLoading, isAuthenticated } = useAuth0();
+  const [userRole, setUserRole] = useState("User");
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated && user.user_role) setUserRole(user.user_role);
+  }, [isLoading, isAuthenticated, user]);
+
 
   return (
     <main className={Style.main}>
@@ -62,16 +74,13 @@ export default function NavBar() {
               <span>Contacto</span>
             </div>
           </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? Style.active : Style.inactive
+
+            {
+               userRole === "Supplier"?
+              <NavBarSupplier/>
+              : ""
             }
-            to="/suppliersContact"
-          >
-            <div className={`${Style.link} nav-link`}>
-              <span>Publicá tu servicio</span>
-            </div>
-          </NavLink>
+
           <div className={`${Style.nav_right} d-flex justify-content-end col`}>
             <Searchbar />
             <Login></Login>
@@ -92,18 +101,22 @@ export default function NavBar() {
                 >
                   <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                 </svg>
+              
+            
+            {
+            cart.length > 0 
+            ?
+            <p className="btn btn-danger" >{cart.length}</p>
+            :
+            ""
 
-                {cart.length > 0 ? (
-                  <p className="btn btn-danger">{cart.length}</p>
-                ) : (
-                  ""
-                )}
-              </div>
+            }
+            </div>
             </NavLink>
           </div>
         </div>
       </nav>
-      <section>
+      <section >
         <Outlet />
       </section>
     </main>
