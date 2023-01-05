@@ -18,26 +18,26 @@ export const Suppliers = () => {
   let suppliers = useSelector((state) => state.suppliers);
   let [currentPage, setCurrentPage] = useState(1);
   const { user } = useAuth0();
-  
-  let suppliersAuth = suppliers.filter( element => element.isAuthorized) //Suppliers autorizados
-  
+
+  let suppliersAuth = suppliers.filter(element => element.isAuthorized) //Suppliers autorizados
+
   let suppliersList; // probablemente habra que pasarlo a un local state.
 
-  if(user && (user.user_role === "Admin" || user.user_role === "SuperAdmin")){
+  if (user && (user.user_role === "Admin" || user.user_role === "SuperAdmin")) {
     suppliersList = suppliers;
-  }else {
+  } else {
     suppliersList = suppliersAuth
   }
-  
+
   //Variables de paginacion
   const suppliersPerPage = 9;
   let indexOfLastSupplier = currentPage * suppliersPerPage;
   let indexofFirstSupplier = indexOfLastSupplier - suppliersPerPage;
-  const currentSuppliers = suppliersList.slice(   
+  const currentSuppliers = suppliersList.slice(
     indexofFirstSupplier,
     indexOfLastSupplier
-    );
-    const searching = useSelector((state) => state.searching);
+  );
+  const searching = useSelector((state) => state.searching);
   const { pathname } = useLocation();
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,32 +58,32 @@ export const Suppliers = () => {
 
 
   const suppliersMap = currentSuppliers.map((supplier) => {
-    
-      return (
-        <SuppliersCard
-          name={supplier.name}
-          cuit={supplier.cuit}
-          description={supplier.description}
-          id={supplier.id}
-          details={supplier.Detail}
-          logo={supplier.logo}
-          rating = { supplier.avgRating }
-        />
-      );
+
+    return !loading ? (
+      <SuppliersCard
+        name={supplier.name}
+        cuit={supplier.cuit}
+        description={supplier.description}
+        id={supplier.id}
+        details={supplier.Detail}
+        logo={supplier.logo}
+        rating={supplier.avgRating}
+      />
+    ) :
+      <Loading />
+
 
   });
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return !loading ? (
     <div className={style.general}>
-      
+
       {suppliersMap[0] ? <Index
         servicesPerPage={suppliersPerPage}
         allServices={suppliersList.length}
         index={index}
         currentPage={currentPage}
-      /> : "Agregar un loading aca"}   {/* ACOMODAR ESTE MENSAJE */}
+      /> : <Loading />}   {/* ACOMODAR ESTE MENSAJE */}
 
       {searching ? (
         <button
@@ -99,6 +99,10 @@ export const Suppliers = () => {
       ) : null}
 
       <div className={style.container}>{suppliersMap}</div>
+
     </div>
-  );
+
+  ) :
+    <Loading />
+
 };

@@ -39,8 +39,8 @@ const reducer = (state = initialState, action) => {
     case GET_SUPPLIERS:
       return {
         ...state,
-        suppliers: action.payload
-
+        suppliers: action.payload,
+        loading: false,
       }
     case GET_DETAILS:
       return {
