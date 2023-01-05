@@ -1,6 +1,6 @@
 import s from './UserCard.module.css';
 
-export default function UserCard({id, userName, age, name, nickname, given_name, family_name, picture, email, email_verified, UserRolName, }){
+export default function UserCard({id, userName, UserRolName, picture}){
 
   return (
     <div className={s.container}>

@@ -1,9 +1,11 @@
 
 .container{
+  padding: 1%;
   margin: 1% auto;
   width: 80%;
-  border: 1px solid black;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: white;
+  border-radius: 15px;
 }
