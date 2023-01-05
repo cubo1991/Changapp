@@ -20,6 +20,8 @@ router.get("/:id?", async (req, res, next) => {
     if (!dbContracts)
       // no se encontraron contracts
       return res.status(404).json({ error: "No hubo resultados" });
+
+    return res.status(200).json(dbContracts);
   } catch (error) {
     console.error("GET /contracts ContractController error");
 

@@ -10,7 +10,7 @@ const {
 } = require("../db");
 
 const findQuery = {
-  include: [{model: Supplier}, {model: User} , {model: ServiceSupplier} , {model: Review} ],
+  include: [Supplier, User, Review],
   order: [["date", "DESC"]],
 };
 
