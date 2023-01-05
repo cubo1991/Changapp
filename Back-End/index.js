@@ -43,9 +43,9 @@ servCat = {
 };
 
 const roles = {
-  Nadia: "Admin",
-  Kevin: "Supplier",
-  Sandra: "SuperAdmin",
+  Nadia: 3,
+  Kevin: 2,
+  Sandra: 4,
 };
 
 let suppliersIDs = [];
@@ -63,7 +63,7 @@ conn
     const dbUsers = await User.bulkCreate(users);
 
     for (let dbUser of dbUsers) {
-      await dbUser.setUserRol(roles[dbUser.userName] ?? "User");
+      await dbUser.setUserRol(roles[dbUser.userName] ?? 1);
       await dbUser.setDetail(1);
     }
 
