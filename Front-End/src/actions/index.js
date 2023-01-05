@@ -265,7 +265,7 @@ export function sendContractNotification(status, email) {
 
 export function getAllUsers(){
   return function(dispatch){
-    fetch(`${BACKEND_SERVER}/users`)
+    fetch(`${BACKEND_SERVER}/userHandler`)
     .then( res => res.json())
     .then( res => dispatch({type: "GET_ALL_USERS", payload: res}))
   }
@@ -282,3 +282,18 @@ export const postServices = (imageForm, input) => {
   };
 };
 
+export function getContracts () {
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/contracts`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_ALL_CONTRACTS", payload: res}));
+  }
+}
+
+export function getUserDetails (id) {
+  return function (dispatch) {
+    fetch(`${BACKEND_SERVER}/userHandler?id=${id}`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_USER_BY_ID", payload: res}))
+  }
+}

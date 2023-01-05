@@ -21,6 +21,7 @@ import { ServicesDetail } from "./Components/ServicesDetail/ServicesDetail";
 import { FormSuppliers } from "./Components/FormSuppliers/FormSuppliers";
 import { Footer } from "./Components/Footer/Footer";
 import { ProtectedRoute } from "./Components/ProtectedRoute/ProtectedRoute";
+import UserDetails from "./Components/Profile/UsersList/UserDetails/UserDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +68,11 @@ function App() {
         <Route path="/suppliers/:id" element={<SuppliersDetail />} />
         <Route path="/suppliersContact" element={<FormSuppliers />} />
         <Route path="/services/:d" element={<ServicesDetail />} />
+        <Route path="/profile/user" element={
+          <ProtectedRoute>
+            <UserDetails/>
+          </ProtectedRoute>
+        }/>
         <Route path="/buy" element={
           <ProtectedRoute>
             <ShopForm />

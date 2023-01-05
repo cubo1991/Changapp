@@ -3,11 +3,13 @@ import { useDispatch } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import s from "./Profile.module.css";
-import { updateImageProfile } from "../../actions";
+import { getContracts, updateImageProfile } from "../../actions";
 import { useEffect } from "react";
 import axios from "axios";
 import SuppliersList from "./SuppliersList/SuppliersList";
 import UsersList from "./UsersList/UserList";
+import ContractList from "./ContractList/ContractList";
+import ServicesList from "./ServicesList/ServicesList";
 
 
 export default function Profile() {
@@ -79,6 +81,10 @@ console.log(user)
   console.log(flag)
 };*/
 
+useEffect( () => {
+  dispatch(getContracts());
+},[dispatch])
+
 const onSubmit = (e) => {
   e.preventDefault();
   const imageForm = document.getElementById('images');
@@ -88,25 +94,22 @@ const onSubmit = (e) => {
 }
 
 const tagHandler = (e) => {
- // console.log(e.target.textContent)
     setTag( () => {
       return e.target.textContent
     })
 }
 
-console.log(tag)
-
   return (
     <div className={s.container}>
-      *NOTA: Solo es un esquema de admin. Asi no se mostraran los suppliers, sino de manera más compacta para facilitar el manejo y la edicion/aprobación desde este panel. Solo lo presento asi para guiarme luego al editarlo.
-      <br/>
-      **NOTA: Se esta mostrando el panel de admin en un user porque para poder hacer un admin necesitamos que se pueda "logear" a traves de auth0 con un usuario guardado en la db, de manera que se cree el admin con la db
-      <br/>
-      ***NOTA: Si ven muchos border de diferentes colores en los div es porque los uso para identificar los div y aguiarme mientras maqueto
+      
       <nav className={s.navBar}>
         <ul>
           <li value="Suppliers" onClick={ (e) => tagHandler(e)}>Proveedores</li>
+          {user.user_role === "Admin" ||
+          user.user_role === "SuperAdmin" ?
           <li value="Users" onClick={ (e) => tagHandler(e)}>Usuarios</li>
+          : null}
+          <li value="Services" onClick= { (e) => tagHandler(e)}>Servicios</li>
           <li value="Orders" onClick={ (e) => tagHandler(e)}>Ordenes de compra</li>
         </ul>
       </nav>
@@ -138,8 +141,10 @@ console.log(tag)
 
         <div className={s.categories}>
           {tag === "Proveedores" ? <SuppliersList/> : null}
+          {tag === "Servicios" ? <ServicesList/> : null}
           {tag === "Usuarios" ? <UsersList/> : null}
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, eaque quo dolore excepturi laborum numquam quos facere expedita accusantium iusto dicta a nemo sequi repellendus dolor ipsum asperiores commodi aut.
+          {tag === "Ordenes de compra" ? <ContractList/> : null}
+          
         </div>
       
         <div className={s.aside}>

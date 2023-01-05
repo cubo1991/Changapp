@@ -14,7 +14,9 @@ const initialState = {
   cart: [],
   location: [],
   loading: true,
-  users: {},
+  users: [],
+  contracts: [],
+  userDetails: [],
 userDB:{}
 };
 
@@ -152,6 +154,16 @@ const reducer = (state = initialState, action) => {
           return {
             ...state,
             users: action.payload
+          }
+        case 'GET_ALL_CONTRACTS':
+          return {
+            ...state,
+            contracts: action.payload
+          }
+        case 'GET_USER_BY_ID':
+          return {
+            ...state,
+            userDetails: action.payload
           }
     default:
       return state;
