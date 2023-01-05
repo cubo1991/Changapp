@@ -21,7 +21,7 @@ export const Suppliers = () => {
   
   let suppliersAuth = suppliers.filter( element => element.isAuthorized) //Suppliers autorizados
   
-  let suppliersList; // probablemente habra que pasarlo a un local state. Probar primero
+  let suppliersList; // probablemente habra que pasarlo a un local state.
 
   if(user && (user.user_role === "Admin" || user.user_role === "SuperAdmin")){
     suppliersList = suppliers;
@@ -83,7 +83,7 @@ export const Suppliers = () => {
         allServices={suppliersList.length}
         index={index}
         currentPage={currentPage}
-      /> : "No se hay proveedores disponibles"}   {/* ACOMODAR ESTE MENSAJE */}
+      /> : "Agregar un loading aca"}   {/* ACOMODAR ESTE MENSAJE */}
 
       {searching ? (
         <button
