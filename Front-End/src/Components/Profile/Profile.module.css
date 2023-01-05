@@ -44,9 +44,12 @@
     margin: auto;
     background-color: grey;
     width: 90%;
+    height: fit-content;
 }
 
 .navBar ul{
+    padding: 1%;
+    height: 100%;
     display: flex;
 }
 
@@ -54,6 +57,7 @@
     padding: 0 2%;
     list-style: none;
     cursor: pointer;
+    font-weight: bolder;
 }
 
 .navBar ul li:hover{

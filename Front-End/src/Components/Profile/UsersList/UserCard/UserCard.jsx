@@ -9,7 +9,7 @@ export default function UserCard({id, userName, UserRolName, picture}){
         <b>userName: </b><span>{userName}</span> <br/>
         <b>Rol: </b><span>{UserRolName}</span>  <br/>
       </div>
-      <img src={picture} alt="img" />
+      <img src={picture} alt="user" />
       {/* Esto va para el detalle del user */}
       {/* <b>Edad: </b><span>{age}</span>
       <b>Nombre: </b><span>{name}</span>

@@ -52,7 +52,7 @@ export default function UsersList () {
           return <Link to={`/profile/user?id=${element.id}`}><UserCard
           id={element.id}
           userName={element.userName} 
-          UserRolName={element.UserRolName}
+          UserRolName={element.UserRol.name}
           picture={element.picture}/></Link>
         }) : null}
     </div>

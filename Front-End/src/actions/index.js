@@ -297,3 +297,29 @@ export function getUserDetails (id) {
     .then( res => dispatch({type: "GET_USER_BY_ID", payload: res}))
   }
 }
+
+export function updateUser(data){
+  return function (){
+    fetch(`${BACKEND_SERVER}/userHandler`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PUT",
+      body: JSON.stringify(data)
+    })
+  }
+}
+
+export function deleteUser(data){
+  return function (){
+    fetch(`${BACKEND_SERVER}/userHandler`,{
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE",
+      body: JSON.stringify(data)
+    })
+  }
+}

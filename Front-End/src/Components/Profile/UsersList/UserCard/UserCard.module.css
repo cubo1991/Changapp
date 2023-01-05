@@ -8,4 +8,11 @@
   align-items: center;
   background-color: white;
   border-radius: 15px;
+  color: black;
+}
+
+.container:hover{
+  background-color: gray;
+  color: white;
+  outline: 1px solid white;
 }
