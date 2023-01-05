@@ -2,11 +2,14 @@ import React from "react";
 import style from "./ServiceDetailCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../../actions";
+import { useNavigate } from "react-router-dom";
 
 export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id }) => {
     
   let dispatch = useDispatch()
   let cart = useSelector((state) => state.cart)
+
+  const navigate = useNavigate();
 
     const onClickBtn =() => {
      let verifier =(e) => e.id === id
@@ -16,6 +19,8 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
 
   return (
     <div className={style.container}>
+
+      <button onClick={() => navigate(-1)}>Regresar</button>
 
       <div className={style.container1}>
       <h2 className={style.name}>{name}</h2>
