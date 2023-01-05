@@ -25,3 +25,9 @@
   color: white;
 }
 
+@media (max-width: 955px){
+  .btn:hover .search_hover{
+    width: 110px
+  }
+}
+

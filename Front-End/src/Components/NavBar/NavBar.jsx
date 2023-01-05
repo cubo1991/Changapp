@@ -1,25 +1,46 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar.jsx";
-import Login from "../Login/Login"
+import Login from "../Login/Login";
 import Style from "../NavBar/Navbar.module.css";
 import { useSelector } from "react-redux";
 
-
-
 export default function NavBar() {
-let cart = useSelector((state) => state.cart)
-
+  let cart = useSelector((state) => state.cart);
 
   return (
-
     <main className={Style.main}>
-      <nav  className={`${Style.container}`}>
+      <nav className={`${Style.container}`}>
         <div className="nav">
           <div className={`${Style.logo}`}>
             <NavLink to="/">
               <button className={`${Style.logo}`}></button>
             </NavLink>
+          </div>
+          <div className={`dropdown ${Style.btnHiden}`}>
+            <button
+              className="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            ></button>
+            <ul className="dropdown-menu">
+              <li>
+                <a className="dropdown-item" href="/suppliers">
+                  Cartilla de proveedores
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="/contact">
+                  Contacto
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="/suppliersContact">
+                  Publicá tu servicio
+                </a>
+              </li>
+            </ul>
           </div>
           <NavLink
             className={({ isActive }) =>
@@ -53,7 +74,7 @@ let cart = useSelector((state) => state.cart)
           </NavLink>
           <div className={`${Style.nav_right} d-flex justify-content-end col`}>
             <Searchbar />
-            <Login></Login>  
+            <Login></Login>
 
             <NavLink
               to="/cart"
@@ -71,23 +92,19 @@ let cart = useSelector((state) => state.cart)
                 >
                   <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                 </svg>
-              
-            
-            {
-            cart.length > 0 
-            ?
-            <p className="btn btn-danger">{cart.length}</p>
-            :
-            ""
 
-            }
-            </div>
+                {cart.length > 0 ? (
+                  <p className="btn btn-danger">{cart.length}</p>
+                ) : (
+                  ""
+                )}
+              </div>
             </NavLink>
           </div>
         </div>
-      </nav>  
-      <section >
-      <Outlet />
+      </nav>
+      <section>
+        <Outlet />
       </section>
     </main>
   );

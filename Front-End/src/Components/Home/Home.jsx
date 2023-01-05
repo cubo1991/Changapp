@@ -61,6 +61,7 @@ React.useEffect(() => {
      
      dispatch(sendContractNotification(status,email))
    }
+   // eslint-disable-next-line react-hooks/exhaustive-deps
      }, [dispatch])
     //
 
@@ -126,7 +127,10 @@ React.useEffect(() => {
   </button>
 </div>
         <div className={style.filter}>
-        <NavFilters index={index}></NavFilters> <br />
+          <div className={style.navTop}> 
+          <span className={style.countServices}>Se encontraron {allServices.length} Servicios</span>
+        <NavFilters index={index}></NavFilters>
+        </div>
             {searching ?
               <button class="btn btn-secondary" onClick={() => {    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
                 dispatch(getServices())
