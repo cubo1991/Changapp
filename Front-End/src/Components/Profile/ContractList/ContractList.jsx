@@ -30,7 +30,7 @@ export default function ContractList () {
   if(user.user_role === "Admin" || user.user_role === "SuperAdmin"){
     myContracts = allContracts;
   }else{
-    myContracts = allContracts.filter( contract => contract.User.id === user.id)
+    myContracts = allContracts.filter( contract => contract.User.id === parseInt(user.id));
   }
 
   //PAginacion
