@@ -1,0 +1,38 @@
+
+.container{
+  margin: 1%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  background-color: white;
+  margin: 3% auto 1%;
+  padding: 1%;
+  width: fit-content;
+  border-radius: 15px;
+}
+
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 3%;
+  justify-content:center;
+}
+
+.data{
+  margin-top: 3%;
+}
+
+.item{
+  padding-right: 5%;
+}
+
+.catInput{
+  width: 30%;
+}
+
+.addButton{
+  margin-left: 1%;
+}

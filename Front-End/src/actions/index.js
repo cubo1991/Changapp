@@ -323,3 +323,16 @@ export function deleteUser(data){
     })
   }
 }
+
+export function addCategory(data){
+  return function(){
+    fetch(`${BACKEND_SERVER}/category`,{
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+  }
+}

@@ -10,6 +10,7 @@ import SuppliersList from "./SuppliersList/SuppliersList";
 import UsersList from "./UsersList/UserList";
 import ContractList from "./ContractList/ContractList";
 import ServicesList from "./ServicesList/ServicesList";
+import CategoriesList from "./CategoriesList/CategoriesList";
 
 
 export default function Profile() {
@@ -106,12 +107,15 @@ const tagHandler = (e) => {
       <nav className={s.navBar}>
         <ul>
           <li value="Suppliers" onClick={ (e) => tagHandler(e)}>Proveedores</li>
-          {user.user_role === "Admin" ||
-          user.user_role === "SuperAdmin" ?
-          <li value="Users" onClick={ (e) => tagHandler(e)}>Usuarios</li>
-          : null}
           <li value="Services" onClick= { (e) => tagHandler(e)}>Servicios</li>
           <li value="Orders" onClick={ (e) => tagHandler(e)}>Ordenes de compra</li>
+          {/* {user.user_role === "Admin" ||
+          user.user_role === "SuperAdmin" ? */}
+          <>
+            <li value="Users" onClick={ (e) => tagHandler(e)}>Usuarios</li>
+            <li value="categories" onClick={ (e) => tagHandler(e)}>Categorias</li>
+            {/* : null} */}
+          </>
         </ul>
       </nav>
       {/* {console.log(userDB)} */}
@@ -145,7 +149,7 @@ const tagHandler = (e) => {
           {tag === "Servicios" ? <ServicesList/> : null}
           {tag === "Usuarios" ? <UsersList/> : null}
           {tag === "Ordenes de compra" ? <ContractList/> : null}
-          
+          {tag === "Categorias" ? <CategoriesList/> : null}
         </div>
       
         <div className={s.aside}>
