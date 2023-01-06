@@ -6,7 +6,6 @@ import style from "../Suppliers/Suppliers.module.css";
 import Index from "../Index/Index.jsx";
 import Loading from "../Loading/Loading";
 import { searchingFalse } from "../../actions";
-import { useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { SuppliersCard } from "../SuppliersCard/SuppliersCard";
@@ -38,10 +37,7 @@ export const Suppliers = () => {
     indexOfLastSupplier
   );
   const searching = useSelector((state) => state.searching);
-  const { pathname } = useLocation();
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+
 
   React.useEffect(() => {
     dispatch(getSuppliers());

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { removeItem } from '../../actions'
 import { CartItem } from '../../CartItem/CartItemCard'
 import s from './Cart.module.css'
@@ -9,10 +9,7 @@ import s from './Cart.module.css'
 export const Cart = () => {
   
 let cart = useSelector((state) => state.cart)
-const { pathname } = useLocation()
-React.useEffect(() => {
-  window.scrollTo(0, 0);
-}, [pathname]);
+
 
 
 let dispatch = useDispatch()

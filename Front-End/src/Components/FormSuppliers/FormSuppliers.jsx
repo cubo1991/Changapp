@@ -3,17 +3,17 @@ import { useForm } from 'react-hook-form'
 import s from './FormSuppliers.module.css'
 import { useDispatch } from 'react-redux'
 import { postSupplier } from '../../actions'
-import { redirect, useLocation, useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 export const FormSuppliers = () => {
   let navigate = useNavigate();
   let dispatch = useDispatch()
   const [finished, setFinished] = React.useState(false)
-  const { pathname } = useLocation()
+
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname, finished ]);
+  }, [ finished ]);
 
 
 
