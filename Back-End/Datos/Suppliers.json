@@ -2,93 +2,111 @@
     {
         "name": "Limpieza S.A.",
         "cuit": 305321450,
-        "description": "Realiza Limpieza del hogar"
+        "description": "Realiza Limpieza del hogar",
+        "isAuthorized": true
     },
     {
         "name": "Paredes S.A.",
         "cuit": 3012412340,
-        "description": "Repara Paredes"
+        "description": "Repara Paredes",
+        "isAuthorized": true
     },
     {
         "name": "Cloacas S.A.",
         "cuit": 3012412340,
-        "description": "Reparacion y limpieza de Cloacas"
+        "description": "Reparacion y limpieza de Cloacas",
+        "isAuthorized": true
     },
     {
         "name": "Techos S.A.",
         "cuit": 3012412340,
-        "description": "Repara Techos"
+        "description": "Repara Techos",
+        "isAuthorized": true
     },
     {
         "name": "Power Clean Sud SRL",
         "cuit": 30200000100,
-        "description": "Prestación de servicios integrales de limpieza para el hogar, oficinas, hospitales"
+        "description": "Prestación de servicios integrales de limpieza para el hogar, oficinas, hospitales",
+        "isAuthorized": true
     },
     {
         "name": "Budan SRL",
         "cuit": 30200001000,
-        "description": "Prestación de servicios de limpiezas para oficinas"
+        "description": "Prestación de servicios de limpiezas para oficinas",
+        "isAuthorized": true
     },
     {
         "name": "Limpiarte",
         "cuit": 30200000110,
-        "description": "Prestación de servicios de limpieza para el hogar, limpieza de tapizados, lavado de todo tipo de ropa y planchado"
+        "description": "Prestación de servicios de limpieza para el hogar, limpieza de tapizados, lavado de todo tipo de ropa y planchado",
+        "isAuthorized": true
     },
     {
         "name": "CORSACOR",
         "cuit": 30200001110,
-        "description": "Prestación de servicios de limpieza para establecimientos de gran embergadura: hospitales, escuelas, edificios."
+        "description": "Prestación de servicios de limpieza para establecimientos de gran embergadura: hospitales, escuelas, edificios.",
+        "isAuthorized": true
     },
     {
         "name": "MJ Servicios S.A.",
         "cuit": 30120000120,
-        "description": "Prestación de servicios de limpieza para el hogar"
+        "description": "Prestación de servicios de limpieza para el hogar",
+        "isAuthorized": true
     },
     {
         "name": "TOP CLEANING Limpieza",
         "cuit": 30120000210,
-        "description": "Prestación de servicios de limpieza para establecimientos de gran embergadura: hospitales, escuelas, edificios."
+        "description": "Prestación de servicios de limpieza para establecimientos de gran embergadura: hospitales, escuelas, edificios.",
+        "isAuthorized": true
     },
     {
         "name": "Aseclim SRL",
         "cuit": 30121221220,
-        "description": "Servicio de limpieza para oficinas."
+        "description": "Servicio de limpieza para oficinas.",
+        "isAuthorized": true
     },
     {
         "name": "Ecolavado SRL",
         "cuit": 301212212110,
-        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado"
+        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado",
+        "isAuthorized": true
     },
     {
         "name": "Interlim",
         "cuit": 30231231230,
-        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado"
+        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado",
+        "isAuthorized": true
 
     },
     {
         "name": "LP",
         "cuit": 30241241240,
-        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado"
+        "description": "Lavado de todo tipo de prendas (desde medias hasta acolchados) y planchado",
+        "isAuthorized": true
     },
     {
         "name": "Odorox",
         "cuit": 30341341340,
-        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento",
+        "isAuthorized": true
     },
     {
         "name": "Proinda",
         "cuit": 30231231230,
-        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento",
+        "isAuthorized": true
     },
     {
         "name": "Chaer S.R.L.",
         "cuit": 30141141140,
-        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento",
+        "isAuthorized": true
     },
     {
         "name": "Clorox",
         "cuit": 30201201200,
-        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento"
+        "description": "Desinfección y Fumigación de hogares, industrias y todo tipo de establecimiento",
+        "isAuthorized": true
     },
     {
         "name": "fumysam",

@@ -14,7 +14,10 @@ const initialState = {
   cart: [],
   location: [],
   loading: true,
-
+  users: [],
+  contracts: [],
+  userDetails: [],
+userDB:{}
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,8 +39,8 @@ const reducer = (state = initialState, action) => {
     case GET_SUPPLIERS:
       return {
         ...state,
-        suppliers: action.payload
-
+        suppliers: action.payload,
+        loading: false,
       }
     case GET_DETAILS:
       return {
@@ -103,7 +106,7 @@ const reducer = (state = initialState, action) => {
       let id = item.id
       localStorage.setItem(id, JSON.stringify(item))
       let services = JSON.parse(localStorage.getItem(id))
-     
+
     
  
       return {
@@ -115,8 +118,12 @@ const reducer = (state = initialState, action) => {
       // let filterCart = state.cart.filter(item => item.id !== action.payload)
       localStorage.removeItem(action.payload)
       const allKeys = Object.keys(localStorage);
-const localStorageMap = allKeys.map(key => JSON.parse(localStorage.getItem(key)))
-      let newCart = localStorageMap
+    const localStorageMap = allKeys.map((key) =>
+      localStorage.getItem(key)
+    );
+    const localStorageFilter = localStorageMap.filter(e=> e.includes("serviceType"))
+    const localStorageMaping= localStorageFilter.map(e=> JSON.parse(e))
+      let newCart = localStorageMaping
       return {
         ...state,
         cart: newCart
@@ -133,7 +140,31 @@ const localStorageMap = allKeys.map(key => JSON.parse(localStorage.getItem(key))
         ...state,
         cart: action.payload
       } 
-
+      case 'USER_BY_ID':
+        return {
+          ...state,
+          userDB: action.payload
+        }
+        case 'UPLOAD_IMAGE_PROFILE':
+          return {
+            ...state,
+            userDB: action.payload
+          }
+        case 'GET_ALL_USERS':
+          return {
+            ...state,
+            users: action.payload
+          }
+        case 'GET_ALL_CONTRACTS':
+          return {
+            ...state,
+            contracts: action.payload
+          }
+        case 'GET_USER_BY_ID':
+          return {
+            ...state,
+            userDetails: action.payload
+          }
     default:
       return state;
   }

@@ -152,16 +152,16 @@ export function searchingSuppliers() {
 }
 
 export const getDetails = (id) => {
-  let found;
+  //let found;
   return function (dispatch) {
-    fetch(BACKEND_SERVER + "/suppliers")
+    fetch(BACKEND_SERVER + `/suppliers/${id}`)
       .then((res) => res.json())
-      .then((res) => (found = res.find((e) => e.id === id)))
+      //.then((res) => (found = res.find((e) => e.id === id)))
       .then((res) => {
         console.log(res);
         dispatch({
           type: GET_DETAILS,
-          payload: found,
+          payload: res,
         });
       });
   };
@@ -212,18 +212,11 @@ export const showCart = (payload) => {
   };
 };
 
-export const postSupplier = (payload) => {
+export const postSupplier = (data) => {
+
   return function () {
     axios
-      .post(BACKEND_SERVER + "/suppliers", {
-        adress: payload.adress,
-        cuit: payload.cuit,
-        description: payload.description,
-        eMail: payload.eMail,
-        location: payload.location,
-        name: payload.name,
-        phoneNumber: payload.phoneNumber,
-      })
+      .post(BACKEND_SERVER + "/suppliers", data)
       .catch((error) => {
         console.log(error);
         alert("Something went wrong...");
@@ -245,4 +238,101 @@ export function sendReview(data) {
     .then((res) => alert(res))
     //mensaje de exito
   };
+};
+
+export function getUserById(id) {
+  return function (dispatch) {
+    fetch(`${BACKEND_SERVER}/users/${id}`)
+      .then((res) => res.json())
+      .then((res) => dispatch({ type: 'USER_BY_ID', payload: res }));
+  };
+};
+
+export function updateImageProfile(id, payload) {
+  return function (dispatch) {
+    axios.post(`${BACKEND_SERVER}/users/${id}/updateImage/`,payload)
+      .then((res) => dispatch({ type: "UPLOAD_IMAGE_PROFILE", payload: res }));
+  };
+};
+
+export function sendContractNotification(status, email) {
+  return function(dispatch){
+    fetch(`${BACKEND_SERVER}/notifications?success=${status}&email=${email}`)
+    .then( res => res.json())
+    .then( res => console.log(res))
+  }
+}
+
+export function getAllUsers(){
+  return function(dispatch){
+    fetch(`${BACKEND_SERVER}/userHandler`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_ALL_USERS", payload: res}))
+  }
+}
+
+export const postServices = (imageForm, input) => {
+  return function () {
+    axios
+      .post(BACKEND_SERVER + "/services", {imageForm, input})
+      .catch((error) => {
+        console.log(error);
+        alert("Something went wrong...");
+      });
+  };
+};
+
+export function getContracts () {
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/contracts`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_ALL_CONTRACTS", payload: res}));
+  }
+}
+
+export function getUserDetails (id) {
+  return function (dispatch) {
+    fetch(`${BACKEND_SERVER}/userHandler?id=${id}`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_USER_BY_ID", payload: res}))
+  }
+}
+
+export function updateUser(data){
+  return function (){
+    fetch(`${BACKEND_SERVER}/userHandler`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PUT",
+      body: JSON.stringify(data)
+    })
+  }
+}
+
+export function deleteUser(data){
+  return function (){
+    fetch(`${BACKEND_SERVER}/userHandler`,{
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE",
+      body: JSON.stringify(data)
+    })
+  }
+}
+
+export function addCategory(data){
+  return function(){
+    fetch(`${BACKEND_SERVER}/category`,{
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+  }
 }

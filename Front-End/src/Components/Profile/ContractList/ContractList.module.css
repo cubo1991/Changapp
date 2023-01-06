@@ -1,0 +1,24 @@
+
+.container{
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* border: 2px solid green */
+}
+
+.card{
+  margin: 1%;
+  padding: 1%;
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap:wrap;
+  flex-direction: row;
+}
+
+.card:hover{
+  background-color: grey;
+  color: white;
+}

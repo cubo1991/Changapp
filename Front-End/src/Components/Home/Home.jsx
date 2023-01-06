@@ -2,11 +2,11 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import style from "../Home/Home.module.css"
 
 
-import { getServices, searchingFalse, searchingServices } from '../../actions/index.js';
+import { getServices, searchingFalse, searchingServices, sendContractNotification } from '../../actions/index.js';
 
 // import { Servicios } from '../../Mockup/Servicios.js';
 import Index from '../Index/Index.jsx';
@@ -14,10 +14,14 @@ import { ServicesCard } from '../ServicesCard/ServicesCard.jsx';
 // import { Footer } from '../Footer/Footer.jsx';
 import NavFilters from '../Filters/NavFilters';
 import Loading from '../Loading/Loading';
-
+import Banner from '../Banner/banner';
 
 export default function Home() {
   const dispatch = useDispatch();
+  const { pathname } = useLocation()
+React.useEffect(() => {
+  window.scrollTo(-10, 0);
+}, [pathname]);
   const loading = useSelector((state) => state.loading)
   const allServices = useSelector((state) => state.services)
   const searching = useSelector(state => state.searching);
@@ -39,6 +43,28 @@ export default function Home() {
     setCurrentPage(pageNumber)
   }
 
+   //Envio de mailing de notificación
+   const location = useLocation()
+   //console.log(location, "LOCATION")
+   useEffect( () => {
+   
+   if(location.search.includes("success")){
+     let status = location.search.split("&")
+     .filter( (element) => element.includes("success"))
+     .join().split("=");
+     status = status[1];   //estado de la compra
+ 
+     let email = location.search.split("&")
+     .filter( (element) => element.includes("em"))
+     .join().split("=");
+     email = email[1];     //email del comprador
+     
+     dispatch(sendContractNotification(status,email))
+   }
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+     }, [dispatch])
+    //
+
   useEffect(() => {
     dispatch(getServices());
     dispatch(searchingServices()); //settea un estado global para que la barra de busqueda busque servicios
@@ -56,35 +82,39 @@ export default function Home() {
         !loading ?
 
           <div >
-
-            <br />
-            <br />
-            <br />
-            <NavFilters index={index}></NavFilters> <br />
-            <Index
-              servicesPerPage={servicesPerPage}
-              allServices={allServices.length}
-              index={index}
-              currentPage={currentPage}
-            />
-
+{/*carrusel*/}
+<Banner />
+        <div className={style.filter}>
+          <div className={style.navTop}> 
+          <span className={style.countServices}>Se encontraron {allServices.length} Servicios</span>
+        <NavFilters index={index}></NavFilters>
+        </div>
             {searching ?
-              <button onClick={() => {    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
+              <button class="btn btn-secondary" onClick={() => {    /* renderiza un boton para volver a mostrar todos los servicios cuando se estan filtrando o usando la barra de busqueda */
                 dispatch(getServices())
                 dispatch(searchingFalse())
               }}>
                 Volver a mostrar todos los servicios</button> : null}
+        </div>
+  
 
 
             {/* <div>servicios</div> */}
             <div className={style.cards}>
               {currentServices?.map(service => {
                 return (
-                  <ServicesCard id={service.id} name={service.serviceType} price={service.pricePerHour} description={service.description} image={service.representative_image}
+                  <ServicesCard id={service.id} name={service.serviceType} price={service.pricePerHour} description={service.description} image={service.representative_image} disponible={service.disponible}
                   />
                 )
               })}
             </div>
+
+            <Index
+              servicesPerPage={servicesPerPage}
+              allServices={allServices.length}
+              index={index}
+              currentPage={currentPage}
+            />
 
             {/* <Footer /> */}
           </div>

@@ -3,6 +3,8 @@ const router = express();
 //const cors = require("cors");
 const mercadopago = require("mercadopago");
 
+const URL_BACK = process.env.URL_RETURN_FRONT || 'http://localhost:3000'
+
 // require("dotenv").config()
 // REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
 mercadopago.configure({
@@ -16,8 +18,8 @@ mercadopago.configure({
 // app.use(cors());
 
 router.post("/", (req, res) => {
-    const { items } = req.body
-    console.log(items)
+    const { items, email } = req.body
+    //console.log(items)
     let preference = {
         items: items.map((item) => {
             return {
@@ -31,12 +33,12 @@ router.post("/", (req, res) => {
                 unit_price: Number(item.pricePerHour),
             };
         }),
+        auto_return: "all",
         back_urls: {
-            "success": "http://localhost:3000?success=true",
-            "failure": "http://localhost:3000?success=false",
-            "pending": "http://localhost:3000?success=pending"
-        },
-        auto_return: "approved",
+            "success": `${URL_BACK}?success=true&em=${email}`,
+            "failure": `${URL_BACK}?success=false&em=${email}`,
+            "pending": `${URL_BACK}?success=pending`
+        }
     };
 
     mercadopago.preferences.create(preference)

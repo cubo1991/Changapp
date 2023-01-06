@@ -108,7 +108,87 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-
-
-
+// /:supplierId?turno=asignado o ?turno=liberado &cantidad=
+router.post('/:supplierId', async (req,res, next) => {
+  const {supplierId} = req.params;
+  const {turno, cantidad} = req.query;
+  
+  let cantd;
+  if (!cantidad) cantd=1;
+  else cantd=cantidad
+  
+  try{
+  
+    var modelo = await Supplier.findByPk(supplierId,{
+      include: [{
+        model: Service
+      }]
+    });
+  
+    let servicesId = modelo.Services.map(s => {
+      return s.id
+    });
+  
+  if(turno === 'asignado'){
+    if(modelo.stock-cantd < 0) return res.status(400).send('No hay más turnos disponibles');
+  
+    await Supplier.update({
+      stock: modelo.stock - cantd
+    },{
+      where:{
+        id: supplierId 
+      }
+    });
+  }
+  
+  if(turno === 'liberado'){
+    if(modelo.stock >= 8) return res.status(400).send('No se permite agregar más turnos');
+  
+    await Supplier.update({
+      stock: modelo.stock + cantd
+    },{
+      where:{
+        id: supplierId 
+      }
+    });
+  }
+  for(let i=0; i<servicesId.length;i++){
+    let acum=0;
+    const service = await Service.findByPk(servicesId[i],{
+      include: [{
+        model: Supplier
+      }]
+    });
+  
+  service.Suppliers?.map(s => {
+    acum=acum+s.stock
+  });
+  
+  if(acum === 0) {
+    await Service.update({
+      disponible: false
+    }, {
+      where:{
+        id: servicesId[i]
+      }
+    });
+  } else {
+    await Service.update({
+      disponible: true
+    }, {
+      where:{
+        id: servicesId[i]
+      }
+    });
+  }
+  }
+    return res.status(201).send(`Turno ${turno}`)
+  }
+  catch(e){
+    console.log(e);
+    return res.status(500).send(e)
+  }
+  
+  });
+  
 module.exports = router;

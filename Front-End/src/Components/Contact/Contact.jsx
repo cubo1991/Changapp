@@ -2,13 +2,17 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import s from './Contact.module.css'
 
+
 export const Contact = () => {
   const {register, handleSubmit, formState: {errors}} = useForm()
+
+
 
   const  onSubmit = (data) => {
     console.log(data)
   }
 console.log(useForm())
+
   return (
     <div className={s.container}>
       <h2 className="h2">Contactenos</h2>   

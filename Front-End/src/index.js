@@ -7,6 +7,7 @@ import { Auth0Provider } from "@auth0/auth0-react"
 import { Provider } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
 import store from "./store/index"
+import ScrollToTop from './ScrollToTop/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +19,7 @@ root.render(
           clientId="rrXxxpzPgmEw18H2cTV8S1NjAj0lih4u"
           redirectUri={window.location.origin}
         >
+          <ScrollToTop/>
           <App />
         </Auth0Provider>
       </React.StrictMode>

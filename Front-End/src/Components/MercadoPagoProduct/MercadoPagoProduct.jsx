@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 
-const FORM_ID = 'payment-form';
+import { useAuth0 } from "@auth0/auth0-react";
+
+// const FORM_ID = 'payment-form';
 
 export default function MercadoPagoProduct({ items }) {
 
@@ -11,11 +12,13 @@ export default function MercadoPagoProduct({ items }) {
   const [preferenceId, setPreferenceId] = useState(null);
   console.log(cart)
 
+  const {user} = useAuth0();
+
   useEffect(() => {
     if (!preferenceId && cart) {
       // luego de montarse el componente, le pedimos al backend el preferenceId
       console.log("requesting preferenceid")
-      axios.post(`http://localhost:3001/create_preference`, { items: cart }).then((order) => {
+      axios.post(`http://localhost:3001/create_preference`, { items: cart, email: user.email}).then((order) => {
 
         console.log(`received! ${order.data.id}`)
         setPreferenceId(order.data.id);
@@ -41,6 +44,7 @@ export default function MercadoPagoProduct({ items }) {
         });
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferenceId, cart]);
 
   return (

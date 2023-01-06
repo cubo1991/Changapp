@@ -24,7 +24,7 @@ export const Services = () => {
   const servicesMap = services.map((service) => { 
    
     return <ServicesCard
-    name={service.serviceType} price={service.pricePerHour} description={service.description} id={service.CategoryId} img={service.representative_image} />})
+    name={service.serviceType} price={service.pricePerHour} description={service.description} id={service.CategoryId} img={service.representative_image} disponible={service.disponible}/>})
 
   return (
     <div className={s.contenedor}>

@@ -28,7 +28,10 @@ console.log(servs)
       
       <div className={style.card_container}>
       <div class={style.detail_container}>
-        <h1>{supplierDetail.name}</h1>
+        <div className={style.container}>
+        <img src={supplierDetail.logo} alt='logo'  width='100px' heigth='100px'/>
+        <h1 className={style.title}>{supplierDetail.name}</h1>
+        </div>
         <h6>Cuit: {supplierDetail.cuit}</h6>
         <p>{supplierDetail.description}</p>
 <h4>Servicios prestados</h4>

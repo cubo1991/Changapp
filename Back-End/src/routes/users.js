@@ -2,11 +2,33 @@ const { Router } = require("express");
 const UserLoginController = require("../controllers/UserLoginController");
 const UserController = require("../controllers/UserController");
 const { AUTH0_TENANT_ID, AUTH0_CLIENT_ID } = process.env;
+const {
+  uploadImage,
+  uploadMulter,
+} = require("../controllers/cloudinaryController");
+const fs = require("fs-extra");
+const { jwtCheck } = require("../auth");
 
 const router = Router();
 
+// ESTE ES UN TEST PARA PROBAR LA IDTOKEN ENVIADA A TRAVES DEL
+// HEADER AUTHORIZATION DESDE EL FRONT
+// SE UTILIZA EL MIDDLEWARE jwtCheck QUE DECODIFICA LA JWT TOKEN
+// Y AGREGA EL OBJETO auth A REQ
+router.get("/test", jwtCheck, async (req, res, next) => {
+  // SI NO TIENE AUTHORIZATION HEADER O LA IDTOKEN NO ES VALIDA
+  // NO LLEGA ACA, DIRECTAMENTE MANDA EL ERROR EL MIDDLEWARE
+
+  // SI ESTAMOS ACA ES PORQUE MANDO UNA TOKEN VALIDA
+  // LA MANDAMOS CON STATUS 200
+  res.status(200).json(req.auth);
+});
+
+// POST /users/login
 router.post("/login", async (req, res, next) => {
   const { event } = req.body;
+
+  // console.log(event);
 
   // Chequeamos que la request sea fidedigna con TENANT y CLIENT
   // Y contenga user
@@ -31,6 +53,7 @@ router.post("/login", async (req, res, next) => {
     try {
       loginId = await UserLoginController.find(user_id);
     } catch (error) {
+      console.error("POST /users/login UserLoginController.find error");
       return next(error);
     }
   }
@@ -53,16 +76,106 @@ router.post("/login", async (req, res, next) => {
         oauth_id: user_id,
       });
     } catch (error) {
+      console.error(
+        "POST /users/login UserController.findByEmail/add or UserLoginController.add error"
+      );
       return next(error);
     }
   }
 
-  // Devolvemos el rol
+  // Actualizamos datos personales segun perfil
+  try {
+    const user = await UserController.update(loginId, event.user);
+  } catch (error) {
+    console.error("POST /users/login UserController.update error");
+    return next(error);
+  }
+
+  // Devolvemos la info a Auth0
   try {
     const user_role = await UserController.getUserRole(loginId);
 
-    return res.status(201).json({ user_role });
+    return res.status(201).json({ id: loginId, user_role });
   } catch (error) {
+    console.error("POST /users/login UserController.getUserRole error");
+    next(error);
+  }
+});
+
+// POST /users/:id/updateImage
+router.post(
+  "/:id/updateImage",
+  uploadMulter("./public/ProfileImages").single("image"), // middleware para procesar la carga de archivos
+  async (req, res, next) => {
+    const { id } = req.params;
+
+    // no hay archivo cargado, mandamos un bad request
+    if (!req.file) return res.status(400).json({ error: "No picture" });
+    if (!id) return res.status(400).send();
+
+    const editUser = {};
+
+    try {
+      // cargamos archivo a cloudinary
+      const result = await uploadImage(req.file.path);
+      // borramos archivo local
+      fs.unlink(req.file.path);
+
+      // cargamos el objeto
+      editUser.picture = result.secure_url;
+    } catch (error) {
+      // error al cargar imagen a cloudinary
+      console.error("POST /users/:id/updateImage uploadImage error");
+      return next(error);
+    }
+    try {
+      // mandamos actualizar el usuario con id=id con los campos de editUser
+      const user = await UserController.update(id, editUser);
+
+      res.status(200).json(user);
+    } catch (error) {
+      // error al editar el usuario
+      console.error("POST /users/:id/updateImage UserController.update error");
+      next(error);
+    }
+  }
+);
+
+// PUT /users/:id/role
+router.put("/:id/role", async (req, res, next) => {
+  const { user_role } = req.body;
+  const { id } = req.params;
+
+  if (!user_role || !id) return res.status(400).send();
+
+  try {
+    await UserController.setUserRole(id, user_role);
+    return res.status(200).json({ status: "Rol modificado" });
+  } catch (error) {
+    // atrapamos el error personalizado del controlador
+    // mandamos un Bad Request con el mensaje de error
+    if (error.name === "UserRoleNotFound")
+      return res.status(400).json({ error: error.message });
+
+    console.error("PUT /users/:id/set-role UserController.setUserRole error");
+    next(error);
+  }
+});
+
+// GET /users/:id
+router.get("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  if (!id) return res.status(400).send();
+
+  try {
+    const user = await UserController.findById(id);
+
+    if (!user) return res.status(404).json({ error: "Not found" });
+
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error("GET /users/:id UserController.findById error");
     next(error);
   }
 });

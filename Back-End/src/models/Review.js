@@ -1,23 +1,23 @@
-const { DataTypes } = require('sequelize');
-
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-
-  sequelize.define('Review', {
-    id: {
-        type: DataTypes.UUID,
+  sequelize.define(
+    "Review",
+    {
+      id: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
+        autoIncrement: true,
       },
-    comment: {
-      type: DataTypes.STRING,
+      comment: {
+        type: DataTypes.STRING,
+      },
+      rating: {
+        type: DataTypes.FLOAT,
+      },
     },
-    rating: {
-        type: DataTypes.FLOAT
+    {
+      timestamps: false,
     }
-  },
-  {
-    timestamps: false
-  });
+  );
 };

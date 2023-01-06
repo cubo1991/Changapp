@@ -5,4 +5,92 @@
 .container img{
     width: 10em;
     height: 10em;
+    border-radius: 15px;
+}
+
+.content{
+    width: 90%;
+    display: flex;
+    background-color: rgb(0, 132, 255);
+    border-radius: 15px;
+    justify-content: flex-end;
+    margin: 1% auto;
+}
+
+.rolTitle{
+    padding: 1%;
+    font-weight: bold;
+}
+
+.rol{
+    font-weight: bolder;
+    font-size:xx-large;
+}
+
+.aside{
+    background-color: white;
+    width: 20%;
+    height: fit-content;
+    padding: 1%;
+    margin: 1%;
+    border-radius: 15px;
+}
+
+.categories{
+    width: 80%;
+}
+
+.navBar{
+    margin: auto;
+    background-color: grey;
+    width: 90%;
+    height: fit-content;
+}
+
+.navBar ul{
+    padding: 1%;
+    height: 100%;
+    display: flex;
+}
+
+.navBar ul li{
+    padding: 0 2%;
+    list-style: none;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.navBar ul li:hover{
+    background-color: black;
+    color: white;
+}
+
+.button{
+    background: transparent;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/1160/1160119.png');
+    background-size: cover;
+    background-position: center;
+
+    border: none;
+
+    width: 30px;
+    height: 30px;
+    
+    margin-left: 14em;
+    margin-top: -10rem;
+    
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+/* .button:hover{
+    
+} */
+
+.container1 {
+    width: 20em;
+    height: 10em;
+    
+    margin-left: 22em;
+    margin-bottom: 0;
 }
