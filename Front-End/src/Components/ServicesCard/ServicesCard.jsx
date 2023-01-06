@@ -7,7 +7,7 @@ import { BsFillCartFill, BsFillCartCheckFill } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-export const ServicesCard = ({ name, price, description, id, image }) => {
+export const ServicesCard = ({ name, price, description, id, image, disponible }) => {
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart);
   const { user, isAuthenticated } = useAuth0();
@@ -38,25 +38,31 @@ export const ServicesCard = ({ name, price, description, id, image }) => {
               </p>
             </div>
           </Link>
-          {
-            isAuthenticated && user.user_role !== "Supplier"? 
-          cart.some(idCart) === false ? (
-            <p
-              className="btn btn-primary fs-2 align-self-end"
-              onClick={onClickBtn}
-            >
-              <BsFillCartFill />
-            </p>
-          ) : (
-            <p
-              className="btn btn-primary fs-2 align-self-end"
-              style={{ background: "green", cursor: "default" }}
-            >
-              <BsFillCartCheckFill />
-            </p>
-          )
-        : null
-        }
+          {!disponible?
+           <div>
+           <button className={s.buttonDisabled} disabled='true' onClick={onClickBtn}>No disponible</button>
+         </div>
+         :
+         <div>
+         {
+          isAuthenticated && user.user_role !== "Supplier"? 
+        cart.some(idCart) === false ? (
+          <p
+            className="btn btn-primary fs-2 align-self-end"
+            onClick={onClickBtn}
+          >
+            <BsFillCartFill />
+          </p>
+        ) : (
+          <p
+            className="btn btn-primary fs-2 align-self-end"
+            style={{ background: "green", cursor: "default" }}
+          >
+            <BsFillCartCheckFill />
+          </p>
+        )
+      : null
+      }</div>}
         </div>
       </div>
     </div>

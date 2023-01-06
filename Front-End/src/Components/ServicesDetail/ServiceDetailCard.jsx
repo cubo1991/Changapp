@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../../actions";
 import { useNavigate } from "react-router-dom";
 
-export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id }) => {
+export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id, disponible }) => {
     
   let dispatch = useDispatch()
   let cart = useSelector((state) => state.cart)
@@ -27,7 +27,11 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
       <div className={style.container3}>
       <div className={style.container2}>
           <img className={style.img} src={img} alt="Imagen"/>
+          {disponible?
           <button className={style.button} onClick={onClickBtn}>Agregar al Carrito</button>
+          :
+          <button className={style.buttonDisabled} disabled='true' onClick={onClickBtn}>No disponible</button>
+        }
         </div>
         <div className={style.detail_container}>
           
