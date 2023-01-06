@@ -33,6 +33,7 @@ export default function UserDetails () {
 
   useLayoutEffect( ( ) => {       // useLayoutEffect => componentDidMount  
     dispatch(getUserDetails(query[1]))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[dispatch,query[1]])
   
   /* useEffect( () => {     // => NO, genera un loop infinito

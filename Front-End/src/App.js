@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 //styles
-import "jquery/dist/jquery.min.js";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
+// import "jquery/dist/jquery.min.js";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 //components
 import Home from "./Components/Home/Home.jsx";
@@ -47,6 +47,7 @@ function App() {
       localStorage.clear();
     }
     console.log(location.key);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.key]);
 
   return (

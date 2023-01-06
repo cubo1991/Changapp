@@ -35,6 +35,7 @@ export const ShopForm = () => {
             setPagar(false);
             setInput(inicialState);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       },[])
 
     // Funciones Validadoras

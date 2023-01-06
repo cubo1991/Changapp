@@ -26,11 +26,11 @@ export default function ServicesList () {
   if(user.user_role === "Admin" || user.user_role === "SuperAdmin"){
     myServices = allServices
   }else{
-      const myContracts = allContracts.filter( contract => contract.User.id == user.id); //Busca los contratos que ha hecho el usuario
+      const myContracts = allContracts.filter( contract => contract.User.id === user.id); //Busca los contratos que ha hecho el usuario
       const contractsSupplierId = myContracts.map( contract => contract.SupplierServiceId); //Busca el id del SupplierService de los contratos del usuario
       contractsSupplierId.forEach( service => {             //Compara los los contractSupplierId con cada servicio para obtener los servicios contratados por el usuario
         const aux = allServices.find( element => {
-          return element.Suppliers.SupplierService.id == service
+          return element.Suppliers.SupplierService.id === service
         })
         return myServices = [...myServices, aux]
       })

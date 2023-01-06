@@ -24,7 +24,7 @@ console.log(user)
   const dispatch = useDispatch();
   //const userDB = useSelector(state => state.userDB)
 
- const [apiResponse, setApiResponse] = useState("");
+ const [setApiResponse] = useState("");
  const [tag, setTag] = useState("Proveedores");
 
  // como getIdTokenClaims es asincrono, debemos usar useEffect para
@@ -66,6 +66,7 @@ console.log(user)
    return () => {
      isMounted = false;
    };
+   // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [getIdTokenClaims]); // la unica dependencia es esta
  
  //const userAuthId = user.id.split('|');

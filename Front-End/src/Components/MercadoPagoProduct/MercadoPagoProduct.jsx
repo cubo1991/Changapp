@@ -44,6 +44,7 @@ export default function MercadoPagoProduct({ items }) {
         });
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferenceId, cart]);
 
   return (

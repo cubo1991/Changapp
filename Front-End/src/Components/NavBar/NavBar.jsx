@@ -4,7 +4,7 @@ import Searchbar from "../Searchbar/Searchbar.jsx";
 import Login from "../Login/Login";
 import Style from "../NavBar/Navbar.module.css";
 import { useSelector } from "react-redux";
-import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
+// import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import NavBarSupplier from "./NavBarSupplier.jsx";
 
