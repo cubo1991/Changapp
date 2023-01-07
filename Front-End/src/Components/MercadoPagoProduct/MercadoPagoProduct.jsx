@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import axios from 'axios'
 
 // const FORM_ID = 'payment-form';
+const BACKEND_SERVER =
+  process.env.REACT_APP_BACKEND_SERVER || "http://localhost:3001";
 
 export default function MercadoPagoProduct({ items }) {
 
@@ -14,7 +16,7 @@ export default function MercadoPagoProduct({ items }) {
     if (!preferenceId && cart) {
       // luego de montarse el componente, le pedimos al backend el preferenceId
       console.log("requesting preferenceid")
-      axios.post(`http://localhost:3001/create_preference`, { items: cart }).then((order) => {
+      axios.post(`${BACKEND_SERVER}/create_preference`, { items: cart }).then((order) => {
 
         console.log(`received! ${order.data.id}`)
         setPreferenceId(order.data.id);
