@@ -290,11 +290,14 @@ export function getContracts () {
   }
 }
 
-export function getUserDetails (id) {
+export function getUserDetails (id, profile) {
   return function (dispatch) {
     fetch(`${BACKEND_SERVER}/userHandler?id=${id}`)
     .then( res => res.json())
-    .then( res => dispatch({type: "GET_USER_BY_ID", payload: res}))
+    .then( res => {
+      if(!profile) return dispatch({type: "GET_USER_BY_ID", payload: res});
+      else dispatch({type: "GET_USER_LOG", payload: res[0].UserRol.name});
+    })
   }
 }
 

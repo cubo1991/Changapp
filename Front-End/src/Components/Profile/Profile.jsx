@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import s from "./Profile.module.css";
-import { getContracts, updateImageProfile } from "../../actions";
+import { getContracts, getUserDetails, updateImageProfile } from "../../actions";
 import { useEffect } from "react";
 import axios from "axios";
 import SuppliersList from "./SuppliersList/SuppliersList";
@@ -85,7 +85,11 @@ console.log(user)
 
 useEffect( () => {
   dispatch(getContracts());
-},[dispatch])
+  dispatch(getUserDetails(user.id, true));
+},[dispatch, user.id])
+
+const userLog = useSelector(state => state.userLog);
+const role = user.user_role || userLog;
 
 const onSubmit = (e) => {
   e.preventDefault();
@@ -109,13 +113,13 @@ const tagHandler = (e) => {
           <li value="Suppliers" onClick={ (e) => tagHandler(e)}>Proveedores</li>
           <li value="Services" onClick= { (e) => tagHandler(e)}>Servicios</li>
           <li value="Orders" onClick={ (e) => tagHandler(e)}>Ordenes de compra</li>
-          {/* {user.user_role === "Admin" ||
-          user.user_role === "SuperAdmin" ? */}
+          {role === "Admin" ||
+          role === "SuperAdmin" ?
           <>
             <li value="Users" onClick={ (e) => tagHandler(e)}>Usuarios</li>
             <li value="categories" onClick={ (e) => tagHandler(e)}>Categorias</li>
-            {/* : null} */}
           </>
+            : null}
         </ul>
       </nav>
       {/* {console.log(userDB)} */}
@@ -156,7 +160,7 @@ const tagHandler = (e) => {
           <img src={user.picture} alt="" />
          {/*  <h2>Te logueaste con exito </h2> */}
           <h2 className={s.rolTitle}>En este sitio sos:</h2>
-          <p className={s.rol}>{user.user_role}</p>
+          <p className={s.rol}>{role}</p>
           {/* <p><code style={{'fontSize': 'large'}}>{JSON.stringify(apiResponse)}</code></p> */}
           {/* <p style={{'fontSize': 'xx-large'}}>{apiResponse}</p> */}
           <div>Mi carrito</div>

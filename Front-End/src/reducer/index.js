@@ -17,6 +17,7 @@ const initialState = {
   users: [],
   contracts: [],
   userDetails: [],
+  userLog: [],
 userDB:{}
 };
 
@@ -164,6 +165,11 @@ const reducer = (state = initialState, action) => {
           return {
             ...state,
             userDetails: action.payload
+          }
+        case 'GET_USER_LOG':
+          return {
+            ...state,
+            userLog: action.payload
           }
     default:
       return state;
