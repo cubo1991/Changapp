@@ -1,15 +1,3 @@
-.component{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.container{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  /* border: 2px solid green */
-}
-
 .card{
   margin: 1%;
   padding: 1%;
