@@ -39,6 +39,7 @@ export default function MercadoPagoProduct({ items }) {
           }
         });
       });
+
     }
   }, [preferenceId, cart]);
 
