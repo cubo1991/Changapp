@@ -101,3 +101,23 @@
     text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
     
 }
+
+.goBack{
+    background: transparent;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/2099/2099190.png');
+    background-size: cover;
+    background-position: center;
+
+    border: none;
+
+    width: 50px;
+    height: 50px;
+    
+    transition: all 0.5s;
+    cursor: pointer;
+
+    position: absolute;
+
+    margin-left: -75em;
+    margin-top: -1em;
+}
