@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSuppliers, searchingSuppliers } from "../../actions";
+import { getSuppliers, getUserDetails, searchingSuppliers } from "../../actions";
 import style from "../Suppliers/Suppliers.module.css";
 import Index from "../Index/Index.jsx";
 import Loading from "../Loading/Loading";
 import { searchingFalse } from "../../actions";
-import { useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { SuppliersCard } from "../SuppliersCard/SuppliersCard";
@@ -17,13 +16,16 @@ export const Suppliers = () => {
   let dispatch = useDispatch();
   let suppliers = useSelector((state) => state.suppliers);
   let [currentPage, setCurrentPage] = useState(1);
+
   const { user } = useAuth0();
+  const userLog = useSelector(state => state.userLog);
+  const role = user && user.user_role ? user.user_role : userLog;
 
   let suppliersAuth = suppliers.filter(element => element.isAuthorized) //Suppliers autorizados
 
   let suppliersList; // probablemente habra que pasarlo a un local state.
 
-  if (user && (user.user_role === "Admin" || user.user_role === "SuperAdmin")) {
+  if (user && (role === "Admin" || role === "SuperAdmin")) {
     suppliersList = suppliers;
   } else {
     suppliersList = suppliersAuth
@@ -38,15 +40,13 @@ export const Suppliers = () => {
     indexOfLastSupplier
   );
   const searching = useSelector((state) => state.searching);
-  const { pathname } = useLocation();
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+
 
   React.useEffect(() => {
+    if(user) dispatch(getUserDetails(user.id), true);
     dispatch(getSuppliers());
     dispatch(searchingSuppliers());
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   React.useEffect(() => {
     setCurrentPage(1);

@@ -38,19 +38,19 @@ export default function NavBar() {
             ></button>
             <ul className="dropdown-menu">
               <li>
-                <a className="dropdown-item" href="/suppliers">
-                  Cartilla de proveedores
-                </a>
+                <NavLink to="/suppliers" className="dropdown-item">
+              <span>Cartilla de proveedores</span>
+              </NavLink>
               </li>
               <li>
-                <a className="dropdown-item" href="/contact">
-                  Contacto
-                </a>
+              <NavLink to="/contact" className="dropdown-item">
+              <span>Contacto</span>
+              </NavLink>
               </li>
               {userRole === "Supplier" ? <li>
-                <a className="dropdown-item" href="/suppliersContact">
-                  Publicá tu servicio
-                </a>
+              <NavLink to="/suppliersContact" className="dropdown-item">
+              <span>Publicá tu servicio</span>
+              </NavLink>
               </li> : ""}
             </ul>
           </div>

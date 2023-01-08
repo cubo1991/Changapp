@@ -107,8 +107,5 @@ router.get('/:id', async (req, res) => {
       return res.status(500).send('Hubo un error en el servidor');
   }
 });
-
-
-
-
+  
 module.exports = router;

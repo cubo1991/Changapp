@@ -28,6 +28,10 @@ module.exports = (sequelize) => {
     isAuthorized: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      defaultValue: 8
     }
   },
   {

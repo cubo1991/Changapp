@@ -1,14 +1,12 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import s from './Contact.module.css'
-import { useLocation } from 'react-router-dom'
+
 
 export const Contact = () => {
   const {register, handleSubmit, formState: {errors}} = useForm()
-  const { pathname } = useLocation()
-React.useEffect(() => {
-  window.scrollTo(0, 0);
-}, [pathname]);
+
+
 
   const  onSubmit = (data) => {
     console.log(data)

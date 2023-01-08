@@ -7,7 +7,7 @@ export function test(){
     }
 } */
 
-import { ADD_CART, GET_DETAILS, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes"
+import { ADD_AMOUNT, ADD_CART, ADD_PRICE_CART, CART_RESTORE, DELETE_SERVICE_AMOUNT, GET_DETAILS, GET_TOTAL, REMOVE_ITEM, RESTOTALPRICE, SHOW_CART, SUMTOTALPRICE } from "../Constantes/Constantes"
 import axios from 'axios';
 
 const BACKEND_SERVER =
@@ -290,11 +290,14 @@ export function getContracts () {
   }
 }
 
-export function getUserDetails (id) {
+export function getUserDetails (id, profile) {
   return function (dispatch) {
     fetch(`${BACKEND_SERVER}/userHandler?id=${id}`)
     .then( res => res.json())
-    .then( res => dispatch({type: "GET_USER_BY_ID", payload: res}))
+    .then( res => {
+      if(!profile) return dispatch({type: "GET_USER_BY_ID", payload: res});
+      else dispatch({type: "GET_USER_LOG", payload: res[0].UserRol.name});
+    })
   }
 }
 
@@ -321,5 +324,64 @@ export function deleteUser(data){
       method: "DELETE",
       body: JSON.stringify(data)
     })
+  }
+}
+
+export function addCategory(data){
+  return function(){
+    fetch(`${BACKEND_SERVER}/category`,{
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+  }
+}
+export const sumServicesPrice = (payload) => {
+  return {
+    type: SUMTOTALPRICE,
+    payload
+  }
+}
+export const resServicesPrice = (payload) => {
+  return {
+    type: RESTOTALPRICE,
+    payload
+   
+  }
+
+}
+
+export const addAmount = (id, amount) => {
+
+  return {
+    type: ADD_AMOUNT,
+    amount,
+    id
+  }
+}
+export const getTotal = () => {
+  return {
+type: GET_TOTAL
+  }
+}
+export const addPriceCart = (payload) =>{
+  return{
+    type: ADD_PRICE_CART,
+    payload
+  }
+}
+export const deleteServiceAmount = (payload) => {
+  return{
+    type: DELETE_SERVICE_AMOUNT,
+    payload
+  }
+}
+
+export const cartRestore =() =>{
+  return{
+    type: CART_RESTORE
   }
 }

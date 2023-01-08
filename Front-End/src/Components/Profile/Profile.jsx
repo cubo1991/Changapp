@@ -1,15 +1,16 @@
 import React, {useState} from "react";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import s from "./Profile.module.css";
-import { getContracts, updateImageProfile } from "../../actions";
+import { getContracts, getUserDetails, updateImageProfile } from "../../actions";
 import { useEffect } from "react";
 import axios from "axios";
 import SuppliersList from "./SuppliersList/SuppliersList";
 import UsersList from "./UsersList/UserList";
 import ContractList from "./ContractList/ContractList";
 import ServicesList from "./ServicesList/ServicesList";
+import CategoriesList from "./CategoriesList/CategoriesList";
 
 
 export default function Profile() {
@@ -84,7 +85,11 @@ console.log(user)
 
 useEffect( () => {
   dispatch(getContracts());
-},[dispatch])
+  dispatch(getUserDetails(user.id, true));
+},[dispatch, user.id])
+
+const userLog = useSelector(state => state.userLog);
+const role = user.user_role || userLog;
 
 const onSubmit = (e) => {
   e.preventDefault();
@@ -106,12 +111,15 @@ const tagHandler = (e) => {
       <nav className={s.navBar}>
         <ul>
           <li value="Suppliers" onClick={ (e) => tagHandler(e)}>Proveedores</li>
-          {user.user_role === "Admin" ||
-          user.user_role === "SuperAdmin" ?
-          <li value="Users" onClick={ (e) => tagHandler(e)}>Usuarios</li>
-          : null}
           <li value="Services" onClick= { (e) => tagHandler(e)}>Servicios</li>
           <li value="Orders" onClick={ (e) => tagHandler(e)}>Ordenes de compra</li>
+          {role === "Admin" ||
+          role === "SuperAdmin" ?
+          <>
+            <li value="Users" onClick={ (e) => tagHandler(e)}>Usuarios</li>
+            <li value="categories" onClick={ (e) => tagHandler(e)}>Categorias</li>
+          </>
+            : null}
         </ul>
       </nav>
       {/* {console.log(userDB)} */}
@@ -145,14 +153,14 @@ const tagHandler = (e) => {
           {tag === "Servicios" ? <ServicesList/> : null}
           {tag === "Usuarios" ? <UsersList/> : null}
           {tag === "Ordenes de compra" ? <ContractList/> : null}
-          
+          {tag === "Categorias" ? <CategoriesList/> : null}
         </div>
       
         <div className={s.aside}>
           <img src={user.picture} alt="" />
          {/*  <h2>Te logueaste con exito </h2> */}
           <h2 className={s.rolTitle}>En este sitio sos:</h2>
-          <p className={s.rol}>{user.user_role}</p>
+          <p className={s.rol}>{role}</p>
           {/* <p><code style={{'fontSize': 'large'}}>{JSON.stringify(apiResponse)}</code></p> */}
           {/* <p style={{'fontSize': 'xx-large'}}>{apiResponse}</p> */}
           <div>Mi carrito</div>

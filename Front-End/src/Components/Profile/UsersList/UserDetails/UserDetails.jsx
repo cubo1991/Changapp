@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useNavigate} from "react-router-dom";
-import { deleteUser, getUserDetails, updateUser } from "../../../../actions";
+import { deleteUser, getUserDetails, updateUser, updateImageProfile } from "../../../../actions";
 import s from "./UserDetails.module.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -27,7 +27,8 @@ export default function UserDetails () {
     eMail: "",
     adress: "",
     location: "",
-    phoneNumber: ""
+    phoneNumber: "",
+ 
   })
   console.log(inputs, "PRIMER IMP")
 
@@ -74,6 +75,9 @@ export default function UserDetails () {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(updateUser(inputs));
+    const imageForm = document.getElementById('images');
+    const formData = new FormData(imageForm);
+    dispatch(updateImageProfile(query[1],formData));
     navigate(-1);
   }
 
@@ -84,6 +88,8 @@ export default function UserDetails () {
       idPetitioner: inputs.idPetitioner}))
     navigate(-1);
   }
+
+
 
   return (
     <>
@@ -106,7 +112,7 @@ export default function UserDetails () {
 
         </div>
       </div>
-      <form className={s.card} onSubmit={(e) => submitHandler(e)}>
+      <form className={s.card} enctype="multipart/form-data" id='images' onSubmit={(e) => submitHandler(e)}>
         <div className={s.form}>
           <div className={s.data}>
             <div className={s.item}>
@@ -148,7 +154,10 @@ export default function UserDetails () {
         </div>
         <div className={s.picture}>
           <img src={details[0].picture} alt="user" />
+          <br></br>
+          <input class="form-control form-control-sm" id="formFileSm" type="file" name='image' hidden={noEditable ? true : false} />
         </div>
+        
       </form>
     </div>: "PONER UN LOADING"}
     </>

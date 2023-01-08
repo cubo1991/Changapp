@@ -1,27 +1,39 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart } from "../../actions";
+import { addCart, addPriceCart, addAmount } from "../../actions";
 import s from "./ServicesCard.module.css";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillCartCheckFill } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-export const ServicesCard = ({ name, price, description, id, image }) => {
+export const ServicesCard = ({ name, price, description, id, image, disponible, amount, key }) => {
+
+  
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart);
   const { user, isAuthenticated } = useAuth0();
-  const onClickBtn = () => {
+  // let [serviceAmount, setServiceAmount] = React.useState(amount)
+
+  
+
+  const onClickBtn = () => {  
     let verifier = (e) => e.id === id;
     if (cart.some(verifier)) return;
+  dispatch(addPriceCart(price))
     dispatch(addCart(id));
+    dispatch(addAmount(id, amount))
+    
   };
 
   const idCart = (element) => element.id === id;
-  //  console.log(cart.some(idCart))
 
+
+
+// console.log(serviceId)
   return (
     <div>
+     
       <div
         className={`card, ${s.general}`}
         style={{ maxWidth: "25rem", margin: "1rem" }}
@@ -38,27 +50,39 @@ export const ServicesCard = ({ name, price, description, id, image }) => {
               </p>
             </div>
           </Link>
-          {
-            isAuthenticated && user.user_role !== "Supplier"? 
-          cart.some(idCart) === false ? (
-            <p
-              className="btn btn-primary fs-2 align-self-end"
-              onClick={onClickBtn}
-            >
-              <BsFillCartFill />
-            </p>
-          ) : (
-            <p
-              className="btn btn-primary fs-2 align-self-end"
-              style={{ background: "green", cursor: "default" }}
-            >
-              <BsFillCartCheckFill />
-            </p>
-          )
-        : null
-        }
+          {!disponible?
+           <div>
+           <button className={s.buttonDisabled} disabled='true' onClick={onClickBtn}>No disponible</button>
+         </div>
+         :
+         <div>
+         {
+          isAuthenticated && user.user_role !== "Supplier"? 
+        cart.some(idCart) === false ? (
+          <p
+          data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            className="btn btn-primary fs-2 align-self-end"
+            onClick={onClickBtn}
+          >
+            <BsFillCartFill />
+          </p>
+        ) : (
+          <p
+            className="btn btn-primary fs-2 align-self-end"
+            style={{ background: "green", cursor: "default" }}
+          >
+            <BsFillCartCheckFill />
+          </p>
+
+          
+        )
+      : null
+      }</div>}
         </div>
+
+
       </div>
+      
     </div>
   );
 };

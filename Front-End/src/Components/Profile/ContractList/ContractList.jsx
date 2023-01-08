@@ -11,6 +11,9 @@ export default function ContractList () {
   const dispatch = useDispatch();
   const {user} = useAuth0();
 
+  const userLog = useSelector(state => state.userLog);
+  const role = user.user_role || userLog;
+
   const allContracts = useSelector(state => state.contracts);
   const [currentPage, setCurrentPage] = useState(1);
   let myContracts;
@@ -27,10 +30,10 @@ export default function ContractList () {
     setCurrentPage(pageNumber)
   }
   
-  if(user.user_role === "Admin" || user.user_role === "SuperAdmin"){
+  if(role === "Admin" || role === "SuperAdmin"){
     myContracts = allContracts;
   }else{
-    myContracts = allContracts.filter( contract => contract.User.id === user.id)
+    myContracts = allContracts.filter( contract => contract.User.id === parseInt(user.id));
   }
 
   //PAginacion
@@ -48,9 +51,9 @@ export default function ContractList () {
 
   return(
     <div>
-      {user.user_role === "Admin" || user.user_role === "SuperAdmin" ? 
-      <h3>Lista de contratos</h3>: 
-      <h3>Lista de contratos realizados</h3>}
+      {role === "Admin" || role === "SuperAdmin" ? 
+      <h2>Lista de contratos</h2>: 
+      <h2>Lista de contratos realizados</h2>}
 
         {myContracts.length > 0 ? <Index
         servicesPerPage={contractsPerPage}
@@ -77,7 +80,7 @@ export default function ContractList () {
           </div> 
         }) : <div>
                 <br/>
-                <h4>No has realizado ningún pedido</h4>
+                <h3>No has realizado ningún pedido</h3>
               </div>  
                 }
 
