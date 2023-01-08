@@ -7,7 +7,7 @@ export function test(){
     }
 } */
 
-import { ADD_CART, GET_DETAILS, REMOVE_ITEM, RESTOTALPRICE, SHOW_CART, SUMTOTALPRICE } from "../Constantes/Constantes"
+import { ADD_AMOUNT, ADD_CART, ADD_PRICE_CART, CART_RESTORE, DELETE_SERVICE_AMOUNT, GET_DETAILS, GET_TOTAL, REMOVE_ITEM, RESTOTALPRICE, SHOW_CART, SUMTOTALPRICE } from "../Constantes/Constantes"
 import axios from 'axios';
 
 const BACKEND_SERVER =
@@ -350,5 +350,38 @@ export const resServicesPrice = (payload) => {
     type: RESTOTALPRICE,
     payload
    
+  }
+
+}
+
+export const addAmount = (id, amount) => {
+
+  return {
+    type: ADD_AMOUNT,
+    amount,
+    id
+  }
+}
+export const getTotal = () => {
+  return {
+type: GET_TOTAL
+  }
+}
+export const addPriceCart = (payload) =>{
+  return{
+    type: ADD_PRICE_CART,
+    payload
+  }
+}
+export const deleteServiceAmount = (payload) => {
+  return{
+    type: DELETE_SERVICE_AMOUNT,
+    payload
+  }
+}
+
+export const cartRestore =() =>{
+  return{
+    type: CART_RESTORE
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, sumServicesPrice } from "../../actions";
+import { addCart, addPriceCart, addAmount } from "../../actions";
 import s from "./ServicesCard.module.css";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillCartCheckFill } from "react-icons/bs";
@@ -20,8 +20,10 @@ export const ServicesCard = ({ name, price, description, id, image, disponible, 
   const onClickBtn = () => {  
     let verifier = (e) => e.id === id;
     if (cart.some(verifier)) return;
-  dispatch(sumServicesPrice(Number(price)))
+  dispatch(addPriceCart(price))
     dispatch(addCart(id));
+    dispatch(addAmount(id, amount))
+    
   };
 
   const idCart = (element) => element.id === id;
