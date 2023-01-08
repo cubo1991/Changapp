@@ -20,7 +20,7 @@ export default function MercadoPagoProduct({ items }) {
     if (!preferenceId && cart) {
       // luego de montarse el componente, le pedimos al backend el preferenceId
       console.log("requesting preferenceid")
-      axios.post(`${BACKEND_SERVER}/create_preference`, { items: cart }).then((order) => {
+      axios.post(`${BACKEND_SERVER}/create_preference`, { items: cart, email: user.email }).then((order) => {
 
         console.log(`received! ${order.data.id}`)
         setPreferenceId(order.data.id);
