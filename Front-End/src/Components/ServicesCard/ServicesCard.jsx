@@ -15,6 +15,8 @@ export const ServicesCard = ({ name, price, description, id, image, disponible, 
   const { user, isAuthenticated } = useAuth0();
   // let [serviceAmount, setServiceAmount] = React.useState(amount)
 
+  const userLog = useSelector(state => state.userLog);
+  const role = user.user_role || userLog;
   
 
   const onClickBtn = () => {  
@@ -57,7 +59,7 @@ export const ServicesCard = ({ name, price, description, id, image, disponible, 
          :
          <div>
          {
-          isAuthenticated && user.user_role !== "Supplier"? 
+          isAuthenticated && role !== "Supplier"? 
         cart.some(idCart) === false ? (
           <p
           data-bs-toggle="modal" data-bs-target="#staticBackdrop"

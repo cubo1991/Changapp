@@ -15,8 +15,11 @@ export default function NavBar() {
   const { user, isLoading, isAuthenticated } = useAuth0();
   const [userRole, setUserRole] = useState("User");
 
+  const userLog = useSelector(state => state.userLog);
+  const role = user.user_role || userLog;
+
   useEffect(() => {
-    if (!isLoading && isAuthenticated && user.user_role) setUserRole(user.user_role);
+    if (!isLoading && isAuthenticated && role) setUserRole(role);
   }, [isLoading, isAuthenticated, user]);
 
 
@@ -84,7 +87,7 @@ export default function NavBar() {
           <div className={`${Style.nav_right} d-flex justify-content-end col`}>
             <Searchbar />
             <Login></Login>
-            {isAuthenticated && user.user_role !== "Supplier" ?
+            {isAuthenticated && role !== "Supplier" ?
               <NavLink
                 to="/cart"
                 className={({ isActive }) =>
