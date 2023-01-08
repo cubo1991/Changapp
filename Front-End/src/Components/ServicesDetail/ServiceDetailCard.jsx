@@ -3,16 +3,16 @@ import style from "./ServiceDetailCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../../actions";
 import { useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+//import { useAuth0 } from "@auth0/auth0-react";
 
 export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id, disponible }) => {
     
   let dispatch = useDispatch()
   let cart = useSelector((state) => state.cart)
 
-  const { user } = useAuth0();
+  /* const { user } = useAuth0();
   const userLog = useSelector(state => state.userLog);
-  const role = user.user_log || userLog;
+  const role = user.user_log || userLog; */
 
   const navigate = useNavigate();
 

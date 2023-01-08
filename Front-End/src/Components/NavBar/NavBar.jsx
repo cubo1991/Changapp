@@ -20,7 +20,7 @@ export default function NavBar() {
 
   useEffect(() => {
     if (!isLoading && isAuthenticated && role) setUserRole(role);
-  }, [isLoading, isAuthenticated, user]);
+  }, [isLoading, isAuthenticated, role]);
 
 
   return (
