@@ -13,7 +13,7 @@ export const ServicesCard = ({ name, price, description, id, image, disponible, 
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart);
   const { user, isAuthenticated } = useAuth0();
-  let [serviceAmount, setServiceAmount] = React.useState(amount)
+  // let [serviceAmount, setServiceAmount] = React.useState(amount)
 
   
 

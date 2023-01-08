@@ -18,6 +18,7 @@ const removeItems = (id) =>{
 }
 
 let totalCart = 0
+console.log(totalCart)
  
     const cartMap = cart.map((service) => { 
       totalCart +=  Number(service.pricePerHour)
