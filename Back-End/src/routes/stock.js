@@ -1,8 +1,8 @@
-// const { Router } = require('express');
+const { Router } = require('express');
 
 
-// const router = Router();
+const router = Router();
 
-// router.use(require('../middlewares/suppliersStock'))
+router.use(require('../middlewares/suppliersStock'))
 
-// module.exports = router;
+module.exports = router;

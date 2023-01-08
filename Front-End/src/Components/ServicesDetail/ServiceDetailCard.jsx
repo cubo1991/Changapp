@@ -20,7 +20,7 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
   return (
     <div className={style.container}>
 
-      <button  className="btn btn-secondary"  onClick={() => navigate(-1)}>Regresar</button>
+      <input type='button'  className={style.goBack}  onClick={() => navigate(-1)} />
 
       <div className={style.container1}>
       <h2 className={style.name}>{name}</h2>
