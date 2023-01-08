@@ -105,8 +105,9 @@ React.useEffect(() => {
             {/* <div>servicios</div> */}
             <div className={style.cards}>
               {currentServices?.map(service => {
+                
                 return (
-                  <ServicesCard id={service.id} name={service.serviceType} price={service.pricePerHour} description={service.description} image={service.representative_image} disponible={service.disponible}
+                  <ServicesCard id={service.id} name={service.serviceType} price={service.pricePerHour} description={service.description} image={service.representative_image} disponible={service.disponible} amount = {service.amount} key={service.id}
                   />
                 )
               })}

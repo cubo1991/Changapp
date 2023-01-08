@@ -1,27 +1,37 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart } from "../../actions";
+import { addCart, sumServicesPrice } from "../../actions";
 import s from "./ServicesCard.module.css";
 import { Link } from "react-router-dom";
 import { BsFillCartFill, BsFillCartCheckFill } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-export const ServicesCard = ({ name, price, description, id, image, disponible }) => {
+export const ServicesCard = ({ name, price, description, id, image, disponible, amount, key }) => {
+
+  
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart);
   const { user, isAuthenticated } = useAuth0();
-  const onClickBtn = () => {
+  let [serviceAmount, setServiceAmount] = React.useState(amount)
+
+  
+
+  const onClickBtn = () => {  
     let verifier = (e) => e.id === id;
     if (cart.some(verifier)) return;
+  dispatch(sumServicesPrice(Number(price)))
     dispatch(addCart(id));
   };
 
   const idCart = (element) => element.id === id;
-  //  console.log(cart.some(idCart))
 
+
+
+// console.log(serviceId)
   return (
     <div>
+     
       <div
         className={`card, ${s.general}`}
         style={{ maxWidth: "25rem", margin: "1rem" }}
@@ -48,6 +58,7 @@ export const ServicesCard = ({ name, price, description, id, image, disponible }
           isAuthenticated && user.user_role !== "Supplier"? 
         cart.some(idCart) === false ? (
           <p
+          data-bs-toggle="modal" data-bs-target="#staticBackdrop"
             className="btn btn-primary fs-2 align-self-end"
             onClick={onClickBtn}
           >
@@ -60,11 +71,16 @@ export const ServicesCard = ({ name, price, description, id, image, disponible }
           >
             <BsFillCartCheckFill />
           </p>
+
+          
         )
       : null
       }</div>}
         </div>
+
+
       </div>
+      
     </div>
   );
 };

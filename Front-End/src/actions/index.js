@@ -7,7 +7,7 @@ export function test(){
     }
 } */
 
-import { ADD_CART, GET_DETAILS, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes"
+import { ADD_CART, GET_DETAILS, REMOVE_ITEM, RESTOTALPRICE, SHOW_CART, SUMTOTALPRICE } from "../Constantes/Constantes"
 import axios from 'axios';
 
 const BACKEND_SERVER =
@@ -337,5 +337,18 @@ export function addCategory(data){
       },
       body: JSON.stringify(data)
     })
+  }
+}
+export const sumServicesPrice = (payload) => {
+  return {
+    type: SUMTOTALPRICE,
+    payload
+  }
+}
+export const resServicesPrice = (payload) => {
+  return {
+    type: RESTOTALPRICE,
+    payload
+   
   }
 }

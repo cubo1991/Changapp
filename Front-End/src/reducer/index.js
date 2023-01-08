@@ -1,6 +1,6 @@
 //import {} from "../actions/index"
 
-import { GET_DETAILS, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes";
+import { GET_DETAILS, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM, SHOW_CART, SUMTOTALPRICE, RESTOTALPRICE } from "../Constantes/Constantes";
 
 const initialState = {
   services: [],
@@ -18,7 +18,8 @@ const initialState = {
   contracts: [],
   userDetails: [],
   userLog: [],
-userDB:{}
+userDB:{},
+totalPrice: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -171,6 +172,19 @@ const reducer = (state = initialState, action) => {
             ...state,
             userLog: action.payload
           }
+
+        case SUMTOTALPRICE:
+  
+          return {
+            ...state,
+            totalPrice: state.totalPrice + action.payload
+          }
+          case RESTOTALPRICE:
+    
+          return {
+            ...state,
+            totalPrice: state.totalPrice - action.payload
+            } 
     default:
       return state;
   }
