@@ -14,7 +14,7 @@ let totalPrice = useSelector((state) => state.totalPrice)
 React.useEffect(() => {
  dispatch(getTotal())
  if(cart.length === 0) { dispatch(cartRestore())}
-}, [cart, totalPrice])
+}, [cart, totalPrice, dispatch])
 const removeItems = (id) =>{ 
   dispatch(removeItem(id))
 }
