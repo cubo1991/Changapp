@@ -2,8 +2,31 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items:center;
+    justify-content: flex-start;
     padding: 5% 0;
+
+}
+
+.container1{
+    margin: 0.1em 0em 0.5em 4em;
+    width: 80%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0.5em;
+}
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5em;
+}
+
+.container3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .detail_container{
@@ -27,12 +50,12 @@
   }
 
 .img{
-    width: 975px;
-    height: 301px;
+    width: 250px;
+    height: 350px;
     border-radius:5px;
-    position: absolute;
-    object-fit: cover;
-    border:solid 1px black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0.5em;
+
 }
 
 .detail_container{
@@ -42,4 +65,59 @@
     flex-direction: column;
     text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
     align-items: center;
+    padding: 0.5em;
+}
+
+.button{
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px;
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: rgb(19, 86, 231);
+    border: none;
+    color: white;
+    text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+    
+}
+
+.button:hover {
+    background-color: rgb(23, 132, 221);
+}
+
+.disable {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.buttonDisabled{
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px;
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    color: white;
+    text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+    
+}
+
+.goBack{
+    background: transparent;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/2099/2099190.png');
+    background-size: cover;
+    background-position: center;
+
+    border: none;
+
+    width: 50px;
+    height: 50px;
+    
+    transition: all 0.5s;
+    cursor: pointer;
+
+    position: absolute;
+
+    margin-left: -75em;
+    margin-top: -1em;
 }

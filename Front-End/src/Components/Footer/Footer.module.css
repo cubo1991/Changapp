@@ -14,7 +14,6 @@
   }
 
  .carrusel {
-  position: absolute;
   width: 20em;
   height: 14.3em;
   margin-left: 3em;
@@ -32,4 +31,22 @@
 
 .carrusel p{
   color: black;
+}
+
+@media (max-width: 445px){
+  .carrusel {
+    margin-left: 10%
+  }
+}
+
+@media (min-width: 445px) and (max-width: 768px) {
+  .carrusel{
+    margin-left: 16%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1399px) {
+  .carrusel{
+    margin-left: 3%;
+  }
 }

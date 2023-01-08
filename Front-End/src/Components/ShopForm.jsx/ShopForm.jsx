@@ -35,7 +35,8 @@ export const ShopForm = () => {
             setPagar(false);
             setInput(inicialState);
         }
-      },[]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      },[])
 
     // Funciones Validadoras
     function nameValidator (name, set) {
@@ -294,4 +295,3 @@ export const ShopForm = () => {
         </div>
     )
 }
-

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios'
+import axios from 'axios';
+
+import { useAuth0 } from "@auth0/auth0-react";
 
 // const FORM_ID = 'payment-form';
 const BACKEND_SERVER =
@@ -11,6 +13,8 @@ export default function MercadoPagoProduct({ items }) {
   const cart = useSelector(state => state.cart)
   const [preferenceId, setPreferenceId] = useState(null);
   console.log(cart)
+
+  const { user } = useAuth0();
 
   useEffect(() => {
     if (!preferenceId && cart) {
@@ -43,6 +47,7 @@ export default function MercadoPagoProduct({ items }) {
       });
 
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferenceId, cart]);
 
   return (

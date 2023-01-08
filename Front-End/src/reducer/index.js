@@ -1,6 +1,6 @@
 //import {} from "../actions/index"
 
-import { GET_DETAILS, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes";
+import { GET_DETAILS, GET_SUPPLIERS, ADD_CART, REMOVE_ITEM, SHOW_CART, SUMTOTALPRICE, RESTOTALPRICE } from "../Constantes/Constantes";
 
 const initialState = {
   services: [],
@@ -14,7 +14,12 @@ const initialState = {
   cart: [],
   location: [],
   loading: true,
-userDB:{}
+  users: [],
+  contracts: [],
+  userDetails: [],
+  userLog: [],
+userDB:{},
+totalPrice: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,8 +41,8 @@ const reducer = (state = initialState, action) => {
     case GET_SUPPLIERS:
       return {
         ...state,
-        suppliers: action.payload
-
+        suppliers: action.payload,
+        loading: false,
       }
     case GET_DETAILS:
       return {
@@ -147,6 +152,39 @@ const reducer = (state = initialState, action) => {
             ...state,
             userDB: action.payload
           }
+        case 'GET_ALL_USERS':
+          return {
+            ...state,
+            users: action.payload
+          }
+        case 'GET_ALL_CONTRACTS':
+          return {
+            ...state,
+            contracts: action.payload
+          }
+        case 'GET_USER_BY_ID':
+          return {
+            ...state,
+            userDetails: action.payload
+          }
+        case 'GET_USER_LOG':
+          return {
+            ...state,
+            userLog: action.payload
+          }
+
+        case SUMTOTALPRICE:
+  
+          return {
+            ...state,
+            totalPrice: state.totalPrice + action.payload
+          }
+          case RESTOTALPRICE:
+    
+          return {
+            ...state,
+            totalPrice: state.totalPrice - action.payload
+            } 
     default:
       return state;
   }

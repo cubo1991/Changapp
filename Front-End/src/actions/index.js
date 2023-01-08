@@ -7,7 +7,7 @@ export function test(){
     }
 } */
 
-import { ADD_CART, GET_DETAILS, REMOVE_ITEM, SHOW_CART } from "../Constantes/Constantes"
+import { ADD_CART, GET_DETAILS, REMOVE_ITEM, RESTOTALPRICE, SHOW_CART, SUMTOTALPRICE } from "../Constantes/Constantes"
 import axios from 'axios';
 
 const BACKEND_SERVER =
@@ -152,16 +152,16 @@ export function searchingSuppliers() {
 }
 
 export const getDetails = (id) => {
-  let found;
+  //let found;
   return function (dispatch) {
-    fetch(BACKEND_SERVER + "/suppliers")
+    fetch(BACKEND_SERVER + `/suppliers/${id}`)
       .then((res) => res.json())
-      .then((res) => (found = res.find((e) => e.id === id)))
+      //.then((res) => (found = res.find((e) => e.id === id)))
       .then((res) => {
         console.log(res);
         dispatch({
           type: GET_DETAILS,
-          payload: found,
+          payload: res,
         });
       });
   };
@@ -212,19 +212,11 @@ export const showCart = (payload) => {
   };
 };
 
-export const postSupplier = (payload) => {
+export const postSupplier = (data) => {
+
   return function () {
     axios
-      .post(BACKEND_SERVER + "/suppliers", payload /*{
-        adress: payload.address,
-        cuit: payload.cuit,
-        description: payload.description,
-        eMail: payload.email,
-        location: payload.location,
-        name: payload.name,
-        phoneNumber: payload.phone,
-        formData: payload.formData
-      }*/)
+      .post(BACKEND_SERVER + "/suppliers", data)
       .catch((error) => {
         console.log(error);
         alert("Something went wrong...");
@@ -262,3 +254,101 @@ export function updateImageProfile(id, payload) {
       .then((res) => dispatch({ type: "UPLOAD_IMAGE_PROFILE", payload: res }));
   };
 };
+
+export function sendContractNotification(status, email) {
+  return function(dispatch){
+    fetch(`${BACKEND_SERVER}/notifications?success=${status}&email=${email}`)
+    .then( res => res.json())
+    .then( res => console.log(res))
+  }
+}
+
+export function getAllUsers(){
+  return function(dispatch){
+    fetch(`${BACKEND_SERVER}/userHandler`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_ALL_USERS", payload: res}))
+  }
+}
+
+export const postServices = (imageForm, input) => {
+  return function () {
+    axios
+      .post(BACKEND_SERVER + "/services", {imageForm, input})
+      .catch((error) => {
+        console.log(error);
+        alert("Something went wrong...");
+      });
+  };
+};
+
+export function getContracts () {
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/contracts`)
+    .then( res => res.json())
+    .then( res => dispatch({type: "GET_ALL_CONTRACTS", payload: res}));
+  }
+}
+
+export function getUserDetails (id, profile) {
+  return function (dispatch) {
+    fetch(`${BACKEND_SERVER}/userHandler?id=${id}`)
+    .then( res => res.json())
+    .then( res => {
+      if(!profile) return dispatch({type: "GET_USER_BY_ID", payload: res});
+      else dispatch({type: "GET_USER_LOG", payload: res[0].UserRol.name});
+    })
+  }
+}
+
+export function updateUser(data){
+  return function (){
+    fetch(`${BACKEND_SERVER}/userHandler`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PUT",
+      body: JSON.stringify(data)
+    })
+  }
+}
+
+export function deleteUser(data){
+  return function (){
+    fetch(`${BACKEND_SERVER}/userHandler`,{
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE",
+      body: JSON.stringify(data)
+    })
+  }
+}
+
+export function addCategory(data){
+  return function(){
+    fetch(`${BACKEND_SERVER}/category`,{
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+  }
+}
+export const sumServicesPrice = (payload) => {
+  return {
+    type: SUMTOTALPRICE,
+    payload
+  }
+}
+export const resServicesPrice = (payload) => {
+  return {
+    type: RESTOTALPRICE,
+    payload
+   
+  }
+}

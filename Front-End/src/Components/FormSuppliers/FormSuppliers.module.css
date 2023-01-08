@@ -10,3 +10,9 @@ input[type=number]::-webkit-outer-spin-button {
 .container{
   margin: 4% 0;
 }
+
+.msgAlert{
+ position: relative;
+ top: 2rem;
+
+}

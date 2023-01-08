@@ -2,13 +2,14 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { removeItem } from '../../actions'
-import { CartItem } from '../../CartItem/CartItemCard'
+import { CartItem } from '../CartItem/CartItemCard'
 import s from './Cart.module.css'
 
 
 export const Cart = () => {
   
 let cart = useSelector((state) => state.cart)
+let totalPrice = useSelector((state) => state.totalPrice)
 
 
 let dispatch = useDispatch()
@@ -17,12 +18,13 @@ const removeItems = (id) =>{
 }
 
 let totalCart = 0
+console.log(totalCart)
  
     const cartMap = cart.map((service) => { 
       totalCart +=  Number(service.pricePerHour)
 
       return <CartItem
-      name={service.serviceType} price={service.pricePerHour} description={service.description} removeItem={removeItems} id={service.id} />})
+      name={service.serviceType} price={service.pricePerHour} description={service.description} removeItem={removeItems} id={service.id} amount={service.amount} />})
  
      
  return (
@@ -36,7 +38,7 @@ let totalCart = 0
   
     </div>
     <div className='container-fluid' style={{paddingTop: "2rem"}}>
-      <h2>Total: ${totalCart} </h2>
+      <h2>Total: ${totalPrice} </h2>
       <NavLink to='/buy'><button type="button" class="btn btn-success">Pagar</button></NavLink>
       </div>
       </div>

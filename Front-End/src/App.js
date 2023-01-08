@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 //styles
-import "jquery/dist/jquery.min.js";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
+// import "jquery/dist/jquery.min.js";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 //components
 import Home from "./Components/Home/Home.jsx";
@@ -21,6 +21,7 @@ import { ServicesDetail } from "./Components/ServicesDetail/ServicesDetail";
 import { FormSuppliers } from "./Components/FormSuppliers/FormSuppliers";
 import { Footer } from "./Components/Footer/Footer";
 import { ProtectedRoute } from "./Components/ProtectedRoute/ProtectedRoute";
+import UserDetails from "./Components/Profile/UsersList/UserDetails/UserDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
       localStorage.clear();
     }
     console.log(location.key);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.key]);
 
   return (
@@ -67,7 +69,16 @@ function App() {
         <Route path="/suppliers/:id" element={<SuppliersDetail />} />
         <Route path="/suppliersContact" element={<FormSuppliers />} />
         <Route path="/services/:d" element={<ServicesDetail />} />
-        <Route path="/buy" element={<ShopForm />} />
+        <Route path="/profile/user" element={
+          <ProtectedRoute>
+            <UserDetails/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/buy" element={
+          <ProtectedRoute>
+            <ShopForm />
+          </ProtectedRoute>
+        } />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
       <Footer />
