@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Index from "../../Index/Index.jsx";
 
-export default function ServicesList () {
+export default function ServicesList ({openModal}) {
 
+  console.log(openModal)
   const {user} = useAuth0();
   const userLog = useSelector(state => state.userLog);
   const role = user.user_role || userLog;
@@ -53,6 +54,11 @@ export default function ServicesList () {
 
   return(
     <div>
+
+      <div className={s.new}>
+        <button onClick={() => openModal(true)}>Agregar nuevo servicio</button>
+      </div>
+
       {role === "Admin" ||
       role === "SuperAdmin" ?
       <h2>Lista de servicios</h2> :
@@ -84,7 +90,9 @@ export default function ServicesList () {
                     </Link>
         }): <h3>No has contratado servicios...</h3>}
 
+
       </div>
+
     </div>
   )
 }

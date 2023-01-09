@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import s from "./Profile.module.css";
-import { getContracts, getUserDetails, updateImageProfile } from "../../actions";
+import { getContracts, getUserDetails, updateImageProfile, getAllServices } from "../../actions";
 import { useEffect } from "react";
 import axios from "axios";
 import SuppliersList from "./SuppliersList/SuppliersList";
@@ -11,6 +11,7 @@ import UsersList from "./UsersList/UserList";
 import ContractList from "./ContractList/ContractList";
 import ServicesList from "./ServicesList/ServicesList";
 import CategoriesList from "./CategoriesList/CategoriesList";
+import { FormServices } from "../FormServices/FormServices";
 
 
 export default function Profile() {
@@ -27,6 +28,12 @@ console.log(user)
 
  const [setApiResponse] = useState("");
  const [tag, setTag] = useState("Proveedores");
+
+ const[modal, setModal] = useState(false);
+
+ useEffect( () => {
+  dispatch(getAllServices());
+}, [dispatch, modal])
 
  // como getIdTokenClaims es asincrono, debemos usar useEffect para
  // manejarlo adecuadamente
@@ -150,7 +157,7 @@ const tagHandler = (e) => {
 
         <div className={s.categories}>
           {tag === "Proveedores" ? <SuppliersList/> : null}
-          {tag === "Servicios" ? <ServicesList/> : null}
+          {tag === "Servicios" ? <ServicesList openModal={setModal} /> : null}
           {tag === "Usuarios" ? <UsersList/> : null}
           {tag === "Ordenes de compra" ? <ContractList/> : null}
           {tag === "Categorias" ? <CategoriesList/> : null}
@@ -184,7 +191,13 @@ const tagHandler = (e) => {
             </NavLink>
           </button>
         </div>
-      </div>  
+      </div> 
+
+      <div className={ modal ? s.modalOpen : s.modalClose }>
+
+        <FormServices typeForm={"create"} close={setModal}></FormServices>
+
+      </div>
     </div>
   );
 }
