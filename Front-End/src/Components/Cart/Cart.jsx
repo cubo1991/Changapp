@@ -10,7 +10,7 @@ export const Cart = () => {
   let dispatch = useDispatch()
 let cart = useSelector((state) => state.cart)
 let totalPrice = useSelector((state) => state.totalPrice)
-
+console.log(cart)
 React.useEffect(() => {
  dispatch(getTotal())
  if(cart.length === 0) { dispatch(cartRestore())}
@@ -26,7 +26,7 @@ const removeItems = (id) =>{
 
 
       return <CartItem
-      name={service.serviceType} price={service.pricePerHour} description={service.description} removeItem={removeItems} id={service.id} amount={service.amount} />})
+      name={service.serviceType} price={service.pricePerHour} description={service.description} removeItem={removeItems} id={service.id} amount={service.amount} suppliers={service.Suppliers} />})
  
      
  return (

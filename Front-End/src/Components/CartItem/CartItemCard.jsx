@@ -3,11 +3,15 @@ import { useDispatch } from 'react-redux'
 import { addAmount, resServicesPrice, sumServicesPrice, deleteServiceAmount } from '../../actions'
 import s from './CartItemCard.module.css'
 
-export const CartItem = ({name, price, description, removeItem, id, amount }) => {
+export const CartItem = ({name, price, description, removeItem, id, amount, suppliers }) => {
 
   let [serviceAmount, setServiceAmount] = React.useState(amount)
   let [total, setTotal] = React.useState(Number(price))
  let dispatch =  useDispatch()
+
+ let stocks = suppliers?.map(s => s.stock);
+ let maxStock = stocks.length>1? Math.max(...stocks) : stocks[0];
+ console.log(maxStock)
 const removeService = () => {
   removeItem(id)
   dispatch(deleteServiceAmount(price*serviceAmount))
@@ -21,7 +25,7 @@ const removeService = () => {
        dispatch(addAmount(id, -1))
       
       }
-    if (e.target.value === "+" && serviceAmount < 8) {
+    if (e.target.value === "+" && serviceAmount < maxStock) {
        setServiceAmount(serviceAmount + 1)
        setTotal(Number(total+Number(price)))
        dispatch(sumServicesPrice(id))

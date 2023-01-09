@@ -170,13 +170,13 @@ export const getDetails = (id) => {
 export const addCart = (id) => {
   let found;
   return function (dispatch) {
-    fetch(BACKEND_SERVER + "/services")
+    fetch(`${BACKEND_SERVER}/services/${id}`)
       .then((res) => res.json())
-      .then((res) => (found = res.find((e) => e.id === id)))
+     
       .then((res) => {
         dispatch({
           type: ADD_CART,
-          payload: found,
+          payload: res[0],
         });
       });
   };
