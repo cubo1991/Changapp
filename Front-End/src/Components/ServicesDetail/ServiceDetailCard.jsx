@@ -12,7 +12,8 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
 
   /* const { user } = useAuth0();
   const userLog = useSelector(state => state.userLog);
-  const role = user.user_log || userLog; */
+  let role;
+  if(user) role = user.user_log || userLog; */
 
   const navigate = useNavigate();
 

@@ -16,7 +16,8 @@ export const ServicesCard = ({ name, price, description, id, image, disponible, 
   // let [serviceAmount, setServiceAmount] = React.useState(amount)
 
   const userLog = useSelector(state => state.userLog);
-  const role = user.user_role || userLog;
+  let role;
+  if(user) role = user.user_role || userLog;
   
 
   const onClickBtn = () => {  

@@ -16,7 +16,8 @@ export default function NavBar() {
   const [userRole, setUserRole] = useState("User");
 
   const userLog = useSelector(state => state.userLog);
-  const role = user.user_role || userLog;
+  let role;
+  if(user) role = user.user_role || userLog;
 
   useEffect(() => {
     if (!isLoading && isAuthenticated && role) setUserRole(role);
