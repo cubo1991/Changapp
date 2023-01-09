@@ -38,6 +38,7 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
     } 
 
     console.log(adminOption)
+    console.log(user.user_role)
 
   return (
     <div className={style.container}>
@@ -49,10 +50,13 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
       <div className={style.container3}>
       <div className={style.container2}>
           <img className={style.img} src={img} alt="Imagen"/>
-          {disponible?
+          {disponible && user.user_role !== "Supplier"?
           <button className={style.button} onClick={onClickBtn}>Agregar al Carrito</button>
           :
+          user.user_role !== "Supplier"?
           <button className={style.buttonDisabled} disabled='true' onClick={onClickBtn}>No disponible</button>
+          :
+          null
         }
         </div>
         <div className={style.detail_container}>
