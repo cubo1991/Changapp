@@ -6,3 +6,32 @@
     .error {
         color: red;    
         }
+
+    .itemsContainer {
+ 
+    }
+
+    .order{
+      display: flex;
+      flex-direction: row;
+   
+    }
+
+    .ul{
+      list-style: none;
+    }
+
+    .total {
+      display: flex;
+      color:rgb(33, 120, 249);
+      text-shadow: #CCC 1px 0 10px;;
+    
+    }
+
+    .linea {
+      border-top: 1px solid rgb(219, 217, 217);
+      height: 2px;
+      width: 100%;
+      padding: 0;
+      margin: 20px auto 0 auto;
+    }
