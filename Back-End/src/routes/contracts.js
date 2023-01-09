@@ -5,7 +5,6 @@ const { ResourceNotFound } = require("../errors");
 const router = Router();
 
 router.get("/:id?", async (req, res, next) => {
-  //code
   const { id } = req.params;
   const { supplier, user, date } = req.query;
 
@@ -31,14 +30,14 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  const { date, SupplierServiceId, UserId } = req.body;
+  const { date, SupplierServiceId, UserId, status } = req.body;
 
   if (!date || !SupplierServiceId || !UserId)
     return res
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
 
-  const newContract = { date, SupplierServiceId, UserId };
+  const newContract = { date, SupplierServiceId, UserId, status };
 
   try {
     const dbContract = await ContractController.add(newContract);
@@ -56,15 +55,15 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
-  const { date, SupplierServiceId, UserId } = req.body;
+  const { date, SupplierServiceId, UserId, status } = req.body;
 
   if (!id) return res.status(400).send();
-  if (!date && !SupplierServiceId && !UserId)
+  if (!date && !SupplierServiceId && !UserId && !status)
     return res
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
 
-  const dataContract = { date, SupplierServiceId, UserId };
+  const dataContract = { date, SupplierServiceId, UserId, status };
 
   try {
     const dbContract = await ContractController.update(id, dataContract);

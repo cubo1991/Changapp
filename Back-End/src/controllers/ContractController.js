@@ -27,7 +27,7 @@ const findSupplierBySupplierService = async (SupplierServiceId) => {
   }
 };
 
-const add = async ({ date, UserId, SupplierServiceId }) => {
+const add = async ({ date, UserId, SupplierServiceId, status }) => {
   let SupplierId;
 
   try {
@@ -50,6 +50,7 @@ const add = async ({ date, UserId, SupplierServiceId }) => {
       UserId,
       SupplierServiceId,
       SupplierId,
+      status,
     });
 
     // retornamos asi para mantener el formato consistente
@@ -65,7 +66,7 @@ const add = async ({ date, UserId, SupplierServiceId }) => {
   }
 };
 
-const update = async (id, { date, UserId, SupplierServiceId }) => {
+const update = async (id, { date, UserId, SupplierServiceId, status }) => {
   let SupplierId;
 
   if (SupplierServiceId) {
@@ -88,11 +89,10 @@ const update = async (id, { date, UserId, SupplierServiceId }) => {
 
   try {
     const updateContract = await Contract.update(
-      { date, UserId, SupplierServiceId, SupplierId },
+      { date, UserId, SupplierServiceId, SupplierId, status },
       { where: { id } }
     );
 
-    console.log(updateContract[0]);
     if (updateContract[0] === 0)
       throw new ResourceNotFound(
         id,
