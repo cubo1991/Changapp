@@ -107,5 +107,24 @@ router.get('/:id', async (req, res) => {
       return res.status(500).send('Hubo un error en el servidor');
   }
 });
+
+router.delete("/:id", async (req, res, next ) => {
+
+  try{
+      const { id } = req.params;
+
+      await Service.destroy({
+          where: {
+              id
+          }
+      })
+
+      return res.status(200).json("El servicio ha sido elimiando satisfactoriamente!");
+
+  }catch(error){
+    console.log(error)
+      next(error)
+  }
+})
   
 module.exports = router;

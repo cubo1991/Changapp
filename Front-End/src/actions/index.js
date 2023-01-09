@@ -385,3 +385,16 @@ export const cartRestore =() =>{
     type: CART_RESTORE
   }
 }
+
+export function deleteService (id) {
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/services/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type":"application/json",
+      }
+    }).then(res => res.json())
+    .then(res => console.log(res));
+  }
+}
