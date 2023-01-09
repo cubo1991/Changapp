@@ -71,7 +71,7 @@ router.put("/:id", async (req, res, next) => {
     return res.status(200).json(dbContract);
   } catch (error) {
     if (error instanceof ResourceNotFound)
-      return res.status(400).json({ error: `${error.data.model} inexistente` });
+      return res.status(404).json({ error: `${error.data.model} inexistente` });
 
     console.error("PUT /contracts ContractController.update error");
 
@@ -90,7 +90,7 @@ router.delete("/:id", async (req, res, next) => {
     return res.status(200).send();
   } catch (error) {
     if (error instanceof ResourceNotFound)
-      return res.status(400).json({ error: `${error.data.model} inexistente` });
+      return res.status(404).json({ error: `${error.data.model} inexistente` });
 
     console.error("DELETE /contracts ContractController.remove error");
 

@@ -22,7 +22,17 @@ class InternalError extends CustomError {
   }
 }
 
+class DuplicatedRecord extends CustomError {
+  constructor(resource, model, controller, query) {
+    super(
+      `Resource ${resource} in model ${model} using ${controller} was found to be duplicated.`
+    );
+    this.data = { resource, model, controller, query };
+  }
+}
+
 module.exports = {
   ResourceNotFound,
   InternalError,
+  DuplicatedRecord,
 };

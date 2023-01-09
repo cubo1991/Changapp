@@ -1,4 +1,6 @@
-const { User } = require("../db");
+const { User, UserRol } = require("../db");
+const { UniqueConstraintError } = require("sequelize");
+const { DuplicatedRecord } = require("../errors");
 
 const add = async (
   { name, nickname, given_name, family_name, picture, email, email_verified },
@@ -41,8 +43,10 @@ const findById = async (id) => {
 
 const getUserRole = async (id) => {
   try {
-    const user = await User.findByPk(id);
-    return user.UserRolName;
+    const user = await User.findByPk(id, {
+      include: { model: UserRol, attributes: ["name"] },
+    });
+    return user.UserRol.name;
   } catch (error) {
     console.error(error);
     throw error;
@@ -95,6 +99,10 @@ const update = async (
 
     return await findById(id);
   } catch (error) {
+    // si es uniqueconstraint quiere poner un mail ya usado
+    if (error instanceof UniqueConstraintError)
+      throw new DuplicatedRecord(email, "User", "UserController", "update");
+
     console.error(error);
     throw error;
   }
