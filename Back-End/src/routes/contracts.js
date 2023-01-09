@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const ContractController = require("../controllers/ContractController");
+const { ResourceNotFound } = require("../errors");
 
 const router = Router();
 
@@ -30,21 +31,23 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  const { date, SupplierServiceId, SupplierId, UserId } = req.body;
+  const { date, SupplierServiceId, UserId } = req.body;
 
-  if (!date || !SupplierServiceId || !SupplierId || !UserId)
+  if (!date || !SupplierServiceId || !UserId)
     return res
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
 
-  const newContract = { date, SupplierServiceId, SupplierId, UserId };
+  const newContract = { date, SupplierServiceId, UserId };
 
   try {
     const dbContract = await ContractController.add(newContract);
 
     return res.status(201).json(dbContract);
   } catch (error) {
-    // TODO: deberiamos capturar errores de ID
+    if (error instanceof ResourceNotFound)
+      return res.status(400).json({ error: `${error.data.model} inexistente` });
+
     console.error("POST /contracts ContractController.add error");
 
     next(error);
@@ -53,21 +56,24 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
-  const { date, SupplierServiceId, SupplierId, UserId } = req.body;
+  const { date, SupplierServiceId, UserId } = req.body;
 
-  if (!id || !date || !SupplierServiceId || !SupplierId || !UserId)
+  if (!id) return res.status(400).send();
+  if (!date && !SupplierServiceId && !UserId)
     return res
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
 
-  const dataContract = { date, SupplierServiceId, SupplierId, UserId };
+  const dataContract = { date, SupplierServiceId, UserId };
 
   try {
     const dbContract = await ContractController.update(id, dataContract);
 
     return res.status(200).json(dbContract);
   } catch (error) {
-    // TODO: deberiamos capturar errores de ID
+    if (error instanceof ResourceNotFound)
+      return res.status(400).json({ error: `${error.data.model} inexistente` });
+
     console.error("PUT /contracts ContractController.update error");
 
     next(error);
@@ -84,7 +90,9 @@ router.delete("/:id", async (req, res, next) => {
 
     return res.status(200).send();
   } catch (error) {
-    // TODO: deberiamos capturar errores de ID
+    if (error instanceof ResourceNotFound)
+      return res.status(400).json({ error: `${error.data.model} inexistente` });
+
     console.error("DELETE /contracts ContractController.remove error");
 
     next(error);
