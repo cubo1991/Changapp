@@ -155,7 +155,9 @@ useEffect(()=> {
         e.preventDefault();
         console.log(input)
         setPagar(true);
- 
+      //cart.forEach(c=>{
+      //  dispatch(creaContract(c,input))
+      //})
 
     }
 
@@ -164,13 +166,13 @@ useEffect(()=> {
     let total = 0;
   
     return (
-
+<div className={s.background}>
         <div className={s.container}>
             <h2 className="h2">Finaliza tu Compra</h2>
 
-            <div className='card' style={{ width: "40rem", left: "22rem", top: "2rem" }}>
+            <div >
             <div className={s.itemsContainer}>
-              <h3>Tu compra</h3>
+<br></br>
           <ul className={s.ul}>
             {cart.map(c => {
               return (
@@ -194,9 +196,9 @@ useEffect(()=> {
             <form className="row g-3" onSubmit={(e)=>handlerSubmit(e)}>
 
                 <div class="form-group">
-            <h3>Datos del Comprador</h3>
+            <h3 className={s.text}>Datos del Comprador</h3>
                     <div div className="col-12">
-                    <label>Nombre y Apellido:</label>
+                    <label className={s.text}>Nombre y Apellido:</label>
                     <input
                         type='text'
                         name='name'
@@ -212,7 +214,7 @@ useEffect(()=> {
                     
                   <div class="row">
             <div div class="col">
-                    <label>E-mail: </label>
+                    <label className={s.text}>E-mail: </label>
                     <input
                         type="email"
                         class="form-control"
@@ -228,7 +230,7 @@ useEffect(()=> {
                     </div>
 
                     <div div class="col">
-                    <label>Número de Teléfono: </label>
+                    <label className={s.text}>Número de Teléfono: </label>
                     <input
                         type='number'
                         name='phone'
@@ -242,8 +244,8 @@ useEffect(()=> {
         <div className={s.linea}></div>
                     
                     <div className="col-12">
-                    <h3>Datos de entrega</h3>
-                    <label>Dirección</label>
+                    <h3 className={s.text}>Datos de entrega</h3>
+                    <label className={s.text}>Dirección</label>
                     <input
                         type='text'
                         name='adress'
@@ -258,7 +260,7 @@ useEffect(()=> {
                     </div>
                   <div class="row">
                     <div className="col-9">
-                    <label>Ciudad: </label>
+                    <label className={s.text}>Ciudad: </label>
                     <input
                         type='text'
                         name='location'
@@ -273,7 +275,7 @@ useEffect(()=> {
                     </div>
                     
                     <div class="col-md-3">
-                    <label>Código Postal: </label>
+                    <label className={s.text}>Código Postal: </label>
                     <input
                         type='number'
                         name='CP'
@@ -285,7 +287,7 @@ useEffect(()=> {
                     <div className={s.linea}></div>
 </div>
                     <div className="col-12">
-                    <h3>Horario de Preferencia</h3>
+                    <h3 className={s.text}>Horario de Preferencia</h3>
                     <select class="form-control" name='preferredTime' onClick={(e) => handlerClick(e)}>
                     <option>Mañana (entre las 8:00 y las 12:00)</option>
                     <option>Siesta (entre las 12:00 y las 16:00)</option>
@@ -314,6 +316,6 @@ useEffect(()=> {
                 </form>
 
             </div>
-        </div>
+        </div></div>
     )
 }
