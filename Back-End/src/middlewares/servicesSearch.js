@@ -1,4 +1,4 @@
-const {Service, Supplier, Category, Op, conn} = require('../db.js');
+const {Service, Supplier, Category, Op} = require('../db.js');
 const { Router } = require('express');
 const router = Router();
 
@@ -124,6 +124,64 @@ router.delete("/:id", async (req, res, next ) => {
   }catch(error){
     console.log(error)
       next(error)
+  }
+})
+
+router.put("/:id", async (req, res, next) => {
+
+  try{
+
+    const { id } = req.params;
+
+    const { name, price, description, image, categoryId, suppliersId} = req.body;
+
+    const searchService = await Service.findByPk(id,{
+      include: {
+        model: Category
+      }
+    })
+
+    if(!searchService) return res.status(404).json("No existe dicho servicio");
+
+    if(name){
+      await Service.update({
+        serviceType: name
+      },{
+        where: { id }
+      })
+    }
+
+    if(price){
+      await Service.update({
+        pricePerHour: price
+      },{
+        where: { id }
+      })
+    }
+
+    if(description){
+      await Service.update({
+        description: description
+      },{
+        where: { id }
+      })
+    }
+
+    if(categoryId){
+
+      await searchService.setCategory(categoryId);
+
+    }
+
+    if(suppliersId){
+      
+      await searchService.addSupplier(suppliersId)
+    }
+
+    return res.status(200).json("Actualización del servicio exitosa!");
+
+  }catch(error){
+    next(error)
   }
 })
   

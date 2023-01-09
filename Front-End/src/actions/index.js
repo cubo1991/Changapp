@@ -168,7 +168,7 @@ export const getDetails = (id) => {
 };
 
 export const addCart = (id) => {
-  let found;
+  //let found;
   return function (dispatch) {
     fetch(`${BACKEND_SERVER}/services/${id}`)
       .then((res) => res.json())
@@ -396,5 +396,19 @@ export function deleteService (id) {
       }
     }).then(res => res.json())
     .then(res => console.log(res));
+  }
+}
+
+export function editService (id, data) {
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/services/${id}`,{
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(data)
+    }).then( (res) => res.json())
+      .then( res => alert(res));
   }
 }

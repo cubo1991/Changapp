@@ -2,12 +2,16 @@ import React from 'react'
 //import { useForm } from 'react-hook-form'
 import s from './FormServices.module.css'
 import { useDispatch } from 'react-redux'
-import { getCategories, getSuppliers, postServices } from '../../actions'
+import { editService, getCategories, getServiceDetails, getSuppliers, postServices } from '../../actions'
 import { useState } from 'react';
 import  {useSelector} from 'react-redux';
 import { useEffect } from 'react';
 
-export const FormServices = () => {
+export const FormServices = ({typeForm, idElement, close}) => {
+
+  //typeForm es una prop para definir de que es el form, editar o crear
+  //idElement es el id del elemento que esta seleccionado
+
 let dispatch = useDispatch()
 const categories = useSelector(state => state.categories);
 const suppliers = useSelector(state => state.suppliers);
@@ -18,7 +22,8 @@ const inicialState = {
     price: 0,
     description: "",
     categories: "",
-    suppliers:[]
+    suppliers:[],
+    suppliersId: []
 }
 
     useEffect(() => {
@@ -29,15 +34,23 @@ const inicialState = {
         dispatch(getSuppliers())
     },[dispatch]);
 
+    
     const  onSubmit = (e) => {
       e.preventDefault();
+      
       console.log(inputValues)
       const imageForm = document.getElementById('images');
       const formData = new FormData(imageForm);
+      
+       if(typeForm === "create") dispatch(postServices(formData, inputValues)) ;
 
-       dispatch(postServices(formData, inputValues)) ;
+       if(typeForm === "edit") {
+        dispatch(editService(idElement, inputValues));
+        dispatch(getServiceDetails(idElement));
+      }
 
        setInputValues(inicialState);
+
     }
 
     function nameValidator (name, set) {
@@ -90,41 +103,43 @@ const inicialState = {
         }
       });
     };
-
+    
     const validateSuppliers = (e) => {
 
         if(e.target.value === 'choose'){
-            setError({
+          setError({
                    ...error,
                    [e.target.name]: `Selecciona al menos un proveedor de la lista`
                });
-
+               
            } else {
                setError({
                    ...error,
                    [e.target.name]:''
-               })
-           }   
-       let supplierName = suppliers.filter(s => s.id.toString() === e.target.value)
+                  })
+                }   
+                let supplierName = suppliers.filter(s => s.id.toString() === e.target.value)
        setSupplier(supplierName[0]);
-    };
+       console.log(supplier) //ESto solo lo estoy declarando para que no rompa, hay que refactorizar
+      };
 
     const handlerSupplierClick = (e) => {
      
         setInputValues({
-            ...inputValues,
-            suppliers: [...inputValues.suppliers, supplier]
+          ...inputValues,
+          suppliers: [...inputValues.suppliers, supplier],
+          suppliersId: [...inputValues.suppliersId, supplier.id]
         })
         setSupplier({});
-    };
+      };
 
     const validateCategories = (e) => {
 
         if(e.target.value === 'choose'){
-            setError({
+          setError({
                    ...error,
                    [e.target.name]: `Selecciona una categoría`
-               });
+                  });
 
            } else {
                setError({
@@ -136,6 +151,8 @@ const inicialState = {
 
     const [supplier, setSupplier] = useState({});
     let [inputValues, setInputValues] = useState(inicialState);
+
+    console.log(inputValues)
 
     const changeHandler = (e) => {
       setInputValues( prev => {
@@ -160,7 +177,10 @@ const inicialState = {
 
       <div className={`card ${s.form}`}>
 
-     <form onSubmit={(e) => onSubmit(e)} className="row g-3" enctype="multipart/form-data" id='images' >
+     <form onSubmit={(e) =>{ 
+      onSubmit(e);
+      close("");
+      }} className="row g-3" enctype="multipart/form-data" id='images' >
 
       <div className="col-9">
         <label for="inputName" className="form-label">Nombre del Servicio</label>
@@ -194,13 +214,13 @@ const inicialState = {
 
             <div className={`form-group ${s.select}`}>
             <label for="exampleFormControlSelect1">Categoría</label> 
-                <select class="form-control" id="exampleFormControlSelect1" defaultValue='choose' name='categories'  focus='true' onClick={(e) => {
+                <select class="form-control" id="exampleFormControlSelect1" defaultValue='choose' name='categories'  focus='true' onChange={(e) => {
                     changeHandler(e);
                 validateCategories(e);
                 }}>
                 <option value='choose'>Selecciona una categoría</option>
                 {categories?.map((c) => (
-                <option key={c.id} value={c.id}>{c.name}</option>
+                <option name={c.name} key={c.id} value={c.id}>{c.name}</option>
                 ))}
                 </select>
                 <br></br>
