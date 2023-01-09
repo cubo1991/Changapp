@@ -212,6 +212,7 @@ const reducer = (state = initialState, action) => {
                 let auxAPC = Number(getTotal) + Number(action.payload)
                 localStorage.setItem("total", JSON.stringify(auxAPC))
                let newtotal = JSON.parse(localStorage.getItem("total"))
+               console.log(newtotal)
               return {
                   ...state,
                   // totalPrice: newtotal
