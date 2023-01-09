@@ -7,6 +7,11 @@ const add = async (
   user_role = "User"
 ) => {
   try {
+    let dbUserRol = await UserRol.findOne({ where: { name: user_role } });
+    // se mando un rol inexistente, buscamos el rol user
+    if (!dbUserRol)
+      dbUserRol = await UserRol.findOne({ where: { name: "User" } });
+
     return await User.create({
       name,
       nickname,
@@ -15,7 +20,7 @@ const add = async (
       picture,
       email,
       email_verified,
-      UserRolName: user_role,
+      UserRolId: dbUserRol.id,
     });
   } catch (error) {
     console.error(error);
@@ -55,8 +60,13 @@ const getUserRole = async (id) => {
 
 const setUserRole = async (id, user_role) => {
   try {
+    let dbUserRol = await UserRol.findOne({ where: { name: user_role } });
+    // se mando un rol inexistente, buscamos el rol user
+    if (!dbUserRol)
+      dbUserRol = await UserRol.findOne({ where: { name: "User" } });
+
     const user = await User.update(
-      { UserRolName: user_role },
+      { UserRolId: dbUserRol.id },
       { where: { id } }
     );
 
