@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getServiceDetails } from "../../actions";
 import { ServiceDetailCard } from './ServiceDetailCard.jsx'
 import s from "./ServiceDetail.module.css";
+import { FormServices } from "../FormServices/FormServices";
 
 export const ServicesDetail = () => {
   let dispatch = useDispatch();
@@ -31,7 +32,9 @@ export const ServicesDetail = () => {
         suppliers={serviceDetail[0].Suppliers}
         img={serviceDetail[0].representative_image}
         disponible={serviceDetail[0].disponible}
-      />
+      >
+        <FormServices></FormServices>  {/* children para hacer ventana modal */}
+      </ServiceDetailCard>
     </div> : null
   );
 };

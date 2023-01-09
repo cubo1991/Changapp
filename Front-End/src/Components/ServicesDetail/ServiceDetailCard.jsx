@@ -1,19 +1,22 @@
 import React from "react";
 import style from "./ServiceDetailCard.module.css";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../../actions";
 import { useNavigate } from "react-router-dom";
-//import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id, disponible }) => {
+export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id, disponible, children }) => {
     
   let dispatch = useDispatch()
   let cart = useSelector((state) => state.cart)
 
-  /* const { user } = useAuth0();
+  const [adminOption, setAdminOption] = useState(false)
+
+  const { user } = useAuth0();
   const userLog = useSelector(state => state.userLog);
   let role;
-  if(user) role = user.user_log || userLog; */
+  if(user) role = user.user_log || userLog;
 
   const navigate = useNavigate();
 
@@ -51,11 +54,34 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
   )
         })}
         </div>
+      
+      { role === "Admin" || role === "SuperAdmin" ? 
+      <div className={style.adminTools}>
+        <h4>Herramientas de Administrador</h4>
+        <div className={style.adminButtons}>
+          <button className={style.button} onClick={ () => setAdminOption(true)}>Editar Servicio</button>
+          <button className={style.button}>Eliminar Servicio</button>
+        </div>
+      </div> 
+      : null}
 
       </div>
 
+
+
       </div>
-    
+        
+        <div className={adminOption ? style.modalOpen : style.modalClose}>
+          {adminOption ? 
+          <>
+            <div>
+              <button className={`${style.button} ${style.closeButton}`}
+              onClick={ () => setAdminOption(false)}>X</button>
+            </div>
+            {children}
+          </> : null}
+        </div>
+
       </div>
 
   );

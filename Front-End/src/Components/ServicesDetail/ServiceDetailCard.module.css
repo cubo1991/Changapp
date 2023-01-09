@@ -185,3 +185,36 @@
         display: initial;
     }
  }
+
+ .adminTools {
+    background-color: white;
+    padding: 2%;
+    border-radius: 15px;
+    height: fit-content;
+}
+
+.adminButtons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modalOpen{
+    position: absolute;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transition: all 0.2;
+}
+
+.modalClose{
+    opacity: 0;
+    transition-duration: 0.8;
+}
+
+.closeButton{
+    width: 50px;
+    margin: 0;
+    font-weight: bolder;
+}

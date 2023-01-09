@@ -156,10 +156,10 @@ const inicialState = {
     console.log(error)
 
     return (
-      <div className={s.container}><h1>Crear nuevo Servicio</h1>
-    
-      <div className='card' style={{width:"40rem", left:"22rem", top:"2rem"}}>
-     
+      <div className={s.container}>
+
+      <div className={`card ${s.form}`}>
+
      <form onSubmit={(e) => onSubmit(e)} className="row g-3" enctype="multipart/form-data" id='images' >
 
       <div className="col-9">
@@ -190,7 +190,9 @@ const inicialState = {
 
   </div>
 
-            <div class="form-group">
+          <div className={s.selectItems}>
+
+            <div className={`form-group ${s.select}`}>
             <label for="exampleFormControlSelect1">Categoría</label> 
                 <select class="form-control" id="exampleFormControlSelect1" defaultValue='choose' name='categories'  focus='true' onClick={(e) => {
                     changeHandler(e);
@@ -206,7 +208,7 @@ const inicialState = {
                 
              </div>
 
-             <div class="form-group" >
+             <div className={`form-group0 ${s.select}`} >
             <label for="exampleFormControlSelect1">Proveedores</label> 
            
                 <select class="form-control" id="exampleFormControlSelect1"  defaultValue='choose' name='suppliers'  focus='true' onClick={(e)=> validateSuppliers(e)}>
@@ -224,7 +226,9 @@ const inicialState = {
                 
              </div>
 
-              <div class="mb-3">
+             </div>
+
+              <div className={`mb-3 ${s.select}`}>
                 <label>Imagen Representativa</label>
                 <input class="form-control form-control-sm" id="formFileSm" type="file" name='image'/>
              </div>
@@ -235,6 +239,7 @@ const inicialState = {
     <button type="submit" className="btn btn-primary" disabled= {
       error.name || inputValues.name === "" || inputValues.description === "" || inputValues.price === "" || error.suppliers || !inputValues.suppliers.length || inputValues.categories === "" || error.categories ? true : false
     }>Enviar</button>
+
   </div>
 
 
