@@ -9,6 +9,7 @@ import s from '../ShopForm.jsx/ShopForm.module.css'
 export const ShopForm = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart)
+  console.log(cart)
 
   const { user } = useAuth0();
 
