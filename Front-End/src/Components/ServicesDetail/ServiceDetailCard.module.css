@@ -170,3 +170,18 @@
         margin-right:85%
     }
  }
+
+ @media(max-width: 450px){
+    .goBack{
+        margin-right: 16em;
+        margin-top: 36.4em;
+        z-index: 1;
+
+    }
+    .container2{
+        align-items: center;
+    }
+    .container3{
+        display: initial;
+    }
+ }
