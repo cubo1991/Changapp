@@ -12,7 +12,7 @@ export const ServicesCard = ({ name, price, description, id, image, disponible, 
   
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart);
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   // let [serviceAmount, setServiceAmount] = React.useState(amount)
 
   const userLog = useSelector(state => state.userLog);
@@ -60,7 +60,7 @@ export const ServicesCard = ({ name, price, description, id, image, disponible, 
          :
          <div>
          {
-          isAuthenticated && role !== "Supplier"? 
+         role !== "Supplier"? 
         cart.some(idCart) === false ? (
           <p
           data-bs-toggle="modal" data-bs-target="#staticBackdrop"
