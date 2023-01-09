@@ -6,8 +6,9 @@ import { addCart, deleteService } from "../../actions";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import ConfirmModal from "../Modals/ConfirmModal";
+import { FormServices } from "../FormServices/FormServices";
 
-export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id, disponible, confirmModal, editModal }) => {
+export const ServiceDetailCard = ({ name, pph, description, category, suppliers, img, id, disponible, params }) => {
     
   let dispatch = useDispatch()
   let cart = useSelector((state) => state.cart)
@@ -91,7 +92,7 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
               onClick={ () => setAdminOption("")}>X</button>
             </div>
             { adminOption === "delete" ? <ConfirmModal item={"servicio"} set={setAdminOption} action={deleteHandler}/> : null}
-            { adminOption === "edit" ? editModal : null}
+            { adminOption === "edit" ? <FormServices typeForm={"edit"} idElement={params} close ={setAdminOption} /> : null}
           </> : null}
         </div>
 
