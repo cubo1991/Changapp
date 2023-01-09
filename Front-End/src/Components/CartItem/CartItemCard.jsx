@@ -11,10 +11,10 @@ export const CartItem = ({name, price, description, removeItem, id, amount, supp
 
  let stocks = suppliers?.map(s => s.stock);
  let maxStock = stocks.length>1? Math.max(...stocks) : stocks[0];
- console.log(maxStock)
+ let totalToRes = price*serviceAmount
 const removeService = () => {
   removeItem(id)
-  dispatch(deleteServiceAmount(price*serviceAmount))
+  dispatch(deleteServiceAmount(totalToRes))
 }
   const changeAmount = (e) => {
  

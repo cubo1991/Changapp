@@ -10,11 +10,11 @@ export const Cart = () => {
   let dispatch = useDispatch()
 let cart = useSelector((state) => state.cart)
 let totalPrice = useSelector((state) => state.totalPrice)
-console.log(cart)
+
 React.useEffect(() => {
  dispatch(getTotal())
- if(cart.length === 0) { dispatch(cartRestore())}
-}, [cart, totalPrice, dispatch])
+ if(!cart) { dispatch(cartRestore())}
+}, [])
 const removeItems = (id) =>{ 
   dispatch(removeItem(id))
 }

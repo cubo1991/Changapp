@@ -77,7 +77,7 @@ React.useEffect(() => {
     setCurrentPage(1); //Cada vez que el estado cambie setea la pagina 1
   }, [allServices])
 
- console.log(allServices)
+
 
   return (
     <div className={style.general}>

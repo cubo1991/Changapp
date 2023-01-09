@@ -108,6 +108,7 @@ const reducer = (state = initialState, action) => {
       let id = item.id
       localStorage.setItem(id, JSON.stringify(item))
       let services = JSON.parse(localStorage.getItem(id))
+      console.log(localStorage)
 
     
  
@@ -213,11 +214,11 @@ const reducer = (state = initialState, action) => {
                let newtotal = JSON.parse(localStorage.getItem("total"))
               return {
                   ...state,
-                  totalPrice: newtotal
+                  // totalPrice: newtotal
               }          
 
              case ADD_AMOUNT:
-         
+           
               let amountCostumer = action.amount
               let id2 = action.id
               let services2 = JSON.parse(localStorage.getItem(id2)) 
@@ -225,11 +226,17 @@ const reducer = (state = initialState, action) => {
               let newTotal = Number(services2.amount)*Number(services2.pricePerHour)
               console.log(newTotal)
               localStorage.setItem(id2, JSON.stringify(services2))
+              let found = state.cart.find(e => e.id === id2)
+              let index = state.cart.indexOf(found)
+              state.cart[index].amount = services2.amount
+         
               
-           
+
+
+         
               return {
                 ...state,
-                // cart: [...state.cart, services2]
+                cart: [...state.cart]
                 
               }     
               
@@ -240,13 +247,17 @@ const reducer = (state = initialState, action) => {
                
                 let afterRest = Number(getLHTotal) - Number(restaService)
                 localStorage.setItem("total", JSON.stringify(afterRest))
+                let deleteTotal = JSON.parse(localStorage.getItem("total"))
               return {
                 ...state,
+                totalPrice: deleteTotal
               }
               case CART_RESTORE:
                 localStorage.setItem("total", JSON.stringify(0))
+                let restorTotal = JSON.parse(localStorage.getItem("total"))
                 return{
-                  ...state
+                  ...state,
+                  totalPrice: restorTotal
                 }
 
     default:
