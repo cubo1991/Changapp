@@ -88,7 +88,7 @@ export default function NavBar() {
           <div className={`${Style.nav_right} d-flex justify-content-end col`}>
             <Searchbar />
             <Login></Login>
-            {isAuthenticated && role !== "Supplier" ?
+            { role !== "Supplier" ?
               <NavLink
                 to="/cart"
                 className={({ isActive }) =>
