@@ -31,8 +31,8 @@ export default function ServicesList ({openModal}) {
     myServices = allServices
   }else{
     
-      const myContracts = allContracts.filter( contract => contract.User.id === parseInt(user.id)); //Busca los contratos que ha hecho el usuario
-      const contractsSupplierId = myContracts.map( contract => contract.SupplierServiceId); //Busca el id del SupplierService de los contratos del usuario
+      const myContracts = allContracts.filter(contract => contract.User !== null).filter( contract => contract.User.id === parseInt(user.id)); //Busca los contratos que ha hecho el usuario
+      const contractsSupplierId = myContracts.filter(contract => contract.User !== null).map( contract => contract.SupplierServiceId); //Busca el id del SupplierService de los contratos del usuario
       contractsSupplierId.forEach( service => {             //Compara los los contractSupplierId con cada servicio para obtener los servicios contratados por el usuario
         const aux = allServices.find( element => {
           return element.Suppliers.SupplierService.id === parseInt(service)

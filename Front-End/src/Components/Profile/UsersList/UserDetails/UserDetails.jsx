@@ -30,6 +30,12 @@ export default function UserDetails () {
     phoneNumber: "",
  
   })
+
+  const userLog = useSelector(state => state.userLog)
+  const role = user.user_role || userLog;
+
+  console.log(role, "ROL")
+
   console.log(inputs, "PRIMER IMP")
 
   useLayoutEffect( ( ) => {       // useLayoutEffect => componentDidMount  
@@ -98,15 +104,15 @@ export default function UserDetails () {
         <button className={s.returnButton} onClick={() => navigate(-1)}>Regresar</button>
         <div className={s.options} hidden={noEditable ? false : true}>
           
-          {(user.user_role !== "SuperAdmin" && details[0].UserRol.name !== "SuperAdmin") ||
-          [user.user_role === "SuperAdmin"] ? 
+          {(role !== "SuperAdmin" && details[0].UserRol.name !== "SuperAdmin") ||
+          (role === "SuperAdmin") ? 
           <button className={s.optionsButton} onClick={() => {
             setNoEditable( () => false)
           }}>Editar</button> : null}
 
-          {(((user.user_role !== "Admin" && details[0].UserRol.name !== "SuperAdmin") && 
+          {(((details[0].UserRol.name !== "SuperAdmin") && 
           parseInt(user.id) !== details[0].id)) ||
-          (user.user_role === "SuperAdmin" && details[0].id !== parseInt(user.id)) ? 
+          (role === "SuperAdmin" && details[0].id !== parseInt(user.id)) ? 
           <button className={s.optionsButton} onClick={(e) => deleteHandler(e)}>Eliminar usuario</button>
           : null}
 

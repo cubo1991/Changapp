@@ -33,7 +33,7 @@ export default function ContractList () {
   if(role === "Admin" || role === "SuperAdmin"){
     myContracts = allContracts;
   }else{
-    myContracts = allContracts.filter( contract => contract.User.id === parseInt(user.id));
+    myContracts = allContracts.filter( contract => contract.User !== null).filter( contract => contract.User.id === parseInt(user.id));
   }
 
   //PAginacion
@@ -64,6 +64,7 @@ export default function ContractList () {
       <div className={s.container}>
 
         {myContracts.length > 0 ? currentContracts.map( contract => {
+          console.log(contract)
           return <div className={s.card}>
             <div>
               <b>Id Contrato: </b><span>{contract.id}</span>
@@ -72,10 +73,13 @@ export default function ContractList () {
               <b>Proveedor: </b><span>{contract.Supplier.name}</span>
             </div>
             <div>
-              <b>Cliente: </b><span>{contract.User.userName}</span>
+              <b>Cliente: </b><span>{contract.User ? contract.User.userName : null}</span>
             </div>  
             <div>
               <b>Fecha de creación: </b><span>{contract.date}</span>
+            </div>
+            <div>
+              <b>Estado: </b><span>{contract.status}</span>
             </div>
           </div> 
         }) : <div>

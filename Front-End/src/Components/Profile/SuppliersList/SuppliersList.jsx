@@ -34,7 +34,7 @@ export default function SuppliersList () {
     mySuppliers = allSuppliers
   }else{
     
-      const myContracts = allContracts.filter( contract => contract.User.id === parseInt(user.id)); //Busca los contratos que ha hecho el usuario
+      const myContracts = allContracts.filter(contract => contract.User !== null).filter( contract => contract.User.id === parseInt(user.id)); //Busca los contratos que ha hecho el usuario
       mySuppliers = myContracts.map( contract => contract.Supplier); //Busca el id del Supplier de los contratos del usuario
   }
 
