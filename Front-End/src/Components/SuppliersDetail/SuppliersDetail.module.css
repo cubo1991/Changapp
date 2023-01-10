@@ -60,7 +60,10 @@
     /* background-color: black; */
     display: flex;
     align-items: center;
-    padding-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
   }
 
@@ -129,4 +132,10 @@
         padding: 20px;
         color:white;
         text-shadow: -1px -1px 5px rgb(0 0 0), 1px 1px 5px rgb(57 39 18);
+  }
+
+  @media(max-width:664px){
+    .detail_container{
+      align-items: center;
+    }
   }
