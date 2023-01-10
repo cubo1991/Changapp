@@ -9,7 +9,7 @@ import s from '../ShopForm.jsx/ShopForm.module.css'
 export const ShopForm = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart)
-  console.log(cart)
+  // console.log(cart)
 
   const { user } = useAuth0();
 
@@ -23,11 +23,11 @@ useEffect(()=> {
 
   if(userDetails.length) {
     inicialState = {
-      name: userDetails[0].name && userDetails[0].family_name? `${userDetails[0].name} ${userDetails[0].family_name}` : '*',
-      phone: userDetails[0].Detail.phoneNumber? userDetails[0].Detail.phoneNumber : '*',
+      name: userDetails[0].name ? `${userDetails[0].name}` : '*',
+      phone: userDetails[0].Detail?.phoneNumber? userDetails[0].Detail.phoneNumber : '*',
       email: userDetails[0].email? userDetails[0].email : '*',
-      adress: userDetails[0].Detail.adress? userDetails[0].Detail.adress : '*',
-      location: userDetails[0].Detail.location? userDetails[0].Detail.location : '*',
+      adress: userDetails[0].Detail?.adress? userDetails[0].Detail.adress : '*',
+      location: userDetails[0].Detail?.location? userDetails[0].Detail.location : '*',
       CP: '',
       preferredTime:''
   }
@@ -61,7 +61,7 @@ useEffect(()=> {
             setInput(inicialState);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      },[])
+      },[userDetails])
 
     // Funciones Validadoras
     function nameValidator (name, set) {
@@ -154,7 +154,7 @@ useEffect(()=> {
 //
     const handlerSubmit = (e) => {
         e.preventDefault();
-        console.log(input)
+        // console.log(input)
         setPagar(true);
       //cart.forEach(c=>{
       //  dispatch(creaContract(c,input))

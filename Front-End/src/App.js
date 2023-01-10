@@ -41,12 +41,11 @@ function App() {
   let location = useLocation();
   useEffect(() => {
     if (
-      location.search.includes("success=true") &&
-      location.search.includes("status=approved")
+      location.search.includes("success=true")
     ) {
       localStorage.clear();
     }
-    console.log(location.key);
+    // console.log(location.key);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.key]);
 
