@@ -29,7 +29,8 @@ useEffect(()=> {
       adress: userDetails[0].Detail?.adress? userDetails[0].Detail.adress : '*',
       location: userDetails[0].Detail?.location? userDetails[0].Detail.location : '*',
       CP: '',
-      preferredTime:''
+      preferredTime:'Mañana (entre las 8:00 y las 12:00)'
+
   }
   } else {
     inicialState = {
@@ -39,7 +40,8 @@ useEffect(()=> {
       adress: '*',
       location: '*',
       CP: '',
-      preferredTime:''
+      preferredTime:'Mañana (entre las 8:00 y las 12:00)'
+
   }
   }
  
@@ -154,11 +156,20 @@ useEffect(()=> {
 //
     const handlerSubmit = (e) => {
         e.preventDefault();
-        // console.log(input)
         setPagar(true);
-      //cart.forEach(c=>{
-      //  dispatch(creaContract(c,input))
-      //})
+      cart?.forEach((c)=>{
+        
+        let buy = {
+          buy_item: c.serviceType,
+          buy_pricePerHour: c.pricePerHour,
+          buy_amount:c.amount
+        }
+        
+        //dispatch(action(c,input));
+        console.log('input',input);
+        console.log('c',buy);
+      })
+  
 
     }
 

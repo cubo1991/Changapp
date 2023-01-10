@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const ContractController = require("../controllers/ContractController");
+const {assignSupplier} = require('../controllers/StockController');
 const { ResourceNotFound } = require("../errors");
 
 const router = Router();
@@ -30,13 +31,13 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  const { date, SupplierServiceId, UserId, status } = req.body;
+  const { date, serviceId, amount, UserId, status } = req.body; //cart=serviceId,amount 
 
-  if (!date || !SupplierServiceId || !UserId)
+  if (!date || !serviceId || !UserId)
     return res
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
-
+  const SupplierServiceId = await assignSupplier(serviceId, amount);//Supplier asignado
   const newContract = { date, SupplierServiceId, UserId, status };
 
   try {

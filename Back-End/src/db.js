@@ -47,6 +47,7 @@ const {
   User,
   UserLogin,
   UserRol,
+  Receipts
 } = sequelize.models; //destructurin de los modelos.
 
 //1aN Categorias de servicios
@@ -117,6 +118,10 @@ Contract.belongsTo(User);
 
 User.hasMany(Review);
 Review.belongsTo(User);
+
+//Receipts hasMany Contracts y Contracts belongsTo Receipts
+Receipts.hasMany(Contract);
+Contract.belongsTo(Receipts);
 
 //TODO CHEQUEAR
 // User.belongsToMany(Review, { through: "User_Reviews" });

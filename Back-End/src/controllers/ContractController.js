@@ -10,7 +10,7 @@ const {
 } = require("../db");
 const { ResourceNotFound, InternalError } = require("../errors");
 const { ForeignKeyConstraintError } = require("sequelize");
-
+const {releaseSupplier} = require('../controllers/StockController');
 const findQuery = {
   include: [Supplier, User, Review],
   order: [["date", "DESC"]],
@@ -89,7 +89,7 @@ const update = async (id, { date, UserId, SupplierServiceId, status }) => {
 
   try {
     const updateContract = await Contract.update(
-      { date, UserId, SupplierServiceId, SupplierId, status },
+      { date, UserId, SupplierServiceId, SupplierId, status}, 
       { where: { id } }
     );
 
@@ -101,6 +101,10 @@ const update = async (id, { date, UserId, SupplierServiceId, status }) => {
         "update"
       );
 
+      if(status === 'CANCELADA' || status === 'COMPLETADA'){
+        //liberar el stock del supplier
+        releaseSupplier(SupplierServiceId);
+      }
     // retornamos asi para mantener el formato consistente
     return await findById(id);
   } catch (error) {

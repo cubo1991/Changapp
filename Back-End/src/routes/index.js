@@ -13,7 +13,7 @@ const notifications = require("./notifications.js");
 // const roles = require("./roles");
 // const UsersSearch = require("./UsersSearch");
 const contracts = require("./contracts");
-const stock = require("./stock");
+//const stock = require("./stock");
 
 const router = Router();
 
@@ -35,6 +35,6 @@ router.use("/notifications", notifications);
 // router.use("/roles", roles);
 // router.use("/users", UsersSearch);
 router.use("/contracts", contracts);
-router.use("/stock",stock);
+//router.use("/stock",stock);
 
 module.exports = router;
