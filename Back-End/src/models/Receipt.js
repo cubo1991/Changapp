@@ -7,37 +7,29 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    buy_item:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    buy_pricePerHour:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    buy_amount:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    buyer_name: {
-        type: DataTypes.STRING,
-    },
-    buyer_phone: {
-        type: DataTypes.BIGINT,
-    },
-    buyer_email: {
+    userId: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    buyer_adress: {
+    name: {
+        type: DataTypes.STRING,
+    },
+    phone: {
+        type: DataTypes.BIGINT,
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    adress: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    buyer_location: {
+    location: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    buyer_CP: {
+    CP: {
         type: DataTypes.INTEGER,
     },
     preference_time:{

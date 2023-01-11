@@ -4,6 +4,7 @@ const {
   User,
   SupplierService,
   Review,
+  Receipt,
   Op,
   fn,
   conn,
@@ -11,8 +12,9 @@ const {
 const { ResourceNotFound, InternalError } = require("../errors");
 const { ForeignKeyConstraintError } = require("sequelize");
 const {releaseSupplier} = require('../controllers/StockController');
+
 const findQuery = {
-  include: [Supplier, User, Review],
+  include: [Supplier, User, Review, Receipt],
   order: [["date", "DESC"]],
 };
 
@@ -27,7 +29,7 @@ const findSupplierBySupplierService = async (SupplierServiceId) => {
   }
 };
 
-const add = async ({ date, UserId, SupplierServiceId, status }) => {
+const add = async ({ date, UserId, SupplierServiceId, receiptId }) => {
   let SupplierId;
 
   try {
@@ -49,10 +51,10 @@ const add = async ({ date, UserId, SupplierServiceId, status }) => {
       date,
       UserId,
       SupplierServiceId,
-      SupplierId,
-      status,
+      SupplierId
     });
 
+    newContract.setReceipt(receiptId);
     // retornamos asi para mantener el formato consistente
     return await findById(newContract.id);
   } catch (error) {
