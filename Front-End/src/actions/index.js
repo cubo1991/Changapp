@@ -421,3 +421,19 @@ export function editService (id, data) {
       .then( res => alert(res));
   }
 }
+
+export function authSupplier (id, data) {
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/suppliers/${id}`,{
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({ isAuth : data})
+    })
+    .then( res => {
+      dispatch(getDetails(id));
+    })
+  }
+}
