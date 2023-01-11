@@ -18,7 +18,7 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
   const { user } = useAuth0();
   const userLog = useSelector(state => state.userLog);
   let role;
-  if(user) role = user.user_log || userLog;
+  if(user) role = user.user_role || userLog;
 
   const navigate = useNavigate();
 
@@ -38,7 +38,8 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
     } 
 
     console.log(adminOption)
-    console.log(user.user_role)
+    //filtrado de autorizados
+    const suppliersAuth = suppliers.filter( supplier => supplier.isAuthorized);
 
   return (
     <div className={style.container}>
@@ -50,10 +51,10 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
       <div className={style.container3}>
       <div className={style.container2}>
           <img className={style.img} src={img} alt="Imagen"/>
-          {disponible && user.user_role !== "Supplier"?
+          {disponible && role !== "Supplier"?
           <button className={style.button} onClick={onClickBtn}>Agregar al Carrito</button>
           :
-          user.user_role !== "Supplier"?
+          role !== "Supplier"?
           <button className={style.buttonDisabled} disabled='true' onClick={onClickBtn}>No disponible</button>
           :
           null
@@ -65,7 +66,7 @@ export const ServiceDetailCard = ({ name, pph, description, category, suppliers,
           <h4>Descripción</h4>
           <p>{description}</p>
           <h4>Proveedores</h4>
-        {suppliers.map(s => {
+        {suppliersAuth.map(s => {
   return (
   <p>{s.name}</p>
   )

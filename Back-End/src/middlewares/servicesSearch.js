@@ -90,7 +90,7 @@ router.get('/:id', async (req, res) => {
         },
           include: [{
             model: Supplier,
-            attributes: ["name", "stock"]
+            attributes: ["name", "stock", "isAuthorized"]
           },
           {
             model: Category,
