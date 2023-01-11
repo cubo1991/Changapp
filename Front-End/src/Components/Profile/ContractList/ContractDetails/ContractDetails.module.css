@@ -5,8 +5,9 @@
   width: 80%;
   height: 60%;
   margin-top: 3em;
-  background-color: rgba(56, 56, 184, 0.89);
+  background-color: rgb(0, 132, 255);
   padding: 3%;
+  border-radius: 15px;
 }
 
 .buttons{
