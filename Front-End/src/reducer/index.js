@@ -18,6 +18,7 @@ const initialState = {
   contracts: [],
   userDetails: [],
   userLog: [],
+  contractDetails: [],
 userDB:{},
 totalPrice: 0
 };
@@ -260,6 +261,11 @@ const reducer = (state = initialState, action) => {
                   ...state,
                   totalPrice: restorTotal
                 }
+      case "GET_CONTRACT_DETAILS":
+        return {
+          ...state,
+          contractDetails: action.payload
+        }
 
     default:
       return state;

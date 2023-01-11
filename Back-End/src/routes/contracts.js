@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const ContractController = require("../controllers/ContractController");
+const {assignSupplier} = require('../controllers/StockController');
 const { ResourceNotFound } = require("../errors");
 
 const router = Router();
@@ -30,16 +31,28 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  const { date, SupplierServiceId, UserId, status } = req.body;
+  
+console.log('body de contracts',req.body)
+let {userId} = req.body;
+let {id, amount} = req.body.cart;
+let {receiptId} = req.body;
 
-  if (!date || !SupplierServiceId || !UserId)
+let date = new Date();
+let ServiceId = id;
+
+
+  if ( !ServiceId || !userId )
     return res
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
+  
+  var SupplierServiceId = await assignSupplier(ServiceId, amount);//Supplier asignado
+  
+  const newContract = { date, SupplierServiceId, userId, receiptId };
 
-  const newContract = { date, SupplierServiceId, UserId, status };
-
+  
   try {
+    
     const dbContract = await ContractController.add(newContract);
 
     return res.status(201).json(dbContract);

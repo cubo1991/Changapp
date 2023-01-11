@@ -275,7 +275,7 @@ export function getAllServices(){
   return function (dispatch) {
     fetch(`${BACKEND_SERVER}/services`)
     .then(res => res.json())
-    .then(res => setServices(res))
+    .then(res => dispatch(setServices(res)))
   }
 }
 
@@ -283,9 +283,7 @@ export const postServices = (imageForm, input) => {
   return function (dispatch) {
     axios
       .post(BACKEND_SERVER + "/services", {imageForm, input})
-      .then( data => {
-        alert(data.data)}
-        )
+      .then( data => alert(data.data))
       .catch((error) => {
         console.log(error);
         alert("Something went wrong...");
@@ -423,3 +421,52 @@ export function editService (id, data) {
       .then( res => alert(res));
   }
 }
+
+export function authSupplier (id, data) {
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/suppliers/${id}`,{
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({ isAuth : data})
+    })
+    .then( res => {
+      dispatch(getDetails(id));
+    })
+  }
+}
+
+export function getContractDetails (id){
+  return async function (dispatch){
+    await fetch(`${BACKEND_SERVER}/contracts/${id}`)
+    .then(res => res.json())
+    .then(res => dispatch({type: "GET_CONTRACT_DETAILS", payload: res}));
+  }
+}
+
+export const createContract = (userId, userData, buyData) => {
+
+  return function () {
+    axios
+      .post(BACKEND_SERVER + "/receipt", {userId, userData})
+      .then(res => {
+        console.log(res.data);
+        let receiptId = res.data;
+        buyData.forEach(cart => {
+          axios
+          .post(BACKEND_SERVER + "/contracts", {userId,receiptId,cart})
+          .catch((error) => {
+            console.log(error);
+            alert("Something went wrong...");
+          });
+        })
+      
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Something went wrong...");
+      });
+  };
+};

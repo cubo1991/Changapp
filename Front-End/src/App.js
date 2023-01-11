@@ -22,6 +22,7 @@ import { FormSuppliers } from "./Components/FormSuppliers/FormSuppliers";
 import { Footer } from "./Components/Footer/Footer";
 import { ProtectedRoute } from "./Components/ProtectedRoute/ProtectedRoute";
 import UserDetails from "./Components/Profile/UsersList/UserDetails/UserDetails";
+import ContractDetails from "./Components/Profile/ContractList/ContractDetails/ContractDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -78,8 +79,15 @@ function App() {
             <ShopForm />
           </ProtectedRoute>
         } />
+        <Route path="/profile/contract/:id" element={
+        <ProtectedRoute>
+          <ContractDetails/>
+        </ProtectedRoute>
+      } />
+
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
+     
       <Footer />
     </div>
   );

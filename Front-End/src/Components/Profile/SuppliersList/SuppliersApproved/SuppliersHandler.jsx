@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import s from './SuppliersHandler.module.css'
 
 import Index from '../../../Index/Index.jsx';
+import { Link } from "react-router-dom";
 
 export default function SuppliersApproved ({suppliers}) {
 
@@ -58,14 +59,14 @@ export default function SuppliersApproved ({suppliers}) {
           currentPage={currentPage}/>: null}
 
           {suppliers.length > 0 ? currentSuppliers.map( supplier => {
-            return <div className={s.card}>
+            return <Link to={"/suppliers/" + supplier.id}><div className={s.card}>
               <div>
                 <b>Proveedor: </b>{supplier.name}
               </div>
               {/* <div>
                 <b>Verificado: </b>{supplier.isAuthorized ? "Si" : "No"}
               </div> */}
-            </div>
+            </div></Link>
           }): <h3>No hay proveedores por procesar</h3>}
         </div>
 

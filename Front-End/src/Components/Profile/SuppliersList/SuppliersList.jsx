@@ -1,17 +1,25 @@
 
 import { useAuth0 } from "@auth0/auth0-react";
 /* import { useEffect, useState } from "react"; */
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 /* import Index from '../../Index/Index.jsx'; */
 import s from './SuppliersList.module.css';
 
 import SuppliersHandler from "./SuppliersApproved/SuppliersHandler.jsx";
+import { useEffect } from "react";
+import { getSuppliers } from "../../../actions";
 
 export default function SuppliersList () {
 
   const {user} = useAuth0();
   const userLog = useSelector(state => state.userLog);
   const role = user.user_role || userLog;
+
+  const dispatch = useDispatch();
+  
+  useEffect( ( ) => {
+    dispatch(getSuppliers());
+  }, [dispatch])
 
 /*   const suppliers = useSelector(state => state.suppliers) */
 

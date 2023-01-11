@@ -5,6 +5,7 @@ import { getContracts } from "../../../actions";
 import s from './ContractList.module.css';
 import { useState } from "react";
 import Index from '../../Index/Index.jsx';
+import { Link } from 'react-router-dom';
 
 export default function ContractList () {
 
@@ -64,8 +65,8 @@ export default function ContractList () {
       <div className={s.container}>
 
         {myContracts.length > 0 ? currentContracts.map( contract => {
-          console.log(contract)
-          return <div className={s.card}>
+
+          return <Link to={`/profile/contract/${contract.id}`}><div className={s.card}>
             <div>
               <b>Id Contrato: </b><span>{contract.id}</span>
             </div>
@@ -81,7 +82,7 @@ export default function ContractList () {
             <div>
               <b>Estado: </b><span>{contract.status}</span>
             </div>
-          </div> 
+          </div></Link> 
         }) : <div>
                 <br/>
                 <h3>No has realizado ningún pedido</h3>

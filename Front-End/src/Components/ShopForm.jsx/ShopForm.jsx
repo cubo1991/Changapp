@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserDetails} from '../../actions';
+import { getUserDetails, createContract} from '../../actions';
 import MercadoPagoProduct from '../MercadoPagoProduct/MercadoPagoProduct';
 import s from '../ShopForm.jsx/ShopForm.module.css'
 
@@ -29,7 +29,8 @@ useEffect(()=> {
       adress: userDetails[0].Detail?.adress? userDetails[0].Detail.adress : '*',
       location: userDetails[0].Detail?.location? userDetails[0].Detail.location : '*',
       CP: '',
-      preferredTime:''
+      preferredTime:'Mañana (entre las 8:00 y las 12:00)'
+
   }
   } else {
     inicialState = {
@@ -39,7 +40,8 @@ useEffect(()=> {
       adress: '*',
       location: '*',
       CP: '',
-      preferredTime:''
+      preferredTime:'Mañana (entre las 8:00 y las 12:00)'
+
   }
   }
  
@@ -154,12 +156,9 @@ useEffect(()=> {
 //
     const handlerSubmit = (e) => {
         e.preventDefault();
-        // console.log(input)
         setPagar(true);
-      //cart.forEach(c=>{
-      //  dispatch(creaContract(c,input))
-      //})
-
+   
+        dispatch(createContract(user.id, input, cart));
     }
 
     //console.log("Rendering ShopForm");
@@ -194,7 +193,7 @@ useEffect(()=> {
             </div>
             <div className={s.linea}></div>
 
-            <form className="row g-3" onSubmit={(e)=>handlerSubmit(e)}>
+            <form onSubmit={(e) => e.preventDefault()} className="row g-3">
 
                 <div class="form-group">
             <h3 className={s.text}>Datos del Comprador</h3>
@@ -296,10 +295,11 @@ useEffect(()=> {
                     </select>
                           
                 </div>
-<br></br>  <p className={s.error}>*Son datos requeridos</p>
+<br></br>  <p className={s.msj}>*Son datos requeridos</p>
                     <div className="col-md-12">
                     <input
-                        class="btn btn-primary"
+                        onClick={(e)=>handlerSubmit(e)}
+                        className="btn btn-primary"
                         value='Solicitar Pago'
                         type='submit'
                         disabled= {
