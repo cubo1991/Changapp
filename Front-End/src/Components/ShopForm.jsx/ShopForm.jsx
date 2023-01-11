@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserDetails} from '../../actions';
+import { getUserDetails, createContract} from '../../actions';
 import MercadoPagoProduct from '../MercadoPagoProduct/MercadoPagoProduct';
 import s from '../ShopForm.jsx/ShopForm.module.css'
 
@@ -157,20 +157,8 @@ useEffect(()=> {
     const handlerSubmit = (e) => {
         e.preventDefault();
         setPagar(true);
-      cart?.forEach((c)=>{
-        
-        let buy = {
-          buy_item: c.serviceType,
-          buy_pricePerHour: c.pricePerHour,
-          buy_amount:c.amount
-        }
-        
-        //dispatch(action(c,input));
-        console.log('input',input);
-        console.log('c',buy);
-      })
-  
-
+   
+        dispatch(createContract(user.id, input, cart));
     }
 
     //console.log("Rendering ShopForm");

@@ -445,3 +445,28 @@ export function getContractDetails (id){
     .then(res => dispatch({type: "GET_CONTRACT_DETAILS", payload: res}));
   }
 }
+
+export const createContract = (userId, userData, buyData) => {
+
+  return function () {
+    axios
+      .post(BACKEND_SERVER + "/receipt", {userId, userData})
+      .then(res => {
+        console.log(res.data);
+        let receiptId = res.data;
+        buyData.forEach(cart => {
+          axios
+          .post(BACKEND_SERVER + "/contracts", {userId,receiptId,cart})
+          .catch((error) => {
+            console.log(error);
+            alert("Something went wrong...");
+          });
+        })
+      
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Something went wrong...");
+      });
+  };
+};

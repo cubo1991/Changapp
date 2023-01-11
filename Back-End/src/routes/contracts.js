@@ -31,16 +31,28 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  const { date, serviceId, amount, UserId, status } = req.body; //cart=serviceId,amount 
+  
+console.log('body de contracts',req.body)
+let {userId} = req.body;
+let {id, amount} = req.body.cart;
+let {receiptId} = req.body;
 
-  if (!date || !serviceId || !UserId)
+let date = new Date();
+let ServiceId = id;
+
+
+  if ( !ServiceId || !userId )
     return res
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
-  const SupplierServiceId = await assignSupplier(serviceId, amount);//Supplier asignado
-  const newContract = { date, SupplierServiceId, UserId, status };
+  
+  var SupplierServiceId = await assignSupplier(ServiceId, amount);//Supplier asignado
+  
+  const newContract = { date, SupplierServiceId, userId, receiptId };
 
+  
   try {
+    
     const dbContract = await ContractController.add(newContract);
 
     return res.status(201).json(dbContract);
