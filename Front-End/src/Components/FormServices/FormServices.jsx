@@ -2,7 +2,7 @@ import React from 'react'
 //import { useForm } from 'react-hook-form'
 import s from './FormServices.module.css'
 import { useDispatch } from 'react-redux'
-import { editService, getCategories, getServiceDetails, getSuppliers, postServices } from '../../actions'
+import { editService, getAllServices, getCategories, getServiceDetails, getSuppliers, postServices } from '../../actions'
 import { useState } from 'react';
 import  {useSelector} from 'react-redux';
 import { useEffect } from 'react';
@@ -42,7 +42,10 @@ const inicialState = {
       const imageForm = document.getElementById('images');
       const formData = new FormData(imageForm);
       
-       if(typeForm === "create") dispatch(postServices(formData, inputValues)) ;
+       if(typeForm === "create") {
+        dispatch(postServices(formData, inputValues))
+        dispatch(getAllServices());
+      } ;
 
        if(typeForm === "edit") {
         dispatch(editService(idElement, inputValues));
@@ -174,7 +177,7 @@ const inicialState = {
 
     return (
       <div className={s.container}>
-
+        <button className={`${s.close} ${s.button}`} onClick={ () => { close(false)}}>X</button>
       <div className={`card ${s.form}`}>
 
      <form onSubmit={(e) =>{ 

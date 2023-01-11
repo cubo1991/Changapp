@@ -55,9 +55,9 @@ export default function ServicesList ({openModal}) {
   return(
     <div>
 
-      <div className={s.new}>
-        <button onClick={() => openModal(true)}>Agregar nuevo servicio</button>
-      </div>
+      { role === "Admin" || role === "SuperAdmin" ? <div className={s.new}>
+        <button className={s.button} onClick={() => openModal(true)}>Agregar nuevo servicio</button>
+      </div>: null}
 
       {role === "Admin" ||
       role === "SuperAdmin" ?

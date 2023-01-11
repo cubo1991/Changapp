@@ -275,7 +275,7 @@ export function getAllServices(){
   return function (dispatch) {
     fetch(`${BACKEND_SERVER}/services`)
     .then(res => res.json())
-    .then(res => setServices(res))
+    .then(res => dispatch(setServices(res)))
   }
 }
 
@@ -283,9 +283,7 @@ export const postServices = (imageForm, input) => {
   return function (dispatch) {
     axios
       .post(BACKEND_SERVER + "/services", {imageForm, input})
-      .then( data => {
-        alert(data.data)}
-        )
+      .then( data => alert(data.data))
       .catch((error) => {
         console.log(error);
         alert("Something went wrong...");
