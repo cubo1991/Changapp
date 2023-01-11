@@ -437,3 +437,11 @@ export function authSupplier (id, data) {
     })
   }
 }
+
+export function getContractDetails (id){
+  return async function (dispatch){
+    await fetch(`${BACKEND_SERVER}/contracts/${id}`)
+    .then(res => res.json())
+    .then(res => dispatch({type: "GET_CONTRACT_DETAILS", payload: res}));
+  }
+}
