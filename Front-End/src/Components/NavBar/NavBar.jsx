@@ -17,11 +17,14 @@ export default function NavBar() {
 
   const userLog = useSelector(state => state.userLog);
   let role;
-  if(user) role = user.user_role || userLog;
+  if(user) role = userLog;
 
   useEffect(() => {
     if (!isLoading && isAuthenticated && role) setUserRole(role);
   }, [isLoading, isAuthenticated, role]);
+
+  console.log(userRole)
+  console.log(role)
 
 
   return (
@@ -51,9 +54,9 @@ export default function NavBar() {
               <span>Contacto</span>
               </NavLink>
               </li>
-              {userRole === "Supplier" ? <li>
+              {userRole === "User" ? <li>
               <NavLink to="/suppliersContact" className="dropdown-item">
-              <span>Publicá tu servicio</span>
+              <span>Publicá tu empresa</span>
               </NavLink>
               </li> : ""}
             </ul>
@@ -80,7 +83,7 @@ export default function NavBar() {
           </NavLink>
 
           {
-            userRole === "Supplier" ?
+            userRole === "User" ?
               <NavBarSupplier />
               : ""
           }
