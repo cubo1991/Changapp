@@ -14,9 +14,6 @@
         color: red;    
         }
 
-    .itemsContainer {
- 
-    }
 
     .order{
       display: flex;
@@ -32,7 +29,7 @@
     .total {
       display: flex;
       color:black;
-      text-shadow: #CCC 1px 0 10px;;
+      text-shadow: #CCC 1px 0 10px;
     
     }
 
@@ -51,4 +48,9 @@
 
     .text{
       color: black;
+    }
+
+    .msj{
+      color: black;
+      font-weight: bolder;
     }

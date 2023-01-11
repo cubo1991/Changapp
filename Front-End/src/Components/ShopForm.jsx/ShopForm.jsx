@@ -205,7 +205,7 @@ useEffect(()=> {
             </div>
             <div className={s.linea}></div>
 
-            <form className="row g-3" onSubmit={(e)=>handlerSubmit(e)}>
+            <form onSubmit={(e) => e.preventDefault()} className="row g-3">
 
                 <div class="form-group">
             <h3 className={s.text}>Datos del Comprador</h3>
@@ -307,10 +307,11 @@ useEffect(()=> {
                     </select>
                           
                 </div>
-<br></br>  <p className={s.error}>*Son datos requeridos</p>
+<br></br>  <p className={s.msj}>*Son datos requeridos</p>
                     <div className="col-md-12">
                     <input
-                        class="btn btn-primary"
+                        onClick={(e)=>handlerSubmit(e)}
+                        className="btn btn-primary"
                         value='Solicitar Pago'
                         type='submit'
                         disabled= {
