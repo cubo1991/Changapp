@@ -89,7 +89,8 @@ const supplierService = await SupplierService.findAll({
     }
 };
 
-const releaseSupplier = async (SupplierServiceId, amount = 1) => {
+const releaseSupplier = async (SupplierServiceId, amount) => {
+  if(!amount) amount = 1;
     try{
         const supplier = await SupplierService.findByPk(SupplierServiceId);
         console.log(supplier)
