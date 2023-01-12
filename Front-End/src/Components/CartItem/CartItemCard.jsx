@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addAmount, resServicesPrice, sumServicesPrice, deleteServiceAmount } from '../../actions'
 import s from './CartItemCard.module.css'
+import { AiOutlineMinusCircle } from 'react-icons/ai';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 export const CartItem = ({name, price, description, removeItem, id, amount, suppliers }) => {
 
@@ -36,18 +38,18 @@ const removeService = () => {
     return (
         <div className={s.card} >
             
-            <div className="card container" style={{margin:"1rem", height:"18rem"}}>
+            <div className="card container" style={{margin:"1rem", height:"20rem"}}>
             <div className="card-body row">
               <div className={s.contenedor} >
           {name.length < 14 ? <h2 className="card-title fs-3">{name}</h2> : <h2 className="card-title fs-4">{name}</h2> }   
             </div>
             <div>
            <p>Elija la cantidad de horas</p>
-            <button onClick={changeAmount} value="-">-</button>{serviceAmount} <button onClick={changeAmount} value="+">+</button>
+            <button onClick={changeAmount} className="btn btn-succes" value="-"><i style={{pointerEvents: 'none'}}><AiOutlineMinusCircle/></i></button>{serviceAmount} <button onClick={changeAmount} className="btn btn-succes" value="+"><i style={{pointerEvents: 'none'}}><AiOutlinePlusCircle/></i></button>
             </div>
             <div className={s.contenedorPrecios}>
-            <h6>Precio por hora:</h6> <p className="card-text">${price}</p>
-            <h6>Precio total:</h6> <p className="card-text">${price*serviceAmount}</p>
+            <h6>Precio por hora</h6> <p className={`card-text ${s.pPrecios}`}>${price}</p>
+            <h6>Precio total</h6> <p className={`card-text ${s.pPrecios}`}>${price*serviceAmount}</p>
             </div>
                     
        

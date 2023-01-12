@@ -3,8 +3,8 @@
 .card {
        width: 20rem;
        height: 20rem;
-       padding-top: 2rem;
-       
+       padding: 1rem;
+       margin-top: 1rem; 
        
       
        
@@ -36,13 +36,27 @@
     display: flex;
     font-size: small;
     padding-top: 1.2rem;
+    align-items: flex-start;
           
       
 }
 .contenedor p{
-    padding-left: 0.50rem;
+    padding-left: 5rem;
 }
 h5 {
     text-align: center;
 }
+
+h6{
+    width: fit-content;
+    position: relative;
+    font-size: smaller;
+    white-space: nowrap;
+}
+
+.pPrecios{
+    position: relative;
+    right: 4rem;
+}
+
 
