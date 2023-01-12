@@ -39,7 +39,7 @@ const removeItems = (id) =>{
 
   
     </div>
-    <div className='container-fluid' style={{paddingTop: "2rem"}}>
+    <div className='container-fluid' style={{paddingTop: "3rem"}}>
       <h2>Total: ${totalPrice} </h2>
       <NavLink to='/buy'><button type="button" class="btn btn-success">Pagar</button></NavLink>
       </div>

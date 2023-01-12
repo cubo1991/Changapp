@@ -11,9 +11,16 @@ height: 25rem;
 .contenedor {
     position: relative;
     top: 6rem;
+    display: flex;
+    flex-wrap:nowrap;
+    overflow-y: scroll;
+ 
+    
 }
 .contenedorItems {
     height:fit-content;
     min-height: 20rem;
+
+
     
 }
