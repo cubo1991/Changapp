@@ -32,7 +32,7 @@ useEffect(() => {
                     >
 
                         <div className={`${Style.link} nav-link`}>
-                            <span>Publicá tu servicio</span>
+                            <span>Publicá tu empresa</span>
                         </div>
 
                     </NavLink>
