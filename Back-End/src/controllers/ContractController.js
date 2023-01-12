@@ -68,7 +68,7 @@ const add = async ({ date, UserId, SupplierServiceId, receiptId }) => {
   }
 };
 
-const update = async (id, { date, UserId, SupplierServiceId, status }) => {
+const update = async (id, { date, UserId, SupplierServiceId, amount, status }) => {
   let SupplierId;
 
   if (SupplierServiceId) {
@@ -105,7 +105,7 @@ const update = async (id, { date, UserId, SupplierServiceId, status }) => {
 
       if(status === 'CANCELADA' || status === 'COMPLETADA'){
         //liberar el stock del supplier
-        releaseSupplier(SupplierServiceId);
+        releaseSupplier(SupplierServiceId, amount);
       }
     // retornamos asi para mantener el formato consistente
     return await findById(id);
