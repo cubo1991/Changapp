@@ -3,7 +3,7 @@ color: red;
 }
 
 .container{
-  margin: 4% 0;
+  margin: 2em 0;
   padding: 10px;
   display: flex;
   flex-direction: column;

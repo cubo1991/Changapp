@@ -59,7 +59,7 @@ export const FormSuppliers = () => {
       ?
       <div><h1>Inscribí a tu empresa</h1>
       
-            <div className='card' style={{ width: "40rem", left: "22rem", top: "2rem" }}>
+            <div className='card' style={{ maxWidth: "40rem"}}>
       
             <form onSubmit={handleSubmit(onSubmit)} className="row g-3" enctype="multipart/form-data" id='supplier'>
       
