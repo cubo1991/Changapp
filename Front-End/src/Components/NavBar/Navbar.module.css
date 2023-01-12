@@ -36,7 +36,6 @@
 .active .link{
   /* background-color: black; */
   color:rgb(0, 0, 0);
-  text: shadow 3d;
 }
 
 .nav_right{
