@@ -38,7 +38,7 @@ const removeService = () => {
     return (
         <div className={s.card} >
             
-            <div className="card container" style={{margin:"1rem", height:"20rem"}}>
+            <div className="card container" >
             <div className="card-body row">
               <div className={s.contenedor} >
           {name.length < 14 ? <h2 className="card-title fs-3">{name}</h2> : <h2 className="card-title fs-4">{name}</h2> }   
