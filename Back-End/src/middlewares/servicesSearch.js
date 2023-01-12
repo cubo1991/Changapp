@@ -35,10 +35,7 @@ router.get('/', async (req, res, next) => {
                  //EJEM: si se busca "lim" trae todos los services que lleven lim (Limpieza de techos, Limpieza de cloacas, etc)
               } }
         ,
-        include: [{
-          model: Supplier,
-          attributes: ["name"]
-        },
+        include: [
         {
           model: Category,
           attributes: ["name"]
@@ -55,10 +52,7 @@ router.get('/', async (req, res, next) => {
   
       const result = await Service.findAll({
 
-        include: [{
-          model: Supplier,
-          attributes: ["name"]
-        },
+        include: [
         {
           model: Category,
           attributes: ["name"]
