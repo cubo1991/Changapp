@@ -5,4 +5,7 @@ color: red;
 .container{
   margin: 4% 0;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center
 }
