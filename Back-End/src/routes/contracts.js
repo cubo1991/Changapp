@@ -68,7 +68,7 @@ let ServiceId = id;
 
 router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
-  const { date, SupplierServiceId, UserId, status } = req.body;
+  const { date, SupplierServiceId, amount, UserId, status } = req.body;
 
   if (!id) return res.status(400).send();
   if (!date && !SupplierServiceId && !UserId && !status)
