@@ -59,8 +59,13 @@ React.useEffect(() => {
      .filter( (element) => element.includes("em"))
      .join().split("=");
      email = email[1];     //email del comprador
+
+     let receiptId = location.search.split("&")
+     .filter( element => element.includes("receiptId"))
+     .join().split("=");
+     receiptId = receiptId[1]
      
-     dispatch(sendContractNotification(status,email))
+     dispatch(sendContractNotification(status,email, receiptId))
    }
    // eslint-disable-next-line react-hooks/exhaustive-deps
      }, [dispatch])

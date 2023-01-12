@@ -255,9 +255,9 @@ export function updateImageProfile(id, payload) {
   };
 };
 
-export function sendContractNotification(status, email) {
+export function sendContractNotification(status, email, receiptId) {
   return function(dispatch){
-    fetch(`${BACKEND_SERVER}/notifications?success=${status}&email=${email}`)
+    fetch(`${BACKEND_SERVER}/notifications?success=${status}&email=${email}&receiptId=${receiptId}`)
     .then( res => res.json())
     .then( res => console.log(res))
   }
@@ -448,7 +448,7 @@ export function getContractDetails (id){
 
 export const createContract = (userId, userData, buyData) => {
 
-  return function () {
+  return function (dispatch) {
     axios
       .post(BACKEND_SERVER + "/receipt", {userId, userData})
       .then(res => {
@@ -462,7 +462,27 @@ export const createContract = (userId, userData, buyData) => {
             alert("Something went wrong...");
           });
         })
-      
+        axios
+        .post(`${BACKEND_SERVER}/create_preference`, { items: buyData, email: userData.email, receiptId: receiptId })
+        .then((order) => {
+
+          console.log(`received! ${order.data.id}`)
+          dispatch({ type:"SET_PREFERENCE", payload: order.data.id}); 
+          
+          /* const mp = new window.MercadoPago('TEST-959bcbcb-0bd9-475f-b5af-0349fcbf5bc8', {
+            locale: 'es-AR'
+          });
+  
+          mp.checkout({
+            preference: {
+              id: order.data.id
+            },
+            render: {
+              container: '.cho-container',
+              label: 'Pagar',
+            }
+          }); */
+        });
       })
       .catch((error) => {
         console.log(error);

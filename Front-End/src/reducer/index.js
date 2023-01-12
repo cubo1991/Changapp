@@ -19,6 +19,7 @@ const initialState = {
   userDetails: [],
   userLog: [],
   contractDetails: [],
+  preference: null,
 userDB:{},
 totalPrice: 0
 };
@@ -265,6 +266,12 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           contractDetails: action.payload
+        }
+      
+      case "SET_PREFERENCE":
+        return {
+          ...state,
+          preference: action.payload
         }
 
     default:

@@ -18,8 +18,9 @@ mercadopago.configure({
 // app.use(cors());
 
 router.post("/", (req, res) => {
-    const { items, email } = req.body
+    const { items, email, receiptId } = req.body
     //console.log(items)
+    console.log(receiptId)
     let preference = {
         items: items.map((item) => {
             return {
@@ -35,8 +36,8 @@ router.post("/", (req, res) => {
         }),
         auto_return: "all",
         back_urls: {
-            "success": `${URL_BACK}?success=true&em=${email}`,
-            "failure": `${URL_BACK}?success=false&em=${email}`,
+            "success": `${URL_BACK}?success=true&em=${email}&receiptId=${receiptId}`,
+            "failure": `${URL_BACK}?success=false&em=${email}&receiptId=${receiptId}`,
             "pending": `${URL_BACK}?success=pending`
         }
     };
