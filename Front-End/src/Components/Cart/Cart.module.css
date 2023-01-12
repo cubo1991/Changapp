@@ -1,9 +1,9 @@
 .emptyCart {
-
-    border-radius: 5%;
+    /* border: 2rem solid blue; */
     background-color: rgb(159, 158, 158);
-    padding-top: 5rem;
-    height: 25rem;
+    height: 15rem;
+    position: relative;
+    padding-top: 5%;
 }
 
 
@@ -13,15 +13,16 @@
     background-color: rgb(159, 158, 158);
     background-size: cover;
     background-attachment: fixed;
+    margin-top: 2rem;
 }
 
-.contenedor {
+/* .contenedor {
     position: relative;
     top: 6rem;
     display: flex;
     flex-wrap: nowrap;
     overflow-y: scroll;
-}
+} */
 
 .contenedorItems {
     /* border: 2em solid black; */

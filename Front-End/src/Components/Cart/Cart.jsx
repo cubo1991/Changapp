@@ -50,8 +50,8 @@ export const Cart = () => {
         </div>
         : ""}
       {cart.length < 1 ?
-        <div className={`container-fluid ${s.contenedor}`}>
-          <div className={`container-fluid ${s.emptyCart}`}>
+        <div className={` ${s.contenedor}`}>
+          <div className={`${s.emptyCart}`}>
             <h3>Tu carrito está vacio</h3>
             <p>¡Mirá todos los servicios que podés contratar!</p>
             <NavLink
