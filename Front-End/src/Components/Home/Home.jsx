@@ -72,7 +72,10 @@ React.useEffect(() => {
     //
 
   useEffect(() => {
-    if(user) dispatch(getUserDetails(user.id, true));
+    if(user) {
+      dispatch(getUserDetails(user.id, true));
+      dispatch(getUserDetails(user.id));
+    }
     dispatch(getServices());
     dispatch(getSuppliers());
     dispatch(searchingServices()); //settea un estado global para que la barra de busqueda busque servicios

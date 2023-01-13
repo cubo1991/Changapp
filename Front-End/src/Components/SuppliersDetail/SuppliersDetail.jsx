@@ -18,8 +18,13 @@ export const SuppliersDetail = () => {
   const { user, isAuthenticated } = useAuth0();
   const userLog = useSelector(state => state.userLog);
   let role, userId = null;
-
   const userDetails = useSelector(state => state.userDetails)
+
+  React.useEffect(() => {
+    dispatch(getDetails(params.id));
+    if(userId) dispatch(getUserDetails(userId))
+  }, [dispatch, params.id, userId]);
+  
   let allContracts = [];
   if(user) allContracts = userDetails[0].Contracts
 
@@ -30,10 +35,6 @@ export const SuppliersDetail = () => {
 
 
 
-  React.useEffect(() => {
-    dispatch(getDetails(params.id));
-    if(userId) dispatch(getUserDetails(userId))
-  }, [dispatch, params.id, userId]);
 
 let servs=supplierDetail.Services
 /* console.log(servs) */
