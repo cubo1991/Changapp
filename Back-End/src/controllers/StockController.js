@@ -96,7 +96,7 @@ const releaseSupplier = async (SupplierServiceId, amount) => {
         console.log(supplier)
         const result = await Supplier.findByPk(supplier.SupplierId);
 
-        if(result.stock >= 8) throw Error ('Todos los turnos ya se encuentran liberados');
+        if(result.stock >= 8) return 'Todos los turnos ya se encuentran liberados';
 
         await Supplier.update({
             stock: result.stock + amount

@@ -490,3 +490,16 @@ export const createContract = (userId, userData, buyData) => {
       });
   };
 };
+
+export function updateContractStatus(id, data){
+  return function (dispatch){
+    fetch(`${BACKEND_SERVER}/contracts/${id}`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PUT",
+      body: JSON.stringify(data)
+    })
+  }
+}

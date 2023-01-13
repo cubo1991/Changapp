@@ -48,7 +48,7 @@ let ServiceId = id;
   
   var SupplierServiceId = await assignSupplier(ServiceId, amount);//Supplier asignado
   
-  const newContract = { date, SupplierServiceId, userId, receiptId };
+  const newContract = { date, SupplierServiceId, userId, receiptId, amount };
 
   
   try {

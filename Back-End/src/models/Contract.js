@@ -15,5 +15,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: "CREADA",
     },
+    itemAmount:{
+      type: DataTypes.INTEGER,
+      defaultValue:1,
+    }
   });
 };

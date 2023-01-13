@@ -29,7 +29,7 @@ const findSupplierBySupplierService = async (SupplierServiceId) => {
   }
 };
 
-const add = async ({ date, UserId, SupplierServiceId, receiptId }) => {
+const add = async ({ date, UserId, SupplierServiceId, receiptId, amount }) => {
   let SupplierId;
 
   try {
@@ -51,7 +51,8 @@ const add = async ({ date, UserId, SupplierServiceId, receiptId }) => {
       date,
       UserId,
       SupplierServiceId,
-      SupplierId
+      SupplierId,
+      itemAmount: amount
     });
 
     newContract.setReceipt(receiptId);
