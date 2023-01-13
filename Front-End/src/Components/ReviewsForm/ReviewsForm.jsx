@@ -5,7 +5,7 @@ import s from '../ReviewsForm/ReviewsForm.module.css';
 import { sendReview } from '../../actions';
 import { useParams } from 'react-router-dom';
 
-export default function ReviewsPost ({canReview, userId}) {
+export default function ReviewsPost ({canReview}) {
 
   const supplierDetails = useSelector(state => state.supplierDetails)
   const services = supplierDetails.Services
@@ -32,9 +32,12 @@ export default function ReviewsPost ({canReview, userId}) {
   const [inputValues, setInputValues] = useState({
     rating: 1,
     comment: "",
+    serviceId: 0,
     contractId: 0
     //Aun hardcodeado
   })
+
+  console.log(selectOptions, "SO")
   
   console.log(inputValues)
   /* console.log(supplierId) */
@@ -48,19 +51,23 @@ export default function ReviewsPost ({canReview, userId}) {
     })
   }
 
-  const selectHandler = (e) => {
+  const selectHandler = (e, options) => {
+    const search = options.find( element => element[1].id === parseInt(e.target.value))
+    console.log(search[0].SupplierService.ServiceId, "SEARCH")
     if(e.target.value === "default"){
       setInputValues( prev => {
         return {
           ...prev,
-          contractId: null
+          serviceId: 0,
+          contractId: 0
         }
       })
     }else {
       setInputValues( prev => {
         return {
           ...prev,
-          contractId: e.target.value
+          serviceId: search[0].SupplierService.ServiceId,
+          contractId: parseInt(e.target.value)
         }
       })
     }
@@ -74,7 +81,7 @@ export default function ReviewsPost ({canReview, userId}) {
         <div className={s.services}>
 
             <h5>Servicio</h5>
-            <select onChange={(e) => selectHandler(e)}>
+            <select onChange={(e) => selectHandler(e, selectOptions)}>
 
             <option value='default'>-- Seleccione el servicio... --</option>
 
@@ -116,7 +123,9 @@ export default function ReviewsPost ({canReview, userId}) {
           return {
             ...prev,
             rating: 1,
-            comment: ""
+            comment: "",
+            contractId: 0,
+            serviceId: 0
           }
         })
        }}/></div>

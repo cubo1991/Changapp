@@ -33,10 +33,12 @@ router.get("/:id", async (req, res) => {
     "contractId": "1"
 } */
 router.post("/", async (req, res) => {
-    const {comment, rating, contractId} = req.body
+    const {comment, rating, contractId, serviceId} = req.body
     //http://localhost:3001/review
   try {
     if(!comment || !rating) res.send("Faltan datos obligatorios por cargar")
+
+    console.log(req.body, "BODY")
 
     const contractData = await ReviewController.contractData(contractId)
     const objReview = {
@@ -45,11 +47,11 @@ router.post("/", async (req, res) => {
         ContractId: contractData.dataValues.id,
         SupplierId: contractData.dataValues.SupplierId,
         UserId: contractData.dataValues.UserId,
-        ServiceId: contractData.dataValues.SupplierServiceId
+        ServiceId: serviceId
     }
     const newReview = await ReviewController.newReview(objReview)
 
-    res.status(200).send("Comentario cargado exitosamente!")
+    return res.status(200).json("Comentario cargado exitosamente!")
   } catch (error) {
     res.status(500).send("Hubo un error en el servidor" + error)
   }

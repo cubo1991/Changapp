@@ -28,6 +28,8 @@ export const SuppliersDetail = () => {
     userId = user.id
   }
 
+
+
   React.useEffect(() => {
     dispatch(getDetails(params.id));
     if(userId) dispatch(getUserDetails(userId))
@@ -105,13 +107,7 @@ servs?.map( (s, index)=>{
         
       </div>
 
-      {console.log(supplierDetail.Contracts)}
-
-      {console.log(allContracts, "ALLCONTRACTS")}
-
-      {console.log(canReview, "CAN REVIEW")}
-
-      { isAuthenticated && canReview.length > 0 ? <ReviewsForm canReview={canReview} userId={userId}/> : null}
+      { isAuthenticated && canReview.length > 0 ? <ReviewsForm canReview={canReview} /* userId={userId} *//> : null}
      
       
       
