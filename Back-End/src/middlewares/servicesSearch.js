@@ -60,8 +60,6 @@ router.get('/', async (req, res, next) => {
         {
           model: Supplier
         }],
-        raw: true,
-        nest: true
       });
       
       res.status(200).json(result);

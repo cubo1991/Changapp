@@ -30,15 +30,20 @@ export default function ServicesList ({openModal}) {
   if(role === "Admin" || role === "SuperAdmin"){
     myServices = allServices
   }else{
-    
+      let aux = new Set();
       const myContracts = allContracts.filter(contract => contract.User !== null).filter( contract => contract.User.id === parseInt(user.id)); //Busca los contratos que ha hecho el usuario
       const contractsSupplierId = myContracts.filter(contract => contract.User !== null).map( contract => contract.SupplierServiceId); //Busca el id del SupplierService de los contratos del usuario
       contractsSupplierId.forEach( service => {             //Compara los los contractSupplierId con cada servicio para obtener los servicios contratados por el usuario
-        const aux = allServices.find( element => {
-          return element.Suppliers.SupplierService.id === parseInt(service)
+          allServices.forEach( element => {
+            element.Suppliers.find( elen => {
+              if(elen.SupplierService.id === parseInt(service)) {aux.add(element)}
+              return true
+            })
+        /*   return element.Suppliers.SupplierService.id === parseInt(service) */
         })
-        return myServices = [...myServices, aux]
+        return myServices = [...aux]
       })
+      console.log(myServices, "MYSERVICES")
   }
 
   //PAginacion
@@ -70,6 +75,7 @@ export default function ServicesList ({openModal}) {
       <div className={s.container}>
 
         {myServices.length > 0 ? currentServices.map( element => {
+          console.log(element, "ELEMENTO")
             return <Link to={"/services/" + element.id}>
                       <div className={s.card}>
                         <div>
@@ -79,7 +85,7 @@ export default function ServicesList ({openModal}) {
                             <b>Tipo de servicio: </b><span>{element.serviceType}</span>
                           </div>
                           <div>
-                            <b>Categoría: </b><span>{element.Category.name}</span>
+                           {/*  <b>Categoría: </b><span>{element.Category.name}</span> */}
                           </div>
                       </div>
                     </Link>
