@@ -13,7 +13,7 @@ const findQuery = {
   include: [
     { model: Review, attributes: [] },
     { model: Detail },
-    { model: Contract, attributes: [] },
+    { model: Contract/* , attributes: [] */ },
     {
       model: Service,
       attributes: [
@@ -22,6 +22,9 @@ const findQuery = {
         "description",
         "representative_image",
       ],
+      include: [
+        { model: Review}
+      ]
     },
   ],
 };
@@ -40,6 +43,7 @@ const aggregationQuery = {
     "Contracts.id",
     "Services.id",
     "Services->SupplierService.id",
+    "Services->Reviews.id"
   ],
 };
 

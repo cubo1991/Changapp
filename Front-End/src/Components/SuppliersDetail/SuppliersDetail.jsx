@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { authSupplier, getDetails} from "../../actions";
+import { authSupplier, getDetails, getUserDetails} from "../../actions";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import style from "../SuppliersDetail/SuppliersDetail.module.css"
@@ -17,16 +17,32 @@ export const SuppliersDetail = () => {
   
   const { user, isAuthenticated } = useAuth0();
   const userLog = useSelector(state => state.userLog);
-  let role;
+  let role, userId = null;
 
-  if(user) role = user.user_role || userLog;
+  const userDetails = useSelector(state => state.userDetails)
+  let allContracts = [];
+  if(user) allContracts = userDetails[0].Contracts
+
+  if(user) {
+    role = user.user_role || userLog;
+    userId = user.id
+  }
 
   React.useEffect(() => {
     dispatch(getDetails(params.id));
-  }, [dispatch, params.id]);
+    if(userId) dispatch(getUserDetails(userId))
+  }, [dispatch, params.id, userId]);
 
 let servs=supplierDetail.Services
-console.log(servs)
+/* console.log(servs) */
+const canReview = allContracts.filter( userContract => userContract.SupplierId === supplierDetail.id)
+/* allContracts.forEach( userContract => {
+  supplierDetail.Contracts.forEach( supplierContract =>{
+    if(supplierContract.SupplerServiceId === userContract.SupplierServiceId){
+      canReview.push(userContract)
+    }
+  })
+}) */
 
   return (
     <div className={style.background}>
@@ -57,16 +73,16 @@ console.log(servs)
         </div>
 <h4>Servicios prestados</h4>
         {
-servs?.map(s=>{
+servs?.map( (s, index)=>{
 
   return (
-    
+  
     <div>
-           <a className={`btn btn-primary, ${style.botonfiltros}`} data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" >
+           <a className={`btn btn-primary, ${style.botonfiltros}`} data-bs-toggle="offcanvas" href={`#offcanvasExample${index}`} role="button" aria-controls="offcanvasExample" >
            {s.serviceType}
             </a>
      
-            <div className={`offcanvas offcanvas-start, ${style.slideNav}`} tabindex="-1" id="offcanvasExample" >
+            <div className={`offcanvas offcanvas-start, ${style.slideNav}`} tabindex="-1" id={`offcanvasExample${index}`} >
                 <button type="button" className={style.closeButton} data-bs-dismiss="offcanvas" >X</button>
                 
                <ul><h4>Reviews</h4>
@@ -89,7 +105,13 @@ servs?.map(s=>{
         
       </div>
 
-      { isAuthenticated ? <ReviewsForm/> : null}
+      {console.log(supplierDetail.Contracts)}
+
+      {console.log(allContracts, "ALLCONTRACTS")}
+
+      {console.log(canReview, "CAN REVIEW")}
+
+      { isAuthenticated && canReview.length > 0 ? <ReviewsForm canReview={canReview} userId={userId}/> : null}
      
       
       

@@ -56,6 +56,9 @@ router.get('/', async (req, res, next) => {
         {
           model: Category,
           attributes: ["name"]
+        },
+        {
+          model: Supplier
         }],
         raw: true,
         nest: true

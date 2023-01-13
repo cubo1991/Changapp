@@ -5,12 +5,24 @@ import s from '../ReviewsForm/ReviewsForm.module.css';
 import { sendReview } from '../../actions';
 import { useParams } from 'react-router-dom';
 
-export default function ReviewsPost () {
+export default function ReviewsPost ({canReview, userId}) {
 
   const supplierDetails = useSelector(state => state.supplierDetails)
-  const servs = supplierDetails.Services
+  const services = supplierDetails.Services
+
+  const selectOptions = [];
+  canReview.forEach( contract => {
+    services.forEach( service => {
+      if(service.SupplierService.id === contract.SupplierServiceId){
+        selectOptions.push([service, contract])
+      }
+    })
+  })
+
+ /*  console.log(selectOptions, "OPTIONS")
   
-  console.log(servs);
+  console.log(canReview, "Reviews")
+  console.log(userId, "ID") */
   
   const dispatch = useDispatch()
   
@@ -20,14 +32,12 @@ export default function ReviewsPost () {
   const [inputValues, setInputValues] = useState({
     rating: 1,
     comment: "",
-    serviceId: supplierId.id,
+    contractId: 0
     //Aun hardcodeado
-    userId: 2,
-    serviceType: ""
   })
   
   console.log(inputValues)
-  console.log(supplierId)
+  /* console.log(supplierId) */
 
   const inputHandlers = (e) => {
     setInputValues( prev => {
@@ -43,14 +53,14 @@ export default function ReviewsPost () {
       setInputValues( prev => {
         return {
           ...prev,
-          serviceType: ""
+          contractId: null
         }
       })
     }else {
       setInputValues( prev => {
         return {
           ...prev,
-          serviceType: e.target.value
+          contractId: e.target.value
         }
       })
     }
@@ -68,9 +78,9 @@ export default function ReviewsPost () {
 
             <option value='default'>-- Seleccione el servicio... --</option>
 
-            {servs ? servs.map( element => {
+            {selectOptions.length > 0 ? selectOptions.map( element => {
               
-              return <option value={element.serviceType}>{element.serviceType}</option>
+              return <option value={element[1].id}>{element[0].serviceType}</option>
 
             }) : null}
 
