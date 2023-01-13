@@ -68,7 +68,7 @@ let ServiceId = id;
 
 router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
-  const { date, SupplierServiceId, amount, UserId, status } = req.body;
+  let { date, SupplierServiceId, amount, UserId, status } = req.body;
 
   if (!id) return res.status(400).send();
   if (!date && !SupplierServiceId && !UserId && !status)
@@ -76,7 +76,7 @@ router.put("/:id", async (req, res, next) => {
       .status(400)
       .json({ error: "Faltan datos obligatorios por cargar" });
 
-  const dataContract = { date, SupplierServiceId, UserId, status };
+  const dataContract = { date, SupplierServiceId, UserId, status, amount };
 
   try {
     const dbContract = await ContractController.update(id, dataContract);
