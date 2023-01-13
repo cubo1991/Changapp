@@ -13,7 +13,7 @@ import NavBarSupplier from "./NavBarSupplier.jsx";
 export default function NavBar() {
   let cart = useSelector((state) => state.cart)
   const { user, isLoading, isAuthenticated } = useAuth0();
-  const [userRole, setUserRole] = useState("User");
+  const [userRole, setUserRole] = useState("");
 
   const userLog = useSelector(state => state.userLog);
   let role;

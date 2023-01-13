@@ -64,12 +64,7 @@ export default function ServicesList ({openModal}) {
       <h2>Lista de servicios</h2> :
       <h2>Lista de servicios contratados</h2>}
 
-        {myServices.length > 0 ?
-        <Index
-        servicesPerPage={servicesPerPage}
-        allServices={myServices.length}
-        index={index}
-        currentPage={currentPage}/>: null}
+        
     
       {/* Poner Solo admin: */}
       <div className={s.container}>
@@ -89,7 +84,12 @@ export default function ServicesList ({openModal}) {
                       </div>
                     </Link>
         }): <h3>No has contratado servicios...</h3>}
-
+      {myServices.length > 0 ?
+        <Index
+        servicesPerPage={servicesPerPage}
+        allServices={myServices.length}
+        index={index}
+        currentPage={currentPage}/>: null}
 
       </div>
 

@@ -49,7 +49,7 @@ export default function SuppliersApproved ({suppliers}) {
       role === "SuperAdmin" ? <h2>Proveedores verificados</h2> :
       <h2>Proveedores que han trabajado para ti</h2>} */}
 
-        <div>
+        <div className={s.container}>
 
         {mySuppliers.length > 0 ?
           <Index
