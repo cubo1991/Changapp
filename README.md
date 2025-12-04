@@ -1,99 +1,123 @@
-# Proyecto-Final---Henry
+# 🔄 Changapp - Plataforma de Intercambio de Servicios
 
-# E-commerce Services  
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
-  
+## 📖 Descripción
 
-<div align="center">
+Changapp es una plataforma web full stack que permite a los usuarios intercambiar servicios sin necesidad de dinero. La aplicación facilita la conexión entre personas que ofrecen y buscan diferentes tipos de servicios, creando una economía colaborativa basada en el intercambio.
 
-<img src="https://www.codedimension.com.ar/public/images/noticias/321-la-nueva-forma-de-comprar-e-commerce-crece-exponencialmente-en-argentina.jpg" align="center" style="width: 100%" />
+## ✨ Características Principales
 
-</div>  
+- 🔐 **Sistema de Autenticación**: Registro e inicio de sesión seguro para usuarios
+- 👤 **Gestión de Perfiles**: Los usuarios pueden crear y editar sus perfiles personales
+- 🔍 **Búsqueda y Filtrado**: Sistema avanzado para encontrar servicios específicos
+- 💬 **Sistema de Mensajería**: Comunicación directa entre usuarios interesados
+- 📝 **Publicación de Servicios**: Los usuarios pueden ofrecer sus servicios a la comunidad
+- ⭐ **Sistema de Valoraciones**: Calificación y reseñas de servicios intercambiados
 
-  
+## 🛠️ Tech Stack
 
-### <div align="center">Proyecto Final en equipo que hicimos junto a 7 compañeros más para el Bootcamp de Henry</div>  
+### Frontend
+- **React**: Librería para construir la interfaz de usuario
+- **Redux**: Manejo del estado global de la aplicación
+- **CSS Modules**: Estilos modulares y reutilizables
+- **Axios**: Cliente HTTP para comunicación con el backend
 
-  
+### Backend
+- **Node.js**: Entorno de ejecución de JavaScript
+- **Express**: Framework web para Node.js
+- **PostgreSQL**: Base de datos relacional
+- **Sequelize**: ORM para PostgreSQL
+- **JWT**: Autenticación basada en tokens
 
-## Descripción  
+## 🚀 Instalación y Uso
 
-  
+### Prerrequisitos
+- Node.js (v14 o superior)
+- PostgreSQL (v12 o superior)
+- npm o yarn
 
-Es una SPA (Single Page Application) que desarrollamos en grupo para el proyecto Final del Bootcamp en SoyHenry.
+### Instalación del Backend
 
-Es un E-commerce dónde los usuarios pueden ver los servicios ofrecidos, puede buscar por nombre, puede filtrar por ubicación y por categoría, se puede ordenar por precio y se puede buscar un rango de precios. También, pueden agregar el o los servicios de su interés al carrito, sacarlos de ahí, elegir la cantidad de horas que desea contratar. Si desea comprar lo que agregó en el carrito necesita logearse, puede hacerlo desde terceros, con google o con facebook, o puede hacerlo con su usuario y contraseña desde la aplicación. Puede pagar através de mercado pago. Una vez realizada la compra, le llega al mail de contacto una notificación con los datos de su compra, el proveedor que le fue asignado y sus datos de contacto y el estado de la misma.
+```bash
+# Clonar el repositorio
+git clone https://github.com/cubo1991/Changapp.git
+cd Changapp/backend
 
-También el usuario tiene acceso a la cartilla de proveedores. Ahí puede acceder al detalle y puede ver las reviews que le dejaron los usuarios que consumieron su servicio. 
+# Instalar dependencias
+npm install
 
-Pueden dejar su review calificando de 1 a 5 y dejando un comentario, sólo si se compró y consumió el servicio con ese proveedor.
+# Configurar variables de entorno
+cp .env.example .env
+# Editar .env con tus credenciales de base de datos
 
-Los proveedores que deseen formar parte, pueden completar un formulario con los datos de su empresa prestadora.
+# Ejecutar migraciones
+npm run migrate
 
-Otra figura que forma parte del proceso es el admin, quien desde su dashboard puede administrar toda la página: proveedores, servicios, usuarios y órdenes de comprar.
+# Iniciar el servidor
+npm start
+```
 
-Es responsive. Los usuarios pueden acceder a las mismas funcionalidades descriptas desde su celular.
+### Instalación del Frontend
 
-  
+```bash
+# Desde la raíz del proyecto
+cd frontend
 
-  
+# Instalar dependencias
+npm install
 
-## Tecnologías empleadas  
+# Iniciar la aplicación
+npm start
+```
 
-  
+La aplicación estará disponible en `http://localhost:3000`
 
-<div align="center">  
+## 📁 Estructura del Proyecto
 
-<a href="https://www.javascript.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" height="50" /></a>  
+```
+Changapp/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── redux/
+│   │   ├── services/
+│   │   └── App.js
+│   └── package.json
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── server.js
+│   └── package.json
+└── README.md
+```
 
-<a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React" height="50" /></a>  
+## 🎯 Funcionalidades Futuras
 
-<a href="https://redux.js.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/redux-original.svg" alt="Redux" height="50" /></a>  
+- [ ] Sistema de notificaciones en tiempo real
+- [ ] Chat en vivo con WebSockets
+- [ ] Aplicación móvil con React Native
+- [ ] Sistema de recomendaciones basado en IA
+- [ ] Integración con redes sociales
 
-<a href="https://en.wikipedia.org/wiki/HTML5" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" height="50" /></a>  
+## 👨‍💻 Autor
 
-<a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50" /></a>  
+**David López**
+- LinkedIn: [david-lopez-mathez](https://www.linkedin.com/in/david-lopez-mathez/)
+- Portfolio: [davidlopezdev.com.ar](https://www.davidlopezdev.com.ar)
+- GitHub: [@cubo1991](https://github.com/cubo1991)
 
-<a href="https://nodejs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/nodejs-original-wordmark.svg" alt="Node.js" height="50" /></a>  
+## 📄 Licencia
 
-<a href="https://expressjs.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/express-original-wordmark.svg" alt="Express.js" height="50" /></a>  
+Este proyecto está bajo la Licencia MIT.
 
-<a href="https://www.postgresql.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/postgresql-original-wordmark.svg" alt="PostgreSQL" height="50" /></a>  
+---
 
-<a href="https://getbootstrap.com/docs/3.4/javascript/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/bootstrap-plain.svg" alt="Bootstrap" height="50" /></a>  
-
-</div>  
-
-## Habilidades Blandas Adquiridas  
-
-  
-
-* SCRUM
-
-* Metodologías Ágiles
-
-* Trabajo en Equipo
-
-* Comunicación
-
-* División de Tareas  
-
-  
-
-## Link del Deploy  
-
-  
-
-https://changapp.up.railway.app/  
-
-  
-
-## Link de YouTube  
-
-  
-
-https://youtu.be/5FqolQbA9dw  
-
-  
-
-<br/>  
+⭐️ Si te gusta este proyecto, no dudes en darle una estrella!
